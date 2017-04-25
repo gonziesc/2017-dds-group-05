@@ -1,7 +1,10 @@
 package view;
+import java.awt.Color;
+
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Label;
+import org.uqbar.arena.widgets.NumericField;
 import org.uqbar.arena.widgets.Panel;
 
 import org.uqbar.arena.widgets.TextBox;
@@ -18,7 +21,7 @@ import viewmodel.ConsultarValorCuentaViewModel;
 @SuppressWarnings("serial")
 
 public class ConsultarValorCuenta extends Dialog<ConsultarValorCuentaViewModel>{
-		
+	@SuppressWarnings("serial")
 	public ConsultarValorCuenta(WindowOwner owner) {
 		super(owner, new ConsultarValorCuentaViewModel());
 	}
@@ -28,56 +31,56 @@ public class ConsultarValorCuenta extends Dialog<ConsultarValorCuentaViewModel>{
 			mainPanel.setLayout(new VerticalLayout());
 
 			new Label(mainPanel).setText("Numero de cuenta");
-			//new TextBox(mainPanel).bindValueToProperty("...");
+			new TextBox(mainPanel).bindValueToProperty("numero_cuenta");
 				
-			
 
 			new Button(mainPanel)
 				.setCaption("Consultar cuenta")
-				.onClick(this::consultarValorCuenta)
-				
-				;
+				.onClick(()->getModelObject().obtenerCuenta());
 			
 			
-			new Label(mainPanel).setText("Datos de la cuenta");
-			
+			new Label(mainPanel).setText("Datos de la cuenta").setBackground(Color.GREEN);
+					
 			new Label(mainPanel).setText("Nombre de cuenta");
-			//new TextBox(mainPanel).bindValueToProperty("...");
+			new TextBox(mainPanel).bindValueToProperty("nombre_cuenta");
 			
 			new Label(mainPanel).setText("Numero de cuenta");
-			//new TextBox(mainPanel).bindValueToProperty("...");
+			new NumericField(mainPanel).bindValueToProperty("numero_cuenta");
 			
 			
 			//<Cuenta>
 			Table<Cuenta> tablaCuentas = new Table<>(mainPanel, Cuenta.class);
-			//tablaCuentas.bindValueToProperty("...");
-			//tablaCuentas.setNumberVisibleRows(5).bindItemsToProperty("...");
+			tablaCuentas.bindValueToProperty("unaCuenta");
+			tablaCuentas.setNumberVisibleRows(5).bindItemsToProperty("cuentas");
 			
 			Column<Cuenta> columnaAnio = new Column<Cuenta>(tablaCuentas);
-			//columnaAnio.setTitle("Año").bindContentsToProperty("...");
+			columnaAnio.setTitle("AÃ±o").bindContentsToProperty("anio_cuenta");
 			
-			Column<Cuenta> columnaEbitda = new Column<Cuenta>(tablaCuentas);
-		//	columnaEbitda.setTitle("EBITDA - Earnings Before Interest, Taxes, Depreciation and Amortization").bindContentsToProperty("...");
+			/*Column<Cuenta> columnaEbitda = new Column<Cuenta>(tablaCuentas);
+			columnaEbitda.setTitle("EBITDA - Earnings Before Interest, Taxes, Depreciation and Amortization");
+			//.bindContentsToProperty("...");
 			
 			Column<Cuenta> columnaFds = new Column<Cuenta>(tablaCuentas);
-			//columnaFds.setTitle("FDS - Fully Diluted Shares").bindContentsToProperty("...");
+			columnaFds.setTitle("FDS - Fully Diluted Shares");
+			//.bindContentsToProperty("...");
 			
 			Column<Cuenta> columnaFcf = new Column<Cuenta>(tablaCuentas);
-			//columnaFcf.setTitle("FCF - Free Cash Flow").bindContentsToProperty("...");
+			columnaFcf.setTitle("FCF - Free Cash Flow");
+			//.bindContentsToProperty("...");
 			
 			Column<Cuenta> columnaCo = new Column<Cuenta>(tablaCuentas);
-			//columnaCo.setTitle("Continuing Operations").bindContentsToProperty("...");
+			columnaCo.setTitle("Continuing Operations");
+			//.bindContentsToProperty("...");
 			
 			Column<Cuenta> columnaDo = new Column<Cuenta>(tablaCuentas);
-			//columnaDo.setTitle("Discontinued Operations ").bindContentsToProperty("...");
-			
+			columnaDo.setTitle("Discontinued Operations ");
+			//.bindContentsToProperty("...");
+			*/
 			
 		}
 		
 		public void consultarValorCuenta(){
-			//Dialog<?> dialog = new ConsultarValorCuenta(this, getModelObject());
-			//dialog.open();
-			//dialog.onAccept(() -> {});
+			
 		}
 		
 		
