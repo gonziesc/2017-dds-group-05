@@ -14,19 +14,20 @@ import com.google.gson.reflect.TypeToken;
 
 @Observable
 public class CuentasService {
+	
 	public static List<Cuenta> deJSONaCuenta() {
 		Gson gson = new Gson();
 		try {
 			Type type = new TypeToken<List<Cuenta>>() {
 			}.getType();
-			List<Cuenta> listaCuentas = gson.fromJson(new FileReader(
-					"./resources/cuentas.json"), type);
+			List<Cuenta> listaCuentas = gson.fromJson(new FileReader("./resources/cuentas.json"), type);
 			return listaCuentas;
 		} catch (IOException e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
+	
 	public static void deCuentaAJSON(Cuenta unaCuenta) {
 		List<Cuenta> listaCuentas = deJSONaCuenta();
 		listaCuentas.add(unaCuenta);
@@ -40,6 +41,9 @@ public class CuentasService {
 		}catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+	}
+	public static void a(){
 		
 	}
 }
