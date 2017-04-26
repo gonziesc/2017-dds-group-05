@@ -8,7 +8,7 @@ import org.uqbar.commons.utils.Observable;
 public class Cuenta {
 	private String nombre_cuenta;
 	private int numero_cuenta;
-	private Date anio_cuenta;
+	private int anio_cuenta;
 	private double ganancia;
 	private double gananciaNeta;
 	private double intereses;
@@ -32,10 +32,10 @@ public class Cuenta {
 	public void setNumero_cuenta(int numero_cuenta) {
 		this.numero_cuenta = numero_cuenta;
 	}
-	public Date getAnio_cuenta() {
+	public int getAnio_cuenta() {
 		return anio_cuenta;
 	}
-	public void setAnio_cuenta(Date anio_cuenta) {
+	public void setAnio_cuenta(int anio_cuenta) {
 		this.anio_cuenta = anio_cuenta;
 	}
 	public double getGanancia() {

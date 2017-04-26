@@ -19,8 +19,8 @@ public class ConsultarValorCuentaViewModel {
 	private String tipo_cuenta;
 	
 	public void obtenerCuenta(){
-			unaCuenta = CuentasService.deJSONaCuenta();
-			
+		cuentas = CuentasService.deJSONaCuenta();
+		
 	}
 	//Getters & setters
 	public String getNombre_cuenta() {
