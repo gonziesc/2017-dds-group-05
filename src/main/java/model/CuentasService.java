@@ -8,6 +8,7 @@ import java.lang.reflect.Type;
 
 import org.uqbar.commons.utils.Observable;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -27,12 +28,15 @@ public class CuentasService {
 		}
 	}
 	public static void deCuentaAJSON(Cuenta unaCuenta) {
+		List<Cuenta> listaCuentas = deJSONaCuenta();
+		listaCuentas.add(unaCuenta);
+		ObjectMapper objectMapper = new ObjectMapper();
 		try{
+			String arrayToJson = objectMapper.writeValueAsString(listaCuentas);
 			FileWriter file = new FileWriter("./resources/cuentas.json");
-			Gson gson = new Gson();
-			String json = gson.toJson(unaCuenta);
-			file.write(json);
-			System.out.println(json);
+			file.write(arrayToJson);
+            file.close();
+			
 		}catch (IOException e) {
 			e.printStackTrace();
 		}

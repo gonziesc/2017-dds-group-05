@@ -1,0 +1,12 @@
+[
+{"nombre_cuenta":"asd",
+"numero_cuenta":1231233333,
+"anio_cuenta":3,"ganancia":3.0,
+"gananciaNeta":3.0,"intereses":3.0,
+"impuestos":3.0,"depreciacion":3.0,
+"amortizacion":3.0,"perdida":3.0},
+{"nombre_cuenta":"ASD","numero_cuenta":3,
+"anio_cuenta":3,"ganancia":3330.0,"gananciaNeta":330.0,
+"intereses":30.0,"impuestos":30.0,"depreciacion":30.0,"amortizacion":30.0,
+"perdida":30.0}
+]

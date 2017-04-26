@@ -21,7 +21,6 @@ public class ConsultarValorCuentaViewModel {
 	
 	public void obtenerCuenta(){
 		cuentas = CuentasService.deJSONaCuenta();
-		cuentas.stream().filter(unaCuenta -> unaCuenta.getNombre_cuenta() == "pepe").findAny();
 	}
 	//Getters & setters
 	public String getNombre_cuenta() {
