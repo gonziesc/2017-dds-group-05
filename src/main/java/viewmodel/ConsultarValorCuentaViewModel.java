@@ -3,6 +3,7 @@ package viewmodel;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 import org.uqbar.commons.utils.Observable;
 
@@ -20,7 +21,7 @@ public class ConsultarValorCuentaViewModel {
 	
 	public void obtenerCuenta(){
 		cuentas = CuentasService.deJSONaCuenta();
-		
+		cuentas.stream().filter(unaCuenta -> unaCuenta.getNombre_cuenta() == "pepe").findAny();
 	}
 	//Getters & setters
 	public String getNombre_cuenta() {

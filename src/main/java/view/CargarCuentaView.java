@@ -28,39 +28,39 @@ public class CargarCuentaView extends Dialog<CargarCuentaViewModel> {
 		this.setTitle("Carga de datos de la cuenta");
 		
 		new Label(form).setText("Nombre de cuenta");
-		//new TextBox(form).bindValueToProperty("...");
+		new TextBox(form).bindValueToProperty("...");
 		
 		new Label(form).setText("Numero de cuenta");
-		//new TextBox(form).bindValueToProperty("...");
+		new TextBox(form).bindValueToProperty("...");
 	
-		new Label(form).setText("Año");
-		//new TextBox(form).bindValueToProperty("...");
+		new Label(form).setText("Ano");
+		new TextBox(form).bindValueToProperty("...");
 
 		new Label(form).setText("Ganancia");
-		//new TextBox(form).bindValueToProperty("...");
+		new TextBox(form).bindValueToProperty("...");
 		
 		new Label(form).setText("Ganancia neta");
-		//new TextBox(form).bindValueToProperty("...");
+		new TextBox(form).bindValueToProperty("...");
 		
 		new Label(form).setText("Intereses");
-		//new TextBox(form).bindValueToProperty("...");
+		new TextBox(form).bindValueToProperty("...");
 		
 		new Label(form).setText("Impuestos");
-		//new TextBox(form).bindValueToProperty("...");
+		new TextBox(form).bindValueToProperty("...");
 		
 		new Label(form).setText("Despreciacion");
-		//new TextBox(form).bindValueToProperty("...");
+		new TextBox(form).bindValueToProperty("...");
 		
 		new Label(form).setText("Amortizacion");
-		//new TextBox(form).bindValueToProperty("...");
+		new TextBox(form).bindValueToProperty("...");
 		
 		new Label(form).setText("Perdida");
-		//new TextBox(form).bindValueToProperty("...");
+		new TextBox(form).bindValueToProperty("...");
 		
 		
-		new Button(form).setCaption("Cargar datos cuenta").onClick(this::actualizarDatos);
+		new Button(form).setCaption("Cargar datos cuenta").onClick(this::cargarDatos);
 	}
-	public void actualizarDatos(){
+	public void cargarDatos(){
 		//getModelObject().modificarDatos(getModelObject());
 		this.close();
 	}
