@@ -35,7 +35,7 @@ public class CuentaServiceTest {
 	}
 	
 
-	
+	/*
 	@Test
 	 public void testCargaBienLaCuentaEnJson() throws IOException{
 		CuentasService cuentasMockosa = Mockito.mock(CuentasService.class);
@@ -45,7 +45,6 @@ public class CuentaServiceTest {
 	}
 	
 	
-	/*
 	@Test
 	 public void testTiraExcepcionSiNoPuedeEncontrarElArchivo() throws IOException{
 		CuentasService cuentasMockosa = Mockito.mock(CuentasService.class);
@@ -54,14 +53,14 @@ public class CuentaServiceTest {
 		CuentasService.deCuentaAJSON(cuenta);
 			
 	}
-	
+	/
 	@Test
 	public void testLeeBienDelArchivoJSON() {
 		List<Cuenta> listaCuentasTest = null;
 		Mockito.when(CuentasService.deJSONaCuenta()).thenReturn(listaCuentasTest);
 		Assert.assertNull(listaCuentasTest);
 	}
-	/*
+	
 	@Test
 	 public void testTiraExcepcionSiNoPuedeLeerElArchivo() {
 		CuentasService cuentasMockosa = Mockito.mock(CuentasService.class);
@@ -71,7 +70,31 @@ public class CuentaServiceTest {
 	}
 	*/
 	
+	@Test
+	public void AAtestCargaBienLaCuentaEnJson() throws IOException{
+		 CuentaServiceMock jsonServiceMock = new CuentaServiceMock("./resources/EJEMPLOS.JSON");
+		 CuentaServiceMock.deCuentaAJSON(cuenta);
+		  	}
 	
+	@Test
+	public void AAtestLeeBienDelArchivoJSON() throws IOException{
+		 CuentaServiceMock jsonServiceMock = new CuentaServiceMock("./resources/EJEMPLOS.JSON");
+		 List<Cuenta> listaCuentasTest = CuentaServiceMock.deJSONaCuenta();
+		 Assert.assertEquals("test", listaCuentasTest.get(0).getNombre_cuenta());
+		 }
 	
+			 	
+	 @Test (expected = FileNotFoundException.class)
+	 public void AAtestTiraExcepcionSiNoPuedeEncontrarElArchivo() throws IOException{
+			CuentaServiceMock mock = new CuentaServiceMock("./ruta_invalida/");
+		 	CuentaServiceMock.deCuentaAJSON(cuenta);
+		  	}
+	
+	 @Test (expected = FileNotFoundException.class)
+	 public void AAtestTiraExcepcionSiNoPuedeLeerElArchivo() throws IOException{
+			CuentaServiceMock mock = new CuentaServiceMock("./ruta_invalida/");
+			List<Cuenta> listaCuentasTest = CuentaServiceMock.deJSONaCuenta();
+		  	}
+	 
 	
 }
