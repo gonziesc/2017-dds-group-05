@@ -20,14 +20,14 @@ public class CuentaServiceMock implements JsonService{
 		rutaArchivoJson = rutaArchivo;
 	}
 	
-	public static List<Cuenta> deJSONaCuenta() throws FileNotFoundException {
+	public static List<Cuenta> deJSONaCuenta() throws IOException {
 		Gson gson = new Gson();
 		try {
 			Type type = new TypeToken<List<Cuenta>>() {
 			}.getType();
 			List<Cuenta> listaCuentas = gson.fromJson(new FileReader(rutaArchivoJson), type);
 			return listaCuentas;
-		}catch (FileNotFoundException e) {
+		}catch (IOException e) {
 			noEncuentraElArchivo();
 			return null;
 		}

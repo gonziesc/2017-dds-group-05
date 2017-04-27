@@ -2,6 +2,8 @@ package CuentaServiceTest;
 
 import model.Cuenta;
 import model.CuentasService;
+import viewmodel.CargarCuentaViewModel;
+
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -20,6 +22,7 @@ import junit.framework.*;
 
 public class CuentaServiceTest {
 	private Cuenta cuenta = new Cuenta();
+	private Cuenta cuentaSinDatos = new Cuenta();
 	
 	@Before
 	public void initCuenta(){
@@ -31,23 +34,44 @@ public class CuentaServiceTest {
 
 	}
 	
-	@Test
-	 public void testCargaBienLaCuentaEnJson() throws IOException{
-		CuentaServiceMock jsonServiceMock = new CuentaServiceMock("./resources/EJEMPLOS.JSON");
-		CuentaServiceMock.deCuentaAJSON(cuenta);
-	}
+
 	
 	@Test
-	public void testLeeBienDelArchivoJSON() throws FileNotFoundException{
-		CuentaServiceMock jsonServiceMock = new CuentaServiceMock("./resources/EJEMPLOS.JSON");
-		List<Cuenta> listaCuentasTest = CuentaServiceMock.deJSONaCuenta();
-		Assert.assertEquals("test", listaCuentasTest.get(0).getNombre_cuenta());
+	 public void testCargaBienLaCuentaEnJson() throws IOException{
+		CuentasService cuentasMockosa = Mockito.mock(CuentasService.class);
+		Mockito.verify(cuentasMockosa);
+		CuentasService.deCuentaAJSON(cuenta);
 		
 	}
 	
-	@Test (expected = FileNotFoundException.class)
-	public void testTiraExcepcionSiNoPuedeEncontrarElArchivo() throws IOException{
-		CuentaServiceMock mock = new CuentaServiceMock("./ruta_invalida/");
-		CuentaServiceMock.deCuentaAJSON(cuenta);
+	
+	/*
+	@Test
+	 public void testTiraExcepcionSiNoPuedeEncontrarElArchivo() throws IOException{
+		CuentasService cuentasMockosa = Mockito.mock(CuentasService.class);
+		cuentasMockosa.set_rutaArchivoJson("./ruta_invalida/");
+		Mockito.doThrow(new FileNotFoundException()).when(cuentasMockosa);
+		CuentasService.deCuentaAJSON(cuenta);
+			
 	}
+	
+	@Test
+	public void testLeeBienDelArchivoJSON() {
+		List<Cuenta> listaCuentasTest = null;
+		Mockito.when(CuentasService.deJSONaCuenta()).thenReturn(listaCuentasTest);
+		Assert.assertNull(listaCuentasTest);
+	}
+	/*
+	@Test
+	 public void testTiraExcepcionSiNoPuedeLeerElArchivo() {
+		CuentasService cuentasMockosa = Mockito.mock(CuentasService.class);
+		cuentasMockosa.set_rutaArchivoJson("./ruta_invalida/");
+		Mockito.doThrow(new FileNotFoundException()).when(cuentasMockosa);
+		CuentasService.deJSONaCuenta();		
+	}
+	*/
+	
+	
+	
+	
 }

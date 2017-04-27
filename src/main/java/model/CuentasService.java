@@ -56,5 +56,9 @@ public class CuentasService implements JsonService{
 		throw new FileNotFoundException("No se encuentra el archivo en la ruta: " + rutaArchivoJson);
 	}
 	
+	public void set_rutaArchivoJson(String ruta){
+		rutaArchivoJson = ruta;
+	}
+	
 
 }
