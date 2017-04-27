@@ -1,5 +1,6 @@
 package viewmodel;
 
+import java.io.IOException;
 import java.util.List;
 
 import model.Cuenta;
@@ -21,7 +22,7 @@ public class CargarCuentaViewModel {
 	private double amortizacion;
 	private double perdida;
 	
-	public void crearCuenta(){
+	public void crearCuenta() throws IOException{
 		Cuenta unaCuenta = new Cuenta();
 		llenarCuenta(unaCuenta);
 		CuentasService.deCuentaAJSON(unaCuenta);

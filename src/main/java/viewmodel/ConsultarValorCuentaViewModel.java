@@ -7,6 +7,8 @@ import java.util.Optional;
 
 import org.uqbar.commons.utils.Observable;
 
+import com.google.gson.JsonIOException;
+
 import model.CuentasService;
 import model.Cuenta;
 

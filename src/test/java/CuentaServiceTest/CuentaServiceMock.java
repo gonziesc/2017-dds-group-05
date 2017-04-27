@@ -1,41 +1,38 @@
-package model;
+package CuentaServiceTest;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.List;
 import java.lang.reflect.Type;
-
-import org.uqbar.commons.utils.Observable;
+import java.util.List;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
-import CuentaServiceTest.JsonService;
+import model.Cuenta;
 
-@Observable
-public class CuentasService implements JsonService{
-	static String rutaArchivoJson = "./resources/cuentas.json";
-
-	public static List<Cuenta> deJSONaCuenta() {
-		Gson gson = new GsonBuilder()
-			    .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
-			    .create();
+public class CuentaServiceMock implements JsonService{
+	public static String rutaArchivoJson ;
+	
+	public CuentaServiceMock(String rutaArchivo){
+		rutaArchivoJson = rutaArchivo;
+	}
+	
+	public static List<Cuenta> deJSONaCuenta() throws FileNotFoundException {
+		Gson gson = new Gson();
 		try {
 			Type type = new TypeToken<List<Cuenta>>() {
 			}.getType();
 			List<Cuenta> listaCuentas = gson.fromJson(new FileReader(rutaArchivoJson), type);
 			return listaCuentas;
-		} catch (IOException e) {
-			e.printStackTrace();
+		}catch (FileNotFoundException e) {
+			noEncuentraElArchivo();
 			return null;
 		}
 	}
-	
+
 	public static void deCuentaAJSON(Cuenta unaCuenta) throws IOException {
 		List<Cuenta> listaCuentas = deJSONaCuenta();
 		listaCuentas.add(unaCuenta);
@@ -49,12 +46,12 @@ public class CuentasService implements JsonService{
 		}catch (FileNotFoundException e) {
 			noEncuentraElArchivo();
 		}
-		
 	}
-	
+	public static void setRutaArchivoJson(String rutaArchivoJson) {
+		CuentaServiceMock.rutaArchivoJson = rutaArchivoJson;
+	}
+
 	public static void noEncuentraElArchivo() throws FileNotFoundException{
 		throw new FileNotFoundException("No se encuentra el archivo en la ruta: " + rutaArchivoJson);
 	}
-	
-
 }

@@ -1,4 +1,6 @@
 package view;
+import java.io.IOException;
+
 import org.uqbar.arena.layout.ColumnLayout;
 
 import org.uqbar.arena.widgets.Button;
@@ -9,14 +11,15 @@ import org.uqbar.arena.widgets.TextBox;
 import org.uqbar.arena.windows.Dialog;
 import org.uqbar.arena.windows.WindowOwner;
 
+import model.Cuenta;
 import viewmodel.CargarCuentaViewModel;
 
 
 @SuppressWarnings("serial")
-public class CargarCuentaView extends Dialog<CargarCuentaViewModel> {
+public class CargarCuentaView extends Dialog<Cuenta> {
 	
 	public CargarCuentaView(WindowOwner owner) {
-		super(owner, new CargarCuentaViewModel());
+		super(owner, new Cuenta());
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -58,9 +61,15 @@ public class CargarCuentaView extends Dialog<CargarCuentaViewModel> {
 		new TextBox(form).bindValueToProperty("perdida");
 		
 		
-		new Button(form).setCaption("Cargar datos cuenta").onClick(this::cargarDatos);
+		new Button(form).setCaption("Cargar datos cuenta").onClick(() -> {
+			try {
+				cargarDatos();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		});
 	}
-	public void cargarDatos(){
+	public void cargarDatos() throws IOException{
 		getModelObject().crearCuenta();
 		this.close();
 	}

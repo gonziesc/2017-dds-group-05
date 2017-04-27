@@ -1,5 +1,6 @@
 package model;
 
+import java.io.IOException;
 import java.util.Date;
 
 import org.uqbar.commons.utils.Observable;
@@ -17,7 +18,23 @@ public class Cuenta {
 	private double amortizacion;
 	private double perdida;
 	
-	
+	public void crearCuenta() throws IOException{
+		Cuenta unaCuenta = new Cuenta();
+		llenarCuenta(unaCuenta);
+		CuentasService.deCuentaAJSON(unaCuenta);
+	}
+	public void llenarCuenta(Cuenta unaCuenta){
+		unaCuenta.setAmortizacion(amortizacion);
+		unaCuenta.setAnio_cuenta(anio_cuenta);
+		unaCuenta.setDepreciacion(depreciacion);
+		unaCuenta.setGanancia(ganancia);
+		unaCuenta.setGananciaNeta(gananciaNeta);
+		unaCuenta.setImpuestos(impuestos);
+		unaCuenta.setIntereses(intereses);
+		unaCuenta.setNombre_cuenta(nombre_cuenta);
+		unaCuenta.setNumero_cuenta(numero_cuenta);
+		unaCuenta.setPerdida(perdida);
+	}
 	
 	//getters and setters
 	public String getNombre_cuenta() {
