@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.lang.reflect.Type;
 import java.util.List;
 
@@ -16,38 +17,14 @@ import model.Cuenta;
 public class CuentaServiceMock implements JsonService{
 	public static String rutaArchivoJson ;
 	
-	public CuentaServiceMock(String rutaArchivo){
-		rutaArchivoJson = rutaArchivo;
-	}
-	
 	public static List<Cuenta> deJSONaCuenta() throws IOException {
-		Gson gson = new Gson();
-		try {
-			Type type = new TypeToken<List<Cuenta>>() {
-			}.getType();
-			List<Cuenta> listaCuentas = gson.fromJson(new FileReader(rutaArchivoJson), type);
-			return listaCuentas;
-		}catch (IOException e) {
-			noEncuentraElArchivo();
-			return null;
-		}
+		return null;
 	}
 
 	public static void deCuentaAJSON(Cuenta unaCuenta) throws IOException {
-		List<Cuenta> listaCuentas = deJSONaCuenta();
-		listaCuentas.add(unaCuenta);
-		ObjectMapper objectMapper = new ObjectMapper();
-		try{
-			String arrayToJson = objectMapper.writeValueAsString(listaCuentas);
-			FileWriter file = new FileWriter(rutaArchivoJson);
-			file.write(arrayToJson);
-            file.close();
-			
-		}catch (FileNotFoundException e) {
-			noEncuentraElArchivo();
-		}
+
 	}
-	public static void setRutaArchivoJson(String rutaArchivoJson) {
+	public static void set_rutaArchivoJson(String rutaArchivoJson) {
 		CuentaServiceMock.rutaArchivoJson = rutaArchivoJson;
 	}
 

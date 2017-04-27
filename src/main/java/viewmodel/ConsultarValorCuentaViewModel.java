@@ -22,7 +22,12 @@ public class ConsultarValorCuentaViewModel {
 	private String tipo_cuenta;
 	
 	public void obtenerCuenta(){
-		cuentas = CuentasService.deJSONaCuenta();
+		try {
+			cuentas = CuentasService.deJSONaCuenta();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	//Getters & setters
 	public String getNombre_cuenta() {

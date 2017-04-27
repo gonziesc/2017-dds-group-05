@@ -34,66 +34,30 @@ public class CuentaServiceTest {
 
 	}
 	
-
-	/*
 	@Test
-	 public void testCargaBienLaCuentaEnJson() throws IOException{
-		CuentasService cuentasMockosa = Mockito.mock(CuentasService.class);
-		Mockito.verify(cuentasMockosa);
-		CuentasService.deCuentaAJSON(cuenta);
-		
-	}
-	
-	
-	@Test
-	 public void testTiraExcepcionSiNoPuedeEncontrarElArchivo() throws IOException{
-		CuentasService cuentasMockosa = Mockito.mock(CuentasService.class);
-		cuentasMockosa.set_rutaArchivoJson("./ruta_invalida/");
-		Mockito.doThrow(new FileNotFoundException()).when(cuentasMockosa);
-		CuentasService.deCuentaAJSON(cuenta);
-			
-	}
-	/
-	@Test
-	public void testLeeBienDelArchivoJSON() {
-		List<Cuenta> listaCuentasTest = null;
-		Mockito.when(CuentasService.deJSONaCuenta()).thenReturn(listaCuentasTest);
-		Assert.assertNull(listaCuentasTest);
-	}
-	
-	@Test
-	 public void testTiraExcepcionSiNoPuedeLeerElArchivo() {
-		CuentasService cuentasMockosa = Mockito.mock(CuentasService.class);
-		cuentasMockosa.set_rutaArchivoJson("./ruta_invalida/");
-		Mockito.doThrow(new FileNotFoundException()).when(cuentasMockosa);
-		CuentasService.deJSONaCuenta();		
-	}
-	*/
-	
-	@Test
-	public void AAtestCargaBienLaCuentaEnJson() throws IOException{
-		 CuentaServiceMock jsonServiceMock = new CuentaServiceMock("./resources/EJEMPLOS.JSON");
-		 CuentaServiceMock.deCuentaAJSON(cuenta);
+	public void testCargaBienLaCuentaEnJson() throws IOException{
+		 CuentasService.set_rutaArchivoJson("./resources/EJEMPLOS.JSON");
+		 CuentasService.deCuentaAJSON(cuenta);
 		  	}
 	
 	@Test
-	public void AAtestLeeBienDelArchivoJSON() throws IOException{
-		 CuentaServiceMock jsonServiceMock = new CuentaServiceMock("./resources/EJEMPLOS.JSON");
-		 List<Cuenta> listaCuentasTest = CuentaServiceMock.deJSONaCuenta();
+	public void testLeeBienDelArchivoJSON() throws IOException{
+		 CuentasService.set_rutaArchivoJson("./resources/EJEMPLOS.JSON");
+		 List<Cuenta> listaCuentasTest = CuentasService.deJSONaCuenta();
 		 Assert.assertEquals("test", listaCuentasTest.get(0).getNombre_cuenta());
 		 }
 	
 			 	
 	 @Test (expected = FileNotFoundException.class)
-	 public void AAtestTiraExcepcionSiNoPuedeEncontrarElArchivo() throws IOException{
-			CuentaServiceMock mock = new CuentaServiceMock("./ruta_invalida/");
-		 	CuentaServiceMock.deCuentaAJSON(cuenta);
+	 public void testTiraExcepcionSiNoPuedeEncontrarElArchivo() throws IOException{
+		 	CuentasService.set_rutaArchivoJson("./ruta_invalida.json");
+		 	CuentasService.deCuentaAJSON(cuenta);
 		  	}
 	
 	 @Test (expected = FileNotFoundException.class)
-	 public void AAtestTiraExcepcionSiNoPuedeLeerElArchivo() throws IOException{
-			CuentaServiceMock mock = new CuentaServiceMock("./ruta_invalida/");
-			List<Cuenta> listaCuentasTest = CuentaServiceMock.deJSONaCuenta();
+	 public void testTiraExcepcionSiNoPuedeLeerElArchivo() throws IOException{
+		 	CuentasService.set_rutaArchivoJson("./ruta_invalida.json");
+			List<Cuenta> listaCuentasTest = CuentasService.deJSONaCuenta();
 		  	}
 	 
 	

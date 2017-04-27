@@ -15,13 +15,12 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
-import CuentaServiceTest.JsonService;
 
 @Observable
-public class CuentasService implements JsonService{
+public class CuentasService {
 	static String rutaArchivoJson = "./resources/cuentas.json";
 
-	public static List<Cuenta> deJSONaCuenta() {
+	public static List<Cuenta> deJSONaCuenta() throws FileNotFoundException {
 		Gson gson = new GsonBuilder()
 			    .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
 			    .create();
@@ -30,10 +29,10 @@ public class CuentasService implements JsonService{
 			}.getType();
 			List<Cuenta> listaCuentas = gson.fromJson(new FileReader(rutaArchivoJson), type);
 			return listaCuentas;
-		} catch (IOException e) {
-			e.printStackTrace();
-			return null;
+		}catch (FileNotFoundException e) {
+			noEncuentraElArchivo();
 		}
+		return null;
 	}
 	
 	public static void deCuentaAJSON(Cuenta unaCuenta) throws IOException {
@@ -56,7 +55,7 @@ public class CuentasService implements JsonService{
 		throw new FileNotFoundException("No se encuentra el archivo en la ruta: " + rutaArchivoJson);
 	}
 	
-	public void set_rutaArchivoJson(String ruta){
+	public static void set_rutaArchivoJson(String ruta){
 		rutaArchivoJson = ruta;
 	}
 	
