@@ -14,9 +14,9 @@ import com.google.gson.reflect.TypeToken;
 
 import model.Cuenta;
 
-public class CuentaServiceMock implements JsonService{
-	public static String rutaArchivoJson ;
-	
+public class CuentaServiceMock implements JsonService {
+	public static String rutaArchivoJson;
+
 	public static List<Cuenta> deJSONaCuenta() throws IOException {
 		return null;
 	}
@@ -24,11 +24,13 @@ public class CuentaServiceMock implements JsonService{
 	public static void deCuentaAJSON(Cuenta unaCuenta) throws IOException {
 
 	}
+
 	public static void set_rutaArchivoJson(String rutaArchivoJson) {
 		CuentaServiceMock.rutaArchivoJson = rutaArchivoJson;
 	}
 
-	public static void noEncuentraElArchivo() throws FileNotFoundException{
-		throw new FileNotFoundException("No se encuentra el archivo en la ruta: " + rutaArchivoJson);
+	public static void noEncuentraElArchivo() throws FileNotFoundException {
+		throw new FileNotFoundException(
+				"No se encuentra el archivo en la ruta: " + rutaArchivoJson);
 	}
 }

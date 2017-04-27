@@ -8,7 +8,8 @@ public interface JsonService {
 	public static List<Cuenta> deJSONaCuenta() {
 		return null;
 	}
-	public static void deCuentaAJSON(){
-		
+
+	public static void deCuentaAJSON() {
+
 	}
 }
