@@ -51,7 +51,7 @@ public class CuentaServiceTest {
 	}
 
 	@Test(expected = FileNotFoundException.class)
-	public void testTiraExcepcionSiNoPuedeEncontrarElArchivo()
+	public void testTiraExcepcionSiNoPuedeEscribirElArchivo()
 			throws IOException {
 		CuentasService.set_rutaArchivoJson("./ruta_invalida.json");
 		CuentasService.deCuentaAJSON(cuenta);
