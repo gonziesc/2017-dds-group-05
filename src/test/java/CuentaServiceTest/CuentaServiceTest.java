@@ -77,5 +77,41 @@ public class CuentaServiceTest {
 		File contenido = new File("./resources/nuncaEscriboNada.JSON");
 		assertTrue(contenido.length() == 0);
 	}
+	
+	/*	
+	@Test
+	 	 public void testCargaBienLaCuentaEnJson() throws IOException{
+	 		CuentasService cuentasMockosa = Mockito.mock(CuentasService.class);
+	 		Mockito.verify(cuentasMockosa);
+	 		CuentasService.deCuentaAJSON(cuenta);
+	 		
+	 	}
+	 	
+	 	
+	 	
+	 @Test
+	 	 public void testTiraExcepcionSiNoPuedeEncontrarElArchivo() throws IOException{
+	 		CuentasService cuentasMockosa = Mockito.mock(CuentasService.class);
+	 		cuentasMockosa.set_rutaArchivoJson("./ruta_invalida/");
+	 		Mockito.doThrow(new FileNotFoundException()).when(cuentasMockosa);
+	 		CuentasService.deCuentaAJSON(cuenta);
+	 			
+	 	}
+	 	
+	 @Test
+	 	public void testLeeBienDelArchivoJSON() {
+	 		List<Cuenta> listaCuentasTest = null;
+	 		Mockito.when(CuentasService.deJSONaCuenta()).thenReturn(listaCuentasTest);
+	 		Assert.assertNull(listaCuentasTest);
+	 	}
+	 	
+	 @Test
+	 	 public void testTiraExcepcionSiNoPuedeLeerElArchivo() {
+	 		CuentasService cuentasMockosa = Mockito.mock(CuentasService.class);
+	 		cuentasMockosa.set_rutaArchivoJson("./ruta_invalida/");
+	 		Mockito.doThrow(new FileNotFoundException()).when(cuentasMockosa);
+	 		CuentasService.deJSONaCuenta();		
+	 	}
+	 	*/
 
 }
