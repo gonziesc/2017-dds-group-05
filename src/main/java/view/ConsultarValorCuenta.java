@@ -67,10 +67,6 @@ public class ConsultarValorCuenta extends Dialog<ConsultarValorCuentaViewModel> 
 
 	}
 
-	public void consultarValorCuenta() {
-
-	}
-
 	@Override
 	protected void addActions(Panel arg0) {
 		// TODO Auto-generated method stub

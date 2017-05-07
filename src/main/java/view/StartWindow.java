@@ -34,10 +34,7 @@ public class StartWindow extends SimpleWindow<CargarCuentaViewModel> {
 	}
 
 	public void consultarCuenta() {
-		Dialog<?> dialog = new ConsultarValorCuenta(this);
-		dialog.open();
-		dialog.onAccept(() -> {
-		});
+		new ConsultarValorCuenta(this).open();
 	}
 
 	public void cargarCuenta() {

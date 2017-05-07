@@ -5,6 +5,8 @@ import java.util.Date;
 
 import org.uqbar.commons.utils.Observable;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Observable
 public class Cuenta {
 	private String nombre_cuenta;
@@ -45,7 +47,7 @@ public class Cuenta {
 	public void setNombre_cuenta(String nombre_cuenta) {
 		this.nombre_cuenta = nombre_cuenta;
 	}
-
+	//@JsonProperty("numero_cuenta")
 	public int getNumero_cuenta() {
 		return numero_cuenta;
 	}

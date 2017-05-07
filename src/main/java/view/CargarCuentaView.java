@@ -34,38 +34,36 @@ public class CargarCuentaView extends Dialog<Cuenta> {
 		new TextBox(form).bindValueToProperty("nombre_cuenta");
 
 		new Label(form).setText("Numero de cuenta");
-		new TextBox(form).bindValueToProperty("numero_cuenta");
+		new TextBox(form).setWidth(45).bindValueToProperty("numero_cuenta");
 
 		new Label(form).setText("Ano");
-		new TextBox(form).bindValueToProperty("anio_cuenta");
+		new TextBox(form).setWidth(45).bindValueToProperty("anio_cuenta");
 
 		new Label(form).setText("Ganancia");
-		new TextBox(form).bindValueToProperty("ganancia");
+		new TextBox(form).setWidth(45).bindValueToProperty("ganancia");
 
 		new Label(form).setText("Ganancia neta");
-		new TextBox(form).bindValueToProperty("gananciaNeta");
+		new TextBox(form).setWidth(45).bindValueToProperty("gananciaNeta");
 
 		new Label(form).setText("Intereses");
-		new TextBox(form).bindValueToProperty("intereses");
+		new TextBox(form).setWidth(45).bindValueToProperty("intereses");
 
 		new Label(form).setText("Impuestos");
-		new TextBox(form).bindValueToProperty("impuestos");
+		new TextBox(form).setWidth(45).bindValueToProperty("impuestos");
 
 		new Label(form).setText("Despreciacion");
-		new TextBox(form).bindValueToProperty("depreciacion");
+		new TextBox(form).setWidth(45).bindValueToProperty("depreciacion");
 
 		new Label(form).setText("Amortizacion");
-		new TextBox(form).bindValueToProperty("amortizacion");
+		new TextBox(form).setWidth(45).bindValueToProperty("amortizacion");
 
 		new Label(form).setText("Perdida");
-		new TextBox(form).bindValueToProperty("perdida");
+		new TextBox(form).setWidth(45).bindValueToProperty("perdida");
 
 		new Button(form).setCaption("Cargar datos cuenta").onClick(() -> {
-			try {
+		
 				cargarDatos();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			
 		});
 	}
 

@@ -42,12 +42,11 @@ public class CuentaServiceTest {
 		CuentasService.deCuentaAJSON(cuenta);
 	}
 
-	@SuppressWarnings("deprecation")
 	@Test
 	public void testLeeBienDelArchivoJSON() throws IOException {
 		CuentasService.set_rutaArchivoJson("./resources/EJEMPLOS.JSON");
 		List<Cuenta> listaCuentasTest = CuentasService.deJSONaCuenta();
-		Assert.assertEquals("test", listaCuentasTest.get(0).getNombre_cuenta());
+		assertEquals("test", listaCuentasTest.get(0).getNombre_cuenta());
 	}
 
 	@Test(expected = FileNotFoundException.class)
