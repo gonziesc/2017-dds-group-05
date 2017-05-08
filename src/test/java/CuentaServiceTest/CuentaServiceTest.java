@@ -4,7 +4,6 @@ import static org.junit.Assert.*;
 import model.Cuenta;
 import model.CuentasService;
 import net.sf.oval.constraint.AssertTrue;
-import viewmodel.CargarCuentaViewModel;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -29,11 +28,8 @@ public class CuentaServiceTest {
 	@Before
 	public void initCuenta() {
 		cuenta.setNombre_cuenta("test");
-		cuenta.setAmortizacion(3.0);
 		cuenta.setAnio_cuenta(2010);
-		cuenta.setDepreciacion(3.0);
-		cuenta.setNumero_cuenta(111111);
-
+		
 	}
 
 	@Test

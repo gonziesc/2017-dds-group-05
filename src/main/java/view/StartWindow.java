@@ -12,12 +12,12 @@ import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 
 import model.CuentasService;
-import viewmodel.CargarCuentaViewModel;
+import viewmodel.StartWindowViewModel;
 
-public class StartWindow extends SimpleWindow<CargarCuentaViewModel> {
+public class StartWindow extends SimpleWindow<StartWindowViewModel> {
 
 	public StartWindow(WindowOwner parent) {
-		super(parent, new CargarCuentaViewModel());
+		super(parent, new StartWindowViewModel());
 		// TODO Auto-generated constructor stub
 	}
 
@@ -25,9 +25,7 @@ public class StartWindow extends SimpleWindow<CargarCuentaViewModel> {
 		this.setTitle("Pantalla de administracion de cuentas");
 		mainPanel.setLayout(new VerticalLayout());
 
-		new Button(mainPanel).setCaption("Cargar cuenta").onClick(
-				this::cargarCuenta);
-
+		
 		new Button(mainPanel).setCaption("Consultar Cuenta").onClick(
 				this::consultarCuenta);
 
@@ -37,12 +35,7 @@ public class StartWindow extends SimpleWindow<CargarCuentaViewModel> {
 		new ConsultarValorCuenta(this).open();
 	}
 
-	public void cargarCuenta() {
-		Dialog<?> dialog = new CargarCuentaView(this);
-		dialog.open();
-		dialog.onAccept(() -> {
-		});
-	}
+	
 
 	@Override
 	protected void addActions(Panel arg0) {

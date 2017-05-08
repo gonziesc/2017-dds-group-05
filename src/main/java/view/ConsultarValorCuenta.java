@@ -8,6 +8,7 @@ import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.NumericField;
 import org.uqbar.arena.widgets.Panel;
+import org.uqbar.arena.widgets.Selector;
 import org.uqbar.arena.widgets.TextBox;
 import org.uqbar.arena.widgets.tables.Column;
 import org.uqbar.arena.widgets.tables.Table;
@@ -16,6 +17,7 @@ import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 
 import model.Cuenta;
+import model.Empresa;
 import viewmodel.ConsultarValorCuentaViewModel;
 
 @SuppressWarnings("serial")
@@ -26,44 +28,28 @@ public class ConsultarValorCuenta extends Dialog<ConsultarValorCuentaViewModel> 
 	}
 
 	public void createContents(Panel mainPanel) {
-		this.setTitle("Obtener datos de una cuenta");
+		this.setTitle("Obtener datos de una empresa");
 		mainPanel.setLayout(new VerticalLayout());
 
-		new Button(mainPanel).setCaption("Consultar cuentas").onClick(
-				() -> getModelObject().obtenerCuenta());
-
+		Selector<Empresa> selectorEmpresa = new Selector<Empresa>(mainPanel).allowNull(true);
+		selectorEmpresa.bindItemsToProperty("empresas");
+		selectorEmpresa.bindValueToProperty("empresaSeleccionada");
+		
+		new Button(mainPanel).setCaption("Seleccionar").onClick(
+				() -> getModelObject().obtenerCuentasEmpresa());
+		
 		Table<Cuenta> tablaEvaluaciones = new Table<>(mainPanel, Cuenta.class);
-		tablaEvaluaciones.bindValueToProperty("cuentas");
-		tablaEvaluaciones.setNumberVisibleRows(15).bindItemsToProperty(
-				"cuentas");
+		
+		tablaEvaluaciones.setNumberVisibleRows(15).bindItemsToProperty("cuentasEmpresa");
 
 		Column<Cuenta> columnaNombre = new Column<Cuenta>(tablaEvaluaciones);
-		columnaNombre.setTitle("Nombre")
-				.bindContentsToProperty("nombre_cuenta");
+		columnaNombre.setTitle("Nombre").bindContentsToProperty("nombre_cuenta");
 
-		Column<Cuenta> columnaNumero_cuenta = new Column<Cuenta>(
-				tablaEvaluaciones);
-		columnaNumero_cuenta.setTitle("Numero").bindContentsToProperty(
-				"numero_cuenta");
+		Column<Cuenta> columnaNumero_cuenta = new Column<Cuenta>(tablaEvaluaciones);
+		columnaNumero_cuenta.setTitle("Valor").bindContentsToProperty("valor");
 
 		Column<Cuenta> columnaAno = new Column<Cuenta>(tablaEvaluaciones);
 		columnaAno.setTitle("Ano").bindContentsToProperty("anio_cuenta");
-
-		Column<Cuenta> columnaGanancia = new Column<Cuenta>(tablaEvaluaciones);
-		columnaGanancia.setTitle("Ganancia").bindContentsToProperty("ganancia");
-
-		Column<Cuenta> columnaGananciaNeta = new Column<Cuenta>(
-				tablaEvaluaciones);
-		columnaGananciaNeta.setTitle("Neta").bindContentsToProperty(
-				"gananciaNeta");
-
-		Column<Cuenta> comunaIntereses = new Column<Cuenta>(tablaEvaluaciones);
-		comunaIntereses.setTitle("intereses").bindContentsToProperty(
-				"intereses");
-
-		Column<Cuenta> columnaImpuestos = new Column<Cuenta>(tablaEvaluaciones);
-		columnaImpuestos.setTitle("impuestos").bindContentsToProperty(
-				"impuestos");
 
 	}
 
@@ -78,5 +64,7 @@ public class ConsultarValorCuenta extends Dialog<ConsultarValorCuentaViewModel> 
 		// TODO Auto-generated method stub
 
 	}
+	
+	
 
 }
