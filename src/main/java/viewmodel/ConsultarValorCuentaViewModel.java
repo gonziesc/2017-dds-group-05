@@ -24,14 +24,14 @@ public class ConsultarValorCuentaViewModel {
 		this.empresas = Repositorios.empresas.all();
 	}
 
-	/*public void obtenerCuenta() {
+	public void obtenerEmpresas() {
 		try {
-			cuentas = CuentasService.deJSONaCuenta();
+			empresas = CuentasService.deJSONaCuenta();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}*/
+	}
 	
 	public void obtenerCuentasEmpresa(){
 		cuentasEmpresa = empresaSeleccionada.getCuentas();

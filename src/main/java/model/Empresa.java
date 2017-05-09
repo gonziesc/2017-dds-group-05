@@ -31,4 +31,8 @@ public class Empresa {
 	public void setCuentas(List<Cuenta> cuentas) {
 		this.cuentas = cuentas;
 	}
+	@Override
+	public String toString() {
+		return nombre;
+	}
 }

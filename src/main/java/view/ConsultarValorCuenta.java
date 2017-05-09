@@ -25,12 +25,14 @@ public class ConsultarValorCuenta extends Dialog<ConsultarValorCuentaViewModel> 
 	@SuppressWarnings("serial")
 	public ConsultarValorCuenta(WindowOwner owner) {
 		super(owner, new ConsultarValorCuentaViewModel());
+		getModelObject().obtenerEmpresas();
 	}
 
 	public void createContents(Panel mainPanel) {
 		this.setTitle("Obtener datos de una empresa");
 		mainPanel.setLayout(new VerticalLayout());
 
+		
 		Selector<Empresa> selectorEmpresa = new Selector<Empresa>(mainPanel).allowNull(true);
 		selectorEmpresa.bindItemsToProperty("empresas");
 		selectorEmpresa.bindValueToProperty("empresaSeleccionada");
@@ -38,6 +40,7 @@ public class ConsultarValorCuenta extends Dialog<ConsultarValorCuentaViewModel> 
 		new Button(mainPanel).setCaption("Seleccionar").onClick(
 				() -> getModelObject().obtenerCuentasEmpresa());
 		
+		/*
 		Table<Cuenta> tablaEvaluaciones = new Table<>(mainPanel, Cuenta.class);
 		
 		tablaEvaluaciones.setNumberVisibleRows(15).bindItemsToProperty("cuentasEmpresa");
@@ -50,7 +53,8 @@ public class ConsultarValorCuenta extends Dialog<ConsultarValorCuentaViewModel> 
 
 		Column<Cuenta> columnaAno = new Column<Cuenta>(tablaEvaluaciones);
 		columnaAno.setTitle("Ano").bindContentsToProperty("anio_cuenta");
-
+		*/
+		
 	}
 
 	@Override
