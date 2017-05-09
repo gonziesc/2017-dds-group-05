@@ -16,6 +16,7 @@ import org.uqbar.arena.widgets.tables.Table;
 import org.uqbar.arena.windows.Dialog;
 import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
+import org.uqbar.commons.model.UserException;
 import org.uqbar.lacar.ui.model.Action;
 
 import model.Cuenta;
@@ -33,7 +34,6 @@ public class ConsultarValorCuenta extends Dialog<ConsultarValorCuentaViewModel> 
 	public void createContents(Panel mainPanel) {
 		this.setTitle("Obtener datos de una empresa");
 		mainPanel.setLayout(new VerticalLayout());
-
 		
 		Selector<Empresa> selectorEmpresa = new Selector<Empresa>(mainPanel).allowNull(true);
 		selectorEmpresa.bindItemsToProperty("empresas");
@@ -43,38 +43,30 @@ public class ConsultarValorCuenta extends Dialog<ConsultarValorCuentaViewModel> 
 		.setCaption("Mostrar Cuentas")
 		.onClick(this::mostrarCuentas);
 		
-		Table<Cuenta> tablaEvaluaciones = new Table<>(mainPanel, Cuenta.class);
+		Table<Cuenta> tablaCuentas = new Table<>(mainPanel, Cuenta.class);
 		
-		tablaEvaluaciones.setNumberVisibleRows(15).bindItemsToProperty("cuentasEmpresa");
-
-		Column<Cuenta> columnaNombre = new Column<Cuenta>(tablaEvaluaciones);
-		columnaNombre.setTitle("Nombre").bindContentsToProperty("nombre_cuenta");
-
-		Column<Cuenta> columnaNumero_cuenta = new Column<Cuenta>(tablaEvaluaciones);
-		columnaNumero_cuenta.setTitle("Valor").bindContentsToProperty("valor");
-
-		Column<Cuenta> columnaAno = new Column<Cuenta>(tablaEvaluaciones);
-		columnaAno.setTitle("Ano").bindContentsToProperty("anio_cuenta");
+		tablaCuentas.setNumberVisibleRows(15).bindItemsToProperty("cuentasEmpresa");
+		
+		createColumn("Nombre", tablaCuentas, "nombre_cuenta");
+		createColumn("Valor", tablaCuentas, "valor");
+		createColumn("Ano", tablaCuentas, "anio_cuenta");
 		
 	}
 	
 	public void mostrarCuentas(){
+		if(getModelObject().getEmpresaSeleccionada() == null){
+			throw new UserException("Seleccione una empresa");
+		}
 		getModelObject().obtenerCuentasEmpresa();
 	}
-
-
-	@Override
-	protected void addActions(Panel arg0) {
-		// TODO Auto-generated method stub
-
+	public void createColumn(String title,Table<Cuenta> tablaCuentas, String property){
+		new Column<Cuenta>(tablaCuentas).setTitle(title).setFixedSize(100).bindContentsToProperty(property);
+		
 	}
 
 	@Override
 	protected void createFormPanel(Panel arg0) {
 		// TODO Auto-generated method stub
-
+		
 	}
-	
-	
-
 }

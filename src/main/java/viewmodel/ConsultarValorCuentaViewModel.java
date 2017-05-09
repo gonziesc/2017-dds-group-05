@@ -7,9 +7,11 @@ import java.util.Optional;
 
 import org.uqbar.commons.utils.Observable;
 
+import Services.EmpresasService;
+import Services.EmpresasService;
+
 import com.google.gson.JsonIOException;
 
-import model.CuentasService;
 import model.Empresa;
 import model.repositories.Repositorios;
 import model.Cuenta;
@@ -17,7 +19,7 @@ import model.Cuenta;
 @Observable
 public class ConsultarValorCuentaViewModel {
 	private List<Empresa> empresas;
-	private Empresa empresaSeleccionada;
+	private Empresa empresaSeleccionada = null;
 	private List<Cuenta> cuentasEmpresa;
 	
 	public ConsultarValorCuentaViewModel(){
@@ -26,7 +28,7 @@ public class ConsultarValorCuentaViewModel {
 
 	public void obtenerEmpresas() {
 		try {
-			empresas = CuentasService.deJSONaCuenta();
+			empresas = EmpresasService.obtenerEmpresasDeServicioExterno();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

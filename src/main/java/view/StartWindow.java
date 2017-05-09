@@ -11,7 +11,7 @@ import org.uqbar.arena.windows.Dialog;
 import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 
-import model.CuentasService;
+import Services.EmpresasService;
 import viewmodel.StartWindowViewModel;
 
 public class StartWindow extends SimpleWindow<StartWindowViewModel> {

@@ -2,7 +2,6 @@ package CuentaServiceTest;
 
 import static org.junit.Assert.*;
 import model.Cuenta;
-import model.CuentasService;
 import net.sf.oval.constraint.AssertTrue;
 
 import java.io.File;
@@ -16,6 +15,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.mockito.Mock;
+
+import Services.CuentasService;
 
 import com.google.gson.Gson;
 
