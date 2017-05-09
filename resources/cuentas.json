@@ -3,22 +3,22 @@
         cuentas:[{
             nombre_cuenta: "EBITDA",
             valor: "800",
-			periodo: "2015"
+			anio_cuenta: "2015"
 		},
 		{
             nombre_cuenta: "FDS",
             valor: "1800",
-			periodo: "2014"
+			anio_cuenta: "2014"
 		},
 		{
             nombre_cuenta: "FDS",
             valor: "1500",
-			periodo: "2013"
+			anio_cuenta: "2013"
 		},
 		{
             nombre_cuenta: "Free Cash Flow",
             valor: "1520",
-			periodo: "2012"
+			anio_cuenta: "2012"
 		}]
     },
 	{
@@ -26,21 +26,21 @@
         cuentas:[{
             nombre_cuenta: "EBITDA",
             valor: "2800",
-			periodo: "2005"
+			anio_cuenta: "2005"
 		},
 		{
             nombre_cuenta: "EBITDA",
             valor: "1800",
-			periodo: "2014"
+			anio_cuenta: "2014"
 		},
 		{
             nombre_cuenta: "FDS",
             valor: "1500",
-			periodo: "2013"
+			anio_cuenta: "2013"
 		},
 		{
             nombre_cuenta: "Free Cash Flow",
             valor: "1520",
-			periodo: "2012"
+			anio_cuenta: "2012"
 		}]
  }]

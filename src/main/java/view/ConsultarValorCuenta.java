@@ -2,6 +2,7 @@ package view;
 
 import java.awt.Color;
 import java.io.FileNotFoundException;
+import java.util.List;
 
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
@@ -15,6 +16,7 @@ import org.uqbar.arena.widgets.tables.Table;
 import org.uqbar.arena.windows.Dialog;
 import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
+import org.uqbar.lacar.ui.model.Action;
 
 import model.Cuenta;
 import model.Empresa;
@@ -37,10 +39,10 @@ public class ConsultarValorCuenta extends Dialog<ConsultarValorCuentaViewModel> 
 		selectorEmpresa.bindItemsToProperty("empresas");
 		selectorEmpresa.bindValueToProperty("empresaSeleccionada");
 		
-		new Button(mainPanel).setCaption("Seleccionar").onClick(
-				() -> getModelObject().obtenerCuentasEmpresa());
+		new Button(mainPanel)
+		.setCaption("Mostrar Cuentas")
+		.onClick(this::mostrarCuentas);
 		
-		/*
 		Table<Cuenta> tablaEvaluaciones = new Table<>(mainPanel, Cuenta.class);
 		
 		tablaEvaluaciones.setNumberVisibleRows(15).bindItemsToProperty("cuentasEmpresa");
@@ -53,9 +55,13 @@ public class ConsultarValorCuenta extends Dialog<ConsultarValorCuentaViewModel> 
 
 		Column<Cuenta> columnaAno = new Column<Cuenta>(tablaEvaluaciones);
 		columnaAno.setTitle("Ano").bindContentsToProperty("anio_cuenta");
-		*/
 		
 	}
+	
+	public void mostrarCuentas(){
+		getModelObject().obtenerCuentasEmpresa();
+	}
+
 
 	@Override
 	protected void addActions(Panel arg0) {

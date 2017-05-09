@@ -34,7 +34,7 @@ public class ConsultarValorCuentaViewModel {
 	}
 	
 	public void obtenerCuentasEmpresa(){
-		cuentasEmpresa = empresaSeleccionada.getCuentas();
+		setCuentasEmpresa(empresaSeleccionada.getCuentas());
 	}
 
 	public List<Empresa> getEmpresas() {
@@ -51,6 +51,14 @@ public class ConsultarValorCuentaViewModel {
 
 	public void setEmpresaSeleccionada(Empresa empresaSeleccionada) {
 		this.empresaSeleccionada = empresaSeleccionada;
+	}
+
+	public List<Cuenta> getCuentasEmpresa() {
+		return cuentasEmpresa;
+	}
+
+	public void setCuentasEmpresa(List<Cuenta> cuentasEmpresa) {
+		this.cuentasEmpresa = cuentasEmpresa;
 	}
 
 	

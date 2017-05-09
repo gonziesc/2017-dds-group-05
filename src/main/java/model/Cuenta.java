@@ -36,4 +36,12 @@ public class Cuenta {
 		this.anio_cuenta = anio_cuenta;
 	}
 
+	public int getValor() {
+		return valor;
+	}
+
+	public void setValor(int valor) {
+		this.valor = valor;
+	}
+
 }
