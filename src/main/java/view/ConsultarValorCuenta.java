@@ -47,9 +47,9 @@ public class ConsultarValorCuenta extends Dialog<ConsultarValorCuentaViewModel> 
 		
 		tablaCuentas.setNumberVisibleRows(15).bindItemsToProperty("cuentasEmpresa");
 		
-		createColumn("Nombre", tablaCuentas, "nombre_cuenta");
+		createColumn("Nombre", tablaCuentas, "nombreCuenta");
 		createColumn("Valor", tablaCuentas, "valor");
-		createColumn("Ano", tablaCuentas, "anio_cuenta");
+		createColumn("Ano", tablaCuentas, "anioCuenta");
 		
 	}
 	

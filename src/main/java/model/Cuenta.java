@@ -9,39 +9,45 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Observable
 public class Cuenta {
-	private String nombre_cuenta;
+	private String nombreCuenta;
 	private int valor;
-	private int anio_cuenta;
+	private int anioCuenta;
 
 
 	public Boolean perteneceA(int periodo){
-		return this.anio_cuenta == periodo;
+		return this.anioCuenta == periodo;
 	}
 
-	// getters and setters
-	public String getNombre_cuenta() {
-		return nombre_cuenta;
+
+	public String getNombreCuenta() {
+		return nombreCuenta;
 	}
 
-	public void setNombre_cuenta(String nombre_cuenta) {
-		this.nombre_cuenta = nombre_cuenta;
-	}
-	
 
-	public int getAnio_cuenta() {
-		return anio_cuenta;
+	public void setNombreCuenta(String nombreCuenta) {
+		nombreCuenta = nombreCuenta;
 	}
 
-	public void setAnio_cuenta(int anio_cuenta) {
-		this.anio_cuenta = anio_cuenta;
+
+	public int getAnioCuenta() {
+		return anioCuenta;
 	}
+
+
+	public void setAnioCuenta(int anioCuenta) {
+		anioCuenta = anioCuenta;
+	}
+
 
 	public int getValor() {
 		return valor;
 	}
 
+
 	public void setValor(int valor) {
-		this.valor = valor;
+		valor = valor;
 	}
+
+	
 
 }

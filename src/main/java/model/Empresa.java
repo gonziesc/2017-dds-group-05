@@ -4,35 +4,33 @@ import java.util.List;
 
 public class Empresa {
 
-	private List<Cuenta> cuentas;
-	private String nombre;
+	private List<Cuenta> Cuentas;
+	private String Nombre;
 
-	public String getNombre() {
-		return nombre;
-	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public void agregarCuenta(Cuenta unaCuenta){
-		cuentas.add(unaCuenta);
-	}
-	
 	public List<Cuenta> cuentasSegunPeriodo(int periodo){
-		List<Cuenta> cuentasEnPeriodo = (List<Cuenta>) cuentas.stream().filter(cuenta -> cuenta.perteneceA(periodo));
+		List<Cuenta> cuentasEnPeriodo = (List<Cuenta>) Cuentas.stream().filter(cuenta -> cuenta.perteneceA(periodo));
 		return cuentasEnPeriodo;
 	}
 	
+	@Override
+	public String toString() {
+		return Nombre;
+	}
+
 	public List<Cuenta> getCuentas() {
-		return cuentas;
+		return Cuentas;
 	}
 
 	public void setCuentas(List<Cuenta> cuentas) {
-		this.cuentas = cuentas;
+		Cuentas = cuentas;
 	}
-	@Override
-	public String toString() {
-		return nombre;
+
+	public String getNombre() {
+		return Nombre;
+	}
+
+	public void setNombre(String nombre) {
+		Nombre = nombre;
 	}
 }
