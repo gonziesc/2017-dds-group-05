@@ -48,8 +48,8 @@ public class ConsultarValorCuenta extends Dialog<ConsultarValorCuentaViewModel> 
 		tablaCuentas.setNumberVisibleRows(15).bindItemsToProperty("cuentasEmpresa");
 		
 		createColumn("Nombre", tablaCuentas, "nombreCuenta");
-		createColumn("Valor", tablaCuentas, "valor");
-		createColumn("Ano", tablaCuentas, "anioCuenta");
+		createColumn("Valor ", tablaCuentas, "valor");
+		createColumn("Ano ", tablaCuentas, "anioCuenta");
 		
 	}
 	
@@ -60,7 +60,7 @@ public class ConsultarValorCuenta extends Dialog<ConsultarValorCuentaViewModel> 
 		getModelObject().obtenerCuentasEmpresa();
 	}
 	public void createColumn(String title,Table<Cuenta> tablaCuentas, String property){
-		new Column<Cuenta>(tablaCuentas).setTitle(title).setFixedSize(100).bindContentsToProperty(property);
+		new Column<Cuenta>(tablaCuentas).setTitle(title).setFixedSize(150).bindContentsToProperty(property);
 		
 	}
 

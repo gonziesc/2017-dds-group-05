@@ -28,11 +28,17 @@ public class StartWindow extends SimpleWindow<StartWindowViewModel> {
 		
 		new Button(mainPanel).setCaption("Consultar Cuenta").onClick(
 				this::consultarCuenta);
+		new Button(mainPanel).setCaption("Ingresar indicadores").onClick(
+				this::ingresarIndicadores);
+		
 
 	}
 
 	public void consultarCuenta() {
 		new ConsultarValorCuenta(this).open();
+	}
+	public void ingresarIndicadores() {
+		new IndicadoresView(this).open();
 	}
 
 	
