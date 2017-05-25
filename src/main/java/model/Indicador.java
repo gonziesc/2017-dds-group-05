@@ -14,6 +14,7 @@ public class Indicador {
 		parametro3 = unParametro3;
 		operacion1 = unaOperacion1;
 		operacion2 = unaOperacion2;
+		this.definirCalculador();
 	}
 	public int obtenerValor(){
 		return calculador.getValor(parametro1, parametro2, parametro3, operacion1, operacion2);
