@@ -8,9 +8,8 @@ import org.uqbar.commons.utils.Observable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Observable
-public class Cuenta {
+public class Cuenta extends Parametro{
 	private String nombreCuenta;
-	private int valor;
 	private int anioCuenta;
 
 
@@ -34,18 +33,20 @@ public class Cuenta {
 	}
 
 
-	public void setAnioCuenta(int anioCuenta) {
-		anioCuenta = anioCuenta;
+	public void setAnioCuenta(int unAnioCuenta) {
+		anioCuenta = unAnioCuenta;
 	}
 
 
 	public int getValor() {
 		return valor;
 	}
+	public int obtenerValor() {
+		return valor;
+	}
 
-
-	public void setValor(int valor) {
-		valor = valor;
+	public void setValor(int unValor) {
+		valor = unValor;
 	}
 
 	

@@ -1,0 +1,17 @@
+[{
+        nombre: "Indicador1",
+        parametro1:{
+            valor: "10"
+		}
+    },
+	{
+        nombre: "Indicador2",
+		 parametro1:{
+            valor: "10"
+		},
+        parametro2:{
+            nombre_cuenta: "EBITDA",
+            valor: "800",
+			anio_cuenta: "2015"
+		}
+ }]
