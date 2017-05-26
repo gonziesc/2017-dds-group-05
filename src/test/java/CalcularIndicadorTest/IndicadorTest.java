@@ -4,16 +4,16 @@ import static org.junit.Assert.*;
 
 import java.io.Console;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
-import model.Empresa;
+
 import model.Indicador;
 import model.repositories.Repositorios;
 
 import org.junit.Test;
 
-import Services.EmpresasService;
 import Services.IndicadoresService;
 
 
@@ -22,6 +22,16 @@ public class IndicadorTest {
 	public void testCalculaBienUnIndicadorConstante() {
 		Indicador unIndicador = Repositorios.indicadores.getUnIdicadorConstante();
 		assertTrue(unIndicador.obtenerValor() == 10);
+	}
+	@Test
+	public void testCalculaBienUnIndicadorConOtroIndicador() {
+		Indicador unIndicador = Repositorios.indicadores.getUnIdicadorConOtroIndicador();
+		assertTrue(unIndicador.obtenerValor() == 10);
+	}
+	@Test
+	public void testCalculaBienUnIndicadorConDosIndicadoresYUnaConstante() {
+		Indicador unIndicador = Repositorios.indicadores.getUnIdicadorConDosIndicadoresYUnaConstante();
+		assertTrue(unIndicador.obtenerValor() == 4020);
 	}
 	
 	@Test
@@ -46,13 +56,13 @@ public class IndicadorTest {
 	}
 	@Test
 	public void testLeeBienDelServicioExterno() throws IOException {
-		EmpresasService.set_rutaArchivoJson("./resources/indicadores.JSON");
+		IndicadoresService.set_rutaArchivoJson("./resources/indicadores.JSON");
 		List<Indicador> listIndicadoresTest = IndicadoresService.obtenerInicadoresDeServicioExterno();
 		assertTrue(listIndicadoresTest.size() == 4);
 	}
 	@Test
 	public void elValorDelPrimerElementoGuardadoEn() throws IOException {
-		EmpresasService.set_rutaArchivoJson("./resources/indicadores.JSON");
+		IndicadoresService.set_rutaArchivoJson("./resources/indicadores.JSON");
 		List<Indicador> listIndicadoresTest = IndicadoresService.obtenerInicadoresDeServicioExterno();
 		Indicador unIndicador = listIndicadoresTest.get(0);
 		unIndicador.definirCalculador();
@@ -60,10 +70,27 @@ public class IndicadorTest {
 	}
 	@Test
 	public void testEscribeBienEnServicioExterno() throws IOException {
-		EmpresasService.set_rutaArchivoJson("./resources/indicadores2.JSON");
+		FileWriter file = new FileWriter("./resources/indicadores2.json");
+		file.write("[]");
+        file.close();
+        IndicadoresService.set_rutaArchivoJson("./resources/indicadores2.JSON");
 		Indicador unIndicador = Repositorios.indicadores.getUnIdicadorConTresCuentas();
-		Indicador otroIndicador = Repositorios.indicadores.getUnIdicadorConstante();
 		IndicadoresService.guardarIndicadoresEnServicioExterno(unIndicador);
-		IndicadoresService.guardarIndicadoresEnServicioExterno(otroIndicador);
+		List<Indicador> listIndicadoresTest = IndicadoresService.obtenerInicadoresDeServicioExterno();
+		Indicador otroIndicador = listIndicadoresTest.get(0);
+		otroIndicador.definirCalculador();
+		assertTrue(otroIndicador.obtenerValor() == 4000);
+	}
+	@Test
+	public void testEscribeBienEnServicioExternoConIndicadorDeIndicadores() throws IOException {
+		FileWriter file = new FileWriter("./resources/indicadores2.json");
+		file.write("[]");
+        file.close();
+        IndicadoresService.set_rutaArchivoJson("./resources/indicadores2.JSON");
+		Indicador unIndicador = Repositorios.indicadores.getUnIdicadorConDosIndicadoresYUnaConstante();
+		IndicadoresService.guardarIndicadoresEnServicioExterno(unIndicador);
+		List<Indicador> listIndicadoresTest = IndicadoresService.obtenerInicadoresDeServicioExterno();
+		Indicador otroIndicador = listIndicadoresTest.get(0);
+		assertTrue(otroIndicador.obtenerValor() == 4020);
 	}
 }

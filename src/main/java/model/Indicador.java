@@ -1,6 +1,6 @@
 package model;
 
-public class Indicador {
+public class Indicador{
 	private CalcularIndicador calculador = new CalcularIndicadorConstante();
 	private Parametro parametro1;
 	private Parametro parametro2;
@@ -14,9 +14,9 @@ public class Indicador {
 		parametro3 = unParametro3;
 		operacion1 = unaOperacion1;
 		operacion2 = unaOperacion2;
-		this.definirCalculador();
 	}
 	public int obtenerValor(){
+		this.definirCalculador();
 		return calculador.getValor(parametro1, parametro2, parametro3, operacion1, operacion2);
 	}
 	public Parametro getParametro1() {
