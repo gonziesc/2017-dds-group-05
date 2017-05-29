@@ -30,7 +30,6 @@ public class ConsultarValorCuentaViewModel {
 		try {
 			empresas = EmpresasService.obtenerEmpresasDeServicioExterno();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

@@ -6,25 +6,35 @@ import java.util.Date;
 import org.uqbar.commons.utils.Observable;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.jsontype.SubtypeResolver;
 
 @Observable
 public class Cuenta extends Parametro{
-	private String nombreCuenta;
-	private int anioCuenta;
 
-
-	public Boolean perteneceA(int periodo){
-		return this.anioCuenta == periodo;
+	public Boolean perteneceA (int periodo){
+		return super.getAnioCuenta() == periodo;
 	}
-
+	
+	public int getValor() {
+		return valor;
+	}
+	public int obtenerValor() {
+		return valor;
+	}
+	
+	public void setValor(int unValor) {
+		valor = unValor;
+	}
+	/*private int anioCuenta;
+	private String nombreCuenta;
 
 	public String getNombreCuenta() {
 		return nombreCuenta;
 	}
 
 
-	public void setNombreCuenta(String nombreCuenta) {
-		nombreCuenta = nombreCuenta;
+	public void setNombreCuenta(String unNombreCuenta) {
+		nombreCuenta = unNombreCuenta;
 	}
 
 
@@ -37,18 +47,6 @@ public class Cuenta extends Parametro{
 		anioCuenta = unAnioCuenta;
 	}
 
-
-	public int getValor() {
-		return valor;
-	}
-	public int obtenerValor() {
-		return valor;
-	}
-
-	public void setValor(int unValor) {
-		valor = unValor;
-	}
-
-	
+	*/
 
 }
