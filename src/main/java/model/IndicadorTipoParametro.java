@@ -1,5 +1,8 @@
 package model;
 
+import org.uqbar.commons.utils.Observable;
+
+@Observable
 public class IndicadorTipoParametro extends Parametro{
 	public IndicadorTipoParametro(Parametro unParametro1, Parametro unParametro2, Parametro unParametro3, String unaOperacion1, String unaOperacion2){
 		parametro1 = unParametro1;

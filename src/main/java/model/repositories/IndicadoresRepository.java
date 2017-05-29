@@ -1,11 +1,15 @@
 package model.repositories;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import model.Constante;
 import model.Cuenta;
 import model.Indicador;
 import model.IndicadorTipoParametro;
 
 public class IndicadoresRepository {
+	private List<Indicador> indicadores = new LinkedList<>();
 	public Indicador getUnIdicadorConstante(){
 		Constante unaConstante = new Constante();
 		unaConstante.setValor(10);
@@ -74,4 +78,8 @@ public class IndicadoresRepository {
 		Indicador unIndicador = new Indicador(unIndicadorAux, otroIndicadorAux, unaConstante, operacion, operacion);
 		return unIndicador;
 	}
+	public List<Indicador> all() {
+		return indicadores;
+	}
+
 }
