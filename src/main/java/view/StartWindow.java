@@ -38,7 +38,7 @@ public class StartWindow extends SimpleWindow<StartWindowViewModel> {
 		new ConsultarValorCuenta(this).open();
 	}
 	public void ingresarIndicadores() {
-		/*new IndicadoresView(this).open();*/
+		new IndicadoresView(this).open();
 	}
 
 	
