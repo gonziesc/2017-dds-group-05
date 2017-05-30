@@ -66,5 +66,14 @@ public class Indicador{
 			calculador = new CalcularIndicadorDosOperaciones();
 		}
 	}
+	public void setValorCuenta(Cuenta cuenta) {
+		if(parametro1.getNombre() == cuenta.getNombreCuenta()){
+			parametro1.setValor(cuenta.getValor());
+		} else if(parametro2.getNombre() == cuenta.getNombreCuenta()){
+			parametro2.setValor(cuenta.getValor());
+		} else if(parametro3.getNombre() == cuenta.getNombreCuenta()){
+			parametro3.setValor(cuenta.getValor());
+		}
+	}
 	
 }
