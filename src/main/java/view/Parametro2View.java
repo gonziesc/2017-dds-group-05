@@ -1,4 +1,3 @@
-
 package view;
 
 import org.uqbar.arena.layout.ColumnLayout;
@@ -19,8 +18,8 @@ import viewmodel.ConsultarValorCuentaViewModel;
 import viewmodel.IndicadorViewModel;
 
 @SuppressWarnings("serial")
-public class IndicadoresView extends Window<IndicadorViewModel> {
-	public IndicadoresView(WindowOwner owner) {
+public class Parametro2View extends Window<IndicadorViewModel> {
+	public Parametro2View(WindowOwner owner) {
 
 		super(owner, new IndicadorViewModel());
 		this.getModelObject().obtenerIndicadores();
@@ -35,16 +34,12 @@ public class IndicadoresView extends Window<IndicadorViewModel> {
 		selectorIndicadores.bindItemsToProperty("indicadores").adaptWith(Indicador.class, "nombre");
 		selectorIndicadores.bindValueToProperty("indicadorSeleccionado");
 		
-	new Button(mainPanel).setCaption("Ingresar primer parametro").onClick(this::ingresar);
+		new Button(mainPanel).setCaption("Crear indicador").onClick(this::ingresar);
 		
 	}
 	
 	public void ingresar(){
-		this.getModelObject().ingresarParametro1();
-		this.close();
-		new operadoresView(this).open();
+		this.getModelObject().crearIndicador();
 	}
-
-		
 }
-
+	

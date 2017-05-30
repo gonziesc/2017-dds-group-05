@@ -1,17 +1,1 @@
-[{
-        nombre: "Indicador1",
-        parametro1:{
-            valor: "10"
-		}
-    },
-	{
-        nombre: "Indicador2",
-		 parametro1:{
-            valor: "10"
-		},
-        parametro2:{
-            nombre_cuenta: "EBITDA",
-            valor: "800",
-			anio_cuenta: "2015"
-		}
- }]
+[{"parametro1":{"valor":2000,"nombre":"","changeSupport":{"propertyChangeListeners":[]}},"parametro2":{"valor":1000,"nombre":"","changeSupport":{"propertyChangeListeners":[]}},"parametro3":{"valor":1000,"nombre":"","changeSupport":{"propertyChangeListeners":[]}},"operacion1":"+","operacion2":"+","nombre":"ejemplo","changeSupport":{"propertyChangeListeners":[]}},{"parametro1":{"valor":10,"nombre":"","changeSupport":{"propertyChangeListeners":[]}},"parametro2":null,"parametro3":null,"operacion1":null,"operacion2":null,"nombre":null,"changeSupport":{"propertyChangeListeners":[]}},{"parametro1":{"valor":2000,"nombre":"","changeSupport":{"propertyChangeListeners":[]}},"parametro2":{"valor":1000,"nombre":"","changeSupport":{"propertyChangeListeners":[]}},"parametro3":{"valor":1000,"nombre":"","changeSupport":{"propertyChangeListeners":[]}},"operacion1":"+","operacion2":"+","nombre":null,"changeSupport":{"propertyChangeListeners":[]}},{"parametro1":{"valor":10,"nombre":"","changeSupport":{"propertyChangeListeners":[]}},"parametro2":null,"parametro3":null,"operacion1":null,"operacion2":null,"nombre":null,"changeSupport":{"propertyChangeListeners":[]}},{"parametro1":null,"parametro2":{"valor":1000,"nombre":"","changeSupport":{"propertyChangeListeners":[]}},"parametro3":null,"operacion1":null,"operacion2":null,"nombre":null,"changeSupport":{"propertyChangeListeners":[]}}]
