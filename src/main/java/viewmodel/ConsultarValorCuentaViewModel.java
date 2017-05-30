@@ -22,9 +22,9 @@ public class ConsultarValorCuentaViewModel {
 	private Empresa empresaSeleccionada = null;
 	private List<Cuenta> cuentasEmpresa;
 	
-	public ConsultarValorCuentaViewModel(){
+	/*public ConsultarValorCuentaViewModel(){
 		this.empresas = Repositorios.empresas.all();
-	}
+	}*/
 
 	public void obtenerEmpresas() {
 		try {

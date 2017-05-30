@@ -4,6 +4,7 @@ import model.Constante;
 import model.Cuenta;
 import model.Indicador;
 import model.IndicadorTipoParametro;
+import model.cuentaTipoParametro;
 
 public class IndicadoresRepository {
 	public Indicador getUnIdicadorConstante(){
@@ -21,14 +22,14 @@ public class IndicadoresRepository {
 	public Indicador getUnIdicadorConUnaConstanteYUnaCuenta(){
 		Constante unaConstante = new Constante();
 		unaConstante.setValor(10);
-		Cuenta unaCuenta = Repositorios.cuentas.getUnaCuenta();
+		cuentaTipoParametro unaCuenta = Repositorios.cuentas.getUnaCuentaParametro();
 		String operacion = "+";
 		Indicador unIndicador = new Indicador(unaConstante, unaCuenta, null, operacion, null);
 		return unIndicador;
 	}
 	public Indicador getUnIdicadorConDosCuentas(){
-		Cuenta otraCuenta = Repositorios.cuentas.getOtraCuenta();
-		Cuenta unaCuenta = Repositorios.cuentas.getUnaCuenta();
+		cuentaTipoParametro otraCuenta = Repositorios.cuentas.getOtraCuentaParametro();
+		cuentaTipoParametro unaCuenta = Repositorios.cuentas.getUnaCuentaParametro();
 		String operacion = "+";
 		Indicador unIndicador = new Indicador(otraCuenta, unaCuenta, null, operacion, null);
 		return unIndicador;
@@ -36,24 +37,24 @@ public class IndicadoresRepository {
 	public Indicador getUnIdicadorConDosCuentasYUnaConstante(){
 		Constante unaConstante = new Constante();
 		unaConstante.setValor(10);
-		Cuenta otraCuenta = Repositorios.cuentas.getOtraCuenta();
-		Cuenta unaCuenta = Repositorios.cuentas.getUnaCuenta();
+		cuentaTipoParametro otraCuenta = Repositorios.cuentas.getOtraCuentaParametro();
+		cuentaTipoParametro unaCuenta = Repositorios.cuentas.getUnaCuentaParametro();
 		String operacion = "+";
 		Indicador unIndicador = new Indicador(otraCuenta, unaCuenta, unaConstante, operacion, operacion);
 		return unIndicador;
 	}
 	public Indicador getUnIdicadorConTresCuentas(){
-		Cuenta tecerCuenta = Repositorios.cuentas.getUnaCuenta();
-		Cuenta otraCuenta = Repositorios.cuentas.getOtraCuenta();
-		Cuenta unaCuenta = Repositorios.cuentas.getUnaCuenta();
+		cuentaTipoParametro tecerCuenta = Repositorios.cuentas.getOtraCuentaParametro();
+		cuentaTipoParametro unaCuenta = Repositorios.cuentas.getUnaCuentaParametro();
+		cuentaTipoParametro otraCuenta =  Repositorios.cuentas.getOtraCuentaParametro();
 		String operacion = "+";
 		Indicador unIndicador = new Indicador(otraCuenta, unaCuenta, tecerCuenta, operacion, operacion);
 		return unIndicador;
 	}
 	public IndicadorTipoParametro getUnIdicadorTipoParametroConTresCuentas(){
-		Cuenta tecerCuenta = Repositorios.cuentas.getUnaCuenta();
-		Cuenta otraCuenta = Repositorios.cuentas.getOtraCuenta();
-		Cuenta unaCuenta = Repositorios.cuentas.getUnaCuenta();
+		cuentaTipoParametro tecerCuenta = Repositorios.cuentas.getOtraCuentaParametro();
+		cuentaTipoParametro unaCuenta = Repositorios.cuentas.getUnaCuentaParametro();
+		cuentaTipoParametro otraCuenta =  Repositorios.cuentas.getOtraCuentaParametro();
 		String operacion = "+";
 		IndicadorTipoParametro unIndicador = new IndicadorTipoParametro(otraCuenta, unaCuenta, tecerCuenta, operacion, operacion);
 		return unIndicador;

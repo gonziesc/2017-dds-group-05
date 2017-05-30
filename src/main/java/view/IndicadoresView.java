@@ -1,3 +1,4 @@
+/*
 package view;
 
 import org.uqbar.arena.layout.ColumnLayout;
@@ -15,7 +16,7 @@ import viewmodel.ConsultarValorCuentaViewModel;
 @SuppressWarnings("serial")
 public class IndicadoresView extends Window<Indicador> {
 	public IndicadoresView(WindowOwner owner) {
-		super(owner, new Indicador());
+		super(owner);
 
 	}
 
@@ -40,3 +41,4 @@ public class IndicadoresView extends Window<Indicador> {
 	
 
 }
+*/

@@ -8,10 +8,10 @@ import org.uqbar.commons.utils.Observable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Observable
-public class Cuenta extends Parametro{
+public class Cuenta{
 	private String nombreCuenta;
 	private int anioCuenta;
-
+	private int valor;
 
 	public Boolean perteneceA(int periodo){
 		return this.anioCuenta == periodo;
