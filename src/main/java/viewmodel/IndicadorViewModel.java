@@ -25,7 +25,6 @@ public class IndicadorViewModel {
 
 	public void obtenerIndicadores() {
 		try {
-			//IndicadoresService.set_rutaArchivoJson("./resources/indicadores.JSON");
 			indicadores = IndicadoresService.obtenerInicadoresDeServicioExterno();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block

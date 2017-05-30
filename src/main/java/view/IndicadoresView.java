@@ -10,6 +10,7 @@ import org.uqbar.arena.widgets.Selector;
 import org.uqbar.arena.windows.Dialog;
 import org.uqbar.arena.windows.Window;
 import org.uqbar.arena.windows.WindowOwner;
+import org.uqbar.lacar.ui.model.Action;
 
 import model.Cuenta;
 import model.Indicador;
@@ -30,26 +31,21 @@ public class IndicadoresView extends Window<IndicadorViewModel> {
 		mainPanel.setLayout(new VerticalLayout());
 		
 		Selector<Indicador> selectorIndicadores = new Selector<Indicador>(mainPanel).allowNull(true);
-		selectorIndicadores.bindItemsToProperty("indicadores");
+		selectorIndicadores.bindItemsToProperty("indicadores").adaptWith(Indicador.class, "nombre");
 		selectorIndicadores.bindValueToProperty("indicadorSeleccionado");
 		
 		Selector<Cuenta> selectorCuentas = new Selector<Cuenta>(mainPanel);
 		selectorCuentas.bindItemsToProperty("cuentas");//.adaptWith(Cuenta.class, "nombreCuenta");
 		selectorCuentas.bindValueToProperty("cuentaSeleccionada");
 		
-		crearBotonesDeOperadores(mainPanel);
-
-	}
-
-	public void crearBotonesDeOperadores(Panel mainPanel) {
-		new Button(mainPanel).setCaption("+").setWidth(100);
-		new Button(mainPanel).setCaption("-");
-		new Button(mainPanel).setCaption("*");
-		new Button(mainPanel).setCaption("/");
-		new Button(mainPanel).setCaption("(");
-		new Button(mainPanel).setCaption(")");
+		new Button(mainPanel).setCaption("Operaciones").onClick(this::operacionesAlgebricas);
 		
 	}
+	
+	public void operacionesAlgebricas(){
+		new operadoresView(this).open();
+	}
+
 		
 }
 
