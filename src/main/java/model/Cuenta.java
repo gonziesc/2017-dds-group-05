@@ -22,9 +22,6 @@ public class Cuenta{
 	public int getValor() {
 		return valor;
 	}
-	public int obtenerValor() {
-		return valor;
-	}
 	
 	public void setValor(int unValor) {
 		valor = unValor;
