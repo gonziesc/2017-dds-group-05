@@ -1,5 +1,8 @@
 package model;
 
+import org.uqbar.commons.utils.Observable;
+
+@Observable
 public class Indicador{
 	private CalcularIndicador calculador = new CalcularIndicadorConstante();
 	private Parametro parametro1;

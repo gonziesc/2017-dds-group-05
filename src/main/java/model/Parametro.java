@@ -14,6 +14,8 @@ public class Parametro {
 	protected String operacion1;
 	protected String operacion2;
 	protected String nombre;
+	
+	
 	public String getNombreCuenta() {
 		return nombreCuenta;
 	}

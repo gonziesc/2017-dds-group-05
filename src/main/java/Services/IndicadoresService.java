@@ -10,6 +10,7 @@ import java.util.List;
 
 import model.Indicador;
 
+import org.junit.experimental.theories.Theories;
 import org.uqbar.commons.model.UserException;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -20,7 +21,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 public class IndicadoresService {
-	static String rutaArchivoJson;
+	static String rutaArchivoJson = "./resources/indicadores.json";
 
 	public static List<Indicador> obtenerInicadoresDeServicioExterno() throws FileNotFoundException {
 		Gson gson = new GsonBuilder()
