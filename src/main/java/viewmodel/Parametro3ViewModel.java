@@ -27,6 +27,7 @@ public class Parametro3ViewModel {
 	
 	public void crearIndicador() {
 		builderIndicador.build();
+		
 	}
 	
 	public void obtenerIndicadores() {
