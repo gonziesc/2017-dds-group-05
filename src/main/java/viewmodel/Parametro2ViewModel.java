@@ -1,38 +1,30 @@
 package viewmodel;
 
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.List;
-
-import org.uqbar.commons.utils.Observable;
 
 import Services.IndicadoresService;
 import builder.BuilderIndicador;
 import model.Cuenta;
 import model.Indicador;
-import model.Parametro;
 import model.repositories.Repositorios;
 
-@Observable
-public class IndicadorViewModel {
-	private BuilderIndicador builderIndicador = new BuilderIndicador();
+public class Parametro2ViewModel {
 	private List<Indicador> indicadores;
-	private Indicador indicadorSeleccionado;
+	private Indicador segundoIndicador;
+	private BuilderIndicador builderIndicador;
 	private List<Cuenta> cuentas;
 	
-	public BuilderIndicador getBuilderIndicador() {
-		return builderIndicador;
-	}
-
-	public void setBuilderIndicador(BuilderIndicador builderIndicador) {
-		this.builderIndicador = builderIndicador;
-	}
-
-	public IndicadorViewModel(){
+	public Parametro2ViewModel(BuilderIndicador builder){
 		this.indicadores = Repositorios.indicadores.all();
 		this.cuentas = Repositorios.cuentas.all();
+		this.builderIndicador = builder;
 	}
-
+	
+	public void ingresarParametro2(){
+		builderIndicador.setParametro2(segundoIndicador.getParametro2());
+	}	
+	
 	public void obtenerIndicadores() {
 		try {
 			indicadores = IndicadoresService.obtenerInicadoresDeServicioExterno();
@@ -46,7 +38,11 @@ public class IndicadorViewModel {
 		
 	}
 	
-	public void ingresarParametro1() {
-		builderIndicador.setParametro1(indicadorSeleccionado.getParametro1());
+	public BuilderIndicador getBuilderIndicador() {
+		return builderIndicador;
+	}
+
+	public void setBuilderIndicador(BuilderIndicador builderIndicador) {
+		this.builderIndicador = builderIndicador;
 	}
 }

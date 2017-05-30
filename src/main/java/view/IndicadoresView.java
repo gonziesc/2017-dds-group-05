@@ -12,6 +12,7 @@ import org.uqbar.arena.windows.Window;
 import org.uqbar.arena.windows.WindowOwner;
 import org.uqbar.lacar.ui.model.Action;
 
+import builder.BuilderIndicador;
 import model.Cuenta;
 import model.Indicador;
 import model.Parametro;
@@ -41,8 +42,9 @@ public class IndicadoresView extends Window<IndicadorViewModel> {
 	
 	public void ingresar(){
 		this.getModelObject().ingresarParametro1();
+		BuilderIndicador builder = this.getModelObject().getBuilderIndicador();
 		this.close();
-		new operadoresView(this).open();
+		new Operador1View(this,builder).open();
 	}
 
 		

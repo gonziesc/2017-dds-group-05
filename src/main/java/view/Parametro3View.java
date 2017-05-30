@@ -10,12 +10,13 @@ import builder.BuilderIndicador;
 
 import model.Indicador;
 import viewmodel.Parametro2ViewModel;
+import viewmodel.Parametro3ViewModel;
 
 @SuppressWarnings("serial")
-public class Parametro2View extends Window<Parametro2ViewModel> {
-	public Parametro2View(WindowOwner owner,BuilderIndicador builder) {
+public class Parametro3View extends Window<Parametro3ViewModel> {
+	public Parametro3View(WindowOwner owner,BuilderIndicador builder) {
 
-		super(owner, new Parametro2ViewModel(builder));
+		super(owner, new Parametro3ViewModel(builder));
 		this.getModelObject().obtenerIndicadores();
 		this.getModelObject().obtenerCuentas();
 	}
@@ -26,19 +27,17 @@ public class Parametro2View extends Window<Parametro2ViewModel> {
 		
 		Selector<Indicador> selectorIndicadores = new Selector<Indicador>(mainPanel).allowNull(true);
 		selectorIndicadores.bindItemsToProperty("indicadores").adaptWith(Indicador.class, "nombre");
-		selectorIndicadores.bindValueToProperty("segundoIndicador");
+		selectorIndicadores.bindValueToProperty("tercerIndicador");
 		
-		new Button(mainPanel).setCaption("Ingresar segundo parametro").onClick(this::ingresar);
+		new Button(mainPanel).setCaption("Ingresar tercer parametro").onClick(this::ingresar);
 		
 	}
 	
 	public void ingresar(){
-		this.getModelObject().ingresarParametro2();
-		BuilderIndicador builder = this.getModelObject().getBuilderIndicador();
+		this.getModelObject().ingresarParametro3();
+		this.getModelObject().crearIndicador();
 		this.close();
-		new Operador2View(this,builder).open();
 	}
 	
 	
 }
-	
