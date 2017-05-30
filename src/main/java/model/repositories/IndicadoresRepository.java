@@ -50,7 +50,7 @@ public class IndicadoresRepository {
 	public Indicador getUnIdicadorConTresCuentas(){
 		cuentaTipoParametro tecerCuenta = Repositorios.cuentas.getOtraCuentaParametro();
 		cuentaTipoParametro unaCuenta = Repositorios.cuentas.getUnaCuentaParametro();
-		cuentaTipoParametro otraCuenta =  Repositorios.cuentas.getOtraCuentaParametro();
+		cuentaTipoParametro otraCuenta =  Repositorios.cuentas.getUnaCuentaParametro();
 		String operacion = "+";
 		Indicador unIndicador = new Indicador(otraCuenta, unaCuenta, tecerCuenta, operacion, operacion);
 		return unIndicador;
@@ -58,7 +58,7 @@ public class IndicadoresRepository {
 	public IndicadorTipoParametro getUnIdicadorTipoParametroConTresCuentas(){
 		cuentaTipoParametro tecerCuenta = Repositorios.cuentas.getOtraCuentaParametro();
 		cuentaTipoParametro unaCuenta = Repositorios.cuentas.getUnaCuentaParametro();
-		cuentaTipoParametro otraCuenta =  Repositorios.cuentas.getOtraCuentaParametro();
+		cuentaTipoParametro otraCuenta =  Repositorios.cuentas.getUnaCuentaParametro();
 		String operacion = "+";
 		IndicadorTipoParametro unIndicador = new IndicadorTipoParametro(otraCuenta, unaCuenta, tecerCuenta, operacion, operacion);
 		return unIndicador;
