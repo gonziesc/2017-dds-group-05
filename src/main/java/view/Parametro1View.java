@@ -4,7 +4,9 @@ package view;
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Panel;
+import org.uqbar.arena.widgets.RadioSelector;
 import org.uqbar.arena.widgets.Selector;
+import org.uqbar.arena.widgets.TextBox;
 import org.uqbar.arena.windows.Window;
 import org.uqbar.arena.windows.WindowOwner;
 
@@ -27,9 +29,15 @@ public class Parametro1View extends Window<Parametro1ViewModel> {
 		this.setTitle("Ingreso de indicadores");
 		mainPanel.setLayout(new VerticalLayout());
 		
+		/*RadioSelector<String> selectorTipo = new RadioSelector<String>(mainPanel);
+		selectorTipo.bindItemsToProperty("tiposParametros");
+		selectorTipo.bindValueToProperty("tipoSeleccionado");
+		new TextBox(mainPanel).bindValueToProperty("parametro");
+		*/
 		Selector<Indicador> selectorIndicadores = new Selector<Indicador>(mainPanel);//.onSelection();
 		selectorIndicadores.bindItemsToProperty("indicadores").adaptWith(Indicador.class, "nombre");
 		selectorIndicadores.bindValueToProperty("indicadorSeleccionado");//.notNull();
+		
 		
 		
 	new Button(mainPanel).setCaption("Ingresar primer parametro").onClick(this::ingresar);
