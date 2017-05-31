@@ -1,6 +1,7 @@
 package viewmodel;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 import org.uqbar.commons.utils.Observable;
@@ -27,6 +28,15 @@ public class Parametro2ViewModel {
 	public void ingresarParametro2(){
 		builderIndicador.setParametro2(segundoIndicador.getParametro2());
 	}	
+	
+	public void ingresarIndicador() {
+		this.ingresarParametro2();
+		try {
+			IndicadoresService.guardarIndicadoresEnServicioExterno(builderIndicador.build());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	public void obtenerIndicadores() {
 		try {
@@ -59,4 +69,5 @@ public class Parametro2ViewModel {
 	public void setIndicadores(List<Indicador> indicadores) {
 		this.indicadores = indicadores;
 	}
+
 }

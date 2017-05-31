@@ -38,6 +38,18 @@ public class Parametro1ViewModel {
 		
 	}
 	
+	public void ingresarIndicador() {
+		this.ingresarParametro1();
+		try {
+			IndicadoresService.guardarIndicadoresEnServicioExterno(builderIndicador.build());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	public void ingresarParametro1() {
+		builderIndicador.setParametro1(indicadorSeleccionado.getParametro1());
+	}
+	
 	public BuilderIndicador getBuilderIndicador() {
 		return builderIndicador;
 	}
@@ -45,6 +57,7 @@ public class Parametro1ViewModel {
 	public void setBuilderIndicador(BuilderIndicador builderIndicador) {
 		this.builderIndicador = builderIndicador;
 	}
+	
 	public Indicador getIndicadorSeleccionado() {
 		return indicadorSeleccionado;
 	}
@@ -53,9 +66,6 @@ public class Parametro1ViewModel {
 		this.indicadorSeleccionado = indicadorSeleccionado;
 	}
 
-	public void ingresarParametro1() {
-		builderIndicador.setParametro1(indicadorSeleccionado.getParametro1());
-	}
 
 	public List<Indicador> getIndicadores() {
 		return indicadores;

@@ -27,12 +27,18 @@ public class Parametro1View extends Window<Parametro1ViewModel> {
 		this.setTitle("Ingreso de indicadores");
 		mainPanel.setLayout(new VerticalLayout());
 		
-		Selector<Indicador> selectorIndicadores = new Selector<Indicador>(mainPanel).allowNull(true);
+		Selector<Indicador> selectorIndicadores = new Selector<Indicador>(mainPanel);//.onSelection();
 		selectorIndicadores.bindItemsToProperty("indicadores").adaptWith(Indicador.class, "nombre");
-		selectorIndicadores.bindValueToProperty("indicadorSeleccionado");
+		selectorIndicadores.bindValueToProperty("indicadorSeleccionado");//.notNull();
+		
 		
 	new Button(mainPanel).setCaption("Ingresar primer parametro").onClick(this::ingresar);
-		
+	new Button(mainPanel).setCaption("Ingresar indicador").onClick(this::ingresarIndicador);	
+	}
+
+	public void ingresarIndicador(){
+		this.getModelObject().ingresarIndicador();
+		this.close();
 	}
 	
 	public void ingresar(){

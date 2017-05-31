@@ -29,6 +29,7 @@ public class ConsultarValorCuenta extends Dialog<ConsultarValorCuentaViewModel> 
 	public ConsultarValorCuenta(WindowOwner owner) {
 		super(owner, new ConsultarValorCuentaViewModel());
 		getModelObject().obtenerEmpresas();
+		getModelObject().obtenerIndicadores();
 	}
 
 	public void createContents(Panel mainPanel) {
@@ -50,6 +51,7 @@ public class ConsultarValorCuenta extends Dialog<ConsultarValorCuentaViewModel> 
 		createColumn("Nombre", tablaCuentas, "nombreCuenta");
 		createColumn("Valor ", tablaCuentas, "valor");
 		createColumn("Ano ", tablaCuentas, "anioCuenta");
+		createColumn("Indicador", tablaCuentas, "nombreIndicador");
 		
 	}
 	
