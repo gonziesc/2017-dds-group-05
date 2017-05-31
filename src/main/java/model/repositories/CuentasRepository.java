@@ -21,4 +21,7 @@ public class CuentasRepository {
 	public List<Cuenta> all() {
 		return cuentas;
 	}
+	public void agregar(Cuenta cuenta){
+		cuentas.add(cuenta);
+	}
 }

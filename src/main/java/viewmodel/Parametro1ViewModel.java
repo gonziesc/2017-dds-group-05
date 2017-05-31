@@ -19,10 +19,11 @@ public class Parametro1ViewModel {
 	private List<Indicador> indicadores;
 	private Indicador indicadorSeleccionado;
 	private List<Cuenta> cuentas;
+	private Cuenta cuentaSeleccionada;
 	
 	public Parametro1ViewModel(){
 		this.setIndicadores(Repositorios.indicadores.all());
-		this.cuentas = Repositorios.cuentas.all();
+		this.setCuentas(Repositorios.cuentas.all());
 	}
 
 	public void obtenerIndicadores() {
@@ -32,10 +33,6 @@ public class Parametro1ViewModel {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-	
-	public void obtenerCuentas() {
-		
 	}
 	
 	public void ingresarIndicador() {
@@ -73,5 +70,21 @@ public class Parametro1ViewModel {
 
 	public void setIndicadores(List<Indicador> indicadores) {
 		this.indicadores = indicadores;
+	}
+
+	public List<Cuenta> getCuentas() {
+		return cuentas;
+	}
+
+	public void setCuentas(List<Cuenta> cuentas) {
+		this.cuentas = cuentas;
+	}
+
+	public Cuenta getCuentaSeleccionada() {
+		return cuentaSeleccionada;
+	}
+
+	public void setCuentaSeleccionada(Cuenta cuentaSeleccionada) {
+		this.cuentaSeleccionada = cuentaSeleccionada;
 	}
 }

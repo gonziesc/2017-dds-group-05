@@ -18,10 +18,11 @@ public class Parametro2ViewModel {
 	private Indicador segundoIndicador;
 	private BuilderIndicador builderIndicador;
 	private List<Cuenta> cuentas;
+	private Cuenta cuentaSeleccionada;
 	
 	public Parametro2ViewModel(BuilderIndicador builder){
 		this.indicadores = Repositorios.indicadores.all();
-		this.cuentas = Repositorios.cuentas.all();
+		this.setCuentas(Repositorios.cuentas.all());
 		this.builderIndicador = builder;
 	}
 	
@@ -68,6 +69,22 @@ public class Parametro2ViewModel {
 
 	public void setIndicadores(List<Indicador> indicadores) {
 		this.indicadores = indicadores;
+	}
+
+	public List<Cuenta> getCuentas() {
+		return cuentas;
+	}
+
+	public void setCuentas(List<Cuenta> cuentas) {
+		this.cuentas = cuentas;
+	}
+
+	public Cuenta getCuentaSeleccionada() {
+		return cuentaSeleccionada;
+	}
+
+	public void setCuentaSeleccionada(Cuenta cuentaSeleccionada) {
+		this.cuentaSeleccionada = cuentaSeleccionada;
 	}
 
 }

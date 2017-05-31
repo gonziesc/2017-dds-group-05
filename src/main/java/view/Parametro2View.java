@@ -2,6 +2,7 @@ package view;
 
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
+import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.widgets.Selector;
 import org.uqbar.arena.windows.Dialog;
@@ -10,7 +11,7 @@ import org.uqbar.arena.windows.WindowOwner;
 import org.uqbar.commons.utils.Observable;
 
 import builder.BuilderIndicador;
-
+import model.Cuenta;
 import model.Indicador;
 import viewmodel.Parametro2ViewModel;
 
@@ -30,6 +31,14 @@ public class Parametro2View extends Window<Parametro2ViewModel> {
 		selectorIndicadores.bindItemsToProperty("indicadores").adaptWith(Indicador.class, "nombre");
 		selectorIndicadores.bindValueToProperty("segundoIndicador");//.notNull();
 		
+		espacio(mainPanel);
+		
+		Selector<Cuenta> selectorCuentas = new Selector<Cuenta>(mainPanel);
+		selectorCuentas.bindItemsToProperty("cuentas").adaptWith(Cuenta.class, "nombreCuenta");
+		selectorCuentas.bindValueToProperty("cuentaSeleccionada");
+		
+		espacio(mainPanel);
+		
 		new Button(mainPanel).setCaption("Ingresar segundo parametro").onClick(this::ingresar);
 		new Button(mainPanel).setCaption("Ingresar indicador").onClick(this::ingresarIndicador);
 		
@@ -44,6 +53,7 @@ public class Parametro2View extends Window<Parametro2ViewModel> {
 		this.close();
 		new Operador2View(this, builder).open();
 	}
-	
-	
+	public void espacio(Panel mainPanel){
+		new Label(mainPanel);
+	}
 }
