@@ -11,6 +11,7 @@ public class BuilderIndicador {
 	private String operacion2;
 	private String nombre = null;
 	
+
 	public Indicador build(){
 		return new Indicador(parametro1,parametro2,parametro3,operacion1,operacion2);
 	}

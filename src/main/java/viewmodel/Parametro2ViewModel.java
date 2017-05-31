@@ -10,6 +10,7 @@ import Services.IndicadoresService;
 import builder.BuilderIndicador;
 import model.Cuenta;
 import model.Indicador;
+import model.Parametro;
 import model.repositories.Repositorios;
 
 @Observable
@@ -19,15 +20,17 @@ public class Parametro2ViewModel {
 	private BuilderIndicador builderIndicador;
 	private List<Cuenta> cuentas;
 	private Cuenta cuentaSeleccionada;
+	private Parametro parametro = new Parametro();
 	
 	public Parametro2ViewModel(BuilderIndicador builder){
-		this.indicadores = Repositorios.indicadores.all();
-		this.setCuentas(Repositorios.cuentas.all());
+		indicadores = Repositorios.indicadores.all();
+		cuentas = Repositorios.cuentas.all();
 		this.builderIndicador = builder;
 	}
 	
 	public void ingresarParametro2(){
-		builderIndicador.setParametro2(segundoIndicador.getParametro2());
+		parametro.setValor(segundoIndicador.obtenerValor());
+		builderIndicador.setParametro2(parametro);
 	}	
 	
 	public void ingresarIndicador() {
@@ -85,6 +88,14 @@ public class Parametro2ViewModel {
 
 	public void setCuentaSeleccionada(Cuenta cuentaSeleccionada) {
 		this.cuentaSeleccionada = cuentaSeleccionada;
+	}
+
+	public Parametro getParametro() {
+		return parametro;
+	}
+
+	public void setParametro(Parametro parametro) {
+		this.parametro = parametro;
 	}
 
 }

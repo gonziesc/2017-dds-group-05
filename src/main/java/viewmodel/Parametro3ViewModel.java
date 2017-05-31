@@ -10,6 +10,7 @@ import Services.IndicadoresService;
 import builder.BuilderIndicador;
 import model.Cuenta;
 import model.Indicador;
+import model.Parametro;
 import model.repositories.Repositorios;
 
 @Observable
@@ -20,16 +21,19 @@ public class Parametro3ViewModel {
 	private BuilderIndicador builderIndicador;
 	private String nombreIndicador;
 	private List<Cuenta> cuentas;
+	private Cuenta cuentaSeleccionada;
+	private Parametro parametro = new Parametro();
 	
 	public Parametro3ViewModel(BuilderIndicador builder){
-		this.setIndicadores(Repositorios.indicadores.all());
-		this.cuentas = Repositorios.cuentas.all();
+		indicadores = Repositorios.indicadores.all();
+		cuentas = Repositorios.cuentas.all();
 		this.builderIndicador = builder;
 	}
 	
 	public void ingresarParametro3(){
-		builderIndicador.setParametro3(tercerIndicador.getParametro3());
-		builderIndicador.setNombre(nombreIndicador);
+		parametro.setValor(tercerIndicador.obtenerValor());
+		builderIndicador.setParametro3(parametro);
+		//builderIndicador.setNombre(nombreIndicador);
 	}	
 	
 	public void crearIndicador() {
@@ -46,7 +50,6 @@ public class Parametro3ViewModel {
 		try {
 			setIndicadores(IndicadoresService.obtenerInicadoresDeServicioExterno());
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -84,5 +87,29 @@ public class Parametro3ViewModel {
 
 	public void setNombreIndicador(String nombreIndicador) {
 		this.nombreIndicador = nombreIndicador;
+	}
+
+	public List<Cuenta> getCuentas() {
+		return cuentas;
+	}
+
+	public void setCuentas(List<Cuenta> cuentas) {
+		this.cuentas = cuentas;
+	}
+
+	public Cuenta getCuentaSeleccionada() {
+		return cuentaSeleccionada;
+	}
+
+	public void setCuentaSeleccionada(Cuenta cuentaSeleccionada) {
+		this.cuentaSeleccionada = cuentaSeleccionada;
+	}
+
+	public Parametro getParametro() {
+		return parametro;
+	}
+
+	public void setParametro(Parametro parametro) {
+		this.parametro = parametro;
 	}
 }

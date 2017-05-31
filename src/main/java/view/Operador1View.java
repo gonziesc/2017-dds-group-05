@@ -2,9 +2,7 @@ package view;
 
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
-import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.Panel;
-import org.uqbar.arena.widgets.TextBox;
 import org.uqbar.arena.windows.Dialog;
 import org.uqbar.arena.windows.WindowOwner;
 
@@ -22,7 +20,7 @@ public class Operador1View extends Dialog<Operador1ViewModel> {
 		
 		crearBotonesDeOperadores(mainPanel);
 		
-		new Button(mainPanel).setCaption("Ingresar operador").onClick(this::ingresarOperador);
+		new Button(mainPanel).setCaption("Ingresar operador").onClick(this::ingresarOperador).disableOnError();
 	}
 	
 	public void ingresarOperador(){//falta control de errores

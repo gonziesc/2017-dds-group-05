@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
+import org.uqbar.commons.model.ObservableUtils;
 import org.uqbar.commons.utils.Observable;
 
 import Services.IndicadoresService;
@@ -16,13 +17,15 @@ import model.repositories.Repositorios;
 @Observable
 public class Parametro1ViewModel {
 	private BuilderIndicador builderIndicador = new BuilderIndicador();
+	private Parametro parametro = new Parametro();
+
 	private List<Indicador> indicadores;
 	private Indicador indicadorSeleccionado;
 	private List<Cuenta> cuentas;
 	private Cuenta cuentaSeleccionada;
 	private String tipoSeleccionado;
 	private List<String> tiposParametros;
-	private Integer parametro;
+	private Integer valorParametroConstante;
 	
 	public Parametro1ViewModel(){
 		indicadores = Repositorios.indicadores.all();
@@ -32,7 +35,7 @@ public class Parametro1ViewModel {
 
 	public void obtenerIndicadores() {
 		try {
-			setIndicadores(IndicadoresService.obtenerInicadoresDeServicioExterno());
+			indicadores = IndicadoresService.obtenerInicadoresDeServicioExterno();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -40,15 +43,17 @@ public class Parametro1ViewModel {
 	}
 	
 	public void ingresarIndicador() {
-		this.ingresarParametro1();
 		try {
+			this.ingresarParametro1();
 			IndicadoresService.guardarIndicadoresEnServicioExterno(builderIndicador.build());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 	public void ingresarParametro1() {
-		builderIndicador.setParametro1(indicadorSeleccionado.getParametro1());
+		parametro.setValor(indicadorSeleccionado.obtenerValor());
+		builderIndicador.setParametro1(parametro);
+		//builderIndicador.setValor(indicadorSeleccionado.getParametro1());
 	}
 	
 	public BuilderIndicador getBuilderIndicador() {
@@ -66,7 +71,10 @@ public class Parametro1ViewModel {
 	public void setIndicadorSeleccionado(Indicador indicadorSeleccionado) {
 		this.indicadorSeleccionado = indicadorSeleccionado;
 	}
-
+	
+	public void setParametro(Parametro parametro) {
+		this.parametro = parametro;
+	}
 
 	public List<Indicador> getIndicadores() {
 		return indicadores;
@@ -104,15 +112,16 @@ public class Parametro1ViewModel {
 		return tiposParametros;
 	}
 
+	public Integer getValorParametroConstante() {
+		return valorParametroConstante;
+	}
+
+	public void setValorParametroConstante(Integer valorParametroConstante) {
+		this.valorParametroConstante = valorParametroConstante;
+	}
+
 	public void setTiposParametros(List<String> tiposParametros) {
 		this.tiposParametros = tiposParametros;
 	}
 
-	public Integer getParametro() {
-		return parametro;
-	}
-
-	public void setParametro(Integer parametro) {
-		this.parametro = parametro;
-	}
 }

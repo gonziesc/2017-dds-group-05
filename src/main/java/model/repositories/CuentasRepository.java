@@ -30,5 +30,5 @@ public class CuentasRepository {
 	}
 	public void agregarTipoParametro(String tipo){
 		tipoParametro.add(tipo)	;
-		}
+	}
 }

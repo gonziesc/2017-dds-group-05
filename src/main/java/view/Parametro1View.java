@@ -4,10 +4,10 @@ package view;
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Label;
+import org.uqbar.arena.widgets.NumericField;
 import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.widgets.RadioSelector;
 import org.uqbar.arena.widgets.Selector;
-import org.uqbar.arena.widgets.TextBox;
 import org.uqbar.arena.windows.Window;
 import org.uqbar.arena.windows.WindowOwner;
 
@@ -32,11 +32,12 @@ public class Parametro1View extends Window<Parametro1ViewModel> {
 		RadioSelector<String> selectorTipo = new RadioSelector<String>(mainPanel);
 		selectorTipo.bindItemsToProperty("tiposParametros");
 		selectorTipo.bindValueToProperty("tipoSeleccionado");
-		new TextBox(mainPanel).bindValueToProperty("parametro");
+				
+		new NumericField(mainPanel).bindValueToProperty("valorParametroConstante");
 		
-		Selector<Indicador> selectorIndicadores = new Selector<Indicador>(mainPanel);//.onSelection();
+		Selector<Indicador> selectorIndicadores = new Selector<Indicador>(mainPanel);
 		selectorIndicadores.bindItemsToProperty("indicadores").adaptWith(Indicador.class, "nombre");
-		selectorIndicadores.bindValueToProperty("indicadorSeleccionado");//.notNull();
+		selectorIndicadores.bindValueToProperty("indicadorSeleccionado");
 		
 		espacio(mainPanel);
 		
@@ -46,11 +47,11 @@ public class Parametro1View extends Window<Parametro1ViewModel> {
 		
 		espacio(mainPanel);
 		
-		new Button(mainPanel).setCaption("Ingresar primer parametro").onClick(this::ingresar);
-		new Button(mainPanel).setCaption("Ingresar indicador").onClick(this::ingresarIndicador);	
+		new Button(mainPanel).setCaption("Ingresar primer parametro").onClick(this::ingresar).disableOnError();
+		new Button(mainPanel).setCaption("Ingresar indicador").onClick(this::ingresarIndicador).disableOnError();	
 
 	}
-
+	
 	public void ingresarIndicador(){
 		this.getModelObject().ingresarIndicador();
 		this.close();

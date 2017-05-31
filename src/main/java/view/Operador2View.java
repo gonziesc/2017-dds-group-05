@@ -1,15 +1,12 @@
 package view;
 
 import org.uqbar.arena.widgets.Button;
-import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.Panel;
-import org.uqbar.arena.widgets.TextBox;
 import org.uqbar.arena.windows.Dialog;
 import org.uqbar.arena.windows.WindowOwner;
 
 import builder.BuilderIndicador;
-import viewmodel.Operador1ViewModel;
-import viewmodel.Operador2ViewModel;;
+import viewmodel.Operador2ViewModel;
 
 @SuppressWarnings("serial")
 public class Operador2View extends Dialog<Operador2ViewModel> {
