@@ -24,13 +24,14 @@ public class Operador2View extends Dialog<Operador2ViewModel> {
 		crearBotonesDeOperadores(mainPanel);
 		
 		new Button(mainPanel).setCaption("Ingresar operador").onClick(this::ingresarOperador);
+	
 	}
 	
 	public void ingresarOperador(){//falta control de errores
 		this.getModelObject().ingresarOperador();
 		BuilderIndicador builder = this.getModelObject().getBuilderIndicador();
 		this.close();
-		new Parametro2View(this, builder).open();
+		new Parametro3View(this, builder).open();
 	}
 	
 	public void crearBotonesDeOperadores(Panel mainPanel) {

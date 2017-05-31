@@ -14,6 +14,7 @@ import org.uqbar.arena.windows.WindowOwner;
 import Services.EmpresasService;
 import viewmodel.StartWindowViewModel;
 
+@SuppressWarnings("serial")
 public class StartWindow extends SimpleWindow<StartWindowViewModel> {
 
 	public StartWindow(WindowOwner parent) {
@@ -38,7 +39,7 @@ public class StartWindow extends SimpleWindow<StartWindowViewModel> {
 		new ConsultarValorCuenta(this).open();
 	}
 	public void ingresarIndicadores() {
-		new IndicadoresView(this).open();
+		new Parametro1View(this).open();
 	}
 
 	

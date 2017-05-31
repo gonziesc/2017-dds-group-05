@@ -1,7 +1,10 @@
 package viewmodel;
 
+import org.uqbar.commons.utils.Observable;
+
 import builder.BuilderIndicador;
 
+@Observable
 public class Operador1ViewModel {
 	
 	public Operador1ViewModel (BuilderIndicador builder){
@@ -11,7 +14,7 @@ public class Operador1ViewModel {
 	private BuilderIndicador builderIndicador;
 	private String operacionSeleccionada;
 	
-	public String getOperador() {
+	public String getOperacionSeleccionada() {
 		return operacionSeleccionada;
 	}
 
@@ -28,6 +31,6 @@ public class Operador1ViewModel {
 	}
 
 	public void ingresarOperador(){
-		builderIndicador.setOperacion1(this.getOperador());
+		builderIndicador.setOperacion1(this.getOperacionSeleccionada());
 	}
 }

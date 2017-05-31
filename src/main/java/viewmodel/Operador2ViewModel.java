@@ -1,7 +1,10 @@
 package viewmodel;
 
+import org.uqbar.commons.utils.Observable;
+
 import builder.BuilderIndicador;
 
+@Observable
 public class Operador2ViewModel {
 	
 	public Operador2ViewModel (BuilderIndicador builder){

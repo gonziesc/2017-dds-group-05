@@ -14,28 +14,20 @@ import model.Parametro;
 import model.repositories.Repositorios;
 
 @Observable
-public class IndicadorViewModel {
+public class Parametro1ViewModel {
 	private BuilderIndicador builderIndicador = new BuilderIndicador();
 	private List<Indicador> indicadores;
 	private Indicador indicadorSeleccionado;
 	private List<Cuenta> cuentas;
 	
-	public BuilderIndicador getBuilderIndicador() {
-		return builderIndicador;
-	}
-
-	public void setBuilderIndicador(BuilderIndicador builderIndicador) {
-		this.builderIndicador = builderIndicador;
-	}
-
-	public IndicadorViewModel(){
-		this.indicadores = Repositorios.indicadores.all();
+	public Parametro1ViewModel(){
+		this.setIndicadores(Repositorios.indicadores.all());
 		this.cuentas = Repositorios.cuentas.all();
 	}
 
 	public void obtenerIndicadores() {
 		try {
-			indicadores = IndicadoresService.obtenerInicadoresDeServicioExterno();
+			setIndicadores(IndicadoresService.obtenerInicadoresDeServicioExterno());
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -46,7 +38,30 @@ public class IndicadorViewModel {
 		
 	}
 	
+	public BuilderIndicador getBuilderIndicador() {
+		return builderIndicador;
+	}
+	
+	public void setBuilderIndicador(BuilderIndicador builderIndicador) {
+		this.builderIndicador = builderIndicador;
+	}
+	public Indicador getIndicadorSeleccionado() {
+		return indicadorSeleccionado;
+	}
+
+	public void setIndicadorSeleccionado(Indicador indicadorSeleccionado) {
+		this.indicadorSeleccionado = indicadorSeleccionado;
+	}
+
 	public void ingresarParametro1() {
 		builderIndicador.setParametro1(indicadorSeleccionado.getParametro1());
+	}
+
+	public List<Indicador> getIndicadores() {
+		return indicadores;
+	}
+
+	public void setIndicadores(List<Indicador> indicadores) {
+		this.indicadores = indicadores;
 	}
 }

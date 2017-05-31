@@ -1,5 +1,6 @@
 package view;
 
+import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.Panel;
@@ -15,10 +16,9 @@ public class Operador1View extends Dialog<Operador1ViewModel> {
 	public Operador1View(WindowOwner owner,BuilderIndicador builder) {
 		super(owner, new Operador1ViewModel(builder));
 	}
-
-	@Override
-	protected void createFormPanel(Panel mainPanel) {
+	public void createContents(Panel mainPanel) {
 		this.setTitle("Operaciones");
+		mainPanel.setLayout(new VerticalLayout());
 		
 		crearBotonesDeOperadores(mainPanel);
 		
@@ -39,5 +39,9 @@ public class Operador1View extends Dialog<Operador1ViewModel> {
 			new Button(mainPanel).setCaption("/").onClick(()->this.getModelObject().setOperacionSeleccionada("/"));
 			
 		}
+	@Override
+	protected void createFormPanel(Panel mainPanel) {
+
+	}
 		
 }
