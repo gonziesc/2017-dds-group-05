@@ -20,10 +20,14 @@ public class Parametro1ViewModel {
 	private Indicador indicadorSeleccionado;
 	private List<Cuenta> cuentas;
 	private Cuenta cuentaSeleccionada;
+	private String tipoSeleccionado;
+	private List<String> tiposParametros;
+	private Integer parametro;
 	
 	public Parametro1ViewModel(){
-		this.setIndicadores(Repositorios.indicadores.all());
-		this.setCuentas(Repositorios.cuentas.all());
+		indicadores = Repositorios.indicadores.all();
+		cuentas = Repositorios.cuentas.all();
+		tiposParametros = Repositorios.cuentas.allTipo();
 	}
 
 	public void obtenerIndicadores() {
@@ -86,5 +90,29 @@ public class Parametro1ViewModel {
 
 	public void setCuentaSeleccionada(Cuenta cuentaSeleccionada) {
 		this.cuentaSeleccionada = cuentaSeleccionada;
+	}
+
+	public String getTipoSeleccionado() {
+		return tipoSeleccionado;
+	}
+
+	public void setTipoSeleccionado(String tipoSeleccionado) {
+		this.tipoSeleccionado = tipoSeleccionado;
+	}
+
+	public List<String> getTiposParametros() {
+		return tiposParametros;
+	}
+
+	public void setTiposParametros(List<String> tiposParametros) {
+		this.tiposParametros = tiposParametros;
+	}
+
+	public Integer getParametro() {
+		return parametro;
+	}
+
+	public void setParametro(Integer parametro) {
+		this.parametro = parametro;
 	}
 }

@@ -29,11 +29,11 @@ public class Parametro1View extends Window<Parametro1ViewModel> {
 		this.setTitle("Ingreso de indicadores");
 		mainPanel.setLayout(new VerticalLayout());
 		
-		/*RadioSelector<String> selectorTipo = new RadioSelector<String>(mainPanel);
+		RadioSelector<String> selectorTipo = new RadioSelector<String>(mainPanel);
 		selectorTipo.bindItemsToProperty("tiposParametros");
 		selectorTipo.bindValueToProperty("tipoSeleccionado");
 		new TextBox(mainPanel).bindValueToProperty("parametro");
-		*/
+		
 		Selector<Indicador> selectorIndicadores = new Selector<Indicador>(mainPanel);//.onSelection();
 		selectorIndicadores.bindItemsToProperty("indicadores").adaptWith(Indicador.class, "nombre");
 		selectorIndicadores.bindValueToProperty("indicadorSeleccionado");//.notNull();

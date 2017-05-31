@@ -9,6 +9,9 @@ public class FixtureCuentas {
 		Cuenta fds = new Cuenta();
 		Cuenta editba = new Cuenta();
 		
+		Repositorios.cuentas.agregarTipoParametro("Indicadores");
+		Repositorios.cuentas.agregarTipoParametro("Constante");
+		
 		freeCashFlow.setNombreCuenta("Free Cash Flow");
 		Repositorios.cuentas.agregar(freeCashFlow);
 		fds.setNombreCuenta("FDS");
