@@ -18,19 +18,15 @@ import model.repositories.Repositorios;
 public class Parametro1ViewModel {
 	private BuilderIndicador builderIndicador = new BuilderIndicador();
 	private Parametro parametro = new Parametro();
-
 	private List<Indicador> indicadores;
 	private Indicador indicadorSeleccionado;
 	private List<Cuenta> cuentas;
 	private Cuenta cuentaSeleccionada;
-	private String tipoSeleccionado;
-	private List<String> tiposParametros;
 	private Integer valorParametroConstante;
 	
 	public Parametro1ViewModel(){
 		indicadores = Repositorios.indicadores.all();
 		cuentas = Repositorios.cuentas.all();
-		tiposParametros = Repositorios.cuentas.allTipo();
 	}
 
 	public void obtenerIndicadores() {
@@ -53,7 +49,6 @@ public class Parametro1ViewModel {
 	public void ingresarParametro1() {
 		parametro.setValor(indicadorSeleccionado.obtenerValor());
 		builderIndicador.setParametro1(parametro);
-		//builderIndicador.setValor(indicadorSeleccionado.getParametro1());
 	}
 	
 	public BuilderIndicador getBuilderIndicador() {
@@ -100,18 +95,6 @@ public class Parametro1ViewModel {
 		this.cuentaSeleccionada = cuentaSeleccionada;
 	}
 
-	public String getTipoSeleccionado() {
-		return tipoSeleccionado;
-	}
-
-	public void setTipoSeleccionado(String tipoSeleccionado) {
-		this.tipoSeleccionado = tipoSeleccionado;
-	}
-
-	public List<String> getTiposParametros() {
-		return tiposParametros;
-	}
-
 	public Integer getValorParametroConstante() {
 		return valorParametroConstante;
 	}
@@ -120,8 +103,5 @@ public class Parametro1ViewModel {
 		this.valorParametroConstante = valorParametroConstante;
 	}
 
-	public void setTiposParametros(List<String> tiposParametros) {
-		this.tiposParametros = tiposParametros;
-	}
 
 }

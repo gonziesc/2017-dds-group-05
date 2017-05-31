@@ -10,6 +10,7 @@ import org.uqbar.arena.widgets.RadioSelector;
 import org.uqbar.arena.widgets.Selector;
 import org.uqbar.arena.windows.Window;
 import org.uqbar.arena.windows.WindowOwner;
+import org.uqbar.commons.model.UserException;
 
 import builder.BuilderIndicador;
 import model.Cuenta;
@@ -29,10 +30,6 @@ public class Parametro1View extends Window<Parametro1ViewModel> {
 		this.setTitle("Ingreso de indicadores");
 		mainPanel.setLayout(new VerticalLayout());
 		
-		RadioSelector<String> selectorTipo = new RadioSelector<String>(mainPanel);
-		selectorTipo.bindItemsToProperty("tiposParametros");
-		selectorTipo.bindValueToProperty("tipoSeleccionado");
-				
 		new NumericField(mainPanel).bindValueToProperty("valorParametroConstante");
 		
 		Selector<Indicador> selectorIndicadores = new Selector<Indicador>(mainPanel);
@@ -53,11 +50,22 @@ public class Parametro1View extends Window<Parametro1ViewModel> {
 	}
 	
 	public void ingresarIndicador(){
+		if(!this.dosParametrosNulos()){
+			throw new UserException("Seleccione un solo parametro");
+		}
 		this.getModelObject().ingresarIndicador();
 		this.close();
 	}
 	
+	private boolean dosParametrosNulos() {
+		return getModelObject().getValorParametroConstante() == null 
+					&& getModelObject().getCuentaSeleccionada() == null;
+	}
+
 	public void ingresar(){
+		if(!this.dosParametrosNulos()){
+			throw new UserException("Seleccione un solo parametro");
+		}
 		this.getModelObject().ingresarParametro1();
 		BuilderIndicador builder = this.getModelObject().getBuilderIndicador();
 		this.close();

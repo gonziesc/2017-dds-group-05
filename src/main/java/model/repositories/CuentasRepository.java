@@ -7,8 +7,7 @@ import model.Cuenta;
 
 public class CuentasRepository {
 	private List<Cuenta> cuentas = new LinkedList<>();
-	private List<String> tipoParametro = new LinkedList<>();
-	
+		
 	Cuenta getUnaCuenta(){
 		Cuenta unaCuenta = new Cuenta();
 		unaCuenta.setValor(1000);
@@ -22,13 +21,9 @@ public class CuentasRepository {
 	public List<Cuenta> all() {
 		return cuentas;
 	}
-	public List<String> allTipo(){
-		return tipoParametro;
-	}
+
 	public void agregar(Cuenta cuenta){
 		cuentas.add(cuenta);
 	}
-	public void agregarTipoParametro(String tipo){
-		tipoParametro.add(tipo)	;
-	}
+
 }
