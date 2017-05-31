@@ -51,7 +51,7 @@ public class ConsultarValorCuenta extends Dialog<ConsultarValorCuentaViewModel> 
 		createColumn("Nombre", tablaCuentas, "nombreCuenta");
 		createColumn("Valor ", tablaCuentas, "valor");
 		createColumn("Ano ", tablaCuentas, "anioCuenta");
-		createColumn("Indicador", tablaCuentas, "nombreIndicador");
+		//createColumn("Indicador", tablaCuentas, "nombreIndicador");
 		
 	}
 	
