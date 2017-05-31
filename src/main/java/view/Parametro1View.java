@@ -3,6 +3,7 @@ package view;
 
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
+import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.widgets.RadioSelector;
 import org.uqbar.arena.widgets.Selector;
@@ -22,7 +23,6 @@ public class Parametro1View extends Window<Parametro1ViewModel> {
 
 		super(owner, new Parametro1ViewModel());
 		this.getModelObject().obtenerIndicadores();
-		this.getModelObject().obtenerCuentas();
 	}
 	
 	public void createContents(Panel mainPanel) {
@@ -38,10 +38,17 @@ public class Parametro1View extends Window<Parametro1ViewModel> {
 		selectorIndicadores.bindItemsToProperty("indicadores").adaptWith(Indicador.class, "nombre");
 		selectorIndicadores.bindValueToProperty("indicadorSeleccionado");//.notNull();
 		
+		espacio(mainPanel);
 		
+		Selector<Cuenta> selectorCuentas = new Selector<Cuenta>(mainPanel);
+		selectorCuentas.bindItemsToProperty("cuentas").adaptWith(Cuenta.class, "nombreCuenta");
+		selectorCuentas.bindValueToProperty("cuentaSeleccionada");
 		
-	new Button(mainPanel).setCaption("Ingresar primer parametro").onClick(this::ingresar);
-	new Button(mainPanel).setCaption("Ingresar indicador").onClick(this::ingresarIndicador);	
+		espacio(mainPanel);
+		
+		new Button(mainPanel).setCaption("Ingresar primer parametro").onClick(this::ingresar);
+		new Button(mainPanel).setCaption("Ingresar indicador").onClick(this::ingresarIndicador);	
+
 	}
 
 	public void ingresarIndicador(){
@@ -56,6 +63,8 @@ public class Parametro1View extends Window<Parametro1ViewModel> {
 		new Operador1View(this,builder).open();
 	}
 
-		
+	public void espacio(Panel mainPanel){
+		new Label(mainPanel);
+	}
 }
 
