@@ -91,11 +91,11 @@ public class Indicador {
 	}
 
 	public void setValorCuenta(Cuenta cuenta) {
-		if (parametro1 != null && parametro1.getNombre() == cuenta.getNombreCuenta()) {
+		if (parametro1 != null && (parametro1.getNombre().toString().equals(cuenta.getNombreCuenta().toString()))) {
 			parametro1.setValor(cuenta.getValor());
-		} else if (parametro2 != null &&  parametro2.getNombre() == cuenta.getNombreCuenta()) {
+		} else if (parametro2 != null &&  (parametro2.getNombre().toString().equals(cuenta.getNombreCuenta().toString()))) {
 			parametro2.setValor(cuenta.getValor());
-		} else if (parametro3 != null &&  parametro3.getNombre() == cuenta.getNombreCuenta()) {
+		} else if (parametro3 != null &&  (parametro3.getNombre().toString().equals(cuenta.getNombreCuenta().toString()))) {
 			parametro3.setValor(cuenta.getValor());
 		}
 	}
@@ -117,11 +117,11 @@ public class Indicador {
 	}
 
 	public void setValorIndicador(Indicador indicador) {
-		if (parametro1 != null && parametro1.getNombre() == indicador.getNombre()) {
+		if (parametro1 != null && parametro1.getNombre().toString().equals(indicador.getNombre().toString())) {
 			parametro1.setValor(indicador.obtenerValor());
-		} else if (parametro2 != null && parametro2.getNombre() == indicador.getNombre()) {
+		} else if (parametro2 != null && parametro2.getNombre().toString().equals(indicador.getNombre().toString())) {
 			parametro2.setValor(indicador.obtenerValor());
-		} else if (parametro3 != null && parametro3.getNombre() == indicador.getNombre()) {
+		} else if (parametro3 != null && parametro3.getNombre().toString().equals(indicador.getNombre().toString())) {
 			parametro3.setValor(indicador.obtenerValor());
 		}
 	}

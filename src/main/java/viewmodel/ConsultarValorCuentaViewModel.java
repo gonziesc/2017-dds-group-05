@@ -36,15 +36,15 @@ public class ConsultarValorCuentaViewModel {
 		return indicador;
 	}
 	private Object cargarIndicador(Indicador i, Indicador indicador) {
-		if(indicador.necesitaSetearIndicador(i)){
+		//if(indicador.necesitaSetearIndicador(i)){
 			indicador.setValorIndicador(i);
-		}
+		//}
 		return indicador;
 	}
 	private Object cargarIndicador(Cuenta c, Indicador indicador) {
-		if(indicador.necesitaSetearCuenta(c)){
+		//if(indicador.necesitaSetearCuenta(c)){
 			indicador.setValorCuenta(c);
-		}
+		//}
 		return indicador;
 	}
 	public void obtenerEmpresas() {
