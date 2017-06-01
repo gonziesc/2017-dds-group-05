@@ -59,6 +59,7 @@ public class IndicadorTest {
 		IndicadoresService.set_rutaArchivoJson("./resources/indicadores.JSON");
 		List<Indicador> listIndicadoresTest = IndicadoresService.obtenerInicadoresDeServicioExterno();
 		assertTrue(listIndicadoresTest.size() == 1);
+		//falla
 	}
 	@Test
 	public void elValorDelPrimerElementoGuardadoEn() throws IOException {

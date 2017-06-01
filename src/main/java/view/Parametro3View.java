@@ -7,6 +7,7 @@ import org.uqbar.arena.widgets.NumericField;
 import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.widgets.RadioSelector;
 import org.uqbar.arena.widgets.Selector;
+import org.uqbar.arena.widgets.TextBox;
 import org.uqbar.arena.windows.Window;
 import org.uqbar.arena.windows.WindowOwner;
 import org.uqbar.commons.model.UserException;
@@ -47,6 +48,9 @@ public class Parametro3View extends Window<Parametro3ViewModel> {
 		Selector<Cuenta> selectorCuentas = new Selector<Cuenta>(mainPanel);
 		selectorCuentas.bindItemsToProperty("cuentas").adaptWith(Cuenta.class, "nombreCuenta");
 		selectorCuentas.bindValueToProperty("cuentaSeleccionada");
+		
+		new Label(mainPanel).setText("Ingrese el nombre del indicador");
+		new TextBox(mainPanel).bindValueToProperty("nombreIndicador");
 		
 		new Button(mainPanel).setCaption("Ingresar tercer parametro").onClick(this::ingresar).disableOnError();
 		

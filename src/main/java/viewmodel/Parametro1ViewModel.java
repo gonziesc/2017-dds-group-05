@@ -79,9 +79,11 @@ public class Parametro1ViewModel {
 		try {
 		if(this.getTipoSeleccionado() == "Indicador"){
 			parametro.setValor(indicadorSeleccionado.obtenerValor());
+			parametro.setNombre(indicadorSeleccionado.getNombre());
 		}
 		else if(this.getTipoSeleccionado() == "Cuenta"){
-			parametro.setValor(cuentaSeleccionada.getValor());	
+			parametro.setValor(cuentaSeleccionada.getValor());
+			parametro.setNombre(cuentaSeleccionada.getNombreCuenta());
 		}
 		else if (this.getTipoSeleccionado() == "Constante"){
 			parametro.setValor(valorParametroConstante);

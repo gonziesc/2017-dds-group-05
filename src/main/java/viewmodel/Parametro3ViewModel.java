@@ -52,18 +52,20 @@ public class Parametro3ViewModel {
 		try{
 		if(this.getTipoSeleccionado() == "Indicador"){
 			parametro.setValor(tercerIndicador.obtenerValor());
+			parametro.setNombre(tercerIndicador.getNombre());
 		}
 		else if(this.getTipoSeleccionado() == "Cuenta"){
 			parametro.setValor(cuentaSeleccionada.getValor());	
+			parametro.setNombre(cuentaSeleccionada.getNombreCuenta());
 		}
 		else if (this.getTipoSeleccionado() == "Constante"){
 			parametro.setValor(valorParametroConstante);
 		}
 		builderIndicador.setParametro3(parametro);
-		//builderIndicador.setNombre(nombreIndicador);
 		} catch (NullPointerException e) {
 			throw new NullPointerException ("mal ingresado!");
 		}
+		builderIndicador.setNombre(nombreIndicador);
 	}	
 	
 	public void crearIndicador() {
