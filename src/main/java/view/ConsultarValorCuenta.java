@@ -20,7 +20,6 @@ public class ConsultarValorCuenta extends Dialog<ConsultarValorCuentaViewModel> 
 	public ConsultarValorCuenta(WindowOwner owner) {
 		super(owner, new ConsultarValorCuentaViewModel());
 		getModelObject().obtenerEmpresas();
-		getModelObject().obtenerIndicadores();
 	}
 
 	@Override
@@ -74,7 +73,7 @@ public class ConsultarValorCuenta extends Dialog<ConsultarValorCuentaViewModel> 
 		if(getModelObject().getEmpresaSeleccionada() == null){
 			throw new UserException("Seleccione una empresa");
 		}
-		getModelObject().getIndicadores();
+		getModelObject().obtenerIndicadores();
 	}
 
 	@Override

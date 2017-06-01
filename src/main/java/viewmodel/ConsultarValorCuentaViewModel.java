@@ -2,6 +2,8 @@ package viewmodel;
 
 import java.io.FileNotFoundException;
 import java.util.List;
+import java.util.stream.Collectors;
+
 import org.uqbar.commons.utils.Observable;
 
 import Services.EmpresasService;
@@ -20,12 +22,30 @@ public class ConsultarValorCuentaViewModel {
 	
 	public void obtenerIndicadores(){
 		try {
-			List<Indicador> indicadoresDeServicio = IndicadoresService.obtenerInicadoresDeServicioExterno();
-			indicadores = indicadoresDeServicio;
+			indicadores = IndicadoresService.obtenerInicadoresDeServicioExterno();
+			indicadores.stream().forEach(i -> this.procesarIndicador(i));
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	private Object procesarIndicador(Indicador indicador) {
+		cuentasEmpresa.stream().forEach(c -> cargarIndicador(c, indicador));
+		indicadores.stream().forEach(i -> cargarIndicador(i, indicador));
+		indicador.obtenerValor();
+		return indicador;
+	}
+	private Object cargarIndicador(Indicador i, Indicador indicador) {
+		if(indicador.necesitaSetearIndicador(i)){
+			indicador.setValorIndicador(i);
+		}
+		return indicador;
+	}
+	private Object cargarIndicador(Cuenta c, Indicador indicador) {
+		if(indicador.necesitaSetearCuenta(c)){
+			indicador.setValorCuenta(c);
+		}
+		return indicador;
 	}
 	public void obtenerEmpresas() {
 		try {
