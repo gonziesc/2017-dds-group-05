@@ -33,22 +33,21 @@ public class Parametro2View extends Window<Parametro2ViewModel> {
 		radioTipo.bindItemsToProperty("tipoParametros");
 		radioTipo.bindValueToProperty("tipoSeleccionado");
 		
+		new Label(mainPanel).setText("Valor Constante");
 		new NumericField(mainPanel).bindValueToProperty("valorParametroConstante");
 		
-		espacio(mainPanel);
+		new Label(mainPanel).setText("Indicadores");
 		
 		Selector<Indicador> selectorIndicadores = new Selector<Indicador>(mainPanel);
 		selectorIndicadores.bindItemsToProperty("indicadores").adaptWith(Indicador.class, "nombre");
 		selectorIndicadores.bindValueToProperty("segundoIndicador");
 		
-		espacio(mainPanel);
+		new Label(mainPanel).setText("Cuentas");
 		
 		Selector<Cuenta> selectorCuentas = new Selector<Cuenta>(mainPanel);
 		selectorCuentas.bindItemsToProperty("cuentas").adaptWith(Cuenta.class, "nombreCuenta");
 		selectorCuentas.bindValueToProperty("cuentaSeleccionada");
-		
-		espacio(mainPanel);
-		
+
 		new Button(mainPanel).setCaption("Ingresar segundo parametro").onClick(this::ingresar).disableOnError();
 		new Button(mainPanel).setCaption("Ingresar indicador").onClick(this::ingresarIndicador).disableOnError();
 		
@@ -72,7 +71,9 @@ public class Parametro2View extends Window<Parametro2ViewModel> {
 
 	private boolean dosParametrosLlenos() {
 		return getModelObject().getValorParametroConstante() != null 
-					&& getModelObject().getSegundoIndicador() != null;
+					&& getModelObject().getSegundoIndicador() != null 
+						|| getModelObject().getCuentaSeleccionada() !=null
+							&& getModelObject().getSegundoIndicador() != null;
 	}
 	
 	public void espacio(Panel mainPanel){

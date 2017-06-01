@@ -2,14 +2,19 @@ package viewmodel;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.uqbar.commons.model.ObservableUtils;
 import org.uqbar.commons.utils.Observable;
 
+import Services.EmpresasService;
 import Services.IndicadoresService;
 import builder.BuilderIndicador;
 import model.Cuenta;
+import model.Empresa;
 import model.Indicador;
 import model.Parametro;
 import model.repositories.Repositorios;
@@ -20,6 +25,7 @@ public class Parametro1ViewModel {
 	private Parametro parametro = new Parametro();
 	private List<Indicador> indicadores;
 	private Indicador indicadorSeleccionado;
+	private List<Empresa> empresas;
 	private List<Cuenta> cuentas;
 	private Cuenta cuentaSeleccionada;
 	private String tipoSeleccionado = "Indicador";//seteo por default
@@ -39,7 +45,11 @@ public class Parametro1ViewModel {
 			e.printStackTrace();
 		}
 	}
-	
+	public void obtenerCuentas(){
+		this.obtenerEmpresas();
+		cuentas = empresas.stream().flatMap(unaEmpresa -> unaEmpresa.getCuentas().stream()).collect(Collectors.toList());
+	}
+
 	public void ingresarIndicador() {
 		try {
 			this.ingresarParametro1();
@@ -48,8 +58,14 @@ public class Parametro1ViewModel {
 			e.printStackTrace();
 		}
 	}
+	public void obtenerEmpresas(){
+		try {
+			empresas = EmpresasService.obtenerEmpresasDeServicioExterno();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
 	public void ingresarParametro1() {
-		//this.setearValorParametro();	
 		if(this.getTipoSeleccionado() == "Indicador"){
 			parametro.setValor(indicadorSeleccionado.obtenerValor());
 		}
@@ -91,14 +107,6 @@ public class Parametro1ViewModel {
 		this.indicadores = indicadores;
 	}
 
-	public List<Cuenta> getCuentas() {
-		return cuentas;
-	}
-
-	public void setCuentas(List<Cuenta> cuentas) {
-		this.cuentas = cuentas;
-	}
-
 	public Cuenta getCuentaSeleccionada() {
 		return cuentaSeleccionada;
 	}
@@ -129,6 +137,14 @@ public class Parametro1ViewModel {
 
 	public void setTipoParametros(List<String> tipoParametros) {
 		this.tipoParametros = tipoParametros;
+	}
+
+	public List<Cuenta> getCuentas() {
+		return cuentas;
+	}
+
+	public void setCuentas(List<Cuenta> cuentas) {
+		this.cuentas = cuentas;
 	}
 
 

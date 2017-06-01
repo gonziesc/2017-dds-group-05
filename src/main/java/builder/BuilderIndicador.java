@@ -1,5 +1,7 @@
 package builder;
 
+import org.uqbar.commons.model.UserException;
+
 import model.Indicador;
 import model.Parametro;
 
@@ -13,8 +15,12 @@ public class BuilderIndicador {
 	
 
 	public Indicador build(){
+		if(parametro1 == null){
+			throw new UserException("Debe ingresar al menos 1 parametro");
+		}
 		return new Indicador(parametro1,parametro2,parametro3,operacion1,operacion2);
 	}
+
 
 	public void setParametro1(Parametro parametro1) {
 		this.parametro1 = parametro1;
