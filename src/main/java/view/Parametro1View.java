@@ -50,20 +50,20 @@ public class Parametro1View extends Window<Parametro1ViewModel> {
 	}
 	
 	public void ingresarIndicador(){
-		if(!this.dosParametrosNulos()){
+		if(this.dosParametrosLlenos()){
 			throw new UserException("Seleccione un solo parametro");
 		}
 		this.getModelObject().ingresarIndicador();
 		this.close();
 	}
 	
-	private boolean dosParametrosNulos() {
-		return getModelObject().getValorParametroConstante() == null 
-					&& getModelObject().getCuentaSeleccionada() == null;
+	private boolean dosParametrosLlenos() {
+		return getModelObject().getValorParametroConstante() != null 
+					&& getModelObject().getCuentaSeleccionada() != null;
 	}
 
 	public void ingresar(){
-		if(!this.dosParametrosNulos()){
+		if(this.dosParametrosLlenos()){
 			throw new UserException("Seleccione un solo parametro");
 		}
 		this.getModelObject().ingresarParametro1();
