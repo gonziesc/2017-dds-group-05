@@ -3,12 +3,15 @@ package viewmodel;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.uqbar.commons.utils.Observable;
 
+import Services.EmpresasService;
 import Services.IndicadoresService;
 import builder.BuilderIndicador;
 import model.Cuenta;
+import model.Empresa;
 import model.Indicador;
 import model.Parametro;
 import model.repositories.Repositorios;
@@ -23,6 +26,7 @@ public class Parametro2ViewModel {
 	private List<String> tipoParametros;
 	private String tipoSeleccionado = "Indicador";
 	private Integer valorParametroConstante;
+	private List<Empresa> empresas;
 	private Parametro parametro = new Parametro();
 	
 	public Parametro2ViewModel(BuilderIndicador builder){
@@ -53,6 +57,17 @@ public class Parametro2ViewModel {
 			e.printStackTrace();
 		}
 	}
+	public void obtenerEmpresas(){
+		try {
+			empresas = EmpresasService.obtenerEmpresasDeServicioExterno();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+	public void obtenerCuentas(){
+		this.obtenerEmpresas();
+		cuentas = empresas.stream().flatMap(unaEmpresa -> unaEmpresa.getCuentas().stream()).collect(Collectors.toList());
+	}
 	
 	public void obtenerIndicadores() {
 		try {
@@ -60,10 +75,6 @@ public class Parametro2ViewModel {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-	}
-	
-	public void obtenerCuentas() {
-		
 	}
 	
 	public Indicador getSegundoIndicador() {

@@ -25,6 +25,7 @@ public class Parametro1View extends Window<Parametro1ViewModel> {
 
 		super(owner, new Parametro1ViewModel());
 		this.getModelObject().obtenerIndicadores();
+		this.getModelObject().obtenerCuentas();
 	}
 	
 	public void createContents(Panel mainPanel) {
@@ -35,19 +36,20 @@ public class Parametro1View extends Window<Parametro1ViewModel> {
 		radioTipo.bindItemsToProperty("tipoParametros");
 		radioTipo.bindValueToProperty("tipoSeleccionado");
 		
+		new Label(mainPanel).setText("Valor Constante");
 		new NumericField(mainPanel).bindValueToProperty("valorParametroConstante");
+		
+		new Label(mainPanel).setText("Indicadores");
 		
 		Selector<Indicador> selectorIndicadores = new Selector<Indicador>(mainPanel).allowNull(true);
 		selectorIndicadores.bindItemsToProperty("indicadores").adaptWith(Indicador.class, "nombre");
 		selectorIndicadores.bindValueToProperty("indicadorSeleccionado");
 		
-		espacio(mainPanel);
+		new Label(mainPanel).setText("Cuentas");
 		
 		Selector<Cuenta> selectorCuentas = new Selector<Cuenta>(mainPanel).allowNull(false);
 		selectorCuentas.bindItemsToProperty("cuentas").adaptWith(Cuenta.class, "nombreCuenta");
 		selectorCuentas.bindValueToProperty("cuentaSeleccionada");
-		
-		espacio(mainPanel);
 		
 		new Button(mainPanel).setCaption("Ingresar primer parametro").onClick(this::ingresar).disableOnError();
 		new Button(mainPanel).setCaption("Ingresar indicador").onClick(this::ingresarIndicador).disableOnError();	
@@ -65,7 +67,9 @@ public class Parametro1View extends Window<Parametro1ViewModel> {
 
 	private boolean dosParametrosLlenos() {
 		return getModelObject().getValorParametroConstante() != null 
-					&& getModelObject().getIndicadorSeleccionado() != null;
+					&& getModelObject().getIndicadorSeleccionado() != null 
+						|| getModelObject().getCuentaSeleccionada() !=null
+							&& getModelObject().getIndicadorSeleccionado() != null;
 	}
 	//uso dos parametros llenos para que si pasa esto tire la excepcion
 	
@@ -80,8 +84,5 @@ public class Parametro1View extends Window<Parametro1ViewModel> {
 		new Operador1View(this,builder).open();
 	}
 
-	public void espacio(Panel mainPanel){
-		new Label(mainPanel);
-	}
 }
 

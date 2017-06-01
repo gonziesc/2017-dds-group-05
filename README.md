@@ -11,3 +11,5 @@ Decidimos mantener la pantalla inicial como Menú ya que para futuras iteracione
 Párametros: decidimos modelar los parámetros con un valor y un nombre, sin importar si es una cuenta, un valor u otro indicador. La razón por la que hicimos esto es porque no nos interesa qué es el parámetro, si no solo conocer su valor. Si su valor depende de cosas que todavía no están cargadas, con el nombre del parámetro las podemos cargar. 
 
 Cuentas: utilizados un strategy para validar que operación debía realizar el indicador, ya que nos pareció lo más sencillo definir los algoritmos por fuera de la clase para desacoplar, pero que pueda cambiar dinámicamente de algoritmo dependiendo de sus parámetros. 
+
+Indicador: utilizamos un Builder para el indicador para poder ir creandolo por partes pudiendo así validar que al menos tenga un parametro ingresado y no tenga un estado inconsistente en el sistema.
