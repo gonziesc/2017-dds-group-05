@@ -67,6 +67,8 @@ public class Parametro1View extends Window<Parametro1ViewModel> {
 		return getModelObject().getValorParametroConstante() != null 
 					&& getModelObject().getCuentaSeleccionada() != null;
 	}
+	//uso dos parametros llenos para que si pasa esto tire la excepcion
+	
 	private boolean dosParametrosNulos() {
 		return getModelObject().getIndicadorSeleccionado() == null 
 					&& getModelObject().getCuentaSeleccionada() == null
@@ -74,6 +76,7 @@ public class Parametro1View extends Window<Parametro1ViewModel> {
 							&& getModelObject().getCuentaSeleccionada() == null;//HAY QUE ARREGLARLO
 
 	}
+	
 
 	public void ingresar(){
 		if(this.dosParametrosLlenos()){
