@@ -13,6 +13,8 @@ public class Indicador{
 	private String operacion1;
 	private String operacion2;
 	private String nombre;
+	private Integer valor = obtenerValor();
+	
 	public Indicador(Parametro unParametro1, Parametro unParametro2, Parametro unParametro3, String unaOperacion1, String unaOperacion2){
 		parametro1 = unParametro1;
 		parametro2 = unParametro2;
@@ -85,4 +87,10 @@ public class Indicador{
 		return null;
 		
 	}*/
+	public Integer getValor() {
+		return valor;
+	}
+	public void setValor(Integer valor) {
+		this.valor = valor;
+	}
 }

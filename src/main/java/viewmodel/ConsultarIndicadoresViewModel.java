@@ -9,7 +9,7 @@ import model.Indicador;
 public class ConsultarIndicadoresViewModel {
 	
 	private List<Indicador> indicadores;
-	
+		
 	public void obtenerIndicadores(){
 		try {
 			setIndicadores(IndicadoresService.obtenerInicadoresDeServicioExterno());

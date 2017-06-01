@@ -32,16 +32,15 @@ public class ConsultarIndicadoresView extends Dialog<ConsultarIndicadoresViewMod
 		tablaIndicadores.setNumberVisibleRows(15).bindItemsToProperty("indicadores");
 		
 		createColumn("Nombre", tablaIndicadores, "nombre");
-		createColumn("Primer parametro", tablaIndicadores, "parametro1");
-		createColumn("Primer operador", tablaIndicadores, "operacion1");
-		createColumn("Segundo parametro", tablaIndicadores, "parametro2");
-		createColumn("Segundo operador", tablaIndicadores, "operacion2");
-		createColumn("Tercer parametro", tablaIndicadores, "parametro3");
+		createColumn("Valor", tablaIndicadores, "valor");
 				
 	}
 		
 	public void createColumn(String title,Table<Indicador> tablaIndicadores, String property){
-		new Column<Indicador>(tablaIndicadores).setTitle(title).setFixedSize(150).bindContentsToProperty(property);
+		new Column<Indicador>(tablaIndicadores)
+			.setTitle(title)
+			.setFixedSize(100)
+			.bindContentsToProperty(property);
 	}
 	
 	@Override
