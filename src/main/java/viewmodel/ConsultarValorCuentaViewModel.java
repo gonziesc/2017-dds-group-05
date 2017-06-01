@@ -33,6 +33,7 @@ public class ConsultarValorCuentaViewModel {
 		try {
 			indicadores = IndicadoresService.obtenerInicadoresDeServicioExterno();
 		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -43,7 +44,7 @@ public class ConsultarValorCuentaViewModel {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void obtenerCuentasEmpresa(){
 		setCuentasEmpresa(empresaSeleccionada.getCuentas());
 	}

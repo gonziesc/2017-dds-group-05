@@ -4,9 +4,12 @@ import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.NumericField;
 import org.uqbar.arena.widgets.Panel;
+import org.uqbar.arena.widgets.RadioSelector;
 import org.uqbar.arena.widgets.Selector;
 import org.uqbar.arena.windows.Window;
 import org.uqbar.arena.windows.WindowOwner;
+import org.uqbar.commons.model.UserException;
+
 import builder.BuilderIndicador;
 import model.Cuenta;
 import model.Indicador;
@@ -25,7 +28,11 @@ public class Parametro3View extends Window<Parametro3ViewModel> {
 		this.setTitle("Ingreso de indicadores");
 		mainPanel.setLayout(new VerticalLayout());
 		
-		new NumericField(mainPanel);//.bindVisibleToProperty("parametro");
+		RadioSelector<String> radioTipo = new RadioSelector<String>(mainPanel);
+		radioTipo.bindItemsToProperty("tipoParametros");
+		radioTipo.bindValueToProperty("tipoSeleccionado");
+		
+		new NumericField(mainPanel).bindValueToProperty("valorParametroConstante");//.bindVisibleToProperty("parametro");
 		
 		Selector<Indicador> selectorIndicadores = new Selector<Indicador>(mainPanel)
 				.allowNull(true);
@@ -36,15 +43,23 @@ public class Parametro3View extends Window<Parametro3ViewModel> {
 		selectorCuentas.bindItemsToProperty("cuentas").adaptWith(Cuenta.class, "nombreCuenta");
 		selectorCuentas.bindValueToProperty("cuentaSeleccionada");
 		
-		new Button(mainPanel).setCaption("Ingresar tercer parametro").onClick(this::ingresar);
+		new Button(mainPanel).setCaption("Ingresar tercer parametro").onClick(this::ingresar).disableOnError();
 		
 	}
 	
 	public void ingresar(){
+		if(!this.dosParametrosNulos()){
+			throw new UserException("Debe ingresar un solo parametro");
+		}
 		this.getModelObject().ingresarParametro3();
 		this.getModelObject().crearIndicador();
 		this.close();
 	}
 	
-	
+	private boolean dosParametrosNulos() {
+		return getModelObject().getTercerIndicador() == null 
+					&& getModelObject().getCuentaSeleccionada() == null
+						|| getModelObject().getValorParametroConstante() == null 
+							&& getModelObject().getCuentaSeleccionada() == null;//HAY QUE ARREGLARLO
+	}
 }

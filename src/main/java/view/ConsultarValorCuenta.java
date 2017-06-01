@@ -31,8 +31,8 @@ public class ConsultarValorCuenta extends Dialog<ConsultarValorCuentaViewModel> 
 		selectorEmpresa.bindValueToProperty("empresaSeleccionada");
 		
 		new Button(mainPanel)
-		.setCaption("Mostrar Cuentas")
-		.onClick(this::mostrarCuentas);
+			.setCaption("Mostrar Cuentas")
+			.onClick(this::mostrarCuentas);
 		
 		Table<Cuenta> tablaCuentas = new Table<>(mainPanel, Cuenta.class);
 		
@@ -53,7 +53,6 @@ public class ConsultarValorCuenta extends Dialog<ConsultarValorCuentaViewModel> 
 	}
 	public void createColumn(String title,Table<Cuenta> tablaCuentas, String property){
 		new Column<Cuenta>(tablaCuentas).setTitle(title).setFixedSize(150).bindContentsToProperty(property);
-		
 	}
 
 	@Override

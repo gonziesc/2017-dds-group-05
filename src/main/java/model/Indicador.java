@@ -1,5 +1,7 @@
 package model;
 
+import java.util.List;
+
 import org.uqbar.commons.utils.Observable;
 
 @Observable
@@ -75,5 +77,12 @@ public class Indicador{
 			parametro3.setValor(cuenta.getValor());
 		}
 	}
-	
+	/*public boolean tieneCuentaComoParametro(Cuenta cuenta){
+		return true;
+		//return this.getParametro1() == cuenta || this.getParametro2() == cuenta || this.getParametro3()
+	}
+	public List<Indicador> filtrarPorCuenta(Cuenta cuenta){
+		return null;
+		
+	}*/
 }
