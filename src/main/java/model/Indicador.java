@@ -85,4 +85,30 @@ public class Indicador{
 		return null;
 		
 	}*/
+
+	
+	public void setValorIndicador(Indicador indicador) {
+		if(parametro1.getNombre() == indicador.getNombre()){
+			parametro1.setValor(indicador.obtenerValor());
+		} else if(parametro2.getNombre() == indicador.getNombre()){
+			parametro2.setValor(indicador.obtenerValor());
+		} else if(parametro3.getNombre() == indicador.getNombre()){
+			parametro3.setValor(indicador.obtenerValor());
+		}
+	}
+	public Boolean necesitaSetearCuenta(Cuenta cuenta) {
+		return 
+			parametro1.getNombre() == cuenta.getNombreCuenta() || 
+			parametro2.getNombre() == cuenta.getNombreCuenta() ||
+			parametro3.getNombre() == cuenta.getNombreCuenta();
+	}
+	public Boolean necesitaSetearIndicador(Indicador indicador) {
+		return 
+			parametro1.getNombre() == indicador.getNombre() || 
+			parametro2.getNombre() == indicador.getNombre() ||
+			parametro3.getNombre() == indicador.getNombre();
+	}
+	
+	//logica a implementar: recorro lista de cuentas: si necesito setear, llamo a setear en el foreach.
+	
 }
