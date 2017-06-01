@@ -23,6 +23,7 @@ public class Parametro3View extends Window<Parametro3ViewModel> {
 
 		super(owner, new Parametro3ViewModel(builder));
 		this.getModelObject().obtenerIndicadores();
+		this.getModelObject().obtenerCuentas();
 	}
 	
 	@Override
@@ -36,7 +37,6 @@ public class Parametro3View extends Window<Parametro3ViewModel> {
 		
 		new Label(mainPanel).setText("Valor Constante");
 		new NumericField(mainPanel).bindValueToProperty("valorParametroConstante");
-		
 		new Label(mainPanel).setText("Indicadores");
 		
 		Selector<Indicador> selectorIndicadores = new Selector<Indicador>(mainPanel);
@@ -48,9 +48,6 @@ public class Parametro3View extends Window<Parametro3ViewModel> {
 		Selector<Cuenta> selectorCuentas = new Selector<Cuenta>(mainPanel);
 		selectorCuentas.bindItemsToProperty("cuentas").adaptWith(Cuenta.class, "nombreCuenta");
 		selectorCuentas.bindValueToProperty("cuentaSeleccionada");
-		
-		new Label(mainPanel).setText("Ingrese el nombre del indicador");
-		new TextBox(mainPanel).bindValueToProperty("nombreIndicador");
 		
 		new Button(mainPanel).setCaption("Ingresar tercer parametro").onClick(this::ingresar).disableOnError();
 		

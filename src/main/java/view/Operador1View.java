@@ -24,7 +24,7 @@ public class Operador1View extends Dialog<Operador1ViewModel> {
 		new Button(mainPanel).setCaption("Ingresar operador").onClick(this::ingresarOperador).disableOnError();
 	}
 	
-	public void ingresarOperador(){//falta control de errores
+	public void ingresarOperador(){
 		this.getModelObject().ingresarOperador();
 		BuilderIndicador builder = this.getModelObject().getBuilderIndicador();
 		this.close();

@@ -12,6 +12,7 @@ import org.uqbar.commons.model.UserException;
 
 import model.Cuenta;
 import model.Empresa;
+import model.Indicador;
 import viewmodel.ConsultarValorCuentaViewModel;
 
 @SuppressWarnings("serial")
@@ -35,13 +36,24 @@ public class ConsultarValorCuenta extends Dialog<ConsultarValorCuentaViewModel> 
 			.setCaption("Mostrar Cuentas")
 			.onClick(this::mostrarCuentas);
 		
+		new Button(mainPanel)
+		.setCaption("Mostrar Indicadores")
+		.onClick(this::mostarIndicadores);
+		
 		Table<Cuenta> tablaCuentas = new Table<>(mainPanel, Cuenta.class);
 		
 		tablaCuentas.setNumberVisibleRows(15).bindItemsToProperty("cuentasEmpresa");
 		
-		createColumn("Nombre", tablaCuentas, "nombreCuenta");
-		createColumn("Valor ", tablaCuentas, "valor");
-		createColumn("Ano ", tablaCuentas, "anioCuenta");
+		createColumnCuenta("Nombre", tablaCuentas, "nombreCuenta");
+		createColumnCuenta("Valor ", tablaCuentas, "valor");
+		createColumnCuenta("Ano ", tablaCuentas, "anioCuenta");
+		
+		Table<Indicador> tablaIndicadores= new Table<Indicador>(mainPanel, Indicador.class);
+		
+		tablaIndicadores.setNumberVisibleRows(15).bindItemsToProperty("indicadores");
+		
+		createColumnIndicador("Nombre", tablaIndicadores, "nombre");
+		createColumnIndicador("Valor", tablaIndicadores, "valor");
 				
 	}
 	
@@ -51,12 +63,18 @@ public class ConsultarValorCuenta extends Dialog<ConsultarValorCuentaViewModel> 
 		}
 		getModelObject().obtenerCuentasEmpresa();
 	}
-	public void createColumn(String title,Table<Cuenta> tablaCuentas, String property){
+	public void createColumnCuenta(String title,Table<Cuenta> tablaCuentas, String property){
 		new Column<Cuenta>(tablaCuentas).setTitle(title).setFixedSize(150).bindContentsToProperty(property);
 	}
 	
+	public void createColumnIndicador(String title,Table<Indicador> tablaIndicador, String property){
+		new Column<Indicador>(tablaIndicador).setTitle(title).setFixedSize(150).bindContentsToProperty(property);
+	}
 	public void mostarIndicadores(){
-		
+		if(getModelObject().getEmpresaSeleccionada() == null){
+			throw new UserException("Seleccione una empresa");
+		}
+		getModelObject().getIndicadores();
 	}
 
 	@Override

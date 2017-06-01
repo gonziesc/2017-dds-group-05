@@ -32,6 +32,7 @@ abstract class ParametroViewModel {
 		indicadores = Repositorios.indicadores.all();
 		cuentas = Repositorios.cuentas.all();
 		tipoParametros = Repositorios.parametros.all();
+		builderIndicador = builder;
 	}
 
 	public void obtenerIndicadores() {
@@ -82,7 +83,9 @@ abstract class ParametroViewModel {
 			parametro.setValor(valorParametroConstante);
 			break;
 		}
-		builderIndicador.setNombre(nombreIndicador);
+		if(nombreIndicador != null){
+			builderIndicador.setNombre(nombreIndicador);
+		}
 		this.ingresarParametroSeleccionado(parametro);
 		
 	}
@@ -148,6 +151,13 @@ abstract class ParametroViewModel {
 
 	public String getTipoSeleccionado() {
 		return tipoSeleccionado;
+	}
+	
+	public String getNombreIndicador() {
+		return nombreIndicador;
+	}
+	public void setNombreIndicador(String indicador) {
+		this.nombreIndicador = indicador;
 	}
 
 	public void setTipoSeleccionado(String tipoSeleccionado) {

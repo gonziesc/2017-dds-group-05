@@ -7,6 +7,7 @@ import org.uqbar.arena.widgets.NumericField;
 import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.widgets.RadioSelector;
 import org.uqbar.arena.widgets.Selector;
+import org.uqbar.arena.widgets.TextBox;
 import org.uqbar.arena.windows.Window;
 import org.uqbar.arena.windows.WindowOwner;
 import org.uqbar.commons.model.UserException;
@@ -22,6 +23,7 @@ public class Parametro2View extends Window<Parametro2ViewModel> {
 
 		super(owner, new Parametro2ViewModel(builder));
 		this.getModelObject().obtenerIndicadores();
+		this.getModelObject().obtenerCuentas();
 	}
 	
 	@Override
@@ -35,7 +37,6 @@ public class Parametro2View extends Window<Parametro2ViewModel> {
 		
 		new Label(mainPanel).setText("Valor Constante");
 		new NumericField(mainPanel).bindValueToProperty("valorParametroConstante");
-		
 		new Label(mainPanel).setText("Indicadores");
 		
 		Selector<Indicador> selectorIndicadores = new Selector<Indicador>(mainPanel);

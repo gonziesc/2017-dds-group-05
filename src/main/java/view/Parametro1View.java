@@ -8,6 +8,7 @@ import org.uqbar.arena.widgets.NumericField;
 import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.widgets.RadioSelector;
 import org.uqbar.arena.widgets.Selector;
+import org.uqbar.arena.widgets.TextBox;
 import org.uqbar.arena.windows.Window;
 import org.uqbar.arena.windows.WindowOwner;
 import org.uqbar.commons.model.UserException;
@@ -35,6 +36,8 @@ public class Parametro1View extends Window<Parametro1ViewModel> {
 		radioTipo.bindItemsToProperty("tipoParametros");
 		radioTipo.bindValueToProperty("tipoSeleccionado");
 		
+		new Label(mainPanel).setText("Nombre Indicador");
+		new TextBox(mainPanel).bindValueToProperty("nombreIndicador");
 		new Label(mainPanel).setText("Valor Constante");
 		new NumericField(mainPanel).bindValueToProperty("valorParametroConstante");
 		

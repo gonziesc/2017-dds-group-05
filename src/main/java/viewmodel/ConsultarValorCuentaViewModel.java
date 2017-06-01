@@ -17,13 +17,11 @@ public class ConsultarValorCuentaViewModel {
 	private List<Cuenta> cuentasEmpresa;
 	private List<Indicador> indicadores;
 	
-	/*public ConsultarValorCuentaViewModel(){
-		this.empresas = Repositorios.empresas.all();
-	}*/
 	
 	public void obtenerIndicadores(){
 		try {
-			indicadores = IndicadoresService.obtenerInicadoresDeServicioExterno();
+			List<Indicador> indicadoresDeServicio = IndicadoresService.obtenerInicadoresDeServicioExterno();
+			indicadores = indicadoresDeServicio;
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

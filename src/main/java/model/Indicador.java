@@ -13,7 +13,7 @@ public class Indicador{
 	private String operacion1;
 	private String operacion2;
 	private String nombre;
-	private Integer valor = obtenerValor();
+	private Integer valor;
 	
 	public Indicador(Parametro unParametro1, Parametro unParametro2, Parametro unParametro3, String unaOperacion1, String unaOperacion2){
 		parametro1 = unParametro1;
@@ -25,7 +25,8 @@ public class Indicador{
 	}
 	public int obtenerValor(){
 		this.definirCalculador();
-		return calculador.getValor(parametro1, parametro2, parametro3, operacion1, operacion2);
+		valor = calculador.getValor(parametro1, parametro2, parametro3, operacion1, operacion2);
+		return valor;
 	}
 	public Parametro getParametro1() {
 		return parametro1;
@@ -68,6 +69,8 @@ public class Indicador{
 			calculador = new CalcularIndicadorUnaOperacion();
 		} else if (parametro3 != null && operacion2 != null) {
 			calculador = new CalcularIndicadorDosOperaciones();
+		} else {
+			calculador = new CalcularIndicadorConstante();
 		}
 	}
 	public void setValorCuenta(Cuenta cuenta) {
