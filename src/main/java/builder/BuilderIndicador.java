@@ -6,19 +6,22 @@ import model.Indicador;
 import model.Parametro;
 
 public class BuilderIndicador {
+	private Indicador indicador;
 	private Parametro parametro1;
 	private Parametro parametro2;
 	private Parametro parametro3 ;
 	private String operacion1;
 	private String operacion2;
-	private String nombre = null;
+	private String nombre;
 	
 
 	public Indicador build(){
 		if(parametro1 == null){
 			throw new UserException("Debe ingresar al menos 1 parametro");
 		}
-		return new Indicador(parametro1,parametro2,parametro3,operacion1,operacion2);
+		indicador = new Indicador(parametro1,parametro2,parametro3,operacion1,operacion2);
+		indicador.setNombre(nombre);
+		return indicador;
 	}
 
 
