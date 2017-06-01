@@ -25,6 +25,7 @@ abstract class ParametroViewModel {
 	private Integer valorParametroConstante;
 	private List<Empresa> empresas;
 	private Parametro parametro = new Parametro();
+	private String nombreIndicador;
 	
 	
 	public ParametroViewModel(BuilderIndicador builder){
@@ -69,16 +70,19 @@ abstract class ParametroViewModel {
 		
 		case "Indicador":
 			parametro.setValor(indicadorSeleccionado.obtenerValor());
+			parametro.setNombre(indicadorSeleccionado.getNombre());
 			break;
 		
 		case "Cuenta":
-			parametro.setValor(cuentaSeleccionada.getValor());	
+			parametro.setValor(cuentaSeleccionada.getValor());
+			parametro.setNombre(cuentaSeleccionada.getNombreCuenta());
 			break;
 		
 		case "Constante":
 			parametro.setValor(valorParametroConstante);
 			break;
 		}
+		builderIndicador.setNombre(nombreIndicador);
 		this.ingresarParametroSeleccionado(parametro);
 		
 	}

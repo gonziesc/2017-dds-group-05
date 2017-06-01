@@ -24,7 +24,6 @@ import model.Parametro;
 @Observable
 public class Parametro3ViewModel extends ParametroViewModel{
 
-
 	public Parametro3ViewModel(BuilderIndicador builder) {
 		super(builder);
 	}
