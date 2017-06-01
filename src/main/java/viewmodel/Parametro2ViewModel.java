@@ -37,6 +37,7 @@ public class Parametro2ViewModel {
 	}
 	
 	public void ingresarParametro2(){
+		try{
 		if(this.getTipoSeleccionado() == "Indicador"){
 			parametro.setValor(segundoIndicador.obtenerValor());
 		}
@@ -47,6 +48,9 @@ public class Parametro2ViewModel {
 			parametro.setValor(valorParametroConstante);
 		}
 		builderIndicador.setParametro2(parametro);
+	} catch (NullPointerException e) {
+		throw new NullPointerException ("mal ingresado!");
+	}
 	}	
 	
 	public void ingresarIndicador() {

@@ -7,7 +7,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.junit.internal.runners.statements.ExpectException;
 import org.uqbar.commons.model.ObservableUtils;
+import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.Observable;
 
 import Services.EmpresasService;
@@ -28,11 +30,11 @@ public class Parametro1ViewModel {
 	private List<Empresa> empresas;
 	private List<Cuenta> cuentas;
 	private Cuenta cuentaSeleccionada;
-	private String tipoSeleccionado = "Indicador";//seteo por default
+	private String tipoSeleccionado = "Indicador";// seteo por default
 	private List<String> tipoParametros;
 	private Integer valorParametroConstante;
-	
-	public Parametro1ViewModel(){
+
+	public Parametro1ViewModel() {
 		indicadores = Repositorios.indicadores.all();
 		cuentas = Repositorios.cuentas.all();
 		tipoParametros = Repositorios.parametros.all();
@@ -40,32 +42,41 @@ public class Parametro1ViewModel {
 
 	public void obtenerIndicadores() {
 		try {
-			indicadores = IndicadoresService.obtenerInicadoresDeServicioExterno();
+			indicadores = IndicadoresService
+					.obtenerInicadoresDeServicioExterno();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
 	}
-	public void obtenerCuentas(){
+
+	public void obtenerCuentas() {
 		this.obtenerEmpresas();
-		cuentas = empresas.stream().flatMap(unaEmpresa -> unaEmpresa.getCuentas().stream()).collect(Collectors.toList());
+		cuentas = empresas.stream()
+				.flatMap(unaEmpresa -> unaEmpresa.getCuentas().stream())
+				.collect(Collectors.toList());
 	}
 
 	public void ingresarIndicador() {
 		try {
 			this.ingresarParametro1();
-			IndicadoresService.guardarIndicadoresEnServicioExterno(builderIndicador.build());
+			IndicadoresService
+					.guardarIndicadoresEnServicioExterno(builderIndicador
+							.build());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	public void obtenerEmpresas(){
+
+	public void obtenerEmpresas() {
 		try {
 			empresas = EmpresasService.obtenerEmpresasDeServicioExterno();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
 	}
+
 	public void ingresarParametro1() {
+		try {
 		if(this.getTipoSeleccionado() == "Indicador"){
 			parametro.setValor(indicadorSeleccionado.obtenerValor());
 		}
@@ -76,17 +87,19 @@ public class Parametro1ViewModel {
 			parametro.setValor(valorParametroConstante);
 		}
 		builderIndicador.setParametro1(parametro);
+		} catch (NullPointerException e) {
+			throw new NullPointerException ("mal ingresado!");
+		}
 	}
 
-	
 	public BuilderIndicador getBuilderIndicador() {
 		return builderIndicador;
 	}
-	
+
 	public void setBuilderIndicador(BuilderIndicador builderIndicador) {
 		this.builderIndicador = builderIndicador;
 	}
-	
+
 	public Indicador getIndicadorSeleccionado() {
 		return indicadorSeleccionado;
 	}
@@ -94,7 +107,7 @@ public class Parametro1ViewModel {
 	public void setIndicadorSeleccionado(Indicador indicadorSeleccionado) {
 		this.indicadorSeleccionado = indicadorSeleccionado;
 	}
-	
+
 	public void setParametro(Parametro parametro) {
 		this.parametro = parametro;
 	}
@@ -146,6 +159,5 @@ public class Parametro1ViewModel {
 	public void setCuentas(List<Cuenta> cuentas) {
 		this.cuentas = cuentas;
 	}
-
 
 }
