@@ -6,7 +6,9 @@ import builder.BuilderIndicador;
 import model.Parametro;
 
 @Observable
+
 public class Parametro1ViewModel extends ParametroViewModel{
+
 	
 	public Parametro1ViewModel(BuilderIndicador builder) {
 		super(builder);
@@ -16,4 +18,5 @@ public class Parametro1ViewModel extends ParametroViewModel{
 	void ingresarParametroSeleccionado(Parametro parametro) {
 		this.getBuilderIndicador().setParametro1(parametro);	
 	}
+
 }

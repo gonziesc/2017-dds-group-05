@@ -32,7 +32,7 @@ public class Parametro3View extends Window<Parametro3ViewModel> {
 		radioTipo.bindItemsToProperty("tipoParametros");
 		radioTipo.bindValueToProperty("tipoSeleccionado");
 		
-		new NumericField(mainPanel).bindValueToProperty("valorParametroConstante");//.bindVisibleToProperty("parametro");
+		new NumericField(mainPanel).bindValueToProperty("valorParametroConstante");
 		
 		Selector<Indicador> selectorIndicadores = new Selector<Indicador>(mainPanel)
 				.allowNull(true);
@@ -48,7 +48,7 @@ public class Parametro3View extends Window<Parametro3ViewModel> {
 	}
 	
 	public void ingresar(){
-		if(!this.dosParametrosNulos()){
+		if(this.dosParametrosLlenos()){
 			throw new UserException("Debe ingresar un solo parametro");
 		}
 		this.getModelObject().ingresarParametro();
@@ -56,10 +56,8 @@ public class Parametro3View extends Window<Parametro3ViewModel> {
 		this.close();
 	}
 	
-	private boolean dosParametrosNulos() {
-		return getModelObject().getIndicadorSeleccionado()== null 
-					&& getModelObject().getCuentaSeleccionada() == null
-						|| getModelObject().getValorParametroConstante() == null 
-							&& getModelObject().getCuentaSeleccionada() == null;//HAY QUE ARREGLARLO
+	private boolean dosParametrosLlenos() {
+		return getModelObject().getValorParametroConstante() != null 
+					&& getModelObject().getIndicadorSeleccionado() != null;
 	}
 }

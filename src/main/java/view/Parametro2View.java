@@ -37,7 +37,7 @@ public class Parametro2View extends Window<Parametro2ViewModel> {
 		
 		espacio(mainPanel);
 		
-		Selector<Indicador> selectorIndicadores = new Selector<Indicador>(mainPanel).allowNull(true);
+		Selector<Indicador> selectorIndicadores = new Selector<Indicador>(mainPanel);
 		selectorIndicadores.bindItemsToProperty("indicadores").adaptWith(Indicador.class, "nombre");
 		selectorIndicadores.bindValueToProperty("indicadorSeleccionado");
 		
@@ -54,25 +54,28 @@ public class Parametro2View extends Window<Parametro2ViewModel> {
 		
 	}
 	public void ingresarIndicador(){
-		if(!this.dosParametrosNulos()){
+		if(this.dosParametrosLlenos()){
 			throw new UserException("Seleccione un solo parametro");
 		}
 		this.getModelObject().ingresarIndicador();
 		this.close();
 	}
 	public void ingresar(){
+		if(this.dosParametrosLlenos()){
+			throw new UserException("Seleccione un solo parametro");
+		}
 		this.getModelObject().ingresarParametro();
 		BuilderIndicador builder = this.getModelObject().getBuilderIndicador();
 		this.close();
 		new Operador2View(this, builder).open();
 	}
 
-	private boolean dosParametrosNulos() {
-		return getModelObject().getIndicadorSeleccionado() == null 
-					&& getModelObject().getCuentaSeleccionada() == null
-						|| getModelObject().getValorParametroConstante() == null 
-							&& getModelObject().getCuentaSeleccionada() == null;//HAY QUE ARREGLARLO
+	private boolean dosParametrosLlenos() {
+		return getModelObject().getValorParametroConstante() != null 
+					&& getModelObject().getIndicadorSeleccionado() != null;
+
 	}
+	
 	public void espacio(Panel mainPanel){
 		new Label(mainPanel);
 	}

@@ -27,7 +27,7 @@ public class ConsultarValorCuenta extends Dialog<ConsultarValorCuentaViewModel> 
 		this.setTitle("Obtener datos de una empresa");
 		mainPanel.setLayout(new VerticalLayout());
 		
-		Selector<Empresa> selectorEmpresa = new Selector<Empresa>(mainPanel).allowNull(true);
+		Selector<Empresa> selectorEmpresa = new Selector<Empresa>(mainPanel);
 		selectorEmpresa.bindItemsToProperty("empresas");
 		selectorEmpresa.bindValueToProperty("empresaSeleccionada");
 		
