@@ -19,9 +19,7 @@ import model.Indicador;
 import model.Parametro;
 
 @Observable
-
 public class Parametro2ViewModel extends ParametroViewModel{
-
 
 	public Parametro2ViewModel(BuilderIndicador builder) {
 		super(builder);
