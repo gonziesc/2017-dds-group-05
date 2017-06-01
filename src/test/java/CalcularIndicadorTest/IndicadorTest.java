@@ -58,7 +58,7 @@ public class IndicadorTest {
 	public void testLeeBienDelServicioExterno() throws IOException {
 		IndicadoresService.set_rutaArchivoJson("./resources/indicadores.JSON");
 		List<Indicador> listIndicadoresTest = IndicadoresService.obtenerInicadoresDeServicioExterno();
-		assertTrue(listIndicadoresTest.size() == 2);
+		assertTrue(listIndicadoresTest.size() == 1);
 	}
 	@Test
 	public void elValorDelPrimerElementoGuardadoEn() throws IOException {

@@ -2,6 +2,7 @@ package view;
 
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
+import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.NumericField;
 import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.widgets.RadioSelector;
@@ -32,12 +33,16 @@ public class Parametro3View extends Window<Parametro3ViewModel> {
 		radioTipo.bindItemsToProperty("tipoParametros");
 		radioTipo.bindValueToProperty("tipoSeleccionado");
 		
+		new Label(mainPanel).setText("Valor Constante");
 		new NumericField(mainPanel).bindValueToProperty("valorParametroConstante");
 		
-		Selector<Indicador> selectorIndicadores = new Selector<Indicador>(mainPanel)
-				.allowNull(true);
+		new Label(mainPanel).setText("Indicadores");
+		
+		Selector<Indicador> selectorIndicadores = new Selector<Indicador>(mainPanel);
 		selectorIndicadores.bindItemsToProperty("indicadores").adaptWith(Indicador.class, "nombre");
 		selectorIndicadores.bindValueToProperty("indicadorSeleccionado");
+		
+		new Label(mainPanel).setText("Cuentas");
 		
 		Selector<Cuenta> selectorCuentas = new Selector<Cuenta>(mainPanel);
 		selectorCuentas.bindItemsToProperty("cuentas").adaptWith(Cuenta.class, "nombreCuenta");
@@ -58,6 +63,8 @@ public class Parametro3View extends Window<Parametro3ViewModel> {
 	
 	private boolean dosParametrosLlenos() {
 		return getModelObject().getValorParametroConstante() != null 
-					&& getModelObject().getIndicadorSeleccionado() != null;
+					&& getModelObject().getIndicadorSeleccionado() != null 
+						|| getModelObject().getCuentaSeleccionada() !=null
+							&& getModelObject().getIndicadorSeleccionado() != null;
 	}
 }

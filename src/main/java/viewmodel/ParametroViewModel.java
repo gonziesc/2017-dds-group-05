@@ -3,24 +3,29 @@ package viewmodel;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import Services.EmpresasService;
 import Services.IndicadoresService;
 import builder.BuilderIndicador;
 import model.Cuenta;
+import model.Empresa;
 import model.Indicador;
 import model.Parametro;
 import model.repositories.Repositorios;
 
 abstract class ParametroViewModel {
-	private BuilderIndicador builderIndicador = new BuilderIndicador();
-	private Parametro parametro = new Parametro();
 	private List<Indicador> indicadores;
 	private Indicador indicadorSeleccionado;
+	private BuilderIndicador builderIndicador;
 	private List<Cuenta> cuentas;
 	private Cuenta cuentaSeleccionada;
-	private String tipoSeleccionado;
 	private List<String> tipoParametros;
+	private String tipoSeleccionado = "Indicador";
 	private Integer valorParametroConstante;
+	private List<Empresa> empresas;
+	private Parametro parametro = new Parametro();
+	
 	
 	public ParametroViewModel(BuilderIndicador builder){
 		indicadores = Repositorios.indicadores.all();
@@ -44,6 +49,20 @@ abstract class ParametroViewModel {
 			e.printStackTrace();
 		}
 	}
+	
+	public void obtenerEmpresas(){
+		try {
+			empresas = EmpresasService.obtenerEmpresasDeServicioExterno();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void obtenerCuentas(){
+		this.obtenerEmpresas();
+		cuentas = empresas.stream().flatMap(unaEmpresa -> unaEmpresa.getCuentas().stream()).collect(Collectors.toList());
+	}
+	
 	public void ingresarParametro() {
 		//this.setearValorParametro();	
 		switch(this.getTipoSeleccionado()){
