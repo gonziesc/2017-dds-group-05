@@ -8,7 +8,6 @@ import org.uqbar.arena.widgets.NumericField;
 import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.widgets.RadioSelector;
 import org.uqbar.arena.widgets.Selector;
-import org.uqbar.arena.widgets.TextBox;
 import org.uqbar.arena.windows.Window;
 import org.uqbar.arena.windows.WindowOwner;
 import org.uqbar.commons.model.UserException;
@@ -16,17 +15,17 @@ import org.uqbar.commons.model.UserException;
 import builder.BuilderIndicador;
 import model.Cuenta;
 import model.Indicador;
-import model.Parametro;
 import viewmodel.Parametro1ViewModel;
 
 @SuppressWarnings("serial")
 public class Parametro1View extends Window<Parametro1ViewModel> {
-	public Parametro1View(WindowOwner owner) {
+	public Parametro1View(WindowOwner owner,BuilderIndicador builder) {
 
-		super(owner, new Parametro1ViewModel());
+		super(owner, new Parametro1ViewModel(builder));
 		this.getModelObject().obtenerIndicadores();
 	}
 	
+	@Override
 	public void createContents(Panel mainPanel) {
 		this.setTitle("Ingreso de indicadores");
 		mainPanel.setLayout(new VerticalLayout());
@@ -82,7 +81,7 @@ public class Parametro1View extends Window<Parametro1ViewModel> {
 		if(this.dosParametrosLlenos()){
 			throw new UserException("Seleccione un solo parametro");
 		}
-		this.getModelObject().ingresarParametro1();
+		this.getModelObject().ingresarParametro();
 		BuilderIndicador builder = this.getModelObject().getBuilderIndicador();
 		this.close();
 		new Operador1View(this,builder).open();

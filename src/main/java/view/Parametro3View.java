@@ -21,9 +21,9 @@ public class Parametro3View extends Window<Parametro3ViewModel> {
 
 		super(owner, new Parametro3ViewModel(builder));
 		this.getModelObject().obtenerIndicadores();
-		this.getModelObject().obtenerCuentas();
 	}
 	
+	@Override
 	public void createContents(Panel mainPanel) {
 		this.setTitle("Ingreso de indicadores");
 		mainPanel.setLayout(new VerticalLayout());
@@ -37,7 +37,7 @@ public class Parametro3View extends Window<Parametro3ViewModel> {
 		Selector<Indicador> selectorIndicadores = new Selector<Indicador>(mainPanel)
 				.allowNull(true);
 		selectorIndicadores.bindItemsToProperty("indicadores").adaptWith(Indicador.class, "nombre");
-		selectorIndicadores.bindValueToProperty("tercerIndicador");
+		selectorIndicadores.bindValueToProperty("indicadorSeleccionado");
 		
 		Selector<Cuenta> selectorCuentas = new Selector<Cuenta>(mainPanel);
 		selectorCuentas.bindItemsToProperty("cuentas").adaptWith(Cuenta.class, "nombreCuenta");
@@ -51,13 +51,13 @@ public class Parametro3View extends Window<Parametro3ViewModel> {
 		if(!this.dosParametrosNulos()){
 			throw new UserException("Debe ingresar un solo parametro");
 		}
-		this.getModelObject().ingresarParametro3();
-		this.getModelObject().crearIndicador();
+		this.getModelObject().ingresarParametro();
+		this.getModelObject().ingresarIndicador();
 		this.close();
 	}
 	
 	private boolean dosParametrosNulos() {
-		return getModelObject().getTercerIndicador() == null 
+		return getModelObject().getIndicadorSeleccionado()== null 
 					&& getModelObject().getCuentaSeleccionada() == null
 						|| getModelObject().getValorParametroConstante() == null 
 							&& getModelObject().getCuentaSeleccionada() == null;//HAY QUE ARREGLARLO

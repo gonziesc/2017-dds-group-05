@@ -22,6 +22,7 @@ public class ConsultarValorCuenta extends Dialog<ConsultarValorCuentaViewModel> 
 		getModelObject().obtenerIndicadores();
 	}
 
+	@Override
 	public void createContents(Panel mainPanel) {
 		this.setTitle("Obtener datos de una empresa");
 		mainPanel.setLayout(new VerticalLayout());
@@ -41,8 +42,7 @@ public class ConsultarValorCuenta extends Dialog<ConsultarValorCuentaViewModel> 
 		createColumn("Nombre", tablaCuentas, "nombreCuenta");
 		createColumn("Valor ", tablaCuentas, "valor");
 		createColumn("Ano ", tablaCuentas, "anioCuenta");
-		//createColumn("Indicador", tablaCuentas, "nombreIndicador");
-		
+				
 	}
 	
 	public void mostrarCuentas(){
@@ -53,6 +53,10 @@ public class ConsultarValorCuenta extends Dialog<ConsultarValorCuentaViewModel> 
 	}
 	public void createColumn(String title,Table<Cuenta> tablaCuentas, String property){
 		new Column<Cuenta>(tablaCuentas).setTitle(title).setFixedSize(150).bindContentsToProperty(property);
+	}
+	
+	public void mostarIndicadores(){
+		
 	}
 
 	@Override

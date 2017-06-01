@@ -5,32 +5,14 @@ import org.uqbar.commons.utils.Observable;
 import builder.BuilderIndicador;
 
 @Observable
-public class Operador2ViewModel {
+public class Operador2ViewModel extends OperadorViewModel {
 	
-	public Operador2ViewModel (BuilderIndicador builder){
-		builderIndicador = builder;
-	}
-	
-	private BuilderIndicador builderIndicador;
-	private String operacionSeleccionada;
-	
-	public String getOperador() {
-		return operacionSeleccionada;
+	public Operador2ViewModel(BuilderIndicador builder) {
+		super(builder);
 	}
 
-	public void setOperacionSeleccionada(String operador) {
-		this.operacionSeleccionada = operador;
-	}
-
-	public BuilderIndicador getBuilderIndicador() {
-		return builderIndicador;
-	}
-
-	public void setBuilderIndicador(BuilderIndicador builderIndicador) {
-		this.builderIndicador = builderIndicador;
-	}
-
+	@Override
 	public void ingresarOperador(){
-		builderIndicador.setOperacion2(this.getOperador());
+		this.getBuilderIndicador().setOperacion2(this.getOperador());
 	}
 }

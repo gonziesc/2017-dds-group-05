@@ -1,21 +1,13 @@
 package viewmodel;
 
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.List;
-import java.util.Optional;
-
 import org.uqbar.commons.utils.Observable;
 
 import Services.EmpresasService;
 import Services.IndicadoresService;
-import Services.EmpresasService;
-
-import com.google.gson.JsonIOException;
-
 import model.Empresa;
 import model.Indicador;
-import model.repositories.Repositorios;
 import model.Cuenta;
 
 @Observable

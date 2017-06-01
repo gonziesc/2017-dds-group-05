@@ -22,9 +22,9 @@ public class Parametro2View extends Window<Parametro2ViewModel> {
 
 		super(owner, new Parametro2ViewModel(builder));
 		this.getModelObject().obtenerIndicadores();
-		this.getModelObject().obtenerCuentas();
 	}
 	
+	@Override
 	public void createContents(Panel mainPanel) {
 		this.setTitle("Ingreso de indicadores");
 		mainPanel.setLayout(new VerticalLayout());
@@ -39,7 +39,7 @@ public class Parametro2View extends Window<Parametro2ViewModel> {
 		
 		Selector<Indicador> selectorIndicadores = new Selector<Indicador>(mainPanel).allowNull(true);
 		selectorIndicadores.bindItemsToProperty("indicadores").adaptWith(Indicador.class, "nombre");
-		selectorIndicadores.bindValueToProperty("segundoIndicador");
+		selectorIndicadores.bindValueToProperty("indicadorSeleccionado");
 		
 		espacio(mainPanel);
 		
@@ -61,14 +61,14 @@ public class Parametro2View extends Window<Parametro2ViewModel> {
 		this.close();
 	}
 	public void ingresar(){
-		this.getModelObject().ingresarParametro2();
+		this.getModelObject().ingresarParametro();
 		BuilderIndicador builder = this.getModelObject().getBuilderIndicador();
 		this.close();
 		new Operador2View(this, builder).open();
 	}
 
 	private boolean dosParametrosNulos() {
-		return getModelObject().getSegundoIndicador() == null 
+		return getModelObject().getIndicadorSeleccionado() == null 
 					&& getModelObject().getCuentaSeleccionada() == null
 						|| getModelObject().getValorParametroConstante() == null 
 							&& getModelObject().getCuentaSeleccionada() == null;//HAY QUE ARREGLARLO

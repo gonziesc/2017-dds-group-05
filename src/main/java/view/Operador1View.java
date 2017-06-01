@@ -14,6 +14,7 @@ public class Operador1View extends Dialog<Operador1ViewModel> {
 	public Operador1View(WindowOwner owner,BuilderIndicador builder) {
 		super(owner, new Operador1ViewModel(builder));
 	}
+	@Override
 	public void createContents(Panel mainPanel) {
 		this.setTitle("Operaciones");
 		mainPanel.setLayout(new VerticalLayout());
