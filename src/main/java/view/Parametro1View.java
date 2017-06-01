@@ -8,6 +8,7 @@ import org.uqbar.arena.widgets.NumericField;
 import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.widgets.RadioSelector;
 import org.uqbar.arena.widgets.Selector;
+import org.uqbar.arena.widgets.TextBox;
 import org.uqbar.arena.windows.Window;
 import org.uqbar.arena.windows.WindowOwner;
 import org.uqbar.commons.model.UserException;
@@ -30,15 +31,19 @@ public class Parametro1View extends Window<Parametro1ViewModel> {
 		this.setTitle("Ingreso de indicadores");
 		mainPanel.setLayout(new VerticalLayout());
 		
+		RadioSelector<String> radioTipo = new RadioSelector<String>(mainPanel);
+		radioTipo.bindItemsToProperty("tipoParametros");
+		radioTipo.bindValueToProperty("tipoSeleccionado");
+		
 		new NumericField(mainPanel).bindValueToProperty("valorParametroConstante");
 		
-		Selector<Indicador> selectorIndicadores = new Selector<Indicador>(mainPanel);
+		Selector<Indicador> selectorIndicadores = new Selector<Indicador>(mainPanel).allowNull(true);
 		selectorIndicadores.bindItemsToProperty("indicadores").adaptWith(Indicador.class, "nombre");
 		selectorIndicadores.bindValueToProperty("indicadorSeleccionado");
 		
 		espacio(mainPanel);
 		
-		Selector<Cuenta> selectorCuentas = new Selector<Cuenta>(mainPanel);
+		Selector<Cuenta> selectorCuentas = new Selector<Cuenta>(mainPanel).allowNull(true);
 		selectorCuentas.bindItemsToProperty("cuentas").adaptWith(Cuenta.class, "nombreCuenta");
 		selectorCuentas.bindValueToProperty("cuentaSeleccionada");
 		
@@ -57,9 +62,17 @@ public class Parametro1View extends Window<Parametro1ViewModel> {
 		this.close();
 	}
 	
+
 	private boolean dosParametrosLlenos() {
 		return getModelObject().getValorParametroConstante() != null 
 					&& getModelObject().getCuentaSeleccionada() != null;
+	}
+	private boolean dosParametrosNulos() {
+		return getModelObject().getIndicadorSeleccionado() == null 
+					&& getModelObject().getCuentaSeleccionada() == null
+						|| getModelObject().getValorParametroConstante() == null 
+							&& getModelObject().getCuentaSeleccionada() == null;//HAY QUE ARREGLARLO
+
 	}
 
 	public void ingresar(){

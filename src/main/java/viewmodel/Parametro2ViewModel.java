@@ -20,16 +20,28 @@ public class Parametro2ViewModel {
 	private BuilderIndicador builderIndicador;
 	private List<Cuenta> cuentas;
 	private Cuenta cuentaSeleccionada;
+	private List<String> tipoParametros;
+	private String tipoSeleccionado;
+	private Integer valorParametroConstante;
 	private Parametro parametro = new Parametro();
 	
 	public Parametro2ViewModel(BuilderIndicador builder){
 		indicadores = Repositorios.indicadores.all();
 		cuentas = Repositorios.cuentas.all();
+		tipoParametros = Repositorios.parametros.all();
 		this.builderIndicador = builder;
 	}
 	
 	public void ingresarParametro2(){
-		parametro.setValor(segundoIndicador.obtenerValor());
+		if(this.getTipoSeleccionado() == "Indicador"){
+			parametro.setValor(segundoIndicador.obtenerValor());
+		}
+		else if(this.getTipoSeleccionado() == "Cuenta"){
+			parametro.setValor(cuentaSeleccionada.getValor());	
+		}
+		else if (this.getTipoSeleccionado() == "Constante"){
+			parametro.setValor(valorParametroConstante);
+		}
 		builderIndicador.setParametro2(parametro);
 	}	
 	
@@ -96,6 +108,30 @@ public class Parametro2ViewModel {
 
 	public void setParametro(Parametro parametro) {
 		this.parametro = parametro;
+	}
+
+	public List<String> getTipoParametros() {
+		return tipoParametros;
+	}
+
+	public void setTipoParametros(List<String> tipoParametros) {
+		this.tipoParametros = tipoParametros;
+	}
+
+	public String getTipoSeleccionado() {
+		return tipoSeleccionado;
+	}
+
+	public void setTipoSeleccionado(String tipoSeleccionado) {
+		this.tipoSeleccionado = tipoSeleccionado;
+	}
+
+	public Integer getValorParametroConstante() {
+		return valorParametroConstante;
+	}
+
+	public void setValorParametroConstante(Integer valorParametroConstante) {
+		this.valorParametroConstante = valorParametroConstante;
 	}
 
 }

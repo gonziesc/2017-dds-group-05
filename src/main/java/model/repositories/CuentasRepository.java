@@ -18,6 +18,7 @@ public class CuentasRepository {
 		otraCuenta.setValor(2000);
 		return otraCuenta;
 	}
+	
 	public List<Cuenta> all() {
 		return cuentas;
 	}

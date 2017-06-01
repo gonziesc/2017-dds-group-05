@@ -31,7 +31,6 @@ public class Cuenta{
 		return nombreCuenta;
 	}
 
-
 	public void setNombreCuenta(String unNombreCuenta) {
 		nombreCuenta = unNombreCuenta;
 	}

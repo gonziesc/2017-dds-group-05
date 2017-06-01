@@ -22,18 +22,20 @@ public class Parametro1ViewModel {
 	private Indicador indicadorSeleccionado;
 	private List<Cuenta> cuentas;
 	private Cuenta cuentaSeleccionada;
+	private String tipoSeleccionado;
+	private List<String> tipoParametros;
 	private Integer valorParametroConstante;
 	
 	public Parametro1ViewModel(){
 		indicadores = Repositorios.indicadores.all();
 		cuentas = Repositorios.cuentas.all();
+		tipoParametros = Repositorios.parametros.all();
 	}
 
 	public void obtenerIndicadores() {
 		try {
 			indicadores = IndicadoresService.obtenerInicadoresDeServicioExterno();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -47,8 +49,27 @@ public class Parametro1ViewModel {
 		}
 	}
 	public void ingresarParametro1() {
-		parametro.setValor(indicadorSeleccionado.obtenerValor());
+		//this.setearValorParametro();	
+		if(this.getTipoSeleccionado() == "Indicador"){
+			parametro.setValor(indicadorSeleccionado.obtenerValor());
+		}
+		else if(this.getTipoSeleccionado() == "Cuenta"){
+			parametro.setValor(cuentaSeleccionada.getValor());	
+		}
+		else if (this.getTipoSeleccionado() == "Constante"){
+			parametro.setValor(valorParametroConstante);
+		}
 		builderIndicador.setParametro1(parametro);
+	}
+	
+	public void setearValorParametro(){
+		if(this.getTipoSeleccionado() == "Indicador"){
+			parametro.setValor(indicadorSeleccionado.obtenerValor());
+		}
+		else if(this.getTipoSeleccionado() == "Cuenta"){
+			parametro.setValor(cuentaSeleccionada.getValor());
+		}
+		parametro.setValor(valorParametroConstante);
 	}
 	
 	public BuilderIndicador getBuilderIndicador() {
@@ -95,12 +116,28 @@ public class Parametro1ViewModel {
 		this.cuentaSeleccionada = cuentaSeleccionada;
 	}
 
+	public String getTipoSeleccionado() {
+		return tipoSeleccionado;
+	}
+
+	public void setTipoSeleccionado(String tipoSeleccionado) {
+		this.tipoSeleccionado = tipoSeleccionado;
+	}
+
 	public Integer getValorParametroConstante() {
 		return valorParametroConstante;
 	}
 
 	public void setValorParametroConstante(Integer valorParametroConstante) {
 		this.valorParametroConstante = valorParametroConstante;
+	}
+
+	public List<String> getTipoParametros() {
+		return tipoParametros;
+	}
+
+	public void setTipoParametros(List<String> tipoParametros) {
+		this.tipoParametros = tipoParametros;
 	}
 
 
