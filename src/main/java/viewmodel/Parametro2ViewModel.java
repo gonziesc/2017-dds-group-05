@@ -21,7 +21,7 @@ public class Parametro2ViewModel {
 	private List<Cuenta> cuentas;
 	private Cuenta cuentaSeleccionada;
 	private List<String> tipoParametros;
-	private String tipoSeleccionado;
+	private String tipoSeleccionado = "Indicador";
 	private Integer valorParametroConstante;
 	private Parametro parametro = new Parametro();
 	

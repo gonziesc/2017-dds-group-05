@@ -43,7 +43,7 @@ public class Parametro1View extends Window<Parametro1ViewModel> {
 		
 		espacio(mainPanel);
 		
-		Selector<Cuenta> selectorCuentas = new Selector<Cuenta>(mainPanel).allowNull(true);
+		Selector<Cuenta> selectorCuentas = new Selector<Cuenta>(mainPanel).allowNull(false);
 		selectorCuentas.bindItemsToProperty("cuentas").adaptWith(Cuenta.class, "nombreCuenta");
 		selectorCuentas.bindValueToProperty("cuentaSeleccionada");
 		
@@ -65,17 +65,9 @@ public class Parametro1View extends Window<Parametro1ViewModel> {
 
 	private boolean dosParametrosLlenos() {
 		return getModelObject().getValorParametroConstante() != null 
-					&& getModelObject().getCuentaSeleccionada() != null;
+					&& getModelObject().getIndicadorSeleccionado() != null;
 	}
 	//uso dos parametros llenos para que si pasa esto tire la excepcion
-	
-	private boolean dosParametrosNulos() {
-		return getModelObject().getIndicadorSeleccionado() == null 
-					&& getModelObject().getCuentaSeleccionada() == null
-						|| getModelObject().getValorParametroConstante() == null 
-							&& getModelObject().getCuentaSeleccionada() == null;//HAY QUE ARREGLARLO
-
-	}
 	
 
 	public void ingresar(){

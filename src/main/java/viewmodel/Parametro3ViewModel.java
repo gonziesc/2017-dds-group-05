@@ -24,7 +24,7 @@ public class Parametro3ViewModel {
 	private Cuenta cuentaSeleccionada;
 	private Integer valorParametroConstante;
 	private List<String> tipoParametros;
-	private String tipoSeleccionado;
+	private String tipoSeleccionado = "Indicador";
 	private Parametro parametro = new Parametro();
 	
 	public Parametro3ViewModel(BuilderIndicador builder){

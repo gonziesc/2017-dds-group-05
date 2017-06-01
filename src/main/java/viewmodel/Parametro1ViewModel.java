@@ -22,7 +22,7 @@ public class Parametro1ViewModel {
 	private Indicador indicadorSeleccionado;
 	private List<Cuenta> cuentas;
 	private Cuenta cuentaSeleccionada;
-	private String tipoSeleccionado;
+	private String tipoSeleccionado = "Indicador";//seteo por default
 	private List<String> tipoParametros;
 	private Integer valorParametroConstante;
 	
@@ -61,16 +61,7 @@ public class Parametro1ViewModel {
 		}
 		builderIndicador.setParametro1(parametro);
 	}
-	
-	public void setearValorParametro(){
-		if(this.getTipoSeleccionado() == "Indicador"){
-			parametro.setValor(indicadorSeleccionado.obtenerValor());
-		}
-		else if(this.getTipoSeleccionado() == "Cuenta"){
-			parametro.setValor(cuentaSeleccionada.getValor());
-		}
-		parametro.setValor(valorParametroConstante);
-	}
+
 	
 	public BuilderIndicador getBuilderIndicador() {
 		return builderIndicador;
