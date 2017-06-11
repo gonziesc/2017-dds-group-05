@@ -29,7 +29,7 @@ public class Parametro3View extends Window<Parametro3ViewModel> {
 		
 		Selector<Indicador> selectorIndicadores = new Selector<Indicador>(mainPanel).allowNull(true);
 		selectorIndicadores.bindItemsToProperty("indicadores").adaptWith(Indicador.class, "nombre");
-		selectorIndicadores.bindValueToProperty("tercerIndicador");
+		selectorIndicadores.bindValueToProperty("tercerIndicador");//.notNull();
 		
 		new Button(mainPanel).setCaption("Ingresar tercer parametro").onClick(this::ingresar);
 		

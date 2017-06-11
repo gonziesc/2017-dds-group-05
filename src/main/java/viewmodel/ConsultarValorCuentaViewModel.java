@@ -8,11 +8,13 @@ import java.util.Optional;
 import org.uqbar.commons.utils.Observable;
 
 import Services.EmpresasService;
+import Services.IndicadoresService;
 import Services.EmpresasService;
 
 import com.google.gson.JsonIOException;
 
 import model.Empresa;
+import model.Indicador;
 import model.repositories.Repositorios;
 import model.Cuenta;
 
@@ -21,11 +23,19 @@ public class ConsultarValorCuentaViewModel {
 	private List<Empresa> empresas;
 	private Empresa empresaSeleccionada = null;
 	private List<Cuenta> cuentasEmpresa;
+	private List<Indicador> indicadores;
 	
 	/*public ConsultarValorCuentaViewModel(){
 		this.empresas = Repositorios.empresas.all();
 	}*/
-
+	
+	public void obtenerIndicadores(){
+		try {
+			indicadores = IndicadoresService.obtenerInicadoresDeServicioExterno();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
 	public void obtenerEmpresas() {
 		try {
 			empresas = EmpresasService.obtenerEmpresasDeServicioExterno();
@@ -60,6 +70,14 @@ public class ConsultarValorCuentaViewModel {
 
 	public void setCuentasEmpresa(List<Cuenta> cuentasEmpresa) {
 		this.cuentasEmpresa = cuentasEmpresa;
+	}
+
+	public List<Indicador> getIndicadores() {
+		return indicadores;
+	}
+
+	public void setIndicadores(List<Indicador> indicadores) {
+		this.indicadores = indicadores;
 	}
 
 	
