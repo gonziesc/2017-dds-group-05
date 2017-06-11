@@ -73,18 +73,17 @@ public class Parametro1View extends Dialog<ParametroViewModel> {
 		new Label(mainPanel).setText("Indicadores");
 		
 		Selector<Indicador> selectorIndicadores2 = new Selector<Indicador>(mainPanel).allowNull(true);
-		selectorIndicadores.bindItemsToProperty("indicadores").adaptWith(Indicador.class, "nombre");
-		selectorIndicadores.bindValueToProperty("indicadorSeleccionado2");
+		selectorIndicadores2.bindItemsToProperty("indicadores").adaptWith(Indicador.class, "nombre");
+		selectorIndicadores2.bindValueToProperty("indicadorSeleccionado2");
 		
 		new Label(mainPanel).setText("Cuentas");
 		
 		Selector<Cuenta> selectorCuentas2 = new Selector<Cuenta>(mainPanel).allowNull(false);
-		selectorCuentas.bindItemsToProperty("cuentas").adaptWith(Cuenta.class, "nombreCuenta");
-		selectorCuentas.bindValueToProperty("cuentaSeleccionada2");
+		selectorCuentas2.bindItemsToProperty("cuentas").adaptWith(Cuenta.class, "nombreCuenta");
+		selectorCuentas2.bindValueToProperty("cuentaSeleccionada2");
 		
 		new Button(mainPanel).setCaption("Ingresar parámetro compuesto").onClick(this::ingresar).disableOnError();
 		
-		new Button(mainPanel).setCaption("Seguir Ingresando parámetros").onClick(this::ingresar).disableOnError();
 		new Button(mainPanel).setCaption("Ingresar indicador").onClick(this::ingresarIndicador).disableOnError();	
 
 	}
@@ -106,7 +105,7 @@ public class Parametro1View extends Dialog<ParametroViewModel> {
 	}
 	//uso dos parametros llenos para que si pasa esto tire la excepcion
 	
-
+/*
 	public void ingresar(){
 		if(this.dosParametrosLlenos()){
 			throw new UserException("Seleccione un solo parametro");
@@ -116,7 +115,14 @@ public class Parametro1View extends Dialog<ParametroViewModel> {
 		this.close();
 		new Parametro1View(this,builder).open();
 	}
-
+*/
+	/* Esto es lo que falta: cuando toca ingresar parametro compuesto, debe llevarlo 
+	 * a una vista igual a esta, pero que en vez de que ingrese el indicador, 
+	 * ingrese solamente 1 de sus parametros, que seria compuesto
+	 * ya se puede hacer en el modelo, falta en la view. hay que llevar el builder
+	 * de vissta en vista y cargarle solamente el primer parametro. Son necesarios otro viewmodel
+	 * y otra vista, pero nada mas. hay que limpiar la logica repetida en ESTA vista y
+	 * hacer las validaciones que faltan. */
 	@Override
 	protected void createFormPanel(Panel arg0) {
 		// TODO Auto-generated method stub

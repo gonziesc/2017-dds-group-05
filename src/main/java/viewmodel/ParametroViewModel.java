@@ -127,35 +127,6 @@ public class ParametroViewModel {
 		builderIndicador.setParametro1(parametro1);
 	}
 
-	/*
-	 * public void ingresarParametro() { //this.setearValorParametro();
-	 * switch(this.getTipoSeleccionado()){
-	 * 
-	 * case "Indicador":
-	 * parametro.setValor(indicadorSeleccionado.obtenerValor());
-	 * parametro.setNombre(indicadorSeleccionado.getNombre()); break;
-	 * 
-	 * case "Cuenta": parametro.setValor(cuentaSeleccionada.getValor());
-	 * parametro.setNombre(cuentaSeleccionada.getNombreCuenta()); break;
-	 * 
-	 * case "Constante": parametro.setValor(valorParametroConstante); break; }
-	 * if(nombreIndicador != null){ builderIndicador.setNombre(nombreIndicador);
-	 * }
-	 * 
-	 * }
-	 */
-	/*
-	 * public void setearValorParametro(){ switch(this.getTipoSeleccionado()){
-	 * 
-	 * case "Indicador":
-	 * parametro.setValor(indicadorSeleccionado.obtenerValor()); break;
-	 * 
-	 * case "Cuenta": parametro.setValor(cuentaSeleccionada.getValor()); break;
-	 * }
-	 * 
-	 * parametro.setValor(valorParametroConstante); }
-	 */
-
 	public BuilderIndicador getBuilderIndicador() {
 		return builderIndicador;
 	}
