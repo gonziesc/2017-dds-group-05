@@ -8,6 +8,7 @@ import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.widgets.RadioSelector;
 import org.uqbar.arena.widgets.Selector;
 import org.uqbar.arena.widgets.TextBox;
+import org.uqbar.arena.windows.Dialog;
 import org.uqbar.arena.windows.Window;
 import org.uqbar.arena.windows.WindowOwner;
 import org.uqbar.commons.model.UserException;
@@ -18,7 +19,7 @@ import model.Indicador;
 import viewmodel.Parametro2ViewModel;
 
 @SuppressWarnings("serial")
-public class Parametro2View extends Window<Parametro2ViewModel> {
+public class Parametro2View extends Dialog<Parametro2ViewModel> {
 	public Parametro2View(WindowOwner owner,BuilderIndicador builder) {
 
 		super(owner, new Parametro2ViewModel(builder));
@@ -80,5 +81,11 @@ public class Parametro2View extends Window<Parametro2ViewModel> {
 	
 	public void espacio(Panel mainPanel){
 		new Label(mainPanel);
+	}
+
+	@Override
+	protected void createFormPanel(Panel arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 }

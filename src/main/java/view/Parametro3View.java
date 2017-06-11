@@ -8,6 +8,7 @@ import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.widgets.RadioSelector;
 import org.uqbar.arena.widgets.Selector;
 import org.uqbar.arena.widgets.TextBox;
+import org.uqbar.arena.windows.Dialog;
 import org.uqbar.arena.windows.Window;
 import org.uqbar.arena.windows.WindowOwner;
 import org.uqbar.commons.model.UserException;
@@ -18,7 +19,7 @@ import model.Indicador;
 import viewmodel.Parametro3ViewModel;
 
 @SuppressWarnings("serial")
-public class Parametro3View extends Window<Parametro3ViewModel> {
+public class Parametro3View extends Dialog<Parametro3ViewModel> {
 	public Parametro3View(WindowOwner owner,BuilderIndicador builder) {
 
 		super(owner, new Parametro3ViewModel(builder));
@@ -67,5 +68,11 @@ public class Parametro3View extends Window<Parametro3ViewModel> {
 					&& getModelObject().getIndicadorSeleccionado() != null 
 						|| getModelObject().getCuentaSeleccionada() !=null
 							&& getModelObject().getIndicadorSeleccionado() != null;
+	}
+
+	@Override
+	protected void createFormPanel(Panel arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 }
