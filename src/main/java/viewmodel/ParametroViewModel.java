@@ -113,6 +113,9 @@ public class ParametroViewModel {
 				parametro2.setValor(valorParametroConstante2);
 				break;
 			}
+			builderIndicador.setParametro2(parametro2);
+		} else {
+			builderIndicador.setParametro2(null);
 		}
 		
 		if (nombreIndicador != null) {
@@ -122,7 +125,6 @@ public class ParametroViewModel {
 			builderIndicador.setOperacion(operacionSeleccionada);
 		}
 		builderIndicador.setParametro1(parametro1);
-		builderIndicador.setParametro2(parametro2);
 	}
 
 	/*

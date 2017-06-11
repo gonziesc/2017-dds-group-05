@@ -9,10 +9,12 @@ public class Indicador{
 	private parametroGeneral parametro2;
 	private String operacion;
 	private String nombre;
+	private int valor =0;
 	public Indicador(parametroGeneral unParametro1, parametroGeneral unParametro2, String unaOperacion1){
 		parametro1 = unParametro1;
 		parametro2 = unParametro2;
 		operacion = unaOperacion1;
+		this.setValor();
 	}
 	public int obtenerValor(){
 		if(parametro2 == null)
@@ -56,6 +58,12 @@ public class Indicador{
 		} else if (parametro2 != null && parametro2.getNombre().toString().equals(indicador.getNombre().toString())) {
 			parametro2.setValor(indicador.obtenerValor());
 		}
+	}
+	public int getValor() {
+		return this.obtenerValor();
+	}
+	public void setValor() {
+		this.valor = this.obtenerValor();
 	}
 	
 }
