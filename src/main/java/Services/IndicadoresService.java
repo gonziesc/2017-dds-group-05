@@ -42,7 +42,7 @@ public class IndicadoresService {
 		ObjectMapper objectMapper = new ObjectMapper();
 		try{
 			String arrayToJson = objectMapper.writeValueAsString(listaIndicadores);
-			FileWriter file = new FileWriter("./resources/indicadores.json");
+			FileWriter file = new FileWriter(rutaArchivoJson);
 			file.write(arrayToJson);
             file.close();
 			

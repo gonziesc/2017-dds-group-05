@@ -3,7 +3,7 @@ package model;
 import org.uqbar.commons.utils.Observable;
 
 @Observable
-public class Parametro {
+public class Parametro extends parametroGeneral{
 	protected int valor;
 	private String nombre = ""; /*solo si es una cuenta */
 	
