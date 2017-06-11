@@ -21,7 +21,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 public class IndicadoresService {
-	static String rutaArchivoJson = "./resources/indicadores.json";
+	static String rutaArchivoJson = "./resources/indicadores3.json";
 
 	public static List<Indicador> obtenerInicadoresDeServicioExterno() throws FileNotFoundException {
 		Gson gson = new GsonBuilder()

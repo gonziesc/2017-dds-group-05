@@ -17,13 +17,13 @@ import org.uqbar.commons.model.UserException;
 import builder.BuilderIndicador;
 import model.Cuenta;
 import model.Indicador;
-import viewmodel.Parametro1ViewModel;
+import viewmodel.ParametroViewModel;
 
 @SuppressWarnings("serial")
-public class Parametro1View extends Dialog<Parametro1ViewModel> {
+public class Parametro1View extends Dialog<ParametroViewModel> {
 	public Parametro1View(WindowOwner owner,BuilderIndicador builder) {
 
-		super(owner, new Parametro1ViewModel(builder));
+		super(owner, new ParametroViewModel(builder));
 		this.getModelObject().obtenerIndicadores();
 		this.getModelObject().obtenerCuentas();
 	}
@@ -33,28 +33,58 @@ public class Parametro1View extends Dialog<Parametro1ViewModel> {
 		this.setTitle("Ingreso de indicadores");
 		mainPanel.setLayout(new VerticalLayout());
 		
-		RadioSelector<String> radioTipo = new RadioSelector<String>(mainPanel);
-		radioTipo.bindItemsToProperty("tipoParametros");
-		radioTipo.bindValueToProperty("tipoSeleccionado");
-		
 		new Label(mainPanel).setText("Nombre Indicador");
 		new TextBox(mainPanel).bindValueToProperty("nombreIndicador");
+		
+		new Label(mainPanel).setText("Ingrese el tipo del primer parámetro");
+		RadioSelector<String> radioTipo = new RadioSelector<String>(mainPanel);
+		radioTipo.bindItemsToProperty("tipoParametros");
+		radioTipo.bindValueToProperty("tipoSeleccionado1");
+		
 		new Label(mainPanel).setText("Valor Constante");
-		new NumericField(mainPanel).bindValueToProperty("valorParametroConstante");
+		new NumericField(mainPanel).bindValueToProperty("valorParametroConstante1");
 		
 		new Label(mainPanel).setText("Indicadores");
 		
 		Selector<Indicador> selectorIndicadores = new Selector<Indicador>(mainPanel).allowNull(true);
 		selectorIndicadores.bindItemsToProperty("indicadores").adaptWith(Indicador.class, "nombre");
-		selectorIndicadores.bindValueToProperty("indicadorSeleccionado");
+		selectorIndicadores.bindValueToProperty("indicadorSeleccionado1");
 		
 		new Label(mainPanel).setText("Cuentas");
 		
 		Selector<Cuenta> selectorCuentas = new Selector<Cuenta>(mainPanel).allowNull(false);
 		selectorCuentas.bindItemsToProperty("cuentas").adaptWith(Cuenta.class, "nombreCuenta");
-		selectorCuentas.bindValueToProperty("cuentaSeleccionada");
+		selectorCuentas.bindValueToProperty("cuentaSeleccionada1");
 		
-		new Button(mainPanel).setCaption("Ingresar primer parametro").onClick(this::ingresar).disableOnError();
+		new Button(mainPanel).setCaption("Ingresar parámetro compuesto").onClick(this::ingresar).disableOnError();
+		
+
+		new Label(mainPanel).setText("Ingrese el operador");
+		crearBotonesDeOperadores(mainPanel);
+		
+		new Label(mainPanel).setText("Ingrese el tipo del segundo parámetro");
+		RadioSelector<String> radioTipo2 = new RadioSelector<String>(mainPanel);
+		radioTipo2.bindItemsToProperty("tipoParametros");
+		radioTipo2.bindValueToProperty("tipoSeleccionado2");
+		
+		new Label(mainPanel).setText("Valor Constante");
+		new NumericField(mainPanel).bindValueToProperty("valorParametroConstante2");
+		
+		new Label(mainPanel).setText("Indicadores");
+		
+		Selector<Indicador> selectorIndicadores2 = new Selector<Indicador>(mainPanel).allowNull(true);
+		selectorIndicadores.bindItemsToProperty("indicadores").adaptWith(Indicador.class, "nombre");
+		selectorIndicadores.bindValueToProperty("indicadorSeleccionado2");
+		
+		new Label(mainPanel).setText("Cuentas");
+		
+		Selector<Cuenta> selectorCuentas2 = new Selector<Cuenta>(mainPanel).allowNull(false);
+		selectorCuentas.bindItemsToProperty("cuentas").adaptWith(Cuenta.class, "nombreCuenta");
+		selectorCuentas.bindValueToProperty("cuentaSeleccionada2");
+		
+		new Button(mainPanel).setCaption("Ingresar parámetro compuesto").onClick(this::ingresar).disableOnError();
+		
+		new Button(mainPanel).setCaption("Seguir Ingresando parámetros").onClick(this::ingresar).disableOnError();
 		new Button(mainPanel).setCaption("Ingresar indicador").onClick(this::ingresarIndicador).disableOnError();	
 
 	}
@@ -69,10 +99,10 @@ public class Parametro1View extends Dialog<Parametro1ViewModel> {
 	
 
 	private boolean dosParametrosLlenos() {
-		return getModelObject().getValorParametroConstante() != null 
-					&& getModelObject().getIndicadorSeleccionado() != null 
-						|| getModelObject().getCuentaSeleccionada() !=null
-							&& getModelObject().getIndicadorSeleccionado() != null;
+		return getModelObject().getValorParametroConstante1() != null 
+					&& getModelObject().getIndicadorSeleccionado1() != null 
+						|| getModelObject().getCuentaSeleccionada1() !=null
+							&& getModelObject().getIndicadorSeleccionado1() != null;
 	}
 	//uso dos parametros llenos para que si pasa esto tire la excepcion
 	
@@ -81,15 +111,23 @@ public class Parametro1View extends Dialog<Parametro1ViewModel> {
 		if(this.dosParametrosLlenos()){
 			throw new UserException("Seleccione un solo parametro");
 		}
-		this.getModelObject().ingresarParametro();
+		//this.getModelObject().ingresarParametro();
 		BuilderIndicador builder = this.getModelObject().getBuilderIndicador();
 		this.close();
-		new Operador1View(this,builder).open();
+		new Parametro1View(this,builder).open();
 	}
 
 	@Override
 	protected void createFormPanel(Panel arg0) {
 		// TODO Auto-generated method stub
+		
+	}
+	
+	public void crearBotonesDeOperadores(Panel mainPanel) {
+		new Button(mainPanel).setCaption("+").onClick(()->this.getModelObject().setOperacionSeleccionada("+"));
+		new Button(mainPanel).setCaption("-").onClick(()->this.getModelObject().setOperacionSeleccionada("-"));
+		new Button(mainPanel).setCaption("*").onClick(()->this.getModelObject().setOperacionSeleccionada("*"));
+		new Button(mainPanel).setCaption("/").onClick(()->this.getModelObject().setOperacionSeleccionada("/"));
 		
 	}
 
