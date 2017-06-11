@@ -6,13 +6,15 @@ import java.util.List;
 import model.Cuenta;
 import model.Indicador;
 import model.Parametro;
+import model.parametroCompuesto;
+import model.parametroGeneral;
 
 public class IndicadoresRepository {
 	private List<Indicador> indicadores = new LinkedList<>();
 	public Indicador getUnIdicadorConstante(){
 		Parametro unaConstante = new Parametro();
 		unaConstante.setValor(10);
-		Indicador unIndicador = new Indicador(unaConstante, null, null, null, null);
+		Indicador unIndicador = new Indicador(unaConstante, null, null);
 		return unIndicador;
 	}
 	public Indicador getUnIdicadorConUnaConstanteYUnaCuenta(){
@@ -22,7 +24,7 @@ public class IndicadoresRepository {
 		Parametro parametroCuenta = new Parametro();
 		parametroCuenta.setValor(unaCuenta.getValor());
 		String operacion = "+";
-		Indicador unIndicador = new Indicador(unaConstante, parametroCuenta, null, operacion, null);
+		Indicador unIndicador = new Indicador(unaConstante, parametroCuenta, operacion);
 		return unIndicador;
 	}
 	public Indicador getUnIdicadorConDosCuentas(){
@@ -33,7 +35,7 @@ public class IndicadoresRepository {
 		parametroCuenta.setValor(unaCuenta.getValor());
 		Parametro parametroOtraCuenta = new Parametro();
 		parametroOtraCuenta.setValor(otraCuenta.getValor());
-		Indicador unIndicador = new Indicador(parametroCuenta, parametroOtraCuenta, null, operacion, null);
+		Indicador unIndicador = new Indicador(parametroCuenta, parametroOtraCuenta, operacion);
 		return unIndicador;
 	}
 	public Indicador getUnIdicadorConDosCuentasYUnaConstante(){
@@ -41,12 +43,15 @@ public class IndicadoresRepository {
 		unaConstante.setValor(10);
 		Cuenta otraCuenta = Repositorios.cuentas.getOtraCuenta();
 		Cuenta unaCuenta = Repositorios.cuentas.getUnaCuenta();
-		Parametro parametroCuenta = new Parametro();
-		parametroCuenta.setValor(unaCuenta.getValor());
-		Parametro parametroOtraCuenta = new Parametro();
-		parametroOtraCuenta.setValor(otraCuenta.getValor());
-		String operacion = "+";
-		Indicador unIndicador = new Indicador(parametroOtraCuenta, parametroCuenta, unaConstante, operacion, operacion);
+		Parametro unParametroCuenta = new Parametro();
+		unParametroCuenta.setValor(unaCuenta.getValor());
+		Parametro otroParametroCuenta = new Parametro();
+		otroParametroCuenta.setValor(otraCuenta.getValor());
+		parametroCompuesto parametroCuenta = new parametroCompuesto();
+		parametroCuenta.setParametro1(unParametroCuenta);
+		parametroCuenta.setParametro2(otroParametroCuenta);
+		parametroCuenta.setOperacion("+");
+		Indicador unIndicador = new Indicador(parametroCuenta, unaConstante, "+");
 		return unIndicador;
 	}
 	public Indicador getUnIdicadorConTresCuentas(){
@@ -59,17 +64,21 @@ public class IndicadoresRepository {
 		parametroOtraCuenta.setValor(otraCuenta.getValor());
 		Parametro parametroTercerCuenta = new Parametro();
 		parametroTercerCuenta.setValor(tecerCuenta.getValor());
+		parametroCompuesto parametroTotal = new parametroCompuesto();
+		parametroTotal.setParametro1(parametroOtraCuenta);
+		parametroTotal.setParametro2(parametroTercerCuenta);
 		String operacion = "+";
-		Indicador unIndicador = new Indicador(parametroOtraCuenta, parametroCuenta, parametroTercerCuenta, operacion, operacion);
+		parametroTotal.setOperacion(operacion);
+		Indicador unIndicador = new Indicador(parametroTotal, parametroCuenta, operacion);
 		return unIndicador;
 	}
 	public Indicador getUnIdicadorConOtroIndicador(){
 		Parametro unaConstante = new Parametro();
 		unaConstante.setValor(10);
-		Indicador unIndicadorAux = new Indicador(unaConstante, null, null, null, null);
+		Indicador unIndicadorAux = new Indicador(unaConstante, null, null);
 		Parametro parametroInicador = new Parametro();
 		parametroInicador.setValor(unIndicadorAux.obtenerValor());
-		Indicador unIndicador = new Indicador(parametroInicador, null, null, null, null);
+		Indicador unIndicador = new Indicador(parametroInicador, null, null);
 		return unIndicador;
 	}
 	public Indicador getUnIdicadorConDosIndicadoresYUnaConstante(){
@@ -81,8 +90,12 @@ public class IndicadoresRepository {
 		Indicador otroIndicadorAux = this.getUnIdicadorConTresCuentas();
 		Parametro parametroInicadorOtro = new Parametro();
 		parametroInicadorOtro.setValor(otroIndicadorAux.obtenerValor());
+		parametroCompuesto parametroTotal = new parametroCompuesto();
+		parametroTotal.setParametro1(parametroInicador);
+		parametroTotal.setParametro2(parametroInicadorOtro);
 		String operacion = "+";
-		Indicador unIndicador = new Indicador(parametroInicador, parametroInicadorOtro, unaConstante, operacion, operacion);
+		parametroTotal.setOperacion(operacion);
+		Indicador unIndicador = new Indicador(parametroTotal, unaConstante, operacion);
 		return unIndicador;
 	}
 	public List<Indicador> all() {

@@ -1,1 +1,6 @@
+<<<<<<< HEAD
 [{"parametro1":{"valor":12,"nombre":"","changeSupport":{"propertyChangeListeners":[]}},"parametro2":null,"parametro3":null,"operacion1":null,"operacion2":null,"nombre":"asd","valor":null,"changeSupport":{"propertyChangeListeners":[]}},{"parametro1":{"valor":800,"nombre":"EBITDA","changeSupport":{"propertyChangeListeners":[]}},"parametro2":{"valor":1800,"nombre":"FDS","changeSupport":{"propertyChangeListeners":[]}},"parametro3":{"valor":1520,"nombre":"Free Cash Flow","changeSupport":{"propertyChangeListeners":[]}},"operacion1":"+","operacion2":"+","nombre":"cuentas","valor":null,"changeSupport":{"propertyChangeListeners":[]}},{"parametro1":{"valor":4120,"nombre":"cuentas","changeSupport":{"propertyChangeListeners":[]}},"parametro2":{"valor":23,"nombre":"","changeSupport":{"propertyChangeListeners":[]}},"parametro3":null,"operacion1":"+","operacion2":null,"nombre":"indicadores","valor":null,"changeSupport":{"propertyChangeListeners":[]}}]
+=======
+[{"parametro1":{"valor":4010,"parametro1":{"valor":10,"parametro1":null,"parametro2":null,"nombre":"","operacion":null},"parametro2":{"valor":4000,"parametro1":null,"parametro2":null,"nombre":"","operacion":null},"nombre":"","operacion":"+"},"parametro2":{"valor":10,"parametro1":null,"parametro2":null,"nombre":"","operacion":null},"operacion":"+","nombre":null}]
+
+>>>>>>> santi
