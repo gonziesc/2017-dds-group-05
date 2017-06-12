@@ -38,8 +38,6 @@ public class ParametroViewModel {
 	private String operacionSeleccionada;
 
 	public ParametroViewModel(BuilderIndicador builder) {
-		indicadores = Repositorios.indicadores.all();
-		cuentas = Repositorios.cuentas.all();
 		tipoParametros = Repositorios.parametros.all();
 		builderIndicador = builder;
 	}
