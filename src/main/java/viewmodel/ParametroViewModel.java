@@ -258,4 +258,15 @@ public class ParametroViewModel {
 		this.parametro2 = parametro2;
 	}
 
+	public void limpiarSeleccionados1() {
+		this.setCuentaSeleccionada1(null);
+		this.setIndicadorSeleccionado1(null);
+		this.setValorParametroConstante1(null);
+		
+	}
+	public void limpiarSeleccionados2() {
+		this.setCuentaSeleccionada2(null);
+		this.setIndicadorSeleccionado2(null);
+		this.setValorParametroConstante2(null);
+	}
 }

@@ -10,7 +10,6 @@ import org.uqbar.arena.widgets.RadioSelector;
 import org.uqbar.arena.widgets.Selector;
 import org.uqbar.arena.widgets.TextBox;
 import org.uqbar.arena.windows.Dialog;
-import org.uqbar.arena.windows.Window;
 import org.uqbar.arena.windows.WindowOwner;
 import org.uqbar.commons.model.UserException;
 
@@ -36,8 +35,8 @@ public class Parametro1View extends Dialog<ParametroViewModel> {
 		new Label(mainPanel).setText("Nombre Indicador");
 		new TextBox(mainPanel).bindValueToProperty("nombreIndicador");
 		
-		new Label(mainPanel).setText("Ingrese el tipo del primer parÃ¡metro");
-		RadioSelector<String> radioTipo = new RadioSelector<String>(mainPanel);
+		new Label(mainPanel).setText("Ingrese el tipo del primer parámetro");
+		Selector<String> radioTipo = new RadioSelector<String>(mainPanel).onSelection(()->this.getModelObject().limpiarSeleccionados1());
 		radioTipo.bindItemsToProperty("tipoParametros");
 		radioTipo.bindValueToProperty("tipoSeleccionado1");
 		
@@ -56,14 +55,14 @@ public class Parametro1View extends Dialog<ParametroViewModel> {
 		selectorCuentas.bindItemsToProperty("cuentas").adaptWith(Cuenta.class, "nombreCuenta");
 		selectorCuentas.bindValueToProperty("cuentaSeleccionada1");
 		
-		new Button(mainPanel).setCaption("Ingresar parÃ¡metro compuesto").onClick(this::ingresar).disableOnError();
+		new Button(mainPanel).setCaption("Ingresar parámetro compuesto").onClick(this::ingresar).disableOnError();
 		
 
 		new Label(mainPanel).setText("Ingrese el operador");
 		crearBotonesDeOperadores(mainPanel);
 		
-		new Label(mainPanel).setText("Ingrese el tipo del segundo parÃ¡metro");
-		RadioSelector<String> radioTipo2 = new RadioSelector<String>(mainPanel);
+		new Label(mainPanel).setText("Ingrese el tipo del segundo parámetro");
+		Selector<String> radioTipo2 = new RadioSelector<String>(mainPanel).onSelection(()->this.getModelObject().limpiarSeleccionados2());
 		radioTipo2.bindItemsToProperty("tipoParametros");
 		radioTipo2.bindValueToProperty("tipoSeleccionado2");
 		
@@ -82,7 +81,7 @@ public class Parametro1View extends Dialog<ParametroViewModel> {
 		selectorCuentas2.bindItemsToProperty("cuentas").adaptWith(Cuenta.class, "nombreCuenta");
 		selectorCuentas2.bindValueToProperty("cuentaSeleccionada2");
 		
-		new Button(mainPanel).setCaption("Ingresar parÃ¡metro compuesto").onClick(this::ingresar).disableOnError();
+		new Button(mainPanel).setCaption("Ingresar parámetro compuesto").onClick(this::ingresar).disableOnError();
 		
 		new Button(mainPanel).setCaption("Ingresar indicador").onClick(this::ingresarIndicador).disableOnError();	
 
@@ -90,7 +89,7 @@ public class Parametro1View extends Dialog<ParametroViewModel> {
 	
 	public void ingresarIndicador(){
 		if(this.dosParametrosLlenos()){
-			throw new UserException("Seleccione un solo parametro");
+			throw new UserException("Seleccione un solo parámetro");
 		}
 		this.getModelObject().ingresarIndicador();
 		this.close();
@@ -105,8 +104,8 @@ public class Parametro1View extends Dialog<ParametroViewModel> {
 	}
 	//uso dos parametros llenos para que si pasa esto tire la excepcion
 	
-/*
 	public void ingresar(){
+		/*
 		if(this.dosParametrosLlenos()){
 			throw new UserException("Seleccione un solo parametro");
 		}
@@ -114,8 +113,8 @@ public class Parametro1View extends Dialog<ParametroViewModel> {
 		BuilderIndicador builder = this.getModelObject().getBuilderIndicador();
 		this.close();
 		new Parametro1View(this,builder).open();
+		 */
 	}
-*/
 	/* Esto es lo que falta: cuando toca ingresar parametro compuesto, debe llevarlo 
 	 * a una vista igual a esta, pero que en vez de que ingrese el indicador, 
 	 * ingrese solamente 1 de sus parametros, que seria compuesto
