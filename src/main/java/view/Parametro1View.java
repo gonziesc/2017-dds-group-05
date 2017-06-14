@@ -27,6 +27,10 @@ public class Parametro1View extends ParametroView {
 	@Override
 	public void createContents(Panel mainPanel) {
 		this.setTitle("Ingreso de indicadores");
+		
+		new Label(mainPanel).setText("Nombre Indicador");
+		new TextBox(mainPanel).bindValueToProperty("nombreIndicador");
+		
 		mainPanel.setLayout(new VerticalLayout());
 		cargarDatosParaIndicador(mainPanel);
 	}

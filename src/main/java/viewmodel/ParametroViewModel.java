@@ -40,8 +40,8 @@ public class ParametroViewModel {
 	}
 
 	public void agregarNuevoBuilderParametro(){
-		builderProximoParametro.setParametro(parametro);
 		this.setearIndicador();
+		builderProximoParametro.setParametro(parametro);
 		builderIndicador.agregarUltimoBuilderParametro(builderProximoParametro);
 	}
 	
@@ -82,23 +82,21 @@ public class ParametroViewModel {
 
 	public void setearIndicador() {
 		switch (this.getTipoSeleccionado()) {
+			case "Indicador":
+				parametro.setValor(indicadorSeleccionado.obtenerValor());
+				parametro.setNombre(indicadorSeleccionado.getNombre());
+				break;
 
-		case "Indicador":
-			parametro.setValor(indicadorSeleccionado.obtenerValor());
-			parametro.setNombre(indicadorSeleccionado.getNombre());
-			break;
+			case "Cuenta":
+				parametro.setValor(cuentaSeleccionada.getValor());
+				parametro.setNombre(cuentaSeleccionada.getNombreCuenta());
+				break;
 
-		case "Cuenta":
-			parametro.setValor(cuentaSeleccionada.getValor());
-			parametro.setNombre(cuentaSeleccionada.getNombreCuenta());
-			break;
-
-		case "Constante":
-			parametro.setValor(valorParametroConstante);
-			break;
-		}
-				
-		if (nombreIndicador != null) {
+			case "Constante":
+				parametro.setValor(valorParametroConstante);
+				break;
+		}	
+		if (builderIndicador.getNombre() == null) {
 			builderIndicador.setNombre(nombreIndicador);
 		}
 		

@@ -8,16 +8,19 @@ import model.parametroGeneral;
 
 public class BuilderIndicador {
 	private Indicador indicador;
-	private parametroGeneral parametro;
+	private parametroGeneral parametro = null;
 	private parametroGeneral parametroFinal;
-	private BuilderParametro builderProximoParametro = new BuilderParametro();
+	private BuilderParametro builderProximoParametro= new BuilderParametro();
 	private String operacion;
 	private String nombre = null;
 	
 
 	public Indicador build(){
-		parametroFinal = builderProximoParametro.build();
-		Indicador unIndicador = new Indicador(parametro,parametroFinal,operacion);
+		Indicador unIndicador=null;
+		if(builderProximoParametro.getParametro() != null){
+			parametroFinal = builderProximoParametro.build();
+		}
+		unIndicador = new Indicador(parametro,parametroFinal,operacion);
 		unIndicador.setNombre(nombre);
 		return unIndicador;
 	}
@@ -44,11 +47,20 @@ public class BuilderIndicador {
 	}
 
 	public void setOperacion(String operacion1) {
-		this.operacion = operacion1;
+		if(parametro != null){
+			builderProximoParametro.setOperacion(operacion1);
+		}
+		else{
+			this.operacion = operacion1;
+		}
 	}
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+	public String getNombre() {
+		return nombre;
 	}
 
 }
