@@ -35,9 +35,10 @@ public class ParametroViewModel {
 	private String operacionSeleccionada;
 	private BuilderParametro builderProximoParametro = new BuilderParametro();
 	
-	public ParametroViewModel(BuilderIndicador builder) {
+	public ParametroViewModel(BuilderIndicador builder, String unNombreIndicador) {
 		tipoParametros = Repositorios.parametros.all();
 		builderIndicador = builder;
+		nombreIndicador = unNombreIndicador;
 	}
 	
 	public void obtenerIndicadores() {

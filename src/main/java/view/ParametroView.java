@@ -19,10 +19,12 @@ import viewmodel.ParametroViewModel;
 @SuppressWarnings("serial")
 public class ParametroView extends Dialog<ParametroViewModel>{
 
-	public ParametroView(WindowOwner owner,BuilderIndicador builder) {
-		super(owner, new ParametroViewModel(builder));
+	public ParametroView(WindowOwner owner,BuilderIndicador builder, String unNombreIndicador) {
+		super(owner, new ParametroViewModel(builder, null));
 		this.getModelObject().obtenerCuentas();
 		this.getModelObject().obtenerIndicadores();
+		if(this.getModelObject().getNombreIndicador() == null)
+			this.getModelObject().setNombreIndicador(unNombreIndicador);
 	}
 	
 	@Override
@@ -35,7 +37,7 @@ public class ParametroView extends Dialog<ParametroViewModel>{
 	}
 	
 	public void cargarDatosParaIndicador(Panel mainPanel){
-		new Label(mainPanel).setText("Ingrese el tipo del parámetro");
+		new Label(mainPanel).setText("Ingrese el tipo del parï¿½metro");
 		Selector<String> radioTipo2 = new RadioSelector<String>(mainPanel).onSelection(()->this.getModelObject().limpiarSeleccionados());
 		radioTipo2.bindItemsToProperty("tipoParametros");
 		radioTipo2.bindValueToProperty("tipoSeleccionado");
@@ -55,14 +57,14 @@ public class ParametroView extends Dialog<ParametroViewModel>{
 		selectorCuentas2.bindItemsToProperty("cuentas").adaptWith(Cuenta.class, "nombreCuenta");
 		selectorCuentas2.bindValueToProperty("cuentaSeleccionada");
 		
-		new Button(mainPanel).setCaption("Ingresar parámetro compuesto").onClick(this::ingresar).disableOnError();
+		new Button(mainPanel).setCaption("Ingresar parï¿½metro compuesto").onClick(this::ingresar).disableOnError();
 		
 		new Button(mainPanel).setCaption("Ingresar indicador").onClick(this::ingresarIndicador).disableOnError();	
 	}
 	
 	public void ingresarIndicador(){
 		if(this.dosParametrosLlenos()){
-			throw new UserException("Seleccione un solo parámetro");
+			throw new UserException("Seleccione un solo parï¿½metro");
 		}
 		this.getModelObject().ingresarIndicador();
 		this.close();
@@ -84,7 +86,7 @@ public class ParametroView extends Dialog<ParametroViewModel>{
 		this.getModelObject().setearParametroFinal();
 		BuilderIndicador builder = this.getModelObject().getBuilderIndicador();
 		this.close();
-		new ParametroView(this,builder).open();
+		new ParametroView(this,builder, this.getModelObject().getNombreIndicador()).open();
 	}
 	
 	@Override

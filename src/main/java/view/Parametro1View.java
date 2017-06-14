@@ -20,8 +20,8 @@ import viewmodel.ParametroViewModel;
 
 @SuppressWarnings("serial")
 public class Parametro1View extends ParametroView {
-	public Parametro1View(WindowOwner owner,BuilderIndicador builder) {
-		super(owner, builder);
+	public Parametro1View(WindowOwner owner,BuilderIndicador builder, String unNombreIndicador) {
+		super(owner, builder, unNombreIndicador);
 	}
 	
 	@Override

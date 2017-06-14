@@ -34,7 +34,7 @@ public class StartWindow extends SimpleWindow<StartWindowViewModel> {
 	
 	public void ingresarIndicadores() {
 		BuilderIndicador builder = new BuilderIndicador();
-		new Parametro1View(this,builder).open();
+		new Parametro1View(this,builder, null).open();
 	}
 
 	
