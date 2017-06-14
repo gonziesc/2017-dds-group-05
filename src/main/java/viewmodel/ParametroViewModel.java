@@ -86,21 +86,22 @@ public class ParametroViewModel {
 	}
 
 	public void setearParametros(parametroGeneral parametro) {
+		Parametro unParametro = new Parametro();
 		switch (this.getTipoSeleccionado()) {
 			case "Indicador":
-				parametro.setValor(indicadorSeleccionado.obtenerValor());
-				parametro.setNombre(indicadorSeleccionado.getNombre());
+				unParametro.setValor(indicadorSeleccionado.obtenerValor());
 				break;
 
 			case "Cuenta":
-				parametro.setValor(cuentaSeleccionada.getValor());
-				parametro.setNombre(cuentaSeleccionada.getNombreCuenta());
+				unParametro.setValor(cuentaSeleccionada.getValor());
+				unParametro.setNombre(cuentaSeleccionada.getNombreCuenta());
 				break;
 
 			case "Constante":
-				parametro.setValor(valorParametroConstante);
+				unParametro.setValor(valorParametroConstante);
 				break;
 		}
+		parametro.setParametro1(unParametro);
 	}
 
 	public void setearParametroFinal() {

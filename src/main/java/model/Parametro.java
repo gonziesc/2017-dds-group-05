@@ -7,6 +7,9 @@ public class Parametro extends parametroGeneral{
 	protected int valor;
 	private String nombre = ""; /*solo si es una cuenta */
 	
+	public void init(){
+		valor = 0;
+	}
 	public int getValor() {
 		return valor;
 	}

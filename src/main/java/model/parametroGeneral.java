@@ -6,13 +6,17 @@ public class parametroGeneral {
 	protected parametroGeneral parametro2;
 	private String nombre = "";
 	private String operacion;
-
+	
 	public int getValor() {
+		if(parametro1 != null)
+		this.valor = parametro1.getValor();
+		if(parametro2 != null)
+		this.valor += parametro2.getValor();
 		return valor;
 	}
 	
 	public void setValor(int valor) {
-		this.valor = valor;
+		this.valor = parametro1.getValor() + parametro2.getValor();
 	}
 
 	public String getNombre() {
