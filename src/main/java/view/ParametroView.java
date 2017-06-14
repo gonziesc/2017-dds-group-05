@@ -16,16 +16,21 @@ import model.Cuenta;
 import model.Indicador;
 import viewmodel.ParametroViewModel;
 
+@SuppressWarnings("serial")
 public class ParametroView extends Dialog<ParametroViewModel>{
 
 	public ParametroView(WindowOwner owner,BuilderIndicador builder) {
 		super(owner, new ParametroViewModel(builder));
+		this.getModelObject().obtenerCuentas();
+		this.getModelObject().obtenerIndicadores();
 	}
 	
 	@Override
 	public void createContents(Panel mainPanel) {
 		new Label(mainPanel).setText("Ingrese el operador");
+		
 		crearBotonesDeOperadores(mainPanel);
+		
 		cargarDatosParaIndicador(mainPanel);
 	}
 	
@@ -76,7 +81,7 @@ public class ParametroView extends Dialog<ParametroViewModel>{
 		if(this.dosParametrosLlenos()){
 			throw new UserException("Seleccione un solo parametro");
 		}
-		this.getModelObject().agregarNuevoBuilderParametro();
+		this.getModelObject().setearParametroFinal();
 		BuilderIndicador builder = this.getModelObject().getBuilderIndicador();
 		this.close();
 		new ParametroView(this,builder).open();

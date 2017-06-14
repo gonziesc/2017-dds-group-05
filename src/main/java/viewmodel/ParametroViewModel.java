@@ -30,6 +30,7 @@ public class ParametroViewModel {
 	private Integer valorParametroConstante;
 	private List<Empresa> empresas;
 	private parametroGeneral parametro = new parametroGeneral();
+	private parametroGeneral parametroFinal = new parametroGeneral();
 	private String nombreIndicador;
 	private String operacionSeleccionada;
 	private BuilderParametro builderProximoParametro = new BuilderParametro();
@@ -38,17 +39,10 @@ public class ParametroViewModel {
 		tipoParametros = Repositorios.parametros.all();
 		builderIndicador = builder;
 	}
-
-	public void agregarNuevoBuilderParametro(){
-		this.setearIndicador();
-		builderProximoParametro.setParametro(parametro);
-		builderIndicador.agregarUltimoBuilderParametro(builderProximoParametro);
-	}
 	
 	public void obtenerIndicadores() {
 		try {
-			indicadores = IndicadoresService
-					.obtenerInicadoresDeServicioExterno();
+			indicadores = IndicadoresService.obtenerInicadoresDeServicioExterno();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -56,15 +50,15 @@ public class ParametroViewModel {
 
 	public void ingresarIndicador() {
 		try {
+			this.setearParametros(parametro);
 			this.setearIndicador();
-			IndicadoresService
-					.guardarIndicadoresEnServicioExterno(builderIndicador
+			IndicadoresService.guardarIndicadoresEnServicioExterno(builderIndicador
 							.build());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-
+	
 	public void obtenerEmpresas() {
 		try {
 			empresas = EmpresasService.obtenerEmpresasDeServicioExterno();
@@ -81,6 +75,17 @@ public class ParametroViewModel {
 	}
 
 	public void setearIndicador() {
+		if (builderIndicador.getNombre() == null) {
+			builderIndicador.setNombre(nombreIndicador);
+		}
+		
+		if (operacionSeleccionada != null) {
+			builderIndicador.setOperacion(operacionSeleccionada);
+		}
+		builderIndicador.setParametro(parametro);
+	}
+
+	public void setearParametros(parametroGeneral parametro) {
 		switch (this.getTipoSeleccionado()) {
 			case "Indicador":
 				parametro.setValor(indicadorSeleccionado.obtenerValor());
@@ -95,17 +100,14 @@ public class ParametroViewModel {
 			case "Constante":
 				parametro.setValor(valorParametroConstante);
 				break;
-		}	
-		if (builderIndicador.getNombre() == null) {
-			builderIndicador.setNombre(nombreIndicador);
 		}
-		
-		if (operacionSeleccionada != null) {
-			builderIndicador.setOperacion(operacionSeleccionada);
-		}
-		builderIndicador.setParametro(parametro);
 	}
 
+	public void setearParametroFinal() {
+		setearParametros(parametroFinal);
+		builderProximoParametro.setOtroParametro(parametroFinal);
+		this.builderIndicador.setParametroFinal(builderProximoParametro.build());
+	}
 	public BuilderIndicador getBuilderIndicador() {
 		return builderIndicador;
 	}
@@ -208,4 +210,14 @@ public class ParametroViewModel {
 	public String getOperacionSeleccionada() {
 		return operacionSeleccionada;
 	}
+
+
+	public parametroGeneral getParametroFinal() {
+		return parametroFinal;
+	}
+
+	public void setParametroFinal(parametroGeneral parametroFinal) {
+		this.parametroFinal = parametroFinal;
+	}
+
 }

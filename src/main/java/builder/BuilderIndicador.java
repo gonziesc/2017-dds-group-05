@@ -13,16 +13,12 @@ public class BuilderIndicador {
 	private BuilderParametro builderProximoParametro= new BuilderParametro();
 	private String operacion;
 	private String nombre = null;
-	
 
 	public Indicador build(){
-		Indicador unIndicador=null;
-		if(builderProximoParametro.getParametro() != null){
-			parametroFinal = builderProximoParametro.build();
-		}
-		unIndicador = new Indicador(parametro,parametroFinal,operacion);
-		unIndicador.setNombre(nombre);
-		return unIndicador;
+		if(parametro == null) throw new UserException("Ingrese al menos un parametro");
+		indicador = new Indicador(parametro,parametroFinal,operacion);
+		indicador.setNombre(nombre);
+		return indicador;
 	}
 
 	public parametroGeneral getParametroFinal() {
@@ -53,6 +49,9 @@ public class BuilderIndicador {
 		else{
 			this.operacion = operacion1;
 		}
+	}
+	public parametroGeneral getParametro() {
+		return parametro;
 	}
 
 	public void setNombre(String nombre) {
