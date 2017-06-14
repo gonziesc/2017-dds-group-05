@@ -8,25 +8,39 @@ import model.parametroGeneral;
 
 public class BuilderIndicador {
 	private Indicador indicador;
-	private parametroGeneral parametro1;
-	private parametroGeneral parametro2;
+	private parametroGeneral parametro;
+	private parametroGeneral parametroFinal;
+	private BuilderParametro builderProximoParametro = new BuilderParametro();
 	private String operacion;
 	private String nombre = null;
 	
 
 	public Indicador build(){
-		Indicador unIndicador = new Indicador(parametro1,parametro2,operacion);
+		parametroFinal = builderProximoParametro.build();
+		Indicador unIndicador = new Indicador(parametro,parametroFinal,operacion);
 		unIndicador.setNombre(nombre);
 		return unIndicador;
 	}
 
-
-	public void setParametro1(parametroGeneral parametro12) {
-		this.parametro1 = parametro12;
+	public parametroGeneral getParametroFinal() {
+		return parametroFinal;
 	}
 
-	public void setParametro2(parametroGeneral parametro22) {
-		this.parametro2 = parametro22;
+	public void setParametroFinal(parametroGeneral parametroFinal) {
+		this.parametroFinal = parametroFinal;
+	}
+
+	public void agregarUltimoBuilderParametro(BuilderParametro builderParam){
+		
+	}
+
+	public void setParametro(parametroGeneral parametro12) {
+		if(parametro != null){
+			builderProximoParametro.setParametro(parametro12);
+		}
+		else{
+			this.parametro = parametro12;
+		}
 	}
 
 	public void setOperacion(String operacion1) {
