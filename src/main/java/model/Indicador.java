@@ -57,9 +57,9 @@ public class Indicador{
 	}
 	
 	public void setValorCuenta(Cuenta cuenta) {
-		if(parametro1.getNombre() == cuenta.getNombreCuenta()){
+		if(parametro1 != null && parametro1.getNombre() == cuenta.getNombreCuenta()){
 			parametro1.setValor(cuenta.getValor());
-		} else if(parametro2.getNombre() == cuenta.getNombreCuenta()){
+		} else if(parametro2 != null && parametro2.getNombre() == cuenta.getNombreCuenta()){
 			parametro2.setValor(cuenta.getValor());
 		}
 	}

@@ -18,6 +18,13 @@ public class IndicadorMock {
 		Indicador unIndicador = new Indicador(unaConstante, null, null);
 		return unIndicador;
 	}
+
+	public Indicador getUnIdicadorConstanteMasBajo(){
+		Parametro unaConstante = new Parametro();
+		unaConstante.setValor(1);
+		Indicador unIndicador = new Indicador(unaConstante, null, null);
+		return unIndicador;
+	}
 	public Indicador getUnIdicadorConUnaConstanteYUnaCuenta(){
 		Parametro unaConstante = new Parametro();
 		unaConstante.setValor(10);
