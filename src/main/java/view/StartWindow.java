@@ -26,8 +26,18 @@ public class StartWindow extends SimpleWindow<StartWindowViewModel> {
 				this::consultarCuenta);
 		new Button(mainPanel).setCaption("Ingresar indicadores").onClick(
 				this::ingresarIndicadores);
+		new Button(mainPanel).setCaption("Ingresar metodologia").onClick(
+				this::ingresarMetodologia);
+		new Button(mainPanel).setCaption("Ejecutar metodologia").onClick(
+				this::ejecutarMetodologia);
 	}
-
+	
+	public void ejecutarMetodologia(){
+		new EjecutarMetodologiaView(this).open();
+	}
+	public void ingresarMetodologia(){
+		new IngresarMetodologiaView(this).open();
+	}
 	public void consultarCuenta() {
 		new ConsultarValorCuenta(this).open();
 	}

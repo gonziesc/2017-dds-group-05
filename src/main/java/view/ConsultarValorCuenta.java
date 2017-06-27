@@ -36,8 +36,8 @@ public class ConsultarValorCuenta extends Dialog<ConsultarValorCuentaViewModel> 
 			.onClick(this::mostrarCuentas);
 		
 		new Button(mainPanel)
-		.setCaption("Mostrar Indicadores")
-		.onClick(this::mostarIndicadores);
+			.setCaption("Mostrar Indicadores")
+			.onClick(this::mostarIndicadores);
 		
 		Table<Cuenta> tablaCuentas = new Table<>(mainPanel, Cuenta.class);
 		
