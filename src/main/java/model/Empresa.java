@@ -4,10 +4,13 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.uqbar.commons.utils.Observable;
+
+@Observable
 public class Empresa {
 
 	private List<Cuenta> Cuentas;
-	private String Nombre;
+	private String nombreEmpresa;
 
 
 	public List<Cuenta> cuentasSegunPeriodo(int periodo){
@@ -23,7 +26,7 @@ public class Empresa {
 	
 	@Override
 	public String toString() {
-		return Nombre;
+		return nombreEmpresa;
 	}
 
 	public List<Cuenta> getCuentas() {
@@ -34,12 +37,12 @@ public class Empresa {
 		Cuentas = cuentas;
 	}
 
-	public String getNombre() {
-		return Nombre;
+	public String getNombreEmpresa() {
+		return nombreEmpresa;
 	}
 
-	public void setNombre(String nombre) {
-		Nombre = nombre;
+	public void setNombreEmpresa(String nombre) {
+		nombreEmpresa = nombre;
 	}
 	
 	public int aniosEmpresa(){

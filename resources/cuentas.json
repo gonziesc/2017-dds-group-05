@@ -1,5 +1,5 @@
 [{
-        nombre: "Arcor",
+        nombre_empresa: "Arcor",
         cuentas:[{
             nombre_cuenta: "EBITDA",
             valor: "800",
@@ -22,7 +22,7 @@
 		}]
     },
 	{
-        nombre: "Facebook",
+        nombre_empresa: "Facebook",
         cuentas:[{
             nombre_cuenta: "EBITDA",
             valor: "2800",

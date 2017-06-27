@@ -26,7 +26,7 @@ public class EmpresasMock {
 		cuentas.add(unaCuenta2011);
 		cuentas.add(unaCuenta2012);
 		cuentas.add(unaCuenta2013);
-		fb.setNombre("facebook");
+		fb.setNombreEmpresa("facebook");
 		fb.setCuentas(cuentas);
 		return fb;
 	}
@@ -48,7 +48,7 @@ public class EmpresasMock {
 		cuentas.add(unaCuenta2011);
 		cuentas.add(unaCuenta2012);
 		cuentas.add(unaCuenta2013);
-		arcor.setNombre("arcor");
+		arcor.setNombreEmpresa("arcor");
 		arcor.setCuentas(cuentas);
 		return arcor;
 	}
