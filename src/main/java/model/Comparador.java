@@ -3,6 +3,7 @@ package model;
 import java.util.List;
 
 public class Comparador {
+	private String nombreComparador;
 	public Empresa calcularMetodologia(Empresa unaEmpresa, Empresa otraEmpresa, Indicador unIndicador, Indicador otroIndicador, int valor, String comparador, int periodoInicio, int periodoFin) {
 		return procesarRetorno(unaEmpresa, otraEmpresa, false);
 	}
@@ -42,5 +43,10 @@ public class Comparador {
 		indicador.setValorCuenta(c);
 		return indicador;
 	}
+
+	public String getNombreComparador() {
+		return nombreComparador;
+	}
+
 
 }
