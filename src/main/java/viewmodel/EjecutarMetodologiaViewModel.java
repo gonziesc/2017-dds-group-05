@@ -17,7 +17,15 @@ public class EjecutarMetodologiaViewModel {
 	private List<Empresa> empresas;
 	
 	public void ejecutarMetodologia() {
-		empresas.stream().filter(e ->metodologiaSeleccionada.calcularMetodologia() == e);
+		List<Empresa> empresasOrdenadas;
+		Empresa empresaMejorOrdenada;
+		int cantEmpresas = empresas.size();
+		int cantEmpresasOrdenadas = 0;
+		/*while(cantEmpresasOrdenadas<cantEmpresas){
+			empresas.stream().allMatch(e ->metodologiaSeleccionada.calcularMetodologia() == e);
+			empresaMejorOrdenada = empresas.stream().sorted();
+		}*/
+						
 	}
 
 	public void obtenerMetodologias() {

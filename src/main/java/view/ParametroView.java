@@ -37,7 +37,7 @@ public class ParametroView extends Dialog<ParametroViewModel>{
 	}
 	
 	public void cargarDatosParaIndicador(Panel mainPanel){
-		new Label(mainPanel).setText("Ingrese el tipo del par�metro");
+		new Label(mainPanel).setText("Ingrese el tipo del parametro");
 		Selector<String> radioTipo2 = new RadioSelector<String>(mainPanel).onSelection(()->this.getModelObject().limpiarSeleccionados());
 		radioTipo2.bindItemsToProperty("tipoParametros");
 		radioTipo2.bindValueToProperty("tipoSeleccionado");
@@ -57,14 +57,14 @@ public class ParametroView extends Dialog<ParametroViewModel>{
 		selectorCuentas2.bindItemsToProperty("cuentas").adaptWith(Cuenta.class, "nombreCuenta");
 		selectorCuentas2.bindValueToProperty("cuentaSeleccionada");
 		
-		new Button(mainPanel).setCaption("Ingresar par�metro compuesto").onClick(this::ingresar).disableOnError();
+		new Button(mainPanel).setCaption("Ingresar parametro compuesto").onClick(this::ingresar).disableOnError();
 		
 		new Button(mainPanel).setCaption("Ingresar indicador").onClick(this::ingresarIndicador).disableOnError();	
 	}
 	
 	public void ingresarIndicador(){
 		if(this.dosParametrosLlenos()){
-			throw new UserException("Seleccione un solo par�metro");
+			throw new UserException("Seleccione un solo parametro");
 		}
 		this.getModelObject().ingresarIndicador();
 		this.close();
