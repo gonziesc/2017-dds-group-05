@@ -12,7 +12,7 @@ public class ComparadorAnios extends Comparador{
 	}
 
 	public String getNombreComparador(){
-		return "Comparador por años";
+		return "Comparador por anios";
 	}
 
 }

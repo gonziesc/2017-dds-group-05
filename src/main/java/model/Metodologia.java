@@ -5,22 +5,25 @@ import org.uqbar.commons.utils.Observable;
 @Observable
 public class Metodologia {
 	
-	public Empresa getUnaEmpresa() {
-		return unaEmpresa;
+	private String nombre;
+	private Indicador unIndicador;
+	private Indicador otroIndicador;
+	private Comparador comparador;
+	private String comparadorOperando = ">";
+	private int valor;
+	private int periodoInicio;
+	private int periodoFin;
+
+	public Metodologia(Comparador unComparador) {
+		comparador = unComparador;
 	}
 
-	public void setUnaEmpresa(Empresa unaEmpresa) {
-		this.unaEmpresa = unaEmpresa;
+	public Empresa calcularMetodologia(Empresa empresa1, Empresa empresa2) {
+		return comparador.calcularMetodologia(empresa1, empresa2,
+				unIndicador, otroIndicador, valor, comparadorOperando,
+				periodoInicio, periodoFin);
 	}
-
-	public Empresa getOtraEmpresa() {
-		return otraEmpresa;
-	}
-
-	public void setOtraEmpresa(Empresa otraEmpresa) {
-		this.otraEmpresa = otraEmpresa;
-	}
-
+	
 	public Indicador getUnIndicador() {
 		return unIndicador;
 	}
@@ -76,23 +79,14 @@ public class Metodologia {
 	public void setPeriodoFin(int periodoFin) {
 		this.periodoFin = periodoFin;
 	}
-	public Empresa unaEmpresa;
-	private Empresa otraEmpresa;
-	private Indicador unIndicador;
-	private Indicador otroIndicador;
-	private Comparador comparador;
-	private String comparadorOperando = ">";
-	private int valor;
-	private int periodoInicio;
-	private int periodoFin;
 
-	public Metodologia(Comparador unComparador) {
-		comparador = unComparador;
+	public String getNombre() {
+		return nombre;
 	}
 
-	public Empresa calcularMetodologia(Empresa empresa1, Empresa empresa2) {
-		return comparador.calcularMetodologia(empresa1, empresa2,
-				unIndicador, otroIndicador, valor, comparadorOperando,
-				periodoInicio, periodoFin);
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
+	
+	
 }

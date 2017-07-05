@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.lang.reflect.Type;
@@ -24,13 +25,13 @@ import com.google.gson.reflect.TypeToken;
 public class EmpresasService {
 	static String rutaArchivoJson = "./resources/cuentas.json";
 
-	public static List<Empresa> obtenerEmpresasDeServicioExterno() throws FileNotFoundException {
+	public static ArrayList<Empresa> obtenerEmpresasDeServicioExterno() throws FileNotFoundException {
 		Gson gson = new GsonBuilder()
 			    .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
 			    .create();
 		try {
 			Type collectionType = new TypeToken<Collection<Empresa>>(){}.getType();
-			List<Empresa> listaEmpresas = gson.fromJson(new FileReader(rutaArchivoJson), collectionType);
+			ArrayList<Empresa> listaEmpresas = gson.fromJson(new FileReader(rutaArchivoJson), collectionType);
 			return listaEmpresas;
 		}catch (UserException  e) {
 			noEncuentraElArchivo();

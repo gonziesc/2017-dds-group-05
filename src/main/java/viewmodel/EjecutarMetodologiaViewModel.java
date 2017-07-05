@@ -1,6 +1,9 @@
 package viewmodel;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.uqbar.commons.utils.Observable;
@@ -14,17 +17,20 @@ import model.Metodologia;
 public class EjecutarMetodologiaViewModel {
 	private List<Metodologia> metodologias;
 	private Metodologia metodologiaSeleccionada;
-	private List<Empresa> empresas;
+	private ArrayList<Empresa> empresas;
 	
 	public void ejecutarMetodologia() {
-		List<Empresa> empresasOrdenadas;
-		Empresa empresaMejorOrdenada;
-		int cantEmpresas = empresas.size();
-		int cantEmpresasOrdenadas = 0;
-		while(cantEmpresasOrdenadas<cantEmpresas){
-			//empresas.stream().allMatch(e ->metodologiaSeleccionada.calcularMetodologia() == e);
-			
-		}
+		Collections.sort(empresas, new Comparator<Empresa>() {
+	        @Override
+	        public int compare(Empresa empresa1, Empresa empresa2)
+	        {
+	            Empresa empresaMejor = metodologiaSeleccionada.calcularMetodologia(empresa1, empresa2);
+	            if(empresaMejor.equals(empresa1)){
+	            	return 1;
+	            }
+	            return -1;
+	        }
+	    });
 						
 	}
 
@@ -35,9 +41,10 @@ public class EjecutarMetodologiaViewModel {
 			e.printStackTrace();
 		}
 	}
+	
 	public void obtenerEmpresas(){
 		try {
-			empresas = EmpresasService.obtenerEmpresasDeServicioExterno();
+			empresas = (ArrayList<Empresa>) EmpresasService.obtenerEmpresasDeServicioExterno();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -46,12 +53,15 @@ public class EjecutarMetodologiaViewModel {
 	public List<Metodologia> getMetodologias() {
 		return metodologias;
 	}
+	
 	public void setMetodologias(List<Metodologia> metodologias) {
 		this.metodologias = metodologias;
 	}
+	
 	public Metodologia getMetodologiaSeleccionada() {
 		return metodologiaSeleccionada;
 	}
+	
 	public void setMetodologiaSeleccionada(Metodologia metodologiaSeleccionada) {
 		this.metodologiaSeleccionada = metodologiaSeleccionada;
 	}
@@ -60,7 +70,7 @@ public class EjecutarMetodologiaViewModel {
 		return empresas;
 	}
 
-	public void setEmpresas(List<Empresa> empresas) {
+	public void setEmpresas(ArrayList<Empresa> empresas) {
 		this.empresas = empresas;
 	}
 
