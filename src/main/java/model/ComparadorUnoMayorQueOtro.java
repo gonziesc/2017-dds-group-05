@@ -4,7 +4,7 @@ import org.uqbar.commons.utils.Observable;
 
 @Observable
 public class ComparadorUnoMayorQueOtro extends Comparador{
-	private String nombreComparador = "Comparador uno mayor que otro";
+	
 	public Empresa calcularMetodologia(Empresa unaEmpresa, Empresa otraEmpresa, Indicador unIndicador, Indicador otroIndicador, int valor, String comparador, int periodoInicio, int periodoFin) {
 		otraEmpresa.getCuentas().stream()
 				.forEach(c -> cargarIndicador(c, otroIndicador));
@@ -14,8 +14,9 @@ public class ComparadorUnoMayorQueOtro extends Comparador{
 				otroIndicador.getValor(), comparador);
 		return procesarRetorno(unaEmpresa, otraEmpresa, condicion);
 	}
-
+	@Override
 	public String getNombreComparador(){
-		return nombreComparador;
+		return "Comparador uno mayor que otro";
 	}
+
 }

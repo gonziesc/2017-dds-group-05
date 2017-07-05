@@ -4,6 +4,7 @@ import org.uqbar.commons.utils.Observable;
 
 @Observable
 public class Metodologia {
+	
 	public Empresa getUnaEmpresa() {
 		return unaEmpresa;
 	}
@@ -75,7 +76,6 @@ public class Metodologia {
 	public void setPeriodoFin(int periodoFin) {
 		this.periodoFin = periodoFin;
 	}
-
 	public Empresa unaEmpresa;
 	private Empresa otraEmpresa;
 	private Indicador unIndicador;

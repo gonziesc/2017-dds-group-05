@@ -15,6 +15,7 @@ import org.uqbar.commons.model.UserException;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -39,7 +40,7 @@ public class IndicadoresService {
 	public static void guardarIndicadoresEnServicioExterno(Indicador unIndicador) throws IOException {
 		List<Indicador> listaIndicadores = obtenerInicadoresDeServicioExterno();
 		listaIndicadores.add(unIndicador);
-		ObjectMapper objectMapper = new ObjectMapper();
+		ObjectMapper objectMapper = new ObjectMapper().configure(SerializationFeature.INDENT_OUTPUT, true);
 		try{
 			String arrayToJson = objectMapper.writeValueAsString(listaIndicadores);
 			FileWriter file = new FileWriter(rutaArchivoJson);
