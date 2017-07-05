@@ -21,10 +21,10 @@ public class EjecutarMetodologiaViewModel {
 		Empresa empresaMejorOrdenada;
 		int cantEmpresas = empresas.size();
 		int cantEmpresasOrdenadas = 0;
-		/*while(cantEmpresasOrdenadas<cantEmpresas){
-			empresas.stream().allMatch(e ->metodologiaSeleccionada.calcularMetodologia() == e);
-			empresaMejorOrdenada = empresas.stream().sorted();
-		}*/
+		while(cantEmpresasOrdenadas<cantEmpresas){
+			//empresas.stream().allMatch(e ->metodologiaSeleccionada.calcularMetodologia() == e);
+			
+		}
 						
 	}
 

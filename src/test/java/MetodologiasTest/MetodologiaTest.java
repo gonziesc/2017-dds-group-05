@@ -14,48 +14,45 @@ public class MetodologiaTest {
 	MetodologiaMock mock = new MetodologiaMock();
 	Empresa unaEmpresa = new EmpresasMock().Facebook();
 	Empresa otraEmpresa = new EmpresasMock().Arcor();
+	
 	@Test
 	public void testCalculaBienUnaMetodologiaValor() {
 		Metodologia unaMetodologia = mock.unaMetodologiaMayorValor();
-		unaMetodologia.setUnaEmpresa(unaEmpresa);
-		assertTrue(unaMetodologia.calcularMetodologia().getNombreEmpresa() == "facebook");
+		assertTrue(unaMetodologia.calcularMetodologia(unaEmpresa,null).getNombreEmpresa() == "facebook");
 	}
 	@Test
 	public void testCalculaBienUnaMetodologiaValorMenor() {
 		Metodologia unaMetodologia = mock.unaMetodologiaMenorValor();
-		unaMetodologia.setUnaEmpresa(unaEmpresa);
-		assertTrue(unaMetodologia.calcularMetodologia() == null);
+		assertTrue(unaMetodologia.calcularMetodologia(unaEmpresa,null) == null);
 	}
+	
 	@Test
 	public void testCalculaBienunaMetodologiaMayorValorTiempo() {
 		Metodologia unaMetodologia = mock.unaMetodologiaMayorValorTiempo();
-		unaMetodologia.setUnaEmpresa(unaEmpresa);
-		assertTrue(unaMetodologia.calcularMetodologia().getNombreEmpresa() == "facebook");
+		assertTrue(unaMetodologia.calcularMetodologia(unaEmpresa,null).getNombreEmpresa() == "facebook");
 	}
+	
 	@Test
 	public void testCalculaBienunaMetodologiaAnios() {
 		Metodologia unaMetodologia = mock.unaMetodologiaAnios();
-		unaMetodologia.setUnaEmpresa(unaEmpresa);
-		assertTrue(unaMetodologia.calcularMetodologia().getNombreEmpresa() == "facebook");
+		assertTrue(unaMetodologia.calcularMetodologia(unaEmpresa,null).getNombreEmpresa() == "facebook");
 	}
+	
 	@Test
 	public void testCalculaBienunaMetodologiaPromedio() {
 		Metodologia unaMetodologia = mock.unaMetodologiaPromedio();
-		unaMetodologia.setUnaEmpresa(unaEmpresa);
-		assertTrue(unaMetodologia.calcularMetodologia().getNombreEmpresa() == "facebook");
+		assertTrue(unaMetodologia.calcularMetodologia(unaEmpresa,null).getNombreEmpresa() == "facebook");
 	}
+	
 	@Test
 	public void testCalculaBienunaMetodologiaUnoMayorQueOtro() {
 		Metodologia unaMetodologia = mock.unaMetodologiaUnoMayorQueOtro();
-		unaMetodologia.setUnaEmpresa(unaEmpresa);
-		unaMetodologia.setOtraEmpresa(otraEmpresa);
-		assertTrue(unaMetodologia.calcularMetodologia().getNombreEmpresa() == "facebook");
+		assertTrue(unaMetodologia.calcularMetodologia(unaEmpresa,otraEmpresa).getNombreEmpresa() == "facebook");
 	}
+	
 	@Test
 	public void testCalculaBienunaMetodologiaUnoMayorQueOtroEnElTiempo() {
 		Metodologia unaMetodologia = mock.unaMetodologiaUnoMayorQueOtroEnElTiempo();
-		unaMetodologia.setUnaEmpresa(unaEmpresa);
-		unaMetodologia.setOtraEmpresa(otraEmpresa);
-		assertTrue(unaMetodologia.calcularMetodologia().getNombreEmpresa() == "facebook");
+		assertTrue(unaMetodologia.calcularMetodologia(unaEmpresa,otraEmpresa).getNombreEmpresa() == "facebook");
 	}
 }

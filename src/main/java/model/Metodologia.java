@@ -90,8 +90,8 @@ public class Metodologia {
 		comparador = unComparador;
 	}
 
-	public Empresa calcularMetodologia() {
-		return comparador.calcularMetodologia(unaEmpresa, otraEmpresa,
+	public Empresa calcularMetodologia(Empresa empresa1, Empresa empresa2) {
+		return comparador.calcularMetodologia(empresa1, empresa2,
 				unIndicador, otroIndicador, valor, comparadorOperando,
 				periodoInicio, periodoFin);
 	}
