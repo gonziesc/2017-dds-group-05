@@ -2,6 +2,7 @@ package view;
 
 import org.uqbar.arena.widgets.Button;
 import org.uqbar.arena.widgets.Label;
+import org.uqbar.arena.widgets.NumericField;
 import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.widgets.Selector;
 import org.uqbar.arena.windows.Dialog;
@@ -35,6 +36,9 @@ public class IngresarMetodologiaView extends Dialog<IngresarMetodologiaViewModel
 		Selector<Comparador> selectorComparadores = new Selector<Comparador>(mainPanel);
 		selectorComparadores.bindItemsToProperty("comparadores").adaptWith(Comparador.class, "nombreComparador");
 		selectorComparadores.bindValueToProperty("comparadorSeleccionado");
+		
+		new Label(mainPanel).setText("Ingresar valor");
+		new NumericField(mainPanel).bindValueToProperty("valorComparador");
 		
 		new Button(mainPanel).setCaption("Ingresar metodologia").onClick(this::ingresarMetodologia);
 		

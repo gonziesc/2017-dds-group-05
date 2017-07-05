@@ -18,6 +18,7 @@ public class IngresarMetodologiaViewModel {
 	private List<Indicador> indicadores;
 	private Indicador indicadorSeleccionado;
 	private Comparador comparadorSeleccionado;
+	private Integer valorComparador;
 	private Metodologia metodologia = new Metodologia(null);
 	private List<Comparador> comparadores;
 	
@@ -26,12 +27,20 @@ public class IngresarMetodologiaViewModel {
 	}
 	
 	public void ingresarMetodologia() {
-		metodologia.setComparador(comparadorSeleccionado);
+		setearMetodologia();
+
 		try {
-			MetodologiasService.guardarMetodologiaEnServicioExterno(metodologia);//hay que arregle el service tira excepcion de mapper
+			MetodologiasService.guardarMetodologiaEnServicioExterno(metodologia);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public void setearMetodologia() {
+		metodologia.setUnIndicador(indicadorSeleccionado);
+		metodologia.setOtroIndicador(indicadorSeleccionado);
+		metodologia.setComparador(comparadorSeleccionado);
+		metodologia.setValor(valorComparador);
 	}
 	
 	public void obtenerIndicadores() {
@@ -67,6 +76,14 @@ public class IngresarMetodologiaViewModel {
 
 	public void setComparadores(List<Comparador> comparadores) {
 		this.comparadores = comparadores;
+	}
+
+	public Integer getValorComparador() {
+		return valorComparador;
+	}
+
+	public void setValorComparador(Integer valorComparador) {
+		this.valorComparador = valorComparador;
 	}
 	
 }
