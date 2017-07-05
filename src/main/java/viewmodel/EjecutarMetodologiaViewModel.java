@@ -28,7 +28,7 @@ public class EjecutarMetodologiaViewModel {
 	            if(empresaMejor.equals(empresa1)){
 	            	return 1;
 	            }
-	            else if(empresaMejor.equals(empresa1)){
+	            else if(empresaMejor.equals(empresa2)){
 	            	return -1;
 	            }
 	            return 0;
