@@ -29,7 +29,7 @@ public class EjecutarMetodologiaView extends Dialog<EjecutarMetodologiaViewModel
 	
 		new Label(mainPanel).setText("Ingrese metodologia");
 		Selector<Metodologia> selectorMetodologias = new Selector<Metodologia>(mainPanel);
-		selectorMetodologias.bindItemsToProperty("metodologias");//.adaptWith(Metodologia.class, "nombre"); hay que adaptarla con alguna property que sea expresivo
+		selectorMetodologias.bindItemsToProperty("metodologias").adaptWith(Metodologia.class, "nombre");
 		selectorMetodologias.bindValueToProperty("metodologiaSeleccionada");
 		
 		new Button(mainPanel).setCaption("Ejecutar metodologia").onClick(this::ejecutarMetodologia);

@@ -21,6 +21,7 @@ public class IngresarMetodologiaViewModel {
 	private Integer valorComparador;
 	private Metodologia metodologia = new Metodologia(null);
 	private List<Comparador> comparadores;
+	private String nombreMetodologia;
 	
 	public void obtenerComparadores(){
 		comparadores = Repositorios.metodologias.allComparadores();
@@ -41,6 +42,7 @@ public class IngresarMetodologiaViewModel {
 		metodologia.setOtroIndicador(indicadorSeleccionado);
 		metodologia.setComparador(comparadorSeleccionado);
 		metodologia.setValor(valorComparador);
+		metodologia.setNombre(nombreMetodologia);
 	}
 	
 	public void obtenerIndicadores() {
@@ -84,6 +86,14 @@ public class IngresarMetodologiaViewModel {
 
 	public void setValorComparador(Integer valorComparador) {
 		this.valorComparador = valorComparador;
+	}
+
+	public String getNombreMetodologia() {
+		return nombreMetodologia;
+	}
+
+	public void setNombreMetodologia(String nombreMetodologia) {
+		this.nombreMetodologia = nombreMetodologia;
 	}
 	
 }

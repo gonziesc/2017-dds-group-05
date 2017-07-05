@@ -5,6 +5,7 @@ import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.NumericField;
 import org.uqbar.arena.widgets.Panel;
 import org.uqbar.arena.widgets.Selector;
+import org.uqbar.arena.widgets.TextBox;
 import org.uqbar.arena.windows.Dialog;
 import org.uqbar.arena.windows.WindowOwner;
 
@@ -24,6 +25,9 @@ public class IngresarMetodologiaView extends Dialog<IngresarMetodologiaViewModel
 	@Override
 	protected void createFormPanel(Panel mainPanel) {
 		this.setTitle("Ingreso de metodologias");
+		
+		new Label(mainPanel).setText("Ingresar nombre de la metodologia");
+		new TextBox(mainPanel).bindValueToProperty("nombreMetodologia");
 		
 		new Label(mainPanel).setText("Ingresar Indicador de la metodologia");
 		
