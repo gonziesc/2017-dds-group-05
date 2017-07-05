@@ -4,7 +4,6 @@ import org.uqbar.commons.utils.Observable;
 
 @Observable
 public class ComparadorValorTiempo extends Comparador{
-	private String nombreComparador;
 	
 	public Empresa calcularMetodologia(Empresa unaEmpresa, Empresa otraEmpresa, Indicador unIndicador, Indicador otroIndicador, int valor, String comparador, int periodoInicio, int periodoFin) {
 		Boolean condicion = unaEmpresa
@@ -16,7 +15,7 @@ public class ComparadorValorTiempo extends Comparador{
 								valor, comparador));
 		return procesarRetorno(unaEmpresa, otraEmpresa, condicion);
 	}
-	@Override
+	
 	public String getNombreComparador(){
 		return "Comparador por valor en tiempo";
 	}

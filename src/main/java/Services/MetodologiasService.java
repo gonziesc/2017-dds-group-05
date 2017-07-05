@@ -42,31 +42,14 @@ public class MetodologiasService {
 	public static void guardarMetodologiaEnServicioExterno(Metodologia unaMetodologia) throws IOException {
 		List<Metodologia> listaMetodologias = obtenerMetodologiasDeServicioExterno();
 		listaMetodologias.add(unaMetodologia);
-		System.out.println(listaMetodologias);
-		FileWriter fileWriter = new FileWriter(rutaArchivoJson);
 		
+		FileWriter fileWriter = new FileWriter(rutaArchivoJson);
+		Type collectionType = new TypeToken<Collection<Metodologia>>(){}.getType();
 		Gson gson = new GsonBuilder().create();
-		String json = gson.toJson(listaMetodologias);
+		String json = gson.toJson(listaMetodologias,collectionType);
 		fileWriter.write(json);
 		fileWriter.close();
 	}
-	/*public static void guardarMetodologiaEnServicioExterno(Metodologia unaMetodologia) throws IOException {
-		List<Metodologia> listaMetodologias = obtenerMetodologiasDeServicioExterno();
-		listaMetodologias.add(unaMetodologia);
-		ObjectMapper objectMapper = new ObjectMapper()
-				.setVisibility(PropertyAccessor.FIELD, Visibility.ANY);
-
-		try{
-			String arrayToJson = objectMapper.writeValueAsString(listaMetodologias);
-			FileWriter file = new FileWriter(rutaArchivoJson);
-			file.write(arrayToJson);
-            file.close();
-			
-		}catch (UserException  e) {
-			noEncuentraElArchivo();
-		}
-		
-	}*/
 
 	public static void noEncuentraElArchivo() throws UserException {
 		throw new UserException ("No se encuentra el archivo en la ruta: " + rutaArchivoJson);

@@ -2,6 +2,8 @@ package model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class Comparador {
 	private String nombreComparador;
 
@@ -44,7 +46,7 @@ public class Comparador {
 		indicador.setValorCuenta(c);
 		return indicador;
 	}
-
+	@JsonIgnore
 	public String getNombreComparador() {
 		return nombreComparador;
 	}

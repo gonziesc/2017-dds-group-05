@@ -10,7 +10,7 @@ public class ComparadorAnios extends Comparador{
 				valor, comparador);
 		return procesarRetorno(unaEmpresa, otraEmpresa, condicion);
 	}
-	@Override
+
 	public String getNombreComparador(){
 		return "Comparador por años";
 	}

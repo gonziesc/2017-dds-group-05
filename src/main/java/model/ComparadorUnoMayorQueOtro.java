@@ -14,7 +14,7 @@ public class ComparadorUnoMayorQueOtro extends Comparador{
 				otroIndicador.getValor(), comparador);
 		return procesarRetorno(unaEmpresa, otraEmpresa, condicion);
 	}
-	@Override
+	
 	public String getNombreComparador(){
 		return "Comparador uno mayor que otro";
 	}

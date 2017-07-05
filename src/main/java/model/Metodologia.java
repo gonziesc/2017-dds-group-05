@@ -81,7 +81,7 @@ public class Metodologia {
 	private Indicador unIndicador;
 	private Indicador otroIndicador;
 	private Comparador comparador;
-	private String comparadorOperando;
+	private String comparadorOperando = ">";
 	private int valor;
 	private int periodoInicio;
 	private int periodoFin;

@@ -16,7 +16,7 @@ public class ComparadorPromedio extends Comparador{
 				comparador);
 		return procesarRetorno(unaEmpresa, otraEmpresa, condicion);
 	}
-	@Override
+
 	public String getNombreComparador(){
 		return "Comparador promedio";
 	}
