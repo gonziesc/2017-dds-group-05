@@ -12,12 +12,15 @@ import Services.EmpresasService;
 import Services.MetodologiasService;
 import model.Empresa;
 import model.Metodologia;
+import model.repositories.Repositorios;
+import model.repositories.*;
 
 @Observable
 public class EjecutarMetodologiaViewModel {
 	private List<Metodologia> metodologias;
 	private Metodologia metodologiaSeleccionada;
 	private ArrayList<Empresa> empresas;
+	private ServiceRepository service;
 	
 	public void ejecutarMetodologia() {
 		Collections.sort(empresas, new Comparator<Empresa>() {
@@ -39,7 +42,7 @@ public class EjecutarMetodologiaViewModel {
 
 	public void obtenerMetodologias() {
 		try {
-			metodologias = MetodologiasService.obtenerMetodologiasDeServicioExterno();
+			metodologias = service.serviceMetodologias.obtenerDeServicioExterno();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}

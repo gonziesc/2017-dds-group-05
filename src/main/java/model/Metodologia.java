@@ -13,10 +13,7 @@ public class Metodologia {
 	private int valor;
 	private int periodoInicio;
 	private int periodoFin;
-	
-	@JsonIgnore
 	private Indicador unIndicador;
-	@JsonIgnore
 	private Indicador otroIndicador;
 	
 
