@@ -46,7 +46,7 @@ public class Comparador {
 		indicador.setValorCuenta(c);
 		return indicador;
 	}
-	@JsonIgnore
+	
 	public String getNombreComparador() {
 		return nombreComparador;
 	}

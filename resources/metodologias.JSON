@@ -1,1 +1,79 @@
-[{"comparador":{},"valor":40,"periodoInicio":0,"periodoFin":0},{"comparador":{},"valor":40,"periodoInicio":0,"periodoFin":0},{"comparador":{},"valor":40,"periodoInicio":0,"periodoFin":0},{"nombre":"La mas mejor","comparador":{},"valor":1,"periodoInicio":0,"periodoFin":0},{"nombre":"#LaMetdologia","comparador":{},"valor":17,"periodoInicio":0,"periodoFin":0},{"nombre":"La la metodolo","comparador":{},"valor":32,"periodoInicio":0,"periodoFin":0},{"nombre":"La met","unIndicador":{"parametro1":{"valor":13,"parametro1":{"valor":13,"nombre":""},"nombre":""},"nombre":"asd","valor":13},"otroIndicador":{"parametro1":{"valor":13,"parametro1":{"valor":13,"nombre":""},"nombre":""},"nombre":"asd","valor":13},"comparador":{},"comparadorOperando":"\u003e","valor":2,"periodoInicio":0,"periodoFin":0}]
+[ {
+  "nombre" : "La mas mejor",
+  "comparador" : {
+    "nombreComparador" : null
+  },
+  "comparadorOperando" : null,
+  "valor" : 1,
+  "periodoInicio" : 0,
+  "periodoFin" : 0,
+  "changeSupport" : {
+    "propertyChangeListeners" : [ ]
+  }
+}, {
+  "nombre" : "#LaMetdologia",
+  "comparador" : {
+    "nombreComparador" : null
+  },
+  "comparadorOperando" : null,
+  "valor" : 17,
+  "periodoInicio" : 0,
+  "periodoFin" : 0,
+  "changeSupport" : {
+    "propertyChangeListeners" : [ ]
+  }
+}, {
+  "nombre" : "La la metodolo",
+  "comparador" : {
+    "nombreComparador" : null
+  },
+  "comparadorOperando" : null,
+  "valor" : 32,
+  "periodoInicio" : 0,
+  "periodoFin" : 0,
+  "changeSupport" : {
+    "propertyChangeListeners" : [ ]
+  }
+}, {
+  "nombre" : "La met",
+  "comparador" : {
+    "nombreComparador" : null
+  },
+  "comparadorOperando" : null,
+  "valor" : 2,
+  "periodoInicio" : 0,
+  "periodoFin" : 0,
+  "changeSupport" : {
+    "propertyChangeListeners" : [ ]
+  }
+}, {
+  "nombre" : "sa",
+  "comparador" : {
+    "nombreComparador" : null
+  },
+  "comparadorOperando" : null,
+  "valor" : 21,
+  "periodoInicio" : 0,
+  "periodoFin" : 0,
+  "changeSupport" : {
+    "propertyChangeListeners" : [ ]
+  }
+}, {
+  "nombre" : "sa",
+  "comparador" : {
+    "nombreComparador" : "Comparador por valor",
+    "changeSupport" : {
+      "propertyChangeListeners" : [ {
+        "listener" : { },
+        "propertyName" : "nombreComparador"
+      } ]
+    }
+  },
+  "comparadorOperando" : ">",
+  "valor" : 21,
+  "periodoInicio" : 0,
+  "periodoFin" : 0,
+  "changeSupport" : {
+    "propertyChangeListeners" : [ ]
+  }
+} ]

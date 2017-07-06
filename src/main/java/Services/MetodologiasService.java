@@ -21,6 +21,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
+import model.Indicador;
 import model.Metodologia;
 
 public class MetodologiasService {
@@ -43,12 +44,19 @@ public class MetodologiasService {
 		List<Metodologia> listaMetodologias = obtenerMetodologiasDeServicioExterno();
 		listaMetodologias.add(unaMetodologia);
 		
-		FileWriter fileWriter = new FileWriter(rutaArchivoJson);
-		Type collectionType = new TypeToken<Collection<Metodologia>>(){}.getType();
-		Gson gson = new GsonBuilder().create();
-		String json = gson.toJson(listaMetodologias,collectionType);
-		fileWriter.write(json);
-		fileWriter.close();
+		ObjectMapper objectMapper = new ObjectMapper().configure(SerializationFeature.INDENT_OUTPUT, true);
+		objectMapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
+		try{
+			String arrayToJson = objectMapper.writeValueAsString(listaMetodologias);
+			FileWriter file = new FileWriter(rutaArchivoJson);
+			file.write(arrayToJson);
+            file.close();
+			
+		}catch (UserException  e) {
+			noEncuentraElArchivo();
+		}
+				
+		
 	}
 
 	public static void noEncuentraElArchivo() throws UserException {

@@ -2,17 +2,23 @@ package model;
 
 import org.uqbar.commons.utils.Observable;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Observable
 public class Metodologia {
 	
 	private String nombre;
-	private Indicador unIndicador;
-	private Indicador otroIndicador;
 	private Comparador comparador;
 	private String comparadorOperando = ">";
 	private int valor;
 	private int periodoInicio;
 	private int periodoFin;
+	
+	@JsonIgnore
+	private Indicador unIndicador;
+	@JsonIgnore
+	private Indicador otroIndicador;
+	
 
 	public Metodologia(Comparador unComparador) {
 		comparador = unComparador;
