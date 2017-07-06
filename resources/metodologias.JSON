@@ -7,6 +7,8 @@
   "valor" : 1,
   "periodoInicio" : 0,
   "periodoFin" : 0,
+  "unIndicador" : null,
+  "otroIndicador" : null,
   "changeSupport" : {
     "propertyChangeListeners" : [ ]
   }
@@ -19,6 +21,8 @@
   "valor" : 17,
   "periodoInicio" : 0,
   "periodoFin" : 0,
+  "unIndicador" : null,
+  "otroIndicador" : null,
   "changeSupport" : {
     "propertyChangeListeners" : [ ]
   }
@@ -31,6 +35,8 @@
   "valor" : 32,
   "periodoInicio" : 0,
   "periodoFin" : 0,
+  "unIndicador" : null,
+  "otroIndicador" : null,
   "changeSupport" : {
     "propertyChangeListeners" : [ ]
   }
@@ -43,6 +49,8 @@
   "valor" : 2,
   "periodoInicio" : 0,
   "periodoFin" : 0,
+  "unIndicador" : null,
+  "otroIndicador" : null,
   "changeSupport" : {
     "propertyChangeListeners" : [ ]
   }
@@ -55,13 +63,71 @@
   "valor" : 21,
   "periodoInicio" : 0,
   "periodoFin" : 0,
+  "unIndicador" : null,
+  "otroIndicador" : null,
   "changeSupport" : {
     "propertyChangeListeners" : [ ]
   }
 }, {
-  "nombre" : "sa",
+  "nombre" : "Mayor que otro valor",
   "comparador" : {
-    "nombreComparador" : "Comparador por valor",
+    "nombreComparador" : null
+  },
+  "comparadorOperando" : null,
+  "valor" : 21,
+  "periodoInicio" : 0,
+  "periodoFin" : 0,
+  "unIndicador" : null,
+  "otroIndicador" : null,
+  "changeSupport" : {
+    "propertyChangeListeners" : [ ]
+  }
+}, {
+  "nombre" : null,
+  "comparador" : {
+    "nombreComparador" : null
+  },
+  "comparadorOperando" : null,
+  "valor" : 100,
+  "periodoInicio" : 0,
+  "periodoFin" : 0,
+  "unIndicador" : null,
+  "otroIndicador" : null,
+  "changeSupport" : {
+    "propertyChangeListeners" : [ ]
+  }
+}, {
+  "nombre" : "Maximizar ROE",
+  "comparador" : {
+    "nombreComparador" : null
+  },
+  "comparadorOperando" : null,
+  "valor" : 120,
+  "periodoInicio" : 0,
+  "periodoFin" : 0,
+  "unIndicador" : null,
+  "otroIndicador" : null,
+  "changeSupport" : {
+    "propertyChangeListeners" : [ ]
+  }
+}, {
+  "nombre" : "Hola",
+  "comparador" : {
+    "nombreComparador" : null
+  },
+  "comparadorOperando" : null,
+  "valor" : 1,
+  "periodoInicio" : 0,
+  "periodoFin" : 0,
+  "unIndicador" : null,
+  "otroIndicador" : null,
+  "changeSupport" : {
+    "propertyChangeListeners" : [ ]
+  }
+}, {
+  "nombre" : "ignore",
+  "comparador" : {
+    "nombreComparador" : "Comparador uno mayor que otro",
     "changeSupport" : {
       "propertyChangeListeners" : [ {
         "listener" : { },
@@ -70,9 +136,95 @@
     }
   },
   "comparadorOperando" : ">",
-  "valor" : 21,
+  "valor" : 1,
   "periodoInicio" : 0,
   "periodoFin" : 0,
+  "unIndicador" : {
+    "parametro1" : {
+      "valor" : 4,
+      "parametro1" : {
+        "valor" : 4,
+        "parametro1" : null,
+        "parametro2" : null,
+        "nombre" : "",
+        "operacion" : null
+      },
+      "parametro2" : null,
+      "nombre" : "",
+      "operacion" : null
+    },
+    "parametro2" : {
+      "valor" : 12,
+      "parametro1" : null,
+      "parametro2" : {
+        "valor" : 3,
+        "parametro1" : {
+          "valor" : 3,
+          "parametro1" : null,
+          "parametro2" : null,
+          "nombre" : "",
+          "operacion" : null
+        },
+        "parametro2" : null,
+        "nombre" : "",
+        "operacion" : null
+      },
+      "nombre" : "",
+      "operacion" : null
+    },
+    "operacion" : "+",
+    "nombre" : "ROE",
+    "valor" : 19,
+    "changeSupport" : {
+      "propertyChangeListeners" : [ {
+        "listener" : { },
+        "propertyName" : "nombre"
+      } ]
+    }
+  },
+  "otroIndicador" : {
+    "parametro1" : {
+      "valor" : 4,
+      "parametro1" : {
+        "valor" : 4,
+        "parametro1" : null,
+        "parametro2" : null,
+        "nombre" : "",
+        "operacion" : null
+      },
+      "parametro2" : null,
+      "nombre" : "",
+      "operacion" : null
+    },
+    "parametro2" : {
+      "valor" : 18,
+      "parametro1" : null,
+      "parametro2" : {
+        "valor" : 3,
+        "parametro1" : {
+          "valor" : 3,
+          "parametro1" : null,
+          "parametro2" : null,
+          "nombre" : "",
+          "operacion" : null
+        },
+        "parametro2" : null,
+        "nombre" : "",
+        "operacion" : null
+      },
+      "nombre" : "",
+      "operacion" : null
+    },
+    "operacion" : "+",
+    "nombre" : "ROE",
+    "valor" : 25,
+    "changeSupport" : {
+      "propertyChangeListeners" : [ {
+        "listener" : { },
+        "propertyName" : "nombre"
+      } ]
+    }
+  },
   "changeSupport" : {
     "propertyChangeListeners" : [ ]
   }

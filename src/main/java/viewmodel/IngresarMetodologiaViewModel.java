@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
+import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.Observable;
 
 import Services.IndicadoresService;
@@ -19,7 +20,7 @@ public class IngresarMetodologiaViewModel {
 	private Indicador indicadorSeleccionado;
 	private Comparador comparadorSeleccionado;
 	private Integer valorComparador;
-	private Metodologia metodologia = new Metodologia(null);
+	private Metodologia metodologia;
 	private List<Comparador> comparadores;
 	private String nombreMetodologia;
 	
@@ -38,9 +39,9 @@ public class IngresarMetodologiaViewModel {
 	}
 
 	public void setearMetodologia() {
+		metodologia = new Metodologia(comparadorSeleccionado);
 		metodologia.setUnIndicador(indicadorSeleccionado);
 		metodologia.setOtroIndicador(indicadorSeleccionado);
-		metodologia.setComparador(comparadorSeleccionado);
 		metodologia.setValor(valorComparador);
 		metodologia.setNombre(nombreMetodologia);
 	}
@@ -94,6 +95,18 @@ public class IngresarMetodologiaViewModel {
 
 	public void setNombreMetodologia(String nombreMetodologia) {
 		this.nombreMetodologia = nombreMetodologia;
+	}
+
+	public void validarIngreso(String mensaje, Object atributoAEvaluar) {
+		if (atributoAEvaluar == null){
+			throw new UserException(mensaje);
+		}
+	}
+	public void validarComparadorSeleccionado(){
+		this.validarIngreso("Ingrese comparador", this.comparadorSeleccionado);		
+	}
+	public void validarIndicadorSeleccionado(){
+		this.validarIngreso("Ingrese indicador", this.indicadorSeleccionado);
 	}
 	
 }

@@ -48,7 +48,11 @@ public class IngresarMetodologiaView extends Dialog<IngresarMetodologiaViewModel
 		
 	}
 	public void ingresarMetodologia(){
+		this.getModelObject().validarIndicadorSeleccionado();
+		this.getModelObject().validarComparadorSeleccionado();
 		this.getModelObject().ingresarMetodologia();
 		this.close();
 	}
+
+
 }
