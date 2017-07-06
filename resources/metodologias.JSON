@@ -83,7 +83,7 @@
     "propertyChangeListeners" : [ ]
   }
 }, {
-  "nombre" : null,
+  "nombre" : "Hola",
   "comparador" : {
     "nombreComparador" : null
   },

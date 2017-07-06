@@ -14,6 +14,7 @@ import Services.EmpresasService;
 import Services.MetodologiasService;
 import model.Empresa;
 import model.Metodologia;
+import model.repositories.Repositorios;
 
 @Observable
 public class EjecutarMetodologiaViewModel {
@@ -38,8 +39,9 @@ public class EjecutarMetodologiaViewModel {
 	            return 0;
 	        }
 	    });
-						
+		actualizarTabla();
 	}
+
 
 	private void validarIngreso() {
 		if (metodologiaSeleccionada == null){
@@ -56,13 +58,14 @@ public class EjecutarMetodologiaViewModel {
 	}
 	
 	public void obtenerEmpresas(){
-		try {
-			empresas = (ArrayList<Empresa>) EmpresasService.obtenerEmpresasDeServicioExterno();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+			this.setEmpresas((ArrayList<Empresa>) Repositorios.empresas.all());
 	}
 
+	public void actualizarTabla() {
+		ArrayList<Empresa> empresasNuevo = empresas;
+		this.setEmpresas(null);
+		this.setEmpresas(empresasNuevo);
+	}
 	public List<Metodologia> getMetodologias() {
 		return metodologias;
 	}
