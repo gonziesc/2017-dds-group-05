@@ -108,5 +108,8 @@ public class IngresarMetodologiaViewModel {
 	public void validarIndicadorSeleccionado(){
 		this.validarIngreso("Ingrese indicador", this.indicadorSeleccionado);
 	}
+	public void validarNombre(){
+		this.validarIngreso("Ingrese el nombre de la metodologia", this.nombreMetodologia);
+	}
 	
 }

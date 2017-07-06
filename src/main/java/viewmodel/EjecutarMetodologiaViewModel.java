@@ -14,16 +14,13 @@ import Services.EmpresasService;
 import Services.MetodologiasService;
 import model.Empresa;
 import model.Metodologia;
-import model.repositories.Repositorios;
-import model.repositories.*;
 
 @Observable
 public class EjecutarMetodologiaViewModel {
-	private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 	private List<Metodologia> metodologias;
 	private Metodologia metodologiaSeleccionada;
 	private ArrayList<Empresa> empresas;
-	private ServiceRepository service;
+
 	
 	public void ejecutarMetodologia() {
 		this.validarIngreso();
@@ -32,7 +29,6 @@ public class EjecutarMetodologiaViewModel {
 	        public int compare(Empresa empresa1, Empresa empresa2)
 	        {
 	            Empresa empresaMejor = metodologiaSeleccionada.calcularMetodologia(empresa1, empresa2);
-	            System.out.println(empresaMejor.getNombreEmpresa());
 	            if(empresaMejor.equals(empresa1)){
 	            	return 1;
 	            }
@@ -53,7 +49,7 @@ public class EjecutarMetodologiaViewModel {
 
 	public void obtenerMetodologias() {
 		try {
-			metodologias = service.serviceMetodologias.obtenerDeServicioExterno();
+			metodologias = MetodologiasService.obtenerMetodologiasDeServicioExterno();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -88,7 +84,6 @@ public class EjecutarMetodologiaViewModel {
 	}
 
 	public void setEmpresas(ArrayList<Empresa> empresas) {
-		ArrayList<Empresa> oldEmpresas = this.getEmpresas();
 		this.empresas = empresas;
 		
 	}

@@ -25,7 +25,6 @@ public class ConsultarValorCuentaViewModel {
 			indicadores = IndicadoresService.obtenerInicadoresDeServicioExterno();
 			indicadores.stream().forEach(i -> this.procesarIndicador(i));
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
