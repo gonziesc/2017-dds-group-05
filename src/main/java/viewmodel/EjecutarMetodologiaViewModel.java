@@ -14,31 +14,18 @@ import Services.EmpresasService;
 import Services.MetodologiasService;
 import model.Empresa;
 import model.Metodologia;
+import model.Metodologia2;
 
 @Observable
 public class EjecutarMetodologiaViewModel {
 	private List<Metodologia> metodologias;
-	private Metodologia metodologiaSeleccionada;
+	private Metodologia2 metodologiaSeleccionada;
 	private ArrayList<Empresa> empresas;
 
 	
 	public void ejecutarMetodologia() {
 		this.validarIngreso();
-		Collections.sort(empresas, new Comparator<Empresa>() {
-	        @Override
-	        public int compare(Empresa empresa1, Empresa empresa2)
-	        {
-	            Empresa empresaMejor = metodologiaSeleccionada.calcularMetodologia(empresa1, empresa2);
-	            if(empresaMejor.equals(empresa1)){
-	            	return 1;
-	            }
-	            else if(empresaMejor.equals(empresa2)){
-	            	return -1;
-	            }
-	            return 0;
-	        }
-	    });
-						
+		metodologiaSeleccionada.calcularMetodologia2(empresas);		
 	}
 
 	private void validarIngreso() {
@@ -71,11 +58,11 @@ public class EjecutarMetodologiaViewModel {
 		this.metodologias = metodologias;
 	}
 	
-	public Metodologia getMetodologiaSeleccionada() {
+	public Metodologia2 getMetodologiaSeleccionada() {
 		return metodologiaSeleccionada;
 	}
 	
-	public void setMetodologiaSeleccionada(Metodologia metodologiaSeleccionada) {
+	public void setMetodologiaSeleccionada(Metodologia2 metodologiaSeleccionada) {
 		this.metodologiaSeleccionada = metodologiaSeleccionada;
 	}
 
