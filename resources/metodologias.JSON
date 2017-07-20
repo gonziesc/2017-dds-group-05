@@ -183,22 +183,44 @@
 }, {
   "nombre" : "DSA",
   "comparador" : {
-    "nombreComparador" : "Comparador uno mayor que otro",
+    "nombreComparador" : null
+  },
+  "comparadorOperando" : null,
+  "valor" : 15,
+  "periodoInicio" : 0,
+  "periodoFin" : 0,
+  "unIndicador" : null,
+  "otroIndicador" : null,
+  "changeSupport" : {
+    "propertyChangeListeners" : [ ]
+  }
+}, {
+  "nombre" : "hol",
+  "comparador" : {
+    "nombreComparador" : null
+  },
+  "comparadorOperando" : null,
+  "valor" : 25,
+  "periodoInicio" : 0,
+  "periodoFin" : 0,
+  "unIndicador" : null,
+  "otroIndicador" : null,
+  "changeSupport" : {
+    "propertyChangeListeners" : [ ]
+  }
+}, {
+  "nombre" : "hgfhg",
+  "comparador" : {
+    "nombreComparador" : "Comparador por valor",
     "changeSupport" : {
       "propertyChangeListeners" : [ {
-        "listener" : { },
-        "propertyName" : "nombreComparador"
-      }, {
-        "listener" : { },
-        "propertyName" : "nombreComparador"
-      }, {
         "listener" : { },
         "propertyName" : "nombreComparador"
       } ]
     }
   },
   "comparadorOperando" : ">",
-  "valor" : 15,
+  "valor" : 21,
   "periodoInicio" : 0,
   "periodoFin" : 0,
   "unIndicador" : {

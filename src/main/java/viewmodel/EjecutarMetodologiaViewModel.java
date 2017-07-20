@@ -18,13 +18,14 @@ import model.Metodologia2;
 
 @Observable
 public class EjecutarMetodologiaViewModel {
-	private List<Metodologia> metodologias;
+	private List<Metodologia2> metodologias;
 	private Metodologia2 metodologiaSeleccionada;
 	private ArrayList<Empresa> empresas;
 
 	
 	public void ejecutarMetodologia() {
 		this.validarIngreso();
+		/* VALIDAR QUE ESTO ESTE BIEN*/
 		metodologiaSeleccionada.calcularMetodologia2(empresas);		
 	}
 
@@ -50,11 +51,11 @@ public class EjecutarMetodologiaViewModel {
 		}
 	}
 
-	public List<Metodologia> getMetodologias() {
+	public List<Metodologia2> getMetodologias() {
 		return metodologias;
 	}
 	
-	public void setMetodologias(List<Metodologia> metodologias) {
+	public void setMetodologias(List<Metodologia2> metodologias) {
 		this.metodologias = metodologias;
 	}
 	

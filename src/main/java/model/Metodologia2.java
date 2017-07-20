@@ -3,7 +3,12 @@ package model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.LinkedList;
+
+
+
 import java.util.List;
+
 import org.uqbar.commons.utils.Observable;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -24,8 +29,8 @@ public class Metodologia2 {
 
 	public Metodologia2(String unNombre) {
 		nombre = unNombre;
-		comparadoresFiltrado = new ArrayList<Comparador>();
-		comparadoresOrdenamiento = new ArrayList<Comparador>();
+		comparadoresFiltrado = new LinkedList<Comparador>();
+		comparadoresOrdenamiento = new LinkedList<Comparador>();
 	}
 
 	public void calcularMetodologia2(List<Empresa> listaEmpresas){
@@ -96,6 +101,14 @@ public class Metodologia2 {
 
 	public List<Comparador> getComparadoresFiltrado() {
 		return comparadoresFiltrado;
+	}
+	
+	public void addComparadorParaFilatrado(Comparador unComparador){
+		comparadoresFiltrado.add(unComparador);
+	}
+	
+	public void addComparadorParaOrden(Comparador unComparador){
+		comparadoresOrdenamiento.add(unComparador);
 	}
 
 	public void setComparadorFiltrado(List<Comparador> comparadoresFiltrado) {
