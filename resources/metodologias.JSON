@@ -155,16 +155,50 @@
 }, {
   "nombre" : "asd",
   "comparador" : {
+    "nombreComparador" : null
+  },
+  "comparadorOperando" : null,
+  "valor" : 1,
+  "periodoInicio" : 0,
+  "periodoFin" : 0,
+  "unIndicador" : null,
+  "otroIndicador" : null,
+  "changeSupport" : {
+    "propertyChangeListeners" : [ ]
+  }
+}, {
+  "nombre" : "ASD",
+  "comparador" : {
+    "nombreComparador" : null
+  },
+  "comparadorOperando" : null,
+  "valor" : 15,
+  "periodoInicio" : 0,
+  "periodoFin" : 0,
+  "unIndicador" : null,
+  "otroIndicador" : null,
+  "changeSupport" : {
+    "propertyChangeListeners" : [ ]
+  }
+}, {
+  "nombre" : "DSA",
+  "comparador" : {
     "nombreComparador" : "Comparador uno mayor que otro",
     "changeSupport" : {
       "propertyChangeListeners" : [ {
+        "listener" : { },
+        "propertyName" : "nombreComparador"
+      }, {
+        "listener" : { },
+        "propertyName" : "nombreComparador"
+      }, {
         "listener" : { },
         "propertyName" : "nombreComparador"
       } ]
     }
   },
   "comparadorOperando" : ">",
-  "valor" : 1,
+  "valor" : 15,
   "periodoInicio" : 0,
   "periodoFin" : 0,
   "unIndicador" : {

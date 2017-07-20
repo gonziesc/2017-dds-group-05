@@ -1,1 +1,85 @@
-[{"parametro1":{"valor":4,"parametro1":{"valor":4,"parametro1":null,"parametro2":null,"nombre":"","operacion":null},"parametro2":null,"nombre":"","operacion":null},"parametro2":{"valor":9,"parametro1":null,"parametro2":{"valor":3,"parametro1":{"valor":3,"parametro1":null,"parametro2":null,"nombre":"","operacion":null},"parametro2":null,"nombre":"","operacion":null},"nombre":"","operacion":null},"operacion":"+","nombre":"ROE","valor":16,"changeSupport":{"propertyChangeListeners":[]}},{"parametro1":{"valor":13,"parametro1":{"valor":13,"parametro1":null,"parametro2":null,"nombre":"","operacion":null,"changeSupport":{"propertyChangeListeners":[]}},"parametro2":null,"nombre":"","operacion":null},"parametro2":null,"operacion":null,"nombre":"ROA","valor":13,"changeSupport":{"propertyChangeListeners":[]}}]
+[ {
+  "parametro1" : {
+    "valor" : 4,
+    "parametro1" : {
+      "valor" : 4,
+      "parametro1" : null,
+      "parametro2" : null,
+      "nombre" : "",
+      "operacion" : null
+    },
+    "parametro2" : null,
+    "nombre" : "",
+    "operacion" : null
+  },
+  "parametro2" : {
+    "valor" : 12,
+    "parametro1" : null,
+    "parametro2" : {
+      "valor" : 3,
+      "parametro1" : {
+        "valor" : 3,
+        "parametro1" : null,
+        "parametro2" : null,
+        "nombre" : "",
+        "operacion" : null
+      },
+      "parametro2" : null,
+      "nombre" : "",
+      "operacion" : null
+    },
+    "nombre" : "",
+    "operacion" : null
+  },
+  "operacion" : "+",
+  "nombre" : "ROE",
+  "valor" : 19,
+  "changeSupport" : {
+    "propertyChangeListeners" : [ ]
+  }
+}, {
+  "parametro1" : {
+    "valor" : 13,
+    "parametro1" : {
+      "valor" : 13,
+      "parametro1" : null,
+      "parametro2" : null,
+      "nombre" : "",
+      "operacion" : null
+    },
+    "parametro2" : null,
+    "nombre" : "",
+    "operacion" : null
+  },
+  "parametro2" : null,
+  "operacion" : null,
+  "nombre" : "ROA",
+  "valor" : 13,
+  "changeSupport" : {
+    "propertyChangeListeners" : [ ]
+  }
+}, {
+  "parametro1" : {
+    "valor" : 333,
+    "parametro1" : {
+      "valor" : 333,
+      "parametro1" : null,
+      "parametro2" : null,
+      "nombre" : "",
+      "operacion" : null,
+      "changeSupport" : {
+        "propertyChangeListeners" : [ ]
+      }
+    },
+    "parametro2" : null,
+    "nombre" : "",
+    "operacion" : null
+  },
+  "parametro2" : null,
+  "operacion" : null,
+  "nombre" : "AAA",
+  "valor" : 333,
+  "changeSupport" : {
+    "propertyChangeListeners" : [ ]
+  }
+} ]
