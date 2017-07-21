@@ -2,6 +2,7 @@ package viewmodel;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.uqbar.commons.model.UserException;
@@ -12,6 +13,7 @@ import Services.MetodologiasService;
 import model.Comparador;
 import model.Indicador;
 import model.Metodologia;
+import model.Metodologia2;
 import model.repositories.Repositorios;
 
 @Observable
@@ -20,7 +22,7 @@ public class IngresarMetodologiaViewModel {
 	private Indicador indicadorSeleccionado;
 	private Comparador comparadorSeleccionado;
 	private Integer valorComparador;
-	private Metodologia metodologia;
+	private Metodologia2 metodologia;
 	private List<Comparador> comparadores;
 	private String nombreMetodologia;
 	
@@ -39,11 +41,17 @@ public class IngresarMetodologiaViewModel {
 	}
 
 	public void setearMetodologia() {
-		metodologia = new Metodologia(comparadorSeleccionado);
+		metodologia = new Metodologia2(nombreMetodologia);
 		metodologia.setUnIndicador(indicadorSeleccionado);
 		metodologia.setOtroIndicador(indicadorSeleccionado);
 		metodologia.setValor(valorComparador);
-		metodologia.setNombre(nombreMetodologia);
+		List<Comparador> comparadoresSeleccionados = new ArrayList<Comparador>();
+		/* ACA LO QUE HAY QUE HACER ES AGARRAR TODOS LOS COMPARADORES SELECCIONADOS
+		 * Y METERLOS EN DOS LISTAS
+		 * hay qeu hacer dos checkbox en la view
+		 */
+		comparadoresSeleccionados.add(comparadorSeleccionado);
+		metodologia.setComparadorFiltrado(comparadoresSeleccionados);
 	}
 	
 	public void obtenerIndicadores() {

@@ -22,26 +22,26 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import model.Indicador;
-import model.Metodologia;
+import model.Metodologia2;
 
 public class MetodologiasService {
-	static String rutaArchivoJson = "./resources/metodologias.JSON";
+	static String rutaArchivoJson = "./resources/metodologias2.JSON";
 	
-	public static List<Metodologia> obtenerMetodologiasDeServicioExterno() throws FileNotFoundException {
+	public static List<Metodologia2> obtenerMetodologiasDeServicioExterno() throws FileNotFoundException {
 		Gson gson = new GsonBuilder()
 			    .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
 			    .create();
 		try {
-			Type collectionType = new TypeToken<Collection<Metodologia>>(){}.getType();
-			List<Metodologia> listaMetodologias = gson.fromJson(new FileReader(rutaArchivoJson), collectionType);
+			Type collectionType = new TypeToken<Collection<Metodologia2>>(){}.getType();
+			List<Metodologia2> listaMetodologias = gson.fromJson(new FileReader(rutaArchivoJson), collectionType);
 			return listaMetodologias;
 		}catch (UserException  e) {
 			noEncuentraElArchivo();
 		}
 		return null;
 	}
-	public static void guardarMetodologiaEnServicioExterno(Metodologia unaMetodologia) throws IOException {
-		List<Metodologia> listaMetodologias = obtenerMetodologiasDeServicioExterno();
+	public static void guardarMetodologiaEnServicioExterno(Metodologia2 unaMetodologia) throws IOException {
+		List<Metodologia2> listaMetodologias = obtenerMetodologiasDeServicioExterno();
 		listaMetodologias.add(unaMetodologia);
 		
 		ObjectMapper objectMapper = new ObjectMapper().configure(SerializationFeature.INDENT_OUTPUT, true);

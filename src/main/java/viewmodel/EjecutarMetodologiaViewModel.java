@@ -1,6 +1,6 @@
 package viewmodel;
 
-import java.beans.PropertyChangeSupport;
+
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -15,17 +15,19 @@ import Services.MetodologiasService;
 import model.Empresa;
 import model.Metodologia;
 import model.Metodologia2;
+import model.repositories.Repositorios;
 
 @Observable
 public class EjecutarMetodologiaViewModel {
-	private List<Metodologia> metodologias;
+	private List<Metodologia2> metodologias;
 	private Metodologia2 metodologiaSeleccionada;
 	private ArrayList<Empresa> empresas;
 
 	
 	public void ejecutarMetodologia() {
 		this.validarIngreso();
-		metodologiaSeleccionada.calcularMetodologia2(empresas);	
+		/* VALIDAR QUE ESTO ESTE BIEN*/
+		metodologiaSeleccionada.calcularMetodologia2(empresas);		
 	}
 
 
@@ -52,11 +54,11 @@ public class EjecutarMetodologiaViewModel {
 		this.setEmpresas(null);
 		this.setEmpresas(empresasNuevo);
 	}
-	public List<Metodologia> getMetodologias() {
+	public List<Metodologia2> getMetodologias() {
 		return metodologias;
 	}
 	
-	public void setMetodologias(List<Metodologia> metodologias) {
+	public void setMetodologias(List<Metodologia2> metodologias) {
 		this.metodologias = metodologias;
 	}
 	
