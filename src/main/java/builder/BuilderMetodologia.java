@@ -22,8 +22,8 @@ public class BuilderMetodologia {
 		Metodologia2 metodologia = new Metodologia2(nombre);
 		metodologia.setUnIndicador(unIndicador);
 		metodologia.setOtroIndicador(otroIndicador);
-		metodologia.setComparadorOrdenamiento(comparadoresOrdenamiento);
-		metodologia.setComparadorFiltrado(comparadoresFiltrado);
+		metodologia.setComparadoresOrdenamiento(comparadoresOrdenamiento);
+		metodologia.setComparadoresFiltrado(comparadoresFiltrado);
 		return metodologia;
 	}
 	

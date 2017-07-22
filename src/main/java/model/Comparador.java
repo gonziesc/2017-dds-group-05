@@ -2,8 +2,10 @@ package model;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.uqbar.commons.utils.Observable;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+@Observable
 public class Comparador {
 	private String nombreComparador;
 

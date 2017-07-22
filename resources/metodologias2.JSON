@@ -1,23 +1,14 @@
 [ {
-  "nombre" : "asd",
-  "comparadoresFiltrado" : [ {
-    "nombreComparador" : "Comparador por valor",
-    "changeSupport" : {
-      "propertyChangeListeners" : [ {
-        "listener" : { },
-        "propertyName" : "nombreComparador"
-      } ]
-    }
-  } ],
-  "comparadoresOrdenamiento" : [ ],
-  "valor" : 121,
+  "nombre" : "asdasd",
+  "operandoOrdenamiento" : ">",
+  "valor" : 0,
   "periodoInicio" : 0,
   "periodoFin" : 0,
   "unIndicador" : {
     "parametro1" : {
-      "valor" : 13,
+      "valor" : 333,
       "parametro1" : {
-        "valor" : 13,
+        "valor" : 333,
         "parametro1" : null,
         "parametro2" : null,
         "nombre" : "",
@@ -29,8 +20,8 @@
     },
     "parametro2" : null,
     "operacion" : null,
-    "nombre" : "ROA",
-    "valor" : 13,
+    "nombre" : "AAA",
+    "valor" : 333,
     "changeSupport" : {
       "propertyChangeListeners" : [ {
         "listener" : { },
@@ -40,9 +31,9 @@
   },
   "otroIndicador" : {
     "parametro1" : {
-      "valor" : 13,
+      "valor" : 333,
       "parametro1" : {
-        "valor" : 13,
+        "valor" : 333,
         "parametro1" : null,
         "parametro2" : null,
         "nombre" : "",
@@ -54,8 +45,8 @@
     },
     "parametro2" : null,
     "operacion" : null,
-    "nombre" : "ROA",
-    "valor" : 13,
+    "nombre" : "AAA",
+    "valor" : 333,
     "changeSupport" : {
       "propertyChangeListeners" : [ {
         "listener" : { },
@@ -63,8 +54,17 @@
       } ]
     }
   },
+  "comparadoresFiltrado" : [ {
+    "nombreComparador" : "Comparador uno mayor que otro",
+    "changeSupport" : {
+      "propertyChangeListeners" : [ {
+        "listener" : { },
+        "propertyName" : "nombreComparador"
+      } ]
+    }
+  } ],
+  "comparadoresOrdenamiento" : [ ],
   "changeSupport" : {
     "propertyChangeListeners" : [ ]
-  },
-  "comparadorOperando" : ">"
+  }
 } ]

@@ -1,12 +1,12 @@
 package Services;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -21,19 +21,17 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
-import model.Indicador;
 import model.Metodologia2;
 
 public class MetodologiasService {
 	static String rutaArchivoJson = "./resources/metodologias2.JSON";
 	
-	public static List<Metodologia2> obtenerMetodologiasDeServicioExterno() throws FileNotFoundException {
+	public static ArrayList<Metodologia2> obtenerMetodologiasDeServicioExterno() throws FileNotFoundException {
 		Gson gson = new GsonBuilder()
-			    .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
 			    .create();
 		try {
 			Type collectionType = new TypeToken<Collection<Metodologia2>>(){}.getType();
-			List<Metodologia2> listaMetodologias = gson.fromJson(new FileReader(rutaArchivoJson), collectionType);
+			ArrayList<Metodologia2> listaMetodologias = gson.fromJson(new FileReader(rutaArchivoJson), collectionType);
 			return listaMetodologias;
 		}catch (UserException  e) {
 			noEncuentraElArchivo();
@@ -41,11 +39,12 @@ public class MetodologiasService {
 		return null;
 	}
 	public static void guardarMetodologiaEnServicioExterno(Metodologia2 unaMetodologia) throws IOException {
-		List<Metodologia2> listaMetodologias = obtenerMetodologiasDeServicioExterno();
+		ArrayList<Metodologia2> listaMetodologias = obtenerMetodologiasDeServicioExterno();
 		listaMetodologias.add(unaMetodologia);
 		
-		ObjectMapper objectMapper = new ObjectMapper().configure(SerializationFeature.INDENT_OUTPUT, true);
-		objectMapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
+		ObjectMapper objectMapper = new ObjectMapper()
+		.configure(SerializationFeature.INDENT_OUTPUT, true)
+		.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
 		try{
 			String arrayToJson = objectMapper.writeValueAsString(listaMetodologias);
 			FileWriter file = new FileWriter(rutaArchivoJson);

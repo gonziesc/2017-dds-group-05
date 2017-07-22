@@ -40,7 +40,8 @@ public class IndicadoresService {
 	public static void guardarIndicadoresEnServicioExterno(Indicador unIndicador) throws IOException {
 		List<Indicador> listaIndicadores = obtenerInicadoresDeServicioExterno();
 		listaIndicadores.add(unIndicador);
-		ObjectMapper objectMapper = new ObjectMapper().configure(SerializationFeature.INDENT_OUTPUT, true);
+		ObjectMapper objectMapper = new ObjectMapper()
+		.configure(SerializationFeature.INDENT_OUTPUT, true);
 		try{
 			String arrayToJson = objectMapper.writeValueAsString(listaIndicadores);
 			FileWriter file = new FileWriter(rutaArchivoJson);
