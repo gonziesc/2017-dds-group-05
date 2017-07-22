@@ -7,6 +7,7 @@ import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 
 import builder.BuilderIndicador;
+import builder.BuilderMetodologia;
 import viewmodel.StartWindowViewModel;
 
 @SuppressWarnings("serial")
@@ -36,7 +37,8 @@ public class StartWindow extends SimpleWindow<StartWindowViewModel> {
 		new EjecutarMetodologiaView(this).open();
 	}
 	public void ingresarMetodologia(){
-		new IngresarMetodologiaView(this).open();
+		BuilderMetodologia builder = new BuilderMetodologia();
+		new IngresarMetodologiaView(this, builder).open();
 	}
 	public void consultarCuenta() {
 		new ConsultarValorCuenta(this).open();
@@ -46,7 +48,6 @@ public class StartWindow extends SimpleWindow<StartWindowViewModel> {
 		BuilderIndicador builder = new BuilderIndicador();
 		new Parametro1View(this,builder, null).open();
 	}
-
 	
 
 	@Override

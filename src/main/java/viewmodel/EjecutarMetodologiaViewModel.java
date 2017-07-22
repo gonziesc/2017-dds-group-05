@@ -30,7 +30,6 @@ public class EjecutarMetodologiaViewModel {
 		metodologiaSeleccionada.calcularMetodologia2(empresas);		
 	}
 
-
 	private void validarIngreso() {
 		if (metodologiaSeleccionada == null){
 			throw new UserException("Ingrese una metodologia");

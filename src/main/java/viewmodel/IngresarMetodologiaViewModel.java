@@ -3,13 +3,16 @@ package viewmodel;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
+import org.uqbar.commons.model.ObservableUtils;
 import org.uqbar.commons.model.UserException;
 import org.uqbar.commons.utils.Observable;
 
 import Services.IndicadoresService;
 import Services.MetodologiasService;
+import builder.BuilderMetodologia;
 import model.Comparador;
 import model.Indicador;
 import model.Metodologia;
@@ -25,7 +28,14 @@ public class IngresarMetodologiaViewModel {
 	private Metodologia2 metodologia;
 	private List<Comparador> comparadores;
 	private String nombreMetodologia;
+	private Boolean esFiltrable = false;
+	private Boolean esOrdenable = false;
+	private BuilderMetodologia builderMetodologia = new BuilderMetodologia();
 	
+	public IngresarMetodologiaViewModel(BuilderMetodologia builder) {
+		builderMetodologia = builder;
+	}
+
 	public void obtenerComparadores(){
 		comparadores = Repositorios.metodologias.allComparadores();
 	}
@@ -34,24 +44,24 @@ public class IngresarMetodologiaViewModel {
 		setearMetodologia();
 
 		try {
-			MetodologiasService.guardarMetodologiaEnServicioExterno(metodologia);
+			MetodologiasService.guardarMetodologiaEnServicioExterno(builderMetodologia.build());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
 	public void setearMetodologia() {
-		metodologia = new Metodologia2(nombreMetodologia);
-		metodologia.setUnIndicador(indicadorSeleccionado);
-		metodologia.setOtroIndicador(indicadorSeleccionado);
-		metodologia.setValor(valorComparador);
-		List<Comparador> comparadoresSeleccionados = new ArrayList<Comparador>();
-		/* ACA LO QUE HAY QUE HACER ES AGARRAR TODOS LOS COMPARADORES SELECCIONADOS
-		 * Y METERLOS EN DOS LISTAS
-		 * hay qeu hacer dos checkbox en la view
-		 */
-		comparadoresSeleccionados.add(comparadorSeleccionado);
-		metodologia.setComparadorFiltrado(comparadoresSeleccionados);
+		builderMetodologia.setNombre(nombreMetodologia);
+		builderMetodologia.setUnIndicador(indicadorSeleccionado);
+		builderMetodologia.setOtroIndicador(indicadorSeleccionado);
+		
+		if(esFiltrable){
+		builderMetodologia.addComparadorParaFilatrado(comparadorSeleccionado);
+		}
+		if(esOrdenable){
+		builderMetodologia.addComparadorParaOrden(comparadorSeleccionado);
+		}
+		
 	}
 	
 	public void obtenerIndicadores() {
@@ -118,6 +128,32 @@ public class IngresarMetodologiaViewModel {
 	}
 	public void validarNombre(){
 		this.validarIngreso("Ingrese el nombre de la metodologia", this.nombreMetodologia);
+	}
+
+	public BuilderMetodologia getBuilderMetodologia() {
+		return builderMetodologia;
+	}
+
+	public void setBuilderMetodologia(BuilderMetodologia builderMetodologia) {
+		this.builderMetodologia = builderMetodologia;
+	}
+
+	public Boolean getEsFiltrable() {
+		return esFiltrable;
+	}
+
+	public void setEsFiltrable(Boolean esFiltrable) {
+		this.esFiltrable = esFiltrable;
+		ObservableUtils.firePropertyChanged(this, "esFiltrable", this.getEsFiltrable());
+	}
+
+	public Boolean getEsOrdenable() {
+		return esOrdenable;
+	}
+
+	public void setEsOrdenable(Boolean esOrdenable) {
+		this.esOrdenable = esOrdenable;
+		ObservableUtils.firePropertyChanged(this, "esFiltrable", this.getEsFiltrable());
 	}
 	
 }
