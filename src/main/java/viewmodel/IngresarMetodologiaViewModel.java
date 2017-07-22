@@ -41,8 +41,6 @@ public class IngresarMetodologiaViewModel {
 	}
 	
 	public void ingresarMetodologia() {
-		setearMetodologia();
-
 		try {
 			MetodologiasService.guardarMetodologiaEnServicioExterno(builderMetodologia.build());
 		} catch (IOException e) {
@@ -54,14 +52,19 @@ public class IngresarMetodologiaViewModel {
 		builderMetodologia.setNombre(nombreMetodologia);
 		builderMetodologia.setUnIndicador(indicadorSeleccionado);
 		builderMetodologia.setOtroIndicador(indicadorSeleccionado);
+		builderMetodologia.setValor(valorComparador);
 		
+		agregarComparadores();
+		
+	}
+
+	public void agregarComparadores() {
 		if(esFiltrable){
 		builderMetodologia.addComparadorParaFilatrado(comparadorSeleccionado);
 		}
 		if(esOrdenable){
 		builderMetodologia.addComparadorParaOrden(comparadorSeleccionado);
 		}
-		
 	}
 	
 	public void obtenerIndicadores() {
@@ -89,8 +92,8 @@ public class IngresarMetodologiaViewModel {
 	}
 	public void setComparadorSeleccionado(Comparador comparadorSeleccionado) {
 		this.comparadorSeleccionado = comparadorSeleccionado;
+		ObservableUtils.firePropertyChanged(this, "comparadorSeleccionado", this.getComparadorSeleccionado());
 	}
-
 	public List<Comparador> getComparadores() {
 		return comparadores;
 	}

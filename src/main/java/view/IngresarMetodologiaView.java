@@ -50,6 +50,9 @@ public class IngresarMetodologiaView extends Dialog<IngresarMetodologiaViewModel
 		selectorComparadores.bindItemsToProperty("comparadores").adaptWith(Comparador.class, "nombreComparador");
 		selectorComparadores.bindValueToProperty("comparadorSeleccionado");
 		
+		new Label(mainPanel).setText("Valor comparable");
+		new NumericField(mainPanel).bindValueToProperty("valorComparador");
+		
 		new Button(mainPanel).setCaption("Ingresar otro comparador").onClick(this::ingresarComparador);
 		new Button(mainPanel).setCaption("Ingresar metodologia").onClick(this::ingresarMetodologia);
 		
@@ -63,12 +66,16 @@ public class IngresarMetodologiaView extends Dialog<IngresarMetodologiaViewModel
 	}
 	
 	public void ingresarMetodologia(){
-		this.getModelObject().validarNombre();
-		this.getModelObject().validarIndicadorSeleccionado();
-		this.getModelObject().validarComparadorSeleccionado();
+		this.validarIngreso();
+		this.getModelObject().setearMetodologia();
 		this.getModelObject().ingresarMetodologia();
 		this.close();
 	}
-
+	
+	public void validarIngreso(){
+		this.getModelObject().validarNombre();
+		this.getModelObject().validarIndicadorSeleccionado();
+		this.getModelObject().validarComparadorSeleccionado();
+	}
 
 }
