@@ -108,9 +108,8 @@ public class Metodologia2 {
 	}
 
 	protected void filtrarEmpresas(List<Empresa> listaEmpresas) {
-		for (int i = 0; i < comparadoresFiltrado.size(); i++) {
-			filtrarEmpresasParcial(listaEmpresas, comparadoresFiltrado.get(i));
-		}
+		comparadoresFiltrado.forEach(comparador -> 
+				filtrarEmpresasParcial(listaEmpresas, comparador));
 	}
 
 	protected void filtrarEmpresasParcial(List<Empresa> listaEmpresas,
@@ -125,10 +124,9 @@ public class Metodologia2 {
 	}
 
 	protected void ordenarEmpresas(List<Empresa> listaEmpresas) {
-		for (int i = 0; i < comparadoresOrdenamiento.size(); i++) {
-			ordenarEmpresasParcial(listaEmpresas,
-					comparadoresOrdenamiento.get(i));
-		}
+			comparadoresOrdenamiento.forEach(comparador ->
+					ordenarEmpresasParcial(listaEmpresas,comparador));
+		
 	}
 
 	protected void ordenarEmpresasParcial(List<Empresa> listaEmpresas,
