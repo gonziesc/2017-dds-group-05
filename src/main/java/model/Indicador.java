@@ -2,7 +2,13 @@
 package model;
 
 import org.uqbar.commons.utils.Observable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+ 
 
+@Entity
 @Observable
 public class Indicador{
 	private parametroGeneral parametro1;
@@ -10,6 +16,10 @@ public class Indicador{
 	private String operacion;
 	private String nombre;
 	private int valor =0;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	
 	public Indicador(parametroGeneral unParametro1, parametroGeneral unParametro2, String unaOperacion1){
 		parametro1 = unParametro1;
