@@ -6,7 +6,7 @@ import org.uqbar.commons.utils.Observable;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 @Observable
-public class Comparador {
+public abstract class Comparador {
 	private String nombreComparador;
 
 	public Empresa calcularMetodologia(Empresa unaEmpresa, Empresa otraEmpresa, Indicador unIndicador, Indicador otroIndicador, int valor, String comparador, int periodoInicio, int periodoFin) {

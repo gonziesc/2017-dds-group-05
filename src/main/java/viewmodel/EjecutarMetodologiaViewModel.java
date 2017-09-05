@@ -14,20 +14,20 @@ import Services.EmpresasService;
 import Services.MetodologiasService;
 import model.Empresa;
 import model.Metodologia;
-import model.Metodologia2;
+import model.Metodologia;
 import model.repositories.Repositorios;
 
 @Observable
 public class EjecutarMetodologiaViewModel {
-	private List<Metodologia2> metodologias;
-	private Metodologia2 metodologiaSeleccionada;
+	private List<Metodologia> metodologias;
+	private Metodologia metodologiaSeleccionada;
 	private ArrayList<Empresa> empresas;
 
 	
 	public void ejecutarMetodologia() {
 		this.validarIngreso();
 		/* VALIDAR QUE ESTO ESTE BIEN*/
-		metodologiaSeleccionada.calcularMetodologia2(empresas);		
+		metodologiaSeleccionada.calcularMetodologia(empresas);		
 	}
 
 	private void validarIngreso() {
@@ -53,19 +53,19 @@ public class EjecutarMetodologiaViewModel {
 		this.setEmpresas(null);
 		this.setEmpresas(empresasNuevo);
 	}
-	public List<Metodologia2> getMetodologias() {
+	public List<Metodologia> getMetodologias() {
 		return metodologias;
 	}
 	
-	public void setMetodologias(List<Metodologia2> metodologias) {
+	public void setMetodologias(List<Metodologia> metodologias) {
 		this.metodologias = metodologias;
 	}
 	
-	public Metodologia2 getMetodologiaSeleccionada() {
+	public Metodologia getMetodologiaSeleccionada() {
 		return metodologiaSeleccionada;
 	}
 	
-	public void setMetodologiaSeleccionada(Metodologia2 metodologiaSeleccionada) {
+	public void setMetodologiaSeleccionada(Metodologia metodologiaSeleccionada) {
 		this.metodologiaSeleccionada = metodologiaSeleccionada;
 	}
 

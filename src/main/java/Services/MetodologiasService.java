@@ -21,25 +21,25 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
-import model.Metodologia2;
+import model.Metodologia;
 
 public class MetodologiasService {
 	static String rutaArchivoJson = "./resources/metodologias2.JSON";
 	
-	public static ArrayList<Metodologia2> obtenerMetodologiasDeServicioExterno() throws FileNotFoundException {
+	public static ArrayList<Metodologia> obtenerMetodologiasDeServicioExterno() throws FileNotFoundException {
 		Gson gson = new GsonBuilder()
 			    .create();
 		try {
-			Type collectionType = new TypeToken<Collection<Metodologia2>>(){}.getType();
-			ArrayList<Metodologia2> listaMetodologias = gson.fromJson(new FileReader(rutaArchivoJson), collectionType);
+			Type collectionType = new TypeToken<Collection<Metodologia>>(){}.getType();
+			ArrayList<Metodologia> listaMetodologias = gson.fromJson(new FileReader(rutaArchivoJson), collectionType);
 			return listaMetodologias;
 		}catch (UserException  e) {
 			noEncuentraElArchivo();
 		}
 		return null;
 	}
-	public static void guardarMetodologiaEnServicioExterno(Metodologia2 unaMetodologia) throws IOException {
-		ArrayList<Metodologia2> listaMetodologias = obtenerMetodologiasDeServicioExterno();
+	public static void guardarMetodologiaEnServicioExterno(Metodologia unaMetodologia) throws IOException {
+		ArrayList<Metodologia> listaMetodologias = obtenerMetodologiasDeServicioExterno();
 		listaMetodologias.add(unaMetodologia);
 		
 		ObjectMapper objectMapper = new ObjectMapper()

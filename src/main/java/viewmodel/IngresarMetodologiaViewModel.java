@@ -16,7 +16,7 @@ import builder.BuilderMetodologia;
 import model.Comparador;
 import model.Indicador;
 import model.Metodologia;
-import model.Metodologia2;
+import model.Metodologia;
 import model.repositories.Repositorios;
 
 @Observable
@@ -25,7 +25,7 @@ public class IngresarMetodologiaViewModel {
 	private Indicador indicadorSeleccionado;
 	private Comparador comparadorSeleccionado;
 	private Integer valorComparador;
-	private Metodologia2 metodologia;
+	private Metodologia metodologia;
 	private List<Comparador> comparadores;
 	private String nombreMetodologia;
 	private Boolean esFiltrable = false;

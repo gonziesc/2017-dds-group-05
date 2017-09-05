@@ -5,7 +5,7 @@ import java.util.List;
 
 import model.Comparador;
 import model.Indicador;
-import model.Metodologia2;
+import model.Metodologia;
 
 public class BuilderMetodologia {
 	private String nombre;
@@ -18,8 +18,8 @@ public class BuilderMetodologia {
 	private Indicador unIndicador;
 	private Indicador otroIndicador;
 	
-	public Metodologia2 build(){
-		Metodologia2 metodologia = new Metodologia2(nombre);
+	public Metodologia build(){
+		Metodologia metodologia = new Metodologia();
 		metodologia.setUnIndicador(unIndicador);
 		metodologia.setOtroIndicador(otroIndicador);
 		metodologia.setValor(valor);
