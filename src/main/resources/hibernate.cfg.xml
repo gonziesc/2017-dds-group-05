@@ -2,6 +2,7 @@
 <!DOCTYPE hibernate-configuration PUBLIC
         "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<!-- "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd"> -->        
  
 <hibernate-configuration>
     <session-factory>
@@ -9,20 +10,23 @@
         <!-- Connection settings -->
         <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
         <property name="hibernate.connection.url">jdbc:postgresql://localhost/dds</property>
-        <property name="hibernate.connection.username">gonza</property>
-        <property name="hibernate.connection.password">aa</property>
+        <property name="hibernate.connection.username">postgres</property>
+        <property name="hibernate.connection.password">Allboys121196</property>
  
         <!-- SQL dialect -->
         <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+ 
+ 		
  
         <!-- Print executed SQL to stdout -->
         <property name="show_sql">true</property>
  
         <!-- Drop and re-create all database on startup -->
         <property name="hibernate.hbm2ddl.auto">create-drop</property>
- 
+ 		<property name="hibernate.hbm2ddl.auto">create</property>	
+ 		
         <!-- Annotated entity classes -->
-        <mapping class="model.Indicador"/>
-        
+       
+        <mapping class="model.Usuario"/>
     </session-factory>
 </hibernate-configuration>
