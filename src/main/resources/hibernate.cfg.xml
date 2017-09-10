@@ -33,6 +33,8 @@
         <mapping class="model.Metodologia"/>
         <mapping class="model.Indicador"/>
         <mapping class="model.parametroGeneral"/>
+        <mapping class="model.Comparador"/>
+
 
     </session-factory>
 </hibernate-configuration>

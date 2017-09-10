@@ -1,5 +1,8 @@
 package model;
 
+import javax.persistence.Entity;
+
+
 public class parametroCompuesto extends parametroGeneral{
 	private parametroGeneral parametro1;
 	private parametroGeneral parametro2;

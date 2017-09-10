@@ -2,25 +2,34 @@
 package model;
 
 import org.uqbar.commons.utils.Observable;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
  
 
-@Entity
+@Entity @Table(name="indicadores")
 @Observable
 public class Indicador{
+	@Id	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	@ManyToOne(cascade = CascadeType.ALL)
 	private parametroGeneral parametro1;
+	@ManyToOne(cascade = CascadeType.ALL)
 	private parametroGeneral parametro2;
 	private String operacion;
 	private String nombre;
 	private int valor =0;
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
+
+	public Indicador(){}
 	public Indicador(parametroGeneral unParametro1, parametroGeneral unParametro2, String unaOperacion1){
 		parametro1 = unParametro1;
 		parametro2 = unParametro2;

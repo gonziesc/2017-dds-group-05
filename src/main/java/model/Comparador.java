@@ -2,12 +2,26 @@ package model;
 
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
+
 import org.uqbar.commons.utils.Observable;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+@Entity @Table(name="comparadores")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Observable
 public abstract class Comparador {
+	@Id @GeneratedValue
+	private Long id;
 	private String nombreComparador;
+	
+	public Comparador(){}
 
 	public Empresa calcularMetodologia(Empresa unaEmpresa, Empresa otraEmpresa, Indicador unIndicador, Indicador otroIndicador, int valor, String comparador, int periodoInicio, int periodoFin) {
 		return procesarRetorno(unaEmpresa, otraEmpresa, false);

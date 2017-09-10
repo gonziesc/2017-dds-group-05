@@ -10,11 +10,6 @@ import org.uqbar.commons.utils.Observable;
 @Entity
 @Observable
 
-
-
-
-
-
 public class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

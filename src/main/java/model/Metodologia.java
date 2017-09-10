@@ -7,23 +7,41 @@ import java.util.LinkedList;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
 import org.uqbar.commons.utils.Observable;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import scala.Array;
 
+@Entity @Table(name="metodologias")
 @Observable
 public class Metodologia {
-	
+	@Id @GeneratedValue
+	private Long id;
 	private int valor;
 	private int periodoInicio;
 	private int periodoFin;
+	@OneToOne
 	private Indicador unIndicador;
+	@OneToOne
 	private Indicador otroIndicador;
+	@OneToMany (cascade = CascadeType.ALL)@JoinColumn(name="metodologia_id")
 	private List<Comparador> comparadoresFiltrado = new ArrayList<Comparador>();
+	@OneToMany (cascade = CascadeType.ALL)@JoinColumn(name="metodologia_id")
 	private List<Comparador> comparadoresOrdenamiento= new ArrayList<Comparador>();
 
+	public Metodologia(){}
+	
 	public int getValor() {
 		return valor;
 	}
