@@ -4,15 +4,29 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
 import org.uqbar.commons.utils.Observable;
 
+@Entity @Table(name="empresas")
 @Observable
 public class Empresa {
-
+	@Id @GeneratedValue
+	private Long id;
+	@OneToMany
+	@JoinColumn(name = "empresa_id")
 	private List<Cuenta> Cuentas;
 	private String nombreEmpresa;
 
-
+	public Empresa(){
+		
+	}
+	
 	public List<Cuenta> cuentasSegunPeriodo(int periodo){
 		List<Cuenta> cuentasEnPeriodo = (List<Cuenta>) Cuentas.stream().filter(cuenta -> cuenta.perteneceA(periodo));
 		return cuentasEnPeriodo;

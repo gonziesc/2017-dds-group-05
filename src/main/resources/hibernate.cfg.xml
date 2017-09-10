@@ -11,7 +11,7 @@
         <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
         <property name="hibernate.connection.url">jdbc:postgresql://localhost/dds</property>
         <property name="hibernate.connection.username">postgres</property>
-        <property name="hibernate.connection.password">Allboys121196</property>
+        <property name="hibernate.connection.password">1234</property>
  
         <!-- SQL dialect -->
         <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
@@ -28,5 +28,11 @@
         <!-- Annotated entity classes -->
        
         <mapping class="model.Usuario"/>
+        <mapping class="model.Cuenta"/>
+        <mapping class="model.Empresa"/>
+        <mapping class="model.Metodologia"/>
+        <mapping class="model.Indicador"/>
+        <mapping class="model.parametroGeneral"/>
+
     </session-factory>
 </hibernate-configuration>
