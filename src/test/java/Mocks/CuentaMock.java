@@ -4,13 +4,13 @@ import model.Cuenta;
 
 public class CuentaMock {
 
-	Cuenta getUnaCuenta() {
+	public Cuenta getUnaCuenta() {
 		Cuenta unaCuenta = new Cuenta();
 		unaCuenta.setValor(1000);
 		return unaCuenta;
 	}
 
-	Cuenta getOtraCuenta() {
+	public Cuenta getOtraCuenta() {
 		Cuenta otraCuenta = new Cuenta();
 		otraCuenta.setValor(2000);
 		return otraCuenta;
