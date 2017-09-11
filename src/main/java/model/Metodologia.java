@@ -100,34 +100,28 @@ public class Metodologia {
 	}
 
 	public List<Empresa> calcularMetodologia(List<Empresa> listaEmpresas) {
-		filtrarEmpresas(listaEmpresas);
-		ordenarEmpresas(listaEmpresas);
+		return ordenarEmpresas(filtrarEmpresas(listaEmpresas));
+	}
+
+	protected List<Empresa> filtrarEmpresas(List<Empresa> listaEmpresas) {
+		comparadoresFiltrado.forEach(comparador -> 
+			filtrarEmpresasParcial(listaEmpresas, comparador));
 		return listaEmpresas;
 	}
 
-	protected void filtrarEmpresas(List<Empresa> listaEmpresas) {
-		comparadoresFiltrado.forEach(comparador -> 
-				filtrarEmpresasParcial(listaEmpresas, comparador));
-	}
-
-	protected void filtrarEmpresasParcial(List<Empresa> listaEmpresas,
+	@SuppressWarnings("unchecked")
+	protected List<Empresa> filtrarEmpresasParcial(List<Empresa> listaEmpresas,
 			Comparador comparador) {
-		List<Empresa> listaAuxiliar = new ArrayList<Empresa>();
-		for (int j = 0; j < listaEmpresas.size(); j++) {
-			if (calcularMetodologia(listaEmpresas.get(j), null, comparador) != null) {
-				listaAuxiliar.add(listaEmpresas.get(j));
-			}
-		}
-		listaEmpresas = listaAuxiliar;
+		return (List<Empresa>) listaEmpresas.stream().filter(empresa -> calcularMetodologia(empresa, null, comparador) != null);
 	}
 
-	protected void ordenarEmpresas(List<Empresa> listaEmpresas) {
-			comparadoresOrdenamiento.forEach(comparador ->
+	protected List<Empresa> ordenarEmpresas(List<Empresa> listaEmpresas) {
+		comparadoresOrdenamiento.forEach(comparador -> 
 					ordenarEmpresasParcial(listaEmpresas,comparador));
-		
+		return listaEmpresas;
 	}
 
-	protected void ordenarEmpresasParcial(List<Empresa> listaEmpresas,
+	protected List<Empresa> ordenarEmpresasParcial(List<Empresa> listaEmpresas,
 			Comparador comparador) {
 		Collections.sort(listaEmpresas, new Comparator<Empresa>() {
 			@Override
@@ -142,6 +136,7 @@ public class Metodologia {
 				return 0;
 			}
 		});
+		return listaEmpresas;
 	}
 
 	protected Empresa calcularMetodologia(Empresa empresa1, Empresa empresa2,
