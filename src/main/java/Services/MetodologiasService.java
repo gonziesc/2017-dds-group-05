@@ -10,6 +10,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 import org.uqbar.commons.model.UserException;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
@@ -21,13 +26,14 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
+import model.Indicador;
 import model.Metodologia;
 
 public class MetodologiasService {
 	static String rutaArchivoJson = "./resources/metodologias2.JSON";
 	
 	public static ArrayList<Metodologia> obtenerMetodologiasDeServicioExterno() throws FileNotFoundException {
-		Gson gson = new GsonBuilder()
+		/*Gson gson = new GsonBuilder()
 			    .create();
 		try {
 			Type collectionType = new TypeToken<Collection<Metodologia>>(){}.getType();
@@ -35,11 +41,40 @@ public class MetodologiasService {
 			return listaMetodologias;
 		}catch (UserException  e) {
 			noEncuentraElArchivo();
+		}*/
+		
+		SessionFactory sessionFactory = new Configuration().configure()
+				.buildSessionFactory();
+		Session session = sessionFactory.openSession();
+		
+		try {
+			
+			session.beginTransaction();
+			String hql = "FROM model.Metodologia";
+			Query query = session.createQuery(hql);
+			ArrayList<Metodologia> results = (ArrayList<Metodologia>) query.list();
+			return results;
+			
+			
+			
 		}
+		
+		
+		catch (HibernateException e) {
+			if (session.getTransaction() != null) {
+	            session.getTransaction().rollback();
+	          
+	        }
+			
+		}
+		finally {
+	        session.close();
+	    }
+		
 		return null;
 	}
 	public static void guardarMetodologiaEnServicioExterno(Metodologia unaMetodologia) throws IOException {
-		ArrayList<Metodologia> listaMetodologias = obtenerMetodologiasDeServicioExterno();
+		/*ArrayList<Metodologia> listaMetodologias = obtenerMetodologiasDeServicioExterno();
 		listaMetodologias.add(unaMetodologia);
 		
 		ObjectMapper objectMapper = new ObjectMapper()
@@ -53,7 +88,29 @@ public class MetodologiasService {
 			
 		}catch (UserException  e) {
 			noEncuentraElArchivo();
+		}*/
+		
+		SessionFactory sessionFactory = new Configuration().configure()
+				.buildSessionFactory();
+		Session session = sessionFactory.openSession();
+		
+		try {
+			//unaMetodologia.setId(4);
+			session.saveOrUpdate(unaMetodologia);		
+			
 		}
+		
+		
+		catch (HibernateException e) {
+			if (session.getTransaction() != null) {
+	            session.getTransaction().rollback();
+	          
+	        }
+			
+		}
+		finally {
+	        session.close();
+	    }
 				
 		
 	}

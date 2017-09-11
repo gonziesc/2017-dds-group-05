@@ -6,6 +6,7 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -40,6 +41,7 @@ public class ormTest {
 	public void clean(){
 		session.getTransaction().rollback();
 	}
+	
 	@Test
 	public void testApp() {
 		
@@ -89,4 +91,6 @@ public class ormTest {
 		
 		session.save(unaMetodologia);
 	}
+	
+	
 }

@@ -28,6 +28,7 @@ import scala.Array;
 public class Metodologia {
 	@Id @GeneratedValue
 	private Long id;
+	private String nombre;
 	private int valor;
 	private int periodoInicio;
 	private int periodoFin;
@@ -41,6 +42,17 @@ public class Metodologia {
 	private List<Comparador> comparadoresOrdenamiento= new ArrayList<Comparador>();
 
 	public Metodologia(){}
+	
+	//de prueba
+	public void setId(int id){
+		this.id = (long) id;
+	}
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 	
 	public int getValor() {
 		return valor;
