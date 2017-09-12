@@ -2,8 +2,6 @@ package viewmodel;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 import org.uqbar.commons.model.ObservableUtils;
@@ -15,8 +13,6 @@ import Services.MetodologiasService;
 import builder.BuilderMetodologia;
 import model.Comparador;
 import model.Indicador;
-import model.Metodologia;
-import model.Metodologia;
 import model.repositories.Repositorios;
 
 @Observable
@@ -25,7 +21,6 @@ public class IngresarMetodologiaViewModel {
 	private Indicador indicadorSeleccionado;
 	private Comparador comparadorSeleccionado;
 	private Integer valorComparador;
-	private Metodologia metodologia;
 	private List<Comparador> comparadores;
 	private String nombreMetodologia;
 	private Boolean esFiltrable = false;
@@ -51,8 +46,6 @@ public class IngresarMetodologiaViewModel {
 	public void setearMetodologia() {
 		builderMetodologia.setNombre(nombreMetodologia);
 		builderMetodologia.setUnIndicador(indicadorSeleccionado);
-		builderMetodologia.setOtroIndicador(indicadorSeleccionado);
-		builderMetodologia.setValor(valorComparador);
 		
 		agregarComparadores();
 		
@@ -60,10 +53,10 @@ public class IngresarMetodologiaViewModel {
 
 	public void agregarComparadores() {
 		if(esFiltrable){
-		builderMetodologia.addComparadorParaFilatrado(comparadorSeleccionado);
+		builderMetodologia.addComparadorParaFiltrado(comparadorSeleccionado);
 		}
 		if(esOrdenable){
-		builderMetodologia.addComparadorParaOrden(comparadorSeleccionado);
+		builderMetodologia.setComparadorOrden(comparadorSeleccionado);
 		}
 	}
 	

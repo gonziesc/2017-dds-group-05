@@ -32,6 +32,7 @@ public class Empresa {
 	}
 	
 	public List<Cuenta> cuentasSegunPeriodo(int periodo){
+		@SuppressWarnings("unchecked")
 		List<Cuenta> cuentasEnPeriodo = (List<Cuenta>) Cuentas.stream().filter(cuenta -> cuenta.perteneceA(periodo));
 		return cuentasEnPeriodo;
 	}

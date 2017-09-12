@@ -19,9 +19,9 @@ public class parametroGeneral {
 	@Id	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	protected int valor;
-	@ManyToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL)
 	protected parametroGeneral parametro1;
-	@ManyToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL)
 	protected parametroGeneral parametro2;
 	private String nombre = "";
 	private String operacion;

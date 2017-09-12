@@ -1,14 +1,12 @@
 [ {
-  "nombre" : "asdasd",
-  "operandoOrdenamiento" : ">",
-  "valor" : 0,
+  "valor" : 543,
   "periodoInicio" : 0,
   "periodoFin" : 0,
   "unIndicador" : {
     "parametro1" : {
-      "valor" : 333,
+      "valor" : 4,
       "parametro1" : {
-        "valor" : 333,
+        "valor" : 4,
         "parametro1" : null,
         "parametro2" : null,
         "nombre" : "",
@@ -18,10 +16,28 @@
       "nombre" : "",
       "operacion" : null
     },
-    "parametro2" : null,
-    "operacion" : null,
-    "nombre" : "AAA",
-    "valor" : 333,
+    "parametro2" : {
+      "valor" : 15,
+      "parametro1" : null,
+      "parametro2" : {
+        "valor" : 3,
+        "parametro1" : {
+          "valor" : 3,
+          "parametro1" : null,
+          "parametro2" : null,
+          "nombre" : "",
+          "operacion" : null
+        },
+        "parametro2" : null,
+        "nombre" : "",
+        "operacion" : null
+      },
+      "nombre" : "",
+      "operacion" : null
+    },
+    "operacion" : "+",
+    "nombre" : "ROE",
+    "valor" : 22,
     "changeSupport" : {
       "propertyChangeListeners" : [ {
         "listener" : { },
@@ -31,9 +47,9 @@
   },
   "otroIndicador" : {
     "parametro1" : {
-      "valor" : 333,
+      "valor" : 4,
       "parametro1" : {
-        "valor" : 333,
+        "valor" : 4,
         "parametro1" : null,
         "parametro2" : null,
         "nombre" : "",
@@ -43,10 +59,28 @@
       "nombre" : "",
       "operacion" : null
     },
-    "parametro2" : null,
-    "operacion" : null,
-    "nombre" : "AAA",
-    "valor" : 333,
+    "parametro2" : {
+      "valor" : 21,
+      "parametro1" : null,
+      "parametro2" : {
+        "valor" : 3,
+        "parametro1" : {
+          "valor" : 3,
+          "parametro1" : null,
+          "parametro2" : null,
+          "nombre" : "",
+          "operacion" : null
+        },
+        "parametro2" : null,
+        "nombre" : "",
+        "operacion" : null
+      },
+      "nombre" : "",
+      "operacion" : null
+    },
+    "operacion" : "+",
+    "nombre" : "ROE",
+    "valor" : 28,
     "changeSupport" : {
       "propertyChangeListeners" : [ {
         "listener" : { },
@@ -54,8 +88,9 @@
       } ]
     }
   },
-  "comparadoresFiltrado" : [ {
-    "nombreComparador" : "Comparador uno mayor que otro",
+  "comparadoresFiltrado" : [ ],
+  "comparadoresOrdenamiento" : [ {
+    "nombreComparador" : "Comparador por anios",
     "changeSupport" : {
       "propertyChangeListeners" : [ {
         "listener" : { },
@@ -63,7 +98,6 @@
       } ]
     }
   } ],
-  "comparadoresOrdenamiento" : [ ],
   "changeSupport" : {
     "propertyChangeListeners" : [ ]
   }

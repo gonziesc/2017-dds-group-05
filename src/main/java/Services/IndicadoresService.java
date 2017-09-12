@@ -5,11 +5,18 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import model.Empresa;
 import model.Indicador;
 
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 import org.junit.experimental.theories.Theories;
 import org.uqbar.commons.model.UserException;
 
@@ -23,9 +30,10 @@ import com.google.gson.reflect.TypeToken;
 
 public class IndicadoresService {
 	static String rutaArchivoJson = "./resources/indicadores3.json";
+	
 
 	public static List<Indicador> obtenerInicadoresDeServicioExterno() throws FileNotFoundException {
-		Gson gson = new GsonBuilder()
+		/*Gson gson = new GsonBuilder()
 			    .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
 			    .create();
 		try {
@@ -35,10 +43,39 @@ public class IndicadoresService {
 		}catch (UserException  e) {
 			noEncuentraElArchivo();
 		}
+		return null;*/
+	
+		SessionFactory sessionFactory = new Configuration().configure()
+				.buildSessionFactory();
+		Session session = sessionFactory.openSession();
+		
+		try {
+			
+			session.beginTransaction();
+			String hql = "FROM model.Indicador";
+			Query query = session.createQuery(hql);
+			List<Indicador> results = query.list();
+			return results;
+			
+			
+			
+		}
+		
+		
+		catch (HibernateException e) {
+			if (session.getTransaction() != null) {
+	            session.getTransaction().rollback();
+	          
+	        }
+			
+		}
+		finally {
+	        session.close();
+	    }
 		return null;
 	}
 	public static void guardarIndicadoresEnServicioExterno(Indicador unIndicador) throws IOException {
-		List<Indicador> listaIndicadores = obtenerInicadoresDeServicioExterno();
+		/*List<Indicador> listaIndicadores = obtenerInicadoresDeServicioExterno();
 		listaIndicadores.add(unIndicador);
 		ObjectMapper objectMapper = new ObjectMapper()
 		.configure(SerializationFeature.INDENT_OUTPUT, true);
@@ -50,7 +87,31 @@ public class IndicadoresService {
 			
 		}catch (UserException  e) {
 			noEncuentraElArchivo();
+		}*/
+		
+		SessionFactory sessionFactory = new Configuration().configure()
+				.buildSessionFactory();
+		Session session = sessionFactory.openSession();
+		
+		try {
+			session.beginTransaction();
+			session.saveOrUpdate(unIndicador);	
+			session.getTransaction().commit();
+			
 		}
+		
+		
+		catch (HibernateException e) {
+			if (session.getTransaction() != null) {
+	            session.getTransaction().rollback();
+	          
+	        }
+			
+		}
+		finally {
+	        session.close();
+	    }
+		
 		
 	}
 	

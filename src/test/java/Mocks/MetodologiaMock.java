@@ -26,7 +26,6 @@ public class MetodologiaMock {
 	public Metodologia unaMetodologiaMayorValor(){
 		ComparadorValor unComparador = new ComparadorValor();
 		Metodologia unaMetodologia = new Metodologia();
-		unaMetodologia.setValor(100000000);
 		unaMetodologia.addComparadorParaFilatrado(unComparador);
 		unaMetodologia.setUnIndicador(new IndicadorMock().getUnIdicadorConstante());
 		return unaMetodologia;
@@ -35,7 +34,6 @@ public class MetodologiaMock {
 	public Metodologia unaMetodologiaMenorValor(){
 		ComparadorValor unComparador = new ComparadorValor();
 		Metodologia unaMetodologia = new Metodologia();
-		unaMetodologia.setValor(1000000000);
 		unaMetodologia.addComparadorParaFilatrado(unComparador);
 		unaMetodologia.setUnIndicador(new IndicadorMock().getUnIdicadorConstante());
 		return unaMetodologia;
@@ -43,7 +41,6 @@ public class MetodologiaMock {
 	public Metodologia unaMetodologiaMayorValorTiempo(){
 		ComparadorValorTiempo unComparador = new ComparadorValorTiempo();
 		Metodologia unaMetodologia = new Metodologia();
-		unaMetodologia.setValor(1);
 		unaMetodologia.setPeriodoInicio(1999);
 		unaMetodologia.setPeriodoFin(2017);
 		unaMetodologia.addComparadorParaFilatrado(unComparador);
@@ -53,14 +50,12 @@ public class MetodologiaMock {
 	public Metodologia unaMetodologiaAnios(){
 		ComparadorAnios unComparador = new ComparadorAnios();
 		Metodologia unaMetodologia = new Metodologia();
-		unaMetodologia.setValor(1000);
 		unaMetodologia.addComparadorParaFilatrado(unComparador);
 		return unaMetodologia;
 	}
 	public Metodologia unaMetodologiaPromedio(){
 		ComparadorPromedio unComparador = new ComparadorPromedio();
 		Metodologia unaMetodologia = new Metodologia();
-		unaMetodologia.setValor(1000000);
 		unaMetodologia.setPeriodoInicio(1999);
 		unaMetodologia.setPeriodoFin(2017);
 		unaMetodologia.addComparadorParaFilatrado(unComparador);
@@ -70,19 +65,17 @@ public class MetodologiaMock {
 	public Metodologia unaMetodologiaUnoMayorQueOtro(){
 		ComparadorUnoMayorQueOtro unComparador = new ComparadorUnoMayorQueOtro();
 		Metodologia unaMetodologia = new Metodologia();
-		unaMetodologia.addComparadorParaOrden(unComparador);
+		unaMetodologia.setComparadorOrden(unComparador);
 		unaMetodologia.setUnIndicador(new IndicadorMock().getUnIdicadorConstante());
-		unaMetodologia.setOtroIndicador(new IndicadorMock().getUnIdicadorConstanteMasBajo());
 		return unaMetodologia;
 	}
 	public Metodologia unaMetodologiaUnoMayorQueOtroEnElTiempo(){
 		ComparadorUnoMayorQueOtroEnElTiempo unComparador = new ComparadorUnoMayorQueOtroEnElTiempo();
 		Metodologia unaMetodologia = new Metodologia();
-		unaMetodologia.addComparadorParaOrden(unComparador);
+		unaMetodologia.setComparadorOrden(unComparador);
 		unaMetodologia.setPeriodoInicio(1999);
 		unaMetodologia.setPeriodoFin(2017);
 		unaMetodologia.setUnIndicador(new IndicadorMock().getUnIdicadorConstante());
-		unaMetodologia.setOtroIndicador(new IndicadorMock().getUnIdicadorConstanteMasBajo());
 		return unaMetodologia;
 	}
 }

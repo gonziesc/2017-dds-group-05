@@ -26,30 +26,33 @@ import scala.Array;
 @Entity @Table(name="metodologias")
 @Observable
 public class Metodologia {
+
 	@Id @GeneratedValue
 	private Long id;
-	private int valor;
+	private String nombre;
 	private int periodoInicio;
 	private int periodoFin;
 	@OneToOne
 	private Indicador unIndicador;
-	@OneToOne
-	private Indicador otroIndicador;
+
 	@OneToMany (cascade = CascadeType.ALL)@JoinColumn(name="metodologia_id")
 	private List<Comparador> comparadoresFiltrado = new ArrayList<Comparador>();
 	@OneToMany (cascade = CascadeType.ALL)@JoinColumn(name="metodologia_id")
-	private List<Comparador> comparadoresOrdenamiento= new ArrayList<Comparador>();
+	private Comparador comparadorOrden;
 
 	public Metodologia(){}
 	
-	public int getValor() {
-		return valor;
+	//de prueba
+	public void setId(int id){
+		this.id = (long) id;
 	}
-
-	public void setValor(int valor) {
-		this.valor = valor;
+	public String getNombre() {
+		return nombre;
 	}
-
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	
 	public int getPeriodoInicio() {
 		return periodoInicio;
 	}
@@ -74,14 +77,6 @@ public class Metodologia {
 		this.unIndicador = unIndicador;
 	}
 
-	public Indicador getOtroIndicador() {
-		return otroIndicador;
-	}
-
-	public void setOtroIndicador(Indicador otroIndicador) {
-		this.otroIndicador = otroIndicador;
-	}
-
 	public List<Comparador> getComparadoresFiltrado() {
 		return comparadoresFiltrado;
 	}
@@ -90,17 +85,8 @@ public class Metodologia {
 		this.comparadoresFiltrado = comparadoresFiltrado;
 	}
 
-	public List<Comparador> getComparadoresOrdenamiento() {
-		return comparadoresOrdenamiento;
-	}
-
-	public void setComparadoresOrdenamiento(
-			List<Comparador> comparadoresOrdenamiento) {
-		this.comparadoresOrdenamiento = comparadoresOrdenamiento;
-	}
-
 	public List<Empresa> calcularMetodologia(List<Empresa> listaEmpresas) {
-		return ordenarEmpresas(filtrarEmpresas(listaEmpresas));
+		return ordenarEmpresasParcial(filtrarEmpresas(listaEmpresas));
 	}
 
 	protected List<Empresa> filtrarEmpresas(List<Empresa> listaEmpresas) {
@@ -110,24 +96,22 @@ public class Metodologia {
 	}
 
 	@SuppressWarnings("unchecked")
-	protected List<Empresa> filtrarEmpresasParcial(List<Empresa> listaEmpresas,
-			Comparador comparador) {
+	protected List<Empresa> filtrarEmpresasParcial(List<Empresa> listaEmpresas,Comparador comparador) {
 		return (List<Empresa>) listaEmpresas.stream().filter(empresa -> calcularMetodologia(empresa, null, comparador) != null);
 	}
 
-	protected List<Empresa> ordenarEmpresas(List<Empresa> listaEmpresas) {
+	/*protected List<Empresa> ordenarEmpresas(List<Empresa> listaEmpresas) {
 		comparadoresOrdenamiento.forEach(comparador -> 
 					ordenarEmpresasParcial(listaEmpresas,comparador));
 		return listaEmpresas;
-	}
+	}*/
 
-	protected List<Empresa> ordenarEmpresasParcial(List<Empresa> listaEmpresas,
-			Comparador comparador) {
+	protected List<Empresa> ordenarEmpresasParcial(List<Empresa> listaEmpresas) {
 		Collections.sort(listaEmpresas, new Comparator<Empresa>() {
 			@Override
 			public int compare(Empresa empresa1, Empresa empresa2) {
 				Empresa empresaMejor = calcularMetodologia(empresa1, empresa2,
-						comparador);
+						comparadorOrden);
 				if (empresaMejor.equals(empresa1)) {
 					return 1;
 				} else if (empresaMejor.equals(empresa2)) {
@@ -141,20 +125,18 @@ public class Metodologia {
 
 	protected Empresa calcularMetodologia(Empresa empresa1, Empresa empresa2,
 			Comparador comparador) {
-		return comparador.calcularMetodologia(empresa1, empresa2, unIndicador,
-				otroIndicador, valor, ">", periodoInicio,
-				periodoFin);
+		return comparador.comparar(empresa1, empresa2, unIndicador);
 	}
 	public void addComparadorParaFilatrado(Comparador unComparador) {
 		comparadoresFiltrado.add(unComparador);
 	}
 
-	public void addComparadorParaOrden(Comparador unComparador) {
-		comparadoresOrdenamiento.add(unComparador);
+	public Comparador getComparadorOrden() {
+		return comparadorOrden;
 	}
 
-
-
-
+	public void setComparadorOrden(Comparador comparadorOrden) {
+		this.comparadorOrden = comparadorOrden;
+	}
 
 }
