@@ -96,7 +96,9 @@ public class MetodologiasService {
 		
 		try {
 			//unaMetodologia.setId(4);
-			session.saveOrUpdate(unaMetodologia);		
+			session.beginTransaction();
+			session.saveOrUpdate(unaMetodologia);	
+			session.getTransaction().commit();
 			
 		}
 		

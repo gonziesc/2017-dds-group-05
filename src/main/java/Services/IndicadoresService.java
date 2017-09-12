@@ -94,8 +94,9 @@ public class IndicadoresService {
 		Session session = sessionFactory.openSession();
 		
 		try {
-			
-			session.saveOrUpdate(unIndicador);		
+			session.beginTransaction();
+			session.saveOrUpdate(unIndicador);	
+			session.getTransaction().commit();
 			
 		}
 		

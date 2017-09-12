@@ -23,6 +23,7 @@ public class BuilderMetodologia {
 		//metodologia.setComparadoresOrdenamiento(comparadoresOrdenamiento);
 		metodologia.setComparadorOrden(comparadorOrden);
 		metodologia.setComparadoresFiltrado(comparadoresFiltrado);
+		metodologia.setNombre(nombre);
 		return metodologia;
 	}
 	
