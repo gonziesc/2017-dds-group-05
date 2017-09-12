@@ -3,19 +3,18 @@ package model;
 import org.uqbar.commons.utils.Observable;
 
 @Observable
-public class ComparadorPromedio extends Comparador{
+public class ComparadorPromedio extends ComparadorOrden{
 	
 	@Override
-	public Empresa calcularMetodologia(Empresa unaEmpresa, Empresa otraEmpresa, Indicador unIndicador, Indicador otroIndicador, int valor, String comparador, int periodoInicio, int periodoFin) {
+	public Empresa comparar(Empresa unaEmpresa, Empresa otraEmpresa, Indicador unIndicador) {
 		int promedio = unaEmpresa
-				.cuentasSegunTiempo(periodoInicio, periodoFin).stream()
+				.cuentasSegunTiempo(getPeriodoInicio(), getPeriodoFin()).stream()
 				.map(c -> cargarIndicador(c, unIndicador).getValor())
 				.mapToInt(i -> i).sum()
-				/ unaEmpresa.cuentasSegunTiempo(periodoInicio, periodoFin)
+				/ unaEmpresa.cuentasSegunTiempo(getPeriodoInicio(), getPeriodoFin())
 						.size();
-		Boolean condicion = Operadores.compararOperacion(promedio, valor,
-				comparador);
-		return procesarRetorno(unaEmpresa, otraEmpresa, condicion);
+		Boolean condicion = Operadores.compararOperacion(promedio, getValor(),getOperando());
+		return this.procesarRetorno(unaEmpresa, otraEmpresa, condicion);
 	}
 
 	@Override

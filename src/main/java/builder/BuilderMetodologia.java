@@ -10,20 +10,18 @@ import model.Metodologia;
 public class BuilderMetodologia {
 	private String nombre;
 	private List<Comparador>  comparadoresFiltrado = new LinkedList<Comparador>();
-	private List<Comparador>  comparadoresOrdenamiento = new LinkedList<Comparador>();
+	//private List<Comparador>  comparadoresOrdenamiento = new LinkedList<Comparador>();
+	private Comparador comparadorOrden;
 	private String operandoOrdenamiento = ">";
-	private int valor;
 	private int periodoInicio;
 	private int periodoFin;
 	private Indicador unIndicador;
-	private Indicador otroIndicador;
-	
+		
 	public Metodologia build(){
 		Metodologia metodologia = new Metodologia();
 		metodologia.setUnIndicador(unIndicador);
-		metodologia.setOtroIndicador(otroIndicador);
-		metodologia.setValor(valor);
-		metodologia.setComparadoresOrdenamiento(comparadoresOrdenamiento);
+		//metodologia.setComparadoresOrdenamiento(comparadoresOrdenamiento);
+		metodologia.setComparadorOrden(comparadorOrden);
 		metodologia.setComparadoresFiltrado(comparadoresFiltrado);
 		return metodologia;
 	}
@@ -41,23 +39,17 @@ public class BuilderMetodologia {
 	public void setComparadoresFiltrado(List<Comparador> comparadoresFiltrado) {
 		this.comparadoresFiltrado = comparadoresFiltrado;
 	}
-	public List<Comparador> getComparadoresOrdenamiento() {
+	/*public List<Comparador> getComparadoresOrdenamiento() {
 		return comparadoresOrdenamiento;
 	}
 	public void setComparadoresOrdenamiento(List<Comparador> comparadoresOrdenamiento) {
 		this.comparadoresOrdenamiento = comparadoresOrdenamiento;
-	}
+	}*/
 	public String getOperandoOrdenamiento() {
 		return operandoOrdenamiento;
 	}
 	public void setOperandoOrdenamiento(String operandoOrdenamiento) {
 		this.operandoOrdenamiento = operandoOrdenamiento;
-	}
-	public int getValor() {
-		return valor;
-	}
-	public void setValor(int valor) {
-		this.valor = valor;
 	}
 	public int getPeriodoInicio() {
 		return periodoInicio;
@@ -77,17 +69,22 @@ public class BuilderMetodologia {
 	public void setUnIndicador(Indicador unIndicador) {
 		this.unIndicador = unIndicador;
 	}
-	public Indicador getOtroIndicador() {
-		return otroIndicador;
-	}
-	public void setOtroIndicador(Indicador otroIndicador) {
-		this.otroIndicador = otroIndicador;
-	}
-	public void addComparadorParaFilatrado(Comparador unComparador){
+	
+	public void addComparadorParaFiltrado(Comparador unComparador){
 		comparadoresFiltrado.add(unComparador);
 	}
 	
-	public void addComparadorParaOrden(Comparador unComparador){
+	/*public void addComparadorParaOrden(Comparador unComparador){
 		comparadoresOrdenamiento.add(unComparador);
+	}*/
+
+
+	public Comparador getComparadorOrden() {
+		return comparadorOrden;
+	}
+	
+
+	public void setComparadorOrden(Comparador comparadorOrden) {
+		this.comparadorOrden = comparadorOrden;
 	}
 }

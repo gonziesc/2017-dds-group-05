@@ -25,7 +25,6 @@ public class IngresarMetodologiaViewModel {
 	private Indicador indicadorSeleccionado;
 	private Comparador comparadorSeleccionado;
 	private Integer valorComparador;
-	private Metodologia metodologia;
 	private List<Comparador> comparadores;
 	private String nombreMetodologia;
 	private Boolean esFiltrable = false;
@@ -51,8 +50,6 @@ public class IngresarMetodologiaViewModel {
 	public void setearMetodologia() {
 		builderMetodologia.setNombre(nombreMetodologia);
 		builderMetodologia.setUnIndicador(indicadorSeleccionado);
-		builderMetodologia.setOtroIndicador(indicadorSeleccionado);
-		builderMetodologia.setValor(valorComparador);
 		
 		agregarComparadores();
 		
@@ -60,10 +57,10 @@ public class IngresarMetodologiaViewModel {
 
 	public void agregarComparadores() {
 		if(esFiltrable){
-		builderMetodologia.addComparadorParaFilatrado(comparadorSeleccionado);
+		builderMetodologia.addComparadorParaFiltrado(comparadorSeleccionado);
 		}
 		if(esOrdenable){
-		builderMetodologia.addComparadorParaOrden(comparadorSeleccionado);
+		builderMetodologia.setComparadorOrden(comparadorSeleccionado);
 		}
 	}
 	

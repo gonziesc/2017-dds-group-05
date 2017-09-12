@@ -3,17 +3,17 @@ package model;
 import org.uqbar.commons.utils.Observable;
 
 @Observable
-public class ComparadorUnoMayorQueOtro extends Comparador{
+public class ComparadorUnoMayorQueOtro extends ComparadorOrden{
 	
 	@Override
-	public Empresa calcularMetodologia(Empresa unaEmpresa, Empresa otraEmpresa, Indicador unIndicador, Indicador otroIndicador, int valor, String comparador, int periodoInicio, int periodoFin) {
+	public Empresa comparar(Empresa unaEmpresa, Empresa otraEmpresa, Indicador unIndicador) {
 		otraEmpresa.getCuentas().stream()
-				.forEach(c -> cargarIndicador(c, otroIndicador));
+				.forEach(c -> cargarIndicador(c, unIndicador));
 		unaEmpresa.getCuentas().stream()
 				.forEach(c -> cargarIndicador(c, unIndicador));
 		Boolean condicion = Operadores.compararOperacion(unIndicador.getValor(),
-				otroIndicador.getValor(), comparador);
-		return procesarRetorno(unaEmpresa, otraEmpresa, condicion);
+				unIndicador.getValor(), getOperando());
+		return this.procesarRetorno(unaEmpresa, otraEmpresa, condicion);
 	}
 	
 	@Override
