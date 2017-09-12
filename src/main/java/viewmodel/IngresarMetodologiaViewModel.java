@@ -2,8 +2,6 @@ package viewmodel;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 import org.uqbar.commons.model.ObservableUtils;
@@ -15,8 +13,6 @@ import Services.MetodologiasService;
 import builder.BuilderMetodologia;
 import model.Comparador;
 import model.Indicador;
-import model.Metodologia;
-import model.Metodologia;
 import model.repositories.Repositorios;
 
 @Observable

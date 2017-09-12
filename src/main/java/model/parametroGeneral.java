@@ -1,22 +1,32 @@
 package model;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="parametros")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class parametroGeneral {
+	@Id	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	protected int valor;
+	@ManyToOne(cascade = CascadeType.ALL)
 	protected parametroGeneral parametro1;
+	@ManyToOne(cascade = CascadeType.ALL)
 	protected parametroGeneral parametro2;
 	private String nombre = "";
 	private String operacion;
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
+	public parametroGeneral (){}
 	public int getValor() {
 		if(parametro1 != null)
 		this.valor = parametro1.getValor();

@@ -4,10 +4,14 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -18,8 +22,8 @@ import org.uqbar.commons.utils.Observable;
 public class Empresa {
 	@Id @GeneratedValue
 	private Long id;
-	@OneToMany
-	@JoinColumn(name = "empresa_id")
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name="empresa_id")
 	private List<Cuenta> Cuentas;
 	private String nombreEmpresa;
 
