@@ -30,11 +30,8 @@ import com.google.gson.reflect.TypeToken;
 
 public class IndicadoresService {
 	static String rutaArchivoJson = "./resources/indicadores3.json";
-	static SessionFactory sessionFactory = new Configuration().configure()
-			.buildSessionFactory();
-	static Session session = sessionFactory.openSession();
 
-	public static List<Indicador> obtenerInicadoresDeServicioExterno() throws FileNotFoundException {
+	public static List<Indicador> obtenerInicadoresDeServicioExterno() {
 		/*Gson gson = new GsonBuilder()
 			    .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
 			    .create();
@@ -46,6 +43,9 @@ public class IndicadoresService {
 			noEncuentraElArchivo();
 		}
 		return null;*/
+		 SessionFactory sessionFactory = new Configuration().configure()
+				 .buildSessionFactory();
+		 Session session = sessionFactory.openSession();
 		
 		try {
 			
@@ -56,16 +56,19 @@ public class IndicadoresService {
 			
 		}
 		
-		
 		catch (HibernateException e) {
 			if (session.getTransaction() != null) {
 	            session.getTransaction().rollback();
 	        }
 			
 		}
+		finally{
+			session.close();
+		}
 		return null;
+	
 	}
-	public static void guardarIndicadoresEnServicioExterno(Indicador unIndicador) throws IOException {
+	public static void guardarIndicadoresEnServicioExterno(Indicador unIndicador){
 		/*List<Indicador> listaIndicadores = obtenerInicadoresDeServicioExterno();
 		listaIndicadores.add(unIndicador);
 		ObjectMapper objectMapper = new ObjectMapper()
@@ -79,6 +82,9 @@ public class IndicadoresService {
 		}catch (UserException  e) {
 			noEncuentraElArchivo();
 		}*/
+		 SessionFactory sessionFactory = new Configuration().configure()
+				 .buildSessionFactory();
+		 Session session = sessionFactory.openSession();
 		
 		try {
 			session.beginTransaction();

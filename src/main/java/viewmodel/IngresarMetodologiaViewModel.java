@@ -36,11 +36,7 @@ public class IngresarMetodologiaViewModel {
 	}
 	
 	public void ingresarMetodologia() {
-		try {
 			MetodologiasService.guardarMetodologiaEnServicioExterno(builderMetodologia.build());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 
 	public void setearMetodologia() {
@@ -53,7 +49,7 @@ public class IngresarMetodologiaViewModel {
 
 	public void agregarComparadores() {
 		if(esFiltrable){
-	//builderMetodologia.addComparadorParaFiltrado(comparadorSeleccionado);
+		builderMetodologia.addComparadorParaFiltrado(comparadorSeleccionado);
 		}
 		if(esOrdenable){
 		builderMetodologia.setComparadorOrden(comparadorSeleccionado);
@@ -61,11 +57,7 @@ public class IngresarMetodologiaViewModel {
 	}
 	
 	public void obtenerIndicadores() {
-		try {
 			indicadores = IndicadoresService.obtenerInicadoresDeServicioExterno();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
 	}
 	
 	public List<Indicador> getIndicadores() {

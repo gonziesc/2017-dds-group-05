@@ -31,10 +31,6 @@ import model.Metodologia;
 
 public class MetodologiasService {
 	static String rutaArchivoJson = "./resources/metodologias2.JSON";
-	static SessionFactory sessionFactory = new Configuration().configure()
-			.buildSessionFactory();
-	static Session session = sessionFactory.openSession();
-	
 	public static ArrayList<Metodologia> obtenerMetodologiasDeServicioExterno() throws FileNotFoundException {
 		/*Gson gson = new GsonBuilder()
 			    .create();
@@ -45,6 +41,10 @@ public class MetodologiasService {
 		}catch (UserException  e) {
 			noEncuentraElArchivo();
 		}*/
+
+		SessionFactory sessionFactory = new Configuration().configure()
+				.buildSessionFactory();
+		Session session = sessionFactory.openSession();
 		
 		
 		try {
@@ -64,10 +64,13 @@ public class MetodologiasService {
 	        }
 			
 		}
+		finally{
+			session.close();
+		}
 		
 		return null;
 	}
-	public static void guardarMetodologiaEnServicioExterno(Metodologia unaMetodologia) throws IOException {
+	public static void guardarMetodologiaEnServicioExterno(Metodologia unaMetodologia) {
 		/*ArrayList<Metodologia> listaMetodologias = obtenerMetodologiasDeServicioExterno();
 		listaMetodologias.add(unaMetodologia);
 		
@@ -83,9 +86,12 @@ public class MetodologiasService {
 		}catch (UserException  e) {
 			noEncuentraElArchivo();
 		}*/
+
+		SessionFactory sessionFactory = new Configuration().configure()
+				.buildSessionFactory();
+		Session session = sessionFactory.openSession();
 		
 		try {
-			//unaMetodologia.setId(4);
 			session.beginTransaction();
 			session.persist(unaMetodologia);	
 			session.getTransaction().commit();
@@ -98,6 +104,9 @@ public class MetodologiasService {
 	            session.getTransaction().rollback();
 	        }
 			
+		}
+		finally{
+			session.close();
 		}
 	}
 

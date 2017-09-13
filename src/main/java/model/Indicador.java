@@ -97,5 +97,11 @@ public class Indicador{
 	
 	public void setValor() {
 		this.valor = this.obtenerValor();
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
 	}	
 }

@@ -53,6 +53,7 @@ public class EmpresasService {
 			String hql = "FROM model.Empresa";
 			ArrayList<Empresa> results = (ArrayList<Empresa>) session.createQuery(hql).getResultList();
 			listaEmpresas.addAll(results);
+			session.getTransaction().commit();
 			return listaEmpresas;
 			
 			
@@ -68,9 +69,7 @@ public class EmpresasService {
 	        }
 			
 		}
-		finally {
-	        session.close();
-	    }
+
 		return null;
 	}
 	

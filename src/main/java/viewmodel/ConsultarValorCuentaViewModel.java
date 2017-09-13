@@ -21,12 +21,9 @@ public class ConsultarValorCuentaViewModel {
 	
 	
 	public void obtenerIndicadores(){
-		try {
 			indicadores = IndicadoresService.obtenerInicadoresDeServicioExterno();
 			indicadores.stream().forEach(i -> this.procesarIndicador(i));
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+
 	}
 	private Object procesarIndicador(Indicador indicador) {
 		cuentasEmpresa.stream().forEach(c -> cargarIndicador(c, indicador));

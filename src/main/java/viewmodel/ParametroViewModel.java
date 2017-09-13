@@ -42,22 +42,14 @@ public class ParametroViewModel {
 	}
 	
 	public void obtenerIndicadores() {
-		try {
 			indicadores = IndicadoresService.obtenerInicadoresDeServicioExterno();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
 	}
 
 	public void ingresarIndicador() {
-		try {
 			this.setearParametros(parametro);
 			this.setearIndicador();
 			IndicadoresService.guardarIndicadoresEnServicioExterno(builderIndicador
 							.build());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 	
 	public void obtenerEmpresas() {

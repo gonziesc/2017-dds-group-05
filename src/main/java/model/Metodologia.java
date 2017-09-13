@@ -46,6 +46,10 @@ public class Metodologia {
 	public void setId(int id){
 		this.id = (long) id;
 	}
+	public Long getId() {
+		return id;
+	}
+
 	public String getNombre() {
 		return nombre;
 	}
