@@ -30,7 +30,9 @@ import com.google.gson.reflect.TypeToken;
 
 public class IndicadoresService {
 	static String rutaArchivoJson = "./resources/indicadores3.json";
-	
+	static SessionFactory sessionFactory = new Configuration().configure()
+			.buildSessionFactory();
+	static Session session = sessionFactory.openSession();
 
 	public static List<Indicador> obtenerInicadoresDeServicioExterno() throws FileNotFoundException {
 		/*Gson gson = new GsonBuilder()
@@ -44,20 +46,13 @@ public class IndicadoresService {
 			noEncuentraElArchivo();
 		}
 		return null;*/
-	
-		SessionFactory sessionFactory = new Configuration().configure()
-				.buildSessionFactory();
-		Session session = sessionFactory.openSession();
 		
 		try {
 			
 			session.beginTransaction();
-			String hql = "FROM model.Indicador";
-			Query query = session.createQuery(hql);
-			List<Indicador> results = query.list();
+			List<Indicador> results = (List<Indicador>) session.createQuery("FROM model.Indicador").getResultList();
+			session.getTransaction().commit();
 			return results;
-			
-			
 			
 		}
 		
@@ -65,13 +60,9 @@ public class IndicadoresService {
 		catch (HibernateException e) {
 			if (session.getTransaction() != null) {
 	            session.getTransaction().rollback();
-	          
 	        }
 			
 		}
-		finally {
-	        session.close();
-	    }
 		return null;
 	}
 	public static void guardarIndicadoresEnServicioExterno(Indicador unIndicador) throws IOException {
@@ -89,13 +80,9 @@ public class IndicadoresService {
 			noEncuentraElArchivo();
 		}*/
 		
-		SessionFactory sessionFactory = new Configuration().configure()
-				.buildSessionFactory();
-		Session session = sessionFactory.openSession();
-		
 		try {
 			session.beginTransaction();
-			session.saveOrUpdate(unIndicador);	
+			session.persist(unIndicador);	
 			session.getTransaction().commit();
 			
 		}
@@ -104,15 +91,9 @@ public class IndicadoresService {
 		catch (HibernateException e) {
 			if (session.getTransaction() != null) {
 	            session.getTransaction().rollback();
-	          
 	        }
 			
 		}
-		finally {
-	        session.close();
-	    }
-		
-		
 	}
 	
 	public static void noEncuentraElArchivo() throws UserException {
