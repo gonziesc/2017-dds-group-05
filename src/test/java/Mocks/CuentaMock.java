@@ -13,6 +13,7 @@ public class CuentaMock {
 	public Cuenta getOtraCuenta() {
 		Cuenta otraCuenta = new Cuenta();
 		otraCuenta.setValor(2000);
+		otraCuenta.setNombreCuenta("FCF");
 		return otraCuenta;
 
 	}

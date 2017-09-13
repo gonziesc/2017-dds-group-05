@@ -106,17 +106,28 @@ public class ormTest {
 		Comparador comp = new ComparadorPromedio();
 		Comparador comp2 = new ComparadorValor();
 		
+		comp.setNombreComparador("Comparador promedio");
+		comp.setOperando("<");
+		comp.setValor(2000);
 		session.persist(comp);
+		
+		comp2.setNombreComparador("Comparador Valor");
+		comp2.setOperando("<");
+		comp2.setValor(3000);
 		session.persist(comp2);
 		
-		//List<Comparador> resultList = (List<Comparador>) session.createQuery("from Comparador").getResultList();
+		Long compId = comp.getId();
+		
+		Comparador comparador = session.find(Comparador.class, compId);
+		Assert.assertEquals("Comparador promedio", comparador.getNombreComparador());
 	}
 	@Test
 	public void obtenerCuentas(){
 		Cuenta unaCuenta = cuentaMock.getOtraCuenta();
-		
 		session.persist(unaCuenta);
-		List<Cuenta> resultList = (List<Cuenta>) session.createQuery("from model.Cuenta").getResultList();
+		
+		Cuenta cuentap = session.find(Cuenta.class, unaCuenta.getId());
+		Assert.assertEquals("FCF",cuentap.getNombreCuenta());
 	}
 
 }
