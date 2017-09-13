@@ -44,7 +44,7 @@ public class IngresarMetodologiaViewModel {
 		builderMetodologia.setUnIndicador(indicadorSeleccionado);
 		
 		agregarComparadores();
-		
+		//
 	}
 
 	public void agregarComparadores() {
