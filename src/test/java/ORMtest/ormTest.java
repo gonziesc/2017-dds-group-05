@@ -91,15 +91,24 @@ public class ormTest {
 	@Test
 	public void persistIndicador(){
 		Indicador unIndicador = indicadorMock.getUnIdicadorConUnaConstanteYUnaCuenta();
-		
 		session.persist(unIndicador);
+		
+		Long idIndicador = unIndicador.getId();
+		
+		Indicador indicador = session.find(Indicador.class, idIndicador);
+		
+		Assert.assertEquals(10, indicador.getParametro1().getValor());
 	}
 	
 	@Test
 	public void persistMetodologia(){
-		Metodologia unaMetodologia = metodologiaMock.unaMetodologiaAnios();
-		
+		Metodologia unaMetodologia = metodologiaMock.unaMetodologiaMayorValor();
 		session.persist(unaMetodologia);
+		Long idMetodologia = unaMetodologia.getId();
+
+		Metodologia metodologia = session.find(Metodologia.class, idMetodologia);
+
+		Assert.assertEquals(10, metodologia.getUnIndicador().getValor());
 	}
 	@Test
 	public void testHerencia() throws Exception{

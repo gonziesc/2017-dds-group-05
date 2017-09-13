@@ -28,7 +28,6 @@ public class MetodologiaMock {
 		Metodologia unaMetodologia = new Metodologia();
 		unaMetodologia.addComparadorParaFilatrado(unComparador);
 		unaMetodologia.setUnIndicador(new IndicadorMock().getUnIdicadorConstante());
-		unaMetodologia.setNombre("MayorValor");
 		return unaMetodologia;
 	}
 
