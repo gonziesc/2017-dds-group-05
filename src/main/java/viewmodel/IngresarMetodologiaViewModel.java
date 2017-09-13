@@ -1,7 +1,5 @@
 package viewmodel;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.List;
 
 import org.uqbar.commons.model.ObservableUtils;
@@ -19,12 +17,16 @@ import model.repositories.Repositorios;
 public class IngresarMetodologiaViewModel {
 	private List<Indicador> indicadores;
 	private Indicador indicadorSeleccionado;
-	private Comparador comparadorSeleccionado;
+	private Comparador comparadorOrdenSeleccionado;
+	private Comparador comparadorFiltroSeleccionado;
 	private Integer valorComparador;
-	private List<Comparador> comparadores;
+	private List<Comparador> comparadoresOrden;
+	private List<Comparador> comparadoresFiltro;
 	private String nombreMetodologia;
 	private Boolean esFiltrable = false;
 	private Boolean esOrdenable = false;
+	private int fechaInicio;
+	private int fechaFin;
 	private BuilderMetodologia builderMetodologia = new BuilderMetodologia();
 	
 	public IngresarMetodologiaViewModel(BuilderMetodologia builder) {
@@ -32,61 +34,51 @@ public class IngresarMetodologiaViewModel {
 	}
 
 	public void obtenerComparadores(){
-		comparadores = Repositorios.metodologias.allComparadores();
+		comparadoresFiltro = Repositorios.metodologias.allComparadoresFiltro();
+		comparadoresOrden = Repositorios.metodologias.allComparadoresOrden();
 	}
 	
 	public void ingresarMetodologia() {
-			MetodologiasService.guardarMetodologiaEnServicioExterno(builderMetodologia.build());
+		MetodologiasService.guardarMetodologiaEnServicioExterno(builderMetodologia.build());
 	}
 
 	public void setearMetodologia() {
 		builderMetodologia.setNombre(nombreMetodologia);
 		builderMetodologia.setUnIndicador(indicadorSeleccionado);
-		
+		builderMetodologia.setPeriodoFin(fechaFin);
+		builderMetodologia.setPeriodoInicio(fechaInicio);
 		agregarComparadores();
-		//
 	}
 
 	public void agregarComparadores() {
 		if(esFiltrable){
-		builderMetodologia.addComparadorParaFiltrado(comparadorSeleccionado);
+		builderMetodologia.addComparadorParaFiltrado(comparadorFiltroSeleccionado);
 		}
-		if(esOrdenable){
-		builderMetodologia.setComparadorOrden(comparadorSeleccionado);
+		if(esOrdenable && builderMetodologia.getComparadorOrden() !=  null){
+		builderMetodologia.setComparadorOrden(comparadorOrdenSeleccionado);
 		}
 	}
 	
 	public void obtenerIndicadores() {
-			indicadores = IndicadoresService.obtenerInicadoresDeServicioExterno();
+		indicadores = IndicadoresService.obtenerInicadoresDeServicioExterno();
 	}
 	
 	public List<Indicador> getIndicadores() {
 		return indicadores;
 	}
+	
 	public void setIndicadores(List<Indicador> indicadores) {
 		this.indicadores = indicadores;
 	}
+	
 	public Indicador getIndicadorSeleccionado() {
 		return indicadorSeleccionado;
 	}
+	
 	public void setIndicadorSeleccionado(Indicador indicadorSeleccionado) {
 		this.indicadorSeleccionado = indicadorSeleccionado;
 	}
-	public Comparador getComparadorSeleccionado() {
-		return comparadorSeleccionado;
-	}
-	public void setComparadorSeleccionado(Comparador comparadorSeleccionado) {
-		this.comparadorSeleccionado = comparadorSeleccionado;
-		ObservableUtils.firePropertyChanged(this, "comparadorSeleccionado", this.getComparadorSeleccionado());
-	}
-	public List<Comparador> getComparadores() {
-		return comparadores;
-	}
-
-	public void setComparadores(List<Comparador> comparadores) {
-		this.comparadores = comparadores;
-	}
-
+	
 	public Integer getValorComparador() {
 		return valorComparador;
 	}
@@ -109,15 +101,24 @@ public class IngresarMetodologiaViewModel {
 		}
 	}
 	public void validarComparadorSeleccionado(){
-		this.validarIngreso("Ingrese comparador", this.comparadorSeleccionado);		
+		if(!esOrdenable && !esFiltrable){
+			throw new UserException("Ingrese algun comparador");	
+		}
 	}
+	
 	public void validarIndicadorSeleccionado(){
 		this.validarIngreso("Ingrese indicador", this.indicadorSeleccionado);
 	}
+	
 	public void validarNombre(){
 		this.validarIngreso("Ingrese el nombre de la metodologia", this.nombreMetodologia);
 	}
 
+	public void validarFechas(){
+		this.validarIngreso("Ingrese fecha inicio metodologia", this.fechaInicio);
+		this.validarIngreso("Ingrese fecha fin metodologia", this.fechaFin);
+	}
+	
 	public BuilderMetodologia getBuilderMetodologia() {
 		return builderMetodologia;
 	}
@@ -142,6 +143,52 @@ public class IngresarMetodologiaViewModel {
 	public void setEsOrdenable(Boolean esOrdenable) {
 		this.esOrdenable = esOrdenable;
 		ObservableUtils.firePropertyChanged(this, "esFiltrable", this.getEsFiltrable());
+	}
+
+	public List<Comparador> getComparadoresFiltro() {
+		return comparadoresFiltro;
+	}
+
+	public void setComparadoresFiltro(List<Comparador> comparadoresFiltro) {
+		this.comparadoresFiltro = comparadoresFiltro;
+	}
+
+	public Comparador getComparadorOrdenSeleccionado() {
+		return comparadorOrdenSeleccionado;
+	}
+
+	public void setComparadorOrdenSeleccionado(Comparador comparadorOrdenSeleccionado) {
+		this.comparadorOrdenSeleccionado = comparadorOrdenSeleccionado;
+		ObservableUtils.firePropertyChanged(this, "comparadorOrdenSeleccionado", this.getComparadorOrdenSeleccionado());
+	}
+
+	public Comparador getComparadorFiltroSeleccionado() {
+		return comparadorFiltroSeleccionado;
+	}
+
+	public void setComparadorFiltroSeleccionado(Comparador comparadorFiltroSeleccionado) {
+		this.comparadorFiltroSeleccionado = comparadorFiltroSeleccionado;
+		ObservableUtils.firePropertyChanged(this, "comparadorFiltroSeleccionado", this.getComparadorFiltroSeleccionado());
+	}
+
+	public List<Comparador> getComparadoresOrden() {
+		return comparadoresOrden;
+	}
+
+	public int getFechaInicio() {
+		return fechaInicio;
+	}
+
+	public void setFechaInicio(int fechaInicio) {
+		this.fechaInicio = fechaInicio;
+	}
+
+	public int getFechaFin() {
+		return fechaFin;
+	}
+
+	public void setFechaFin(int fechaFin) {
+		this.fechaFin = fechaFin;
 	}
 	
 }

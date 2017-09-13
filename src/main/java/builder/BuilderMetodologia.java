@@ -24,6 +24,8 @@ public class BuilderMetodologia {
 		metodologia.setComparadorOrden(comparadorOrden);
 		metodologia.setComparadoresFiltrado(comparadoresFiltrado);
 		metodologia.setNombre(nombre);
+		metodologia.setPeriodoFin(periodoFin);
+		metodologia.setPeriodoInicio(periodoInicio);
 		return metodologia;
 	}
 	

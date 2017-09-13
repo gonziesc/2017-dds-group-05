@@ -37,18 +37,31 @@ public class IngresarMetodologiaView extends Dialog<IngresarMetodologiaViewModel
 		selectorIndicadores.bindItemsToProperty("indicadores").adaptWith(Indicador.class, "nombre");
 		selectorIndicadores.bindValueToProperty("indicadorSeleccionado");
 		
+		new Label(mainPanel).setText("Fecha inicio");
+		new NumericField(mainPanel).bindValueToProperty("fechaInicio");
+		
+		new Label(mainPanel).setText("Fecha fin");
+		new NumericField(mainPanel).bindValueToProperty("fechaFin");
+		
 		new Label(mainPanel).setText("Indique que tipo de comparador");
 		
-		new Label(mainPanel).setText("Filtrable");
-		new CheckBox(mainPanel).bindValueToProperty("esFiltrable");
+		new Label(mainPanel).setText("Ingresar unico comparador orden");
+		
+		Selector<Comparador> selectorComparadores = new Selector<Comparador>(mainPanel);
+		selectorComparadores.bindItemsToProperty("comparadoresOrden").adaptWith(Comparador.class, "nombreComparador");
+		selectorComparadores.bindValueToProperty("comparadorOrdenSeleccionado");
+		
 		new Label(mainPanel).setText("Ordenable");
 		new CheckBox(mainPanel).bindValueToProperty("esOrdenable");
 		
-		new Label(mainPanel).setText("Ingresar comparador");
+		new Label(mainPanel).setText("Ingresar comparador filtro");
 		
-		Selector<Comparador> selectorComparadores = new Selector<Comparador>(mainPanel);
-		selectorComparadores.bindItemsToProperty("comparadores").adaptWith(Comparador.class, "nombreComparador");
-		selectorComparadores.bindValueToProperty("comparadorSeleccionado");
+		Selector<Comparador> selectorComparadoresFiltro = new Selector<Comparador>(mainPanel);
+		selectorComparadoresFiltro.bindItemsToProperty("comparadoresFiltro").adaptWith(Comparador.class, "nombreComparador");
+		selectorComparadoresFiltro.bindValueToProperty("comparadorFiltroSeleccionado");
+		
+		new Label(mainPanel).setText("Filtrable");
+		new CheckBox(mainPanel).bindValueToProperty("esFiltrable");
 		
 		new Label(mainPanel).setText("Valor comparable");
 		new NumericField(mainPanel).bindValueToProperty("valorComparador");
@@ -74,6 +87,7 @@ public class IngresarMetodologiaView extends Dialog<IngresarMetodologiaViewModel
 	
 	public void validarIngreso(){
 		this.getModelObject().validarNombre();
+		this.getModelObject().validarFechas();
 		this.getModelObject().validarIndicadorSeleccionado();
 		this.getModelObject().validarComparadorSeleccionado();
 	}

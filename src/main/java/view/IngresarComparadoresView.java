@@ -23,18 +23,14 @@ public class IngresarComparadoresView extends Dialog<IngresarMetodologiaViewMode
 	@Override
 	protected void createFormPanel(Panel mainPanel) {
 		
-		new Label(mainPanel).setText("Indique que tipo de comparador");
-		
-		new Label(mainPanel).setText("Filtrable");
-		new CheckBox(mainPanel).bindValueToProperty("esFiltrable");
 		new Label(mainPanel).setText("Ordenable");
 		new CheckBox(mainPanel).bindValueToProperty("esOrdenable");
 		
 		new Label(mainPanel).setText("Ingresar comparador");
 		
 		Selector<Comparador> selectorComparadores = new Selector<Comparador>(mainPanel);
-		selectorComparadores.bindItemsToProperty("comparadores").adaptWith(Comparador.class, "nombreComparador");
-		selectorComparadores.bindValueToProperty("comparadorSeleccionado");
+		selectorComparadores.bindItemsToProperty("comparadoresOrden").adaptWith(Comparador.class, "nombreComparador");
+		selectorComparadores.bindValueToProperty("comparadorOrdenSeleccionado");
 		
 		new Button(mainPanel).setCaption("Ingresar otro comparador").onClick(this::ingresarComparador);
 		new Button(mainPanel).setCaption("Ingresar metodologia").onClick(this::ingresarMetodologia);

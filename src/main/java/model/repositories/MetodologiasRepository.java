@@ -17,11 +17,9 @@ public class MetodologiasRepository {
 	private List<Metodologia> metodologias = new LinkedList<>();
 	private List<Comparador> comparadores = new LinkedList<>();
 	
-	public List<Comparador> allComparadores(){
+	public List<Comparador> allComparadoresFiltro(){
 		comparadores.add(new ComparadorAnios());
 		comparadores.add(new ComparadorPromedio());
-		comparadores.add(new ComparadorUnoMayorQueOtro());
-		comparadores.add(new ComparadorUnoMayorQueOtroEnElTiempo());
 		comparadores.add(new ComparadorValor());
 		comparadores.add(new ComparadorValorTiempo());
 		return comparadores;
@@ -29,5 +27,11 @@ public class MetodologiasRepository {
 
 	public List<Metodologia> allMetodologias() {
 		return metodologias;
+	}
+	
+	public List<Comparador> allComparadoresOrden(){
+		comparadores.add(new ComparadorUnoMayorQueOtro());
+		comparadores.add(new ComparadorUnoMayorQueOtroEnElTiempo());
+		return comparadores;
 	}
 }
