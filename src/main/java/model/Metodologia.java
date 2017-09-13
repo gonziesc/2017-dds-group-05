@@ -34,10 +34,9 @@ public class Metodologia {
 	private int periodoFin;
 	@OneToOne
 	private Indicador unIndicador;
-
 	@OneToMany (cascade = CascadeType.ALL)@JoinColumn(name="metodologia_id")
 	private List<Comparador> comparadoresFiltrado = new ArrayList<Comparador>();
-	@OneToMany (cascade = CascadeType.ALL)@JoinColumn(name="metodologia_id")
+	@OneToOne (cascade = CascadeType.ALL)@JoinColumn(name="metodologia_id")
 	private Comparador comparadorOrden;
 
 	public Metodologia(){}
