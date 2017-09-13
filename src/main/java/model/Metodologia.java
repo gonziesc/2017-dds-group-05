@@ -13,6 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -32,12 +33,13 @@ public class Metodologia {
 	private String nombre;
 	private int periodoInicio;
 	private int periodoFin;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.PERSIST)
 	private Indicador unIndicador;
 
 	@OneToMany (cascade = CascadeType.ALL)@JoinColumn(name="metodologia_id")
 	private List<Comparador> comparadoresFiltrado = new ArrayList<Comparador>();
-	@OneToMany (cascade = CascadeType.ALL)@JoinColumn(name="metodologia_id")
+	@ManyToOne (cascade = CascadeType.ALL)
+	//@JoinColumn(name="metodologia_id")
 	private Comparador comparadorOrden;
 
 	public Metodologia(){}
