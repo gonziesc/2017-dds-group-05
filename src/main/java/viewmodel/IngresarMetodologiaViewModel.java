@@ -53,7 +53,7 @@ public class IngresarMetodologiaViewModel {
 
 	public void agregarComparadores() {
 		if(esFiltrable){
-		builderMetodologia.addComparadorParaFiltrado(comparadorSeleccionado);
+	//builderMetodologia.addComparadorParaFiltrado(comparadorSeleccionado);
 		}
 		if(esOrdenable){
 		builderMetodologia.setComparadorOrden(comparadorSeleccionado);

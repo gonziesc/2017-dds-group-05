@@ -1,5 +1,10 @@
 package model;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
+@Entity
+@DiscriminatorValue(value = "ComparadorAnios")
 public class ComparadorAnios extends ComparadorOrden{
 	
 	@Override

@@ -2,10 +2,14 @@ package model;
 
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.MappedSuperclass;
+
+@MappedSuperclass
 public abstract class ComparadorOrden extends Comparador{
-	
-	
-	
+		
 	public abstract Empresa comparar(Empresa unaEmpresa, Empresa otraEmpresa, Indicador unIndicador);
 	
 	protected Empresa procesarRetorno(Empresa unaEmpresa2, Empresa otraEmpresa2, Boolean condicion) {

@@ -33,6 +33,14 @@
         <mapping class="model.Indicador"/>
         <mapping class="model.parametroGeneral"/>
         <mapping class="model.Comparador"/>
+        <mapping class="model.ComparadorValor"/>
+        <mapping class="model.ComparadorPromedio"/>
+        <mapping class="model.ComparadorUnoMayorQueOtro"/>
+        <mapping class="model.ComparadorUnoMayorQueOtroEnElTiempo"/>
+        <mapping class="model.ComparadorValorTiempo"/>
+        <mapping class="model.ComparadorOrden"/>
+        <mapping class="model.ComparadorAnios"/>
+        
 
 
     </session-factory>

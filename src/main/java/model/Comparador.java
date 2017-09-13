@@ -2,6 +2,8 @@ package model;
 
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -13,7 +15,8 @@ import org.uqbar.commons.utils.Observable;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-@Entity @Table(name="comparadores")
+@Entity 
+@Table(name="comparadores")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Observable
 public abstract class Comparador {
@@ -22,9 +25,11 @@ public abstract class Comparador {
 
 	@Id @GeneratedValue
 	private Long id;
+	@Column(name = "nombre_comparador")
 	private String nombreComparador;
 	private int periodoInicio;
 	private int periodoFin;
+	@Column(name = "operando")
 	private String operando;
 	private int valor;
 	
@@ -68,5 +73,13 @@ public abstract class Comparador {
 
 	public void setNombreComparador(String nombreComparador) {
 		this.nombreComparador = nombreComparador;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 }

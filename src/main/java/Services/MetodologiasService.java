@@ -31,6 +31,9 @@ import model.Metodologia;
 
 public class MetodologiasService {
 	static String rutaArchivoJson = "./resources/metodologias2.JSON";
+	static SessionFactory sessionFactory = new Configuration().configure()
+			.buildSessionFactory();
+	static Session session = sessionFactory.openSession();
 	
 	public static ArrayList<Metodologia> obtenerMetodologiasDeServicioExterno() throws FileNotFoundException {
 		/*Gson gson = new GsonBuilder()
@@ -43,19 +46,13 @@ public class MetodologiasService {
 			noEncuentraElArchivo();
 		}*/
 		
-		SessionFactory sessionFactory = new Configuration().configure()
-				.buildSessionFactory();
-		Session session = sessionFactory.openSession();
 		
 		try {
 			
 			session.beginTransaction();
-			String hql = "FROM model.Metodologia";
-			Query query = session.createQuery(hql);
-			ArrayList<Metodologia> results = (ArrayList<Metodologia>) query.list();
+			ArrayList<Metodologia> results = (ArrayList<Metodologia>) session.createQuery("FROM model.Metodologia").getResultList();
+			session.getTransaction().commit();
 			return results;
-			
-			
 			
 		}
 		
@@ -67,9 +64,6 @@ public class MetodologiasService {
 	        }
 			
 		}
-		finally {
-	        session.close();
-	    }
 		
 		return null;
 	}
@@ -90,14 +84,10 @@ public class MetodologiasService {
 			noEncuentraElArchivo();
 		}*/
 		
-		SessionFactory sessionFactory = new Configuration().configure()
-				.buildSessionFactory();
-		Session session = sessionFactory.openSession();
-		
 		try {
 			//unaMetodologia.setId(4);
 			session.beginTransaction();
-			session.saveOrUpdate(unaMetodologia);	
+			session.persist(unaMetodologia);	
 			session.getTransaction().commit();
 			
 		}
@@ -106,15 +96,9 @@ public class MetodologiasService {
 		catch (HibernateException e) {
 			if (session.getTransaction() != null) {
 	            session.getTransaction().rollback();
-	          
 	        }
 			
 		}
-		finally {
-	        session.close();
-	    }
-				
-		
 	}
 
 	public static void noEncuentraElArchivo() throws UserException {

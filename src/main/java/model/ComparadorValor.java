@@ -1,7 +1,12 @@
 package model;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
 import org.uqbar.commons.utils.Observable;
 
+@Entity
+@DiscriminatorValue(value = "ComparadorValor")
 @Observable
 public class ComparadorValor extends ComparadorOrden {
 
