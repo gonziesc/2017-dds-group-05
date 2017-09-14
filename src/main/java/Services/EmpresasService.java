@@ -44,8 +44,6 @@ public class EmpresasService {
 			    .create();
 		
 		
-		
-		
 		try {
 			Type collectionType = new TypeToken<Collection<Empresa>>(){}.getType();
 			ArrayList<Empresa> listaEmpresas = gson.fromJson(new FileReader(rutaArchivoJson), collectionType);

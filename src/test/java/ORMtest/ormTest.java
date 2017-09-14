@@ -97,7 +97,7 @@ public class ormTest {
 		
 		Indicador indicador = session.find(Indicador.class, idIndicador);
 		
-		Assert.assertEquals(10, indicador.getParametro1().getValor());
+		Assert.assertEquals(1000, indicador.getParametro2().getValor());
 	}
 	
 	@Test
