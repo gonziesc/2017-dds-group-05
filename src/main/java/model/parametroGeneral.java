@@ -28,10 +28,10 @@ public class parametroGeneral {
 	
 	public parametroGeneral (){}
 	public int getValor() {
-//		if(parametro1 != null)
-//		this.valor = parametro1.getValor();
-//		if(parametro2 != null)
-//		this.valor += parametro2.getValor();
+		if(parametro1 != null)
+		this.valor = parametro1.getValor();
+		if(parametro2 != null)
+		this.valor += parametro2.getValor();
 		return valor;
 	}
 	
