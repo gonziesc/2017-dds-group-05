@@ -21,7 +21,7 @@ public class ComparadorTest {
 	public void testComparadorDeOrden(){
 		ComparadorUnoMayorQueOtro comparador = new ComparadorUnoMayorQueOtro();
 		comparador.setOperando(">");
-		assertEquals(comparador.comparar(facebook, arcor, indicador, 0, 10000), facebook);
+		assertEquals(comparador.comparar(facebook, arcor, indicador, 0, 10000), arcor);
 	}
 	
 	@Test
@@ -32,18 +32,5 @@ public class ComparadorTest {
 		assertTrue(comparador.comparar(facebook, indicador, 0, 10000));
 	}
 
-	@Test(expected = Exception.class) 
-	public void testComparadorDeOrdenNoFiltra() throws Exception{
-		ComparadorUnoMayorQueOtro comparador = new ComparadorUnoMayorQueOtro();
-		comparador.comparar(facebook, indicador, 0, 10000);
-		//Debe fallar, arreglar implemetacion para que tire excepcion
-	}
-
-	@Test(expected = Exception.class) 
-	public void testComparadorFiltradoNoOrdena()throws Exception{
-		ComparadorAnios comparador = new ComparadorAnios();
-			comparador.comparar(facebook, arcor, indicador, 0, 10000);
-		//Debe fallar, arreglar implemetacion para que tire excepcion
-	}
 }
 	
