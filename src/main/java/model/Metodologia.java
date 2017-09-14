@@ -6,10 +6,13 @@ import java.util.Comparator;
 import java.util.LinkedList;
 
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -35,10 +38,10 @@ public class Metodologia {
 	private int periodoFin;
 	@OneToOne//(cascade = CascadeType.PERSIST)
 	private Indicador unIndicador;
-	@OneToMany (cascade = CascadeType.ALL) @JoinColumn(name="metodologia_id")
-	private List<Comparador> comparadoresFiltrado = new ArrayList<Comparador>();
+	@OneToMany (cascade = CascadeType.ALL, fetch = FetchType.EAGER) @JoinColumn(name="metodologia_id")
+	private List<ComparadorFiltro> comparadoresFiltrado = new ArrayList<ComparadorFiltro>();
 	@OneToOne (cascade = CascadeType.ALL)
-	private Comparador comparadorOrden;
+	private ComparadorOrden comparadorOrden;
 
 	public Metodologia(){}
 	
@@ -81,11 +84,11 @@ public class Metodologia {
 		this.unIndicador = unIndicador;
 	}
 
-	public List<Comparador> getComparadoresFiltrado() {
+	public List<ComparadorFiltro> getComparadoresFiltrado() {
 		return comparadoresFiltrado;
 	}
 
-	public void setComparadoresFiltrado(List<Comparador> comparadoresFiltrado) {
+	public void setComparadoresFiltrado(List<ComparadorFiltro> comparadoresFiltrado) {
 		this.comparadoresFiltrado = comparadoresFiltrado;
 	}
 
@@ -100,8 +103,8 @@ public class Metodologia {
 	}
 
 	@SuppressWarnings("unchecked")
-	protected List<Empresa> filtrarEmpresasParcial(List<Empresa> listaEmpresas,Comparador comparador) {
-		return (List<Empresa>) listaEmpresas.stream().filter(empresa -> calcularMetodologia(empresa, comparador));
+	protected List<Empresa> filtrarEmpresasParcial(List<Empresa> listaEmpresas,ComparadorFiltro comparador) {
+		return listaEmpresas.stream().filter(empresa -> calcularMetodologia(empresa, comparador)).collect(Collectors.toList());
 	}
 
 	/*protected List<Empresa> ordenarEmpresas(List<Empresa> listaEmpresas) {
@@ -128,22 +131,22 @@ public class Metodologia {
 	}
 
 	protected Empresa calcularMetodologia(Empresa empresa1, Empresa empresa2,
-			Comparador comparador) {
-		return comparador.comparar(empresa1, empresa2, unIndicador, periodoInicio, periodoFin);
+			ComparadorOrden comparadorOrden2) {
+		return comparadorOrden2.comparar(empresa1, empresa2, unIndicador, periodoInicio, periodoFin);
 	}
 	
-	protected Boolean calcularMetodologia(Empresa empresa1, Comparador comparador) {
+	protected Boolean calcularMetodologia(Empresa empresa1, ComparadorFiltro comparador) {
 		return comparador.comparar(empresa1, unIndicador, periodoInicio, periodoFin);
 	}
-	public void addComparadorParaFilatrado(Comparador unComparador) {
+	public void addComparadorParaFilatrado(ComparadorFiltro unComparador) {
 		comparadoresFiltrado.add(unComparador);
 	}
 
-	public Comparador getComparadorOrden() {
+	public ComparadorOrden getComparadorOrden() {
 		return comparadorOrden;
 	}
 
-	public void setComparadorOrden(Comparador comparadorOrden) {
+	public void setComparadorOrden(ComparadorOrden comparadorOrden) {
 		this.comparadorOrden = comparadorOrden;
 	}
 

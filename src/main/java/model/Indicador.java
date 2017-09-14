@@ -21,9 +21,9 @@ import javax.persistence.Table;
 public class Indicador{
 	@Id	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@ManyToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL)
 	private parametroGeneral parametro1;
-	@ManyToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL)
 	private parametroGeneral parametro2;
 	private String operacion;
 	private String nombre;

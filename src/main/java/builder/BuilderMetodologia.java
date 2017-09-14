@@ -4,13 +4,15 @@ import java.util.LinkedList;
 import java.util.List;
 
 import model.Comparador;
+import model.ComparadorFiltro;
+import model.ComparadorOrden;
 import model.Indicador;
 import model.Metodologia;
 
 public class BuilderMetodologia {
 	private String nombre;
-	private List<Comparador>  comparadoresFiltrado = new LinkedList<Comparador>();
-	private Comparador comparadorOrden;
+	private List<ComparadorFiltro>  comparadoresFiltrado = new LinkedList<ComparadorFiltro>();
+	private ComparadorOrden comparadorOrden;
 	private String operandoOrdenamiento = ">";
 	private int periodoInicio;
 	private int periodoFin;
@@ -34,10 +36,10 @@ public class BuilderMetodologia {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public List<Comparador> getComparadoresFiltrado() {
+	public List<ComparadorFiltro> getComparadoresFiltrado() {
 		return comparadoresFiltrado;
 	}
-	public void setComparadoresFiltrado(List<Comparador> comparadoresFiltrado) {
+	public void setComparadoresFiltrado(List<ComparadorFiltro> comparadoresFiltrado) {
 		this.comparadoresFiltrado = comparadoresFiltrado;
 	}
 	/*public List<Comparador> getComparadoresOrdenamiento() {
@@ -71,7 +73,7 @@ public class BuilderMetodologia {
 		this.unIndicador = unIndicador;
 	}
 	
-	public void addComparadorParaFiltrado(Comparador unComparador){
+	public void addComparadorParaFiltrado(ComparadorFiltro unComparador){
 		comparadoresFiltrado.add(unComparador);
 	}
 	
@@ -80,12 +82,12 @@ public class BuilderMetodologia {
 	}*/
 
 
-	public Comparador getComparadorOrden() {
+	public ComparadorOrden getComparadorOrden() {
 		return comparadorOrden;
 	}
 	
 
-	public void setComparadorOrden(Comparador comparadorOrden) {
+	public void setComparadorOrden(ComparadorOrden comparadorOrden) {
 		this.comparadorOrden = comparadorOrden;
 	}
 }

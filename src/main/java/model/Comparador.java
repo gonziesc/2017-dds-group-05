@@ -10,9 +10,9 @@ import javax.persistence.Table;
 
 import org.uqbar.commons.utils.Observable;
 
-@Entity 
-@Table(name="comparadores")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+//@Entity 
+//@Table(name="comparadores")
+//@Inheritance(strategy = InheritanceType.JOINED)
 @Observable
 public abstract class Comparador {
 

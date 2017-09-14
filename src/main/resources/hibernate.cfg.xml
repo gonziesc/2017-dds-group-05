@@ -23,7 +23,7 @@
  
         <!-- Drop and re-create all database on startup -->
 
-        <property name="hibernate.hbm2ddl.auto">create</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
  		
         <!-- Annotated entity classes -->
        
@@ -33,7 +33,7 @@
         <mapping class="model.Metodologia"/>
         <mapping class="model.Indicador"/>
         <mapping class="model.parametroGeneral"/>
-        <mapping class="model.Comparador"/>
+        <mapping class="model.ComparadorFiltro"/>
         <mapping class="model.ComparadorValor"/>
         <mapping class="model.ComparadorPromedio"/>
         <mapping class="model.ComparadorUnoMayorQueOtro"/>
