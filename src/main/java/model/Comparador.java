@@ -1,9 +1,6 @@
 package model;
 
-import java.util.List;
-
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -12,8 +9,6 @@ import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
 import org.uqbar.commons.utils.Observable;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity 
 @Table(name="comparadores")
@@ -25,36 +20,21 @@ public abstract class Comparador {
 
 	@Id @GeneratedValue
 	private Long id;
+	
 	@Column(name = "nombre_comparador")
 	private String nombreComparador;
-	private int periodoInicio;
-	private int periodoFin;
+	
 	@Column(name = "operando")
 	private String operando;
-	private int valor;
 	
-	public abstract Empresa comparar(Empresa unaEmpresa, Empresa otraEmpresa, Indicador unIndicador);
+	public abstract Empresa comparar(Empresa unaEmpresa, Empresa otraEmpresa, Indicador unIndicador, int fechaDesde, int fechaHasta);
+	public abstract Boolean comparar(Empresa unaEmpresa, Indicador unIndicador, int fechaDesde, int fechaHasta);
 
-	public String getNombreComparador() {
-		return nombreComparador;
+	protected Indicador cargarIndicador(Cuenta c, Indicador indicador) {
+		indicador.setValorCuenta(c);
+		return indicador;
 	}
-
-	public int getPeriodoInicio() {
-		return periodoInicio;
-	}
-
-	public void setPeriodoInicio(int periodoInicio) {
-		this.periodoInicio = periodoInicio;
-	}
-
-	public int getPeriodoFin() {
-		return periodoFin;
-	}
-
-	public void setPeriodoFin(int periodoFin) {
-		this.periodoFin = periodoFin;
-	}
-
+	
 	public String getOperando() {
 		return operando;
 	}
@@ -63,12 +43,8 @@ public abstract class Comparador {
 		this.operando = operando;
 	}
 
-	public int getValor() {
-		return valor;
-	}
-
-	public void setValor(int valor) {
-		this.valor = valor;
+	public String getNombreComparador() {
+		return nombreComparador;
 	}
 
 	public void setNombreComparador(String nombreComparador) {

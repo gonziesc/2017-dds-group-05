@@ -5,13 +5,12 @@ import javax.persistence.Entity;
 
 @Entity
 @DiscriminatorValue(value = "ComparadorAnios")
-public class ComparadorAnios extends ComparadorOrden{
+public class ComparadorAnios extends ComparadorFiltro{
 	
 	@Override
-	public Empresa comparar(Empresa unaEmpresa, Empresa otraEmpresa, Indicador unIndicador) {
-		Boolean condicion = Operadores.compararOperacion(unaEmpresa.aniosEmpresa(),
+	public Boolean comparar(Empresa unaEmpresa, Indicador unIndicador, int anioDesde, int anioHasta) {
+		return Operadores.compararOperacion(unaEmpresa.aniosEmpresa(),
 				getValor(), getOperando());
-		return this.procesarRetorno(unaEmpresa, otraEmpresa, condicion);
 	}
 
 	@Override

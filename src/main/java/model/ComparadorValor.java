@@ -8,13 +8,13 @@ import org.uqbar.commons.utils.Observable;
 @Entity
 @DiscriminatorValue(value = "ComparadorValor")
 @Observable
-public class ComparadorValor extends ComparadorOrden {
+public class ComparadorValor extends ComparadorFiltro{
 
 	@Override
-	public Empresa comparar(Empresa unaEmpresa, Empresa otraEmpresa, Indicador unIndicador) {
+	public Boolean comparar(Empresa unaEmpresa, Indicador unIndicador, int anioDesde, int anioHasta) {
 		unaEmpresa.getCuentas().stream().forEach(c -> cargarIndicador(c, unIndicador));
-		Boolean condicion = Operadores.compararOperacion(unIndicador.getValor(), this.getValor(), this.getOperando());
-		return procesarRetorno(unaEmpresa, otraEmpresa, condicion);
+		return Operadores.compararOperacion(unIndicador.getValor(), getValor(), this.getOperando());
+
 	}
 
 	@Override

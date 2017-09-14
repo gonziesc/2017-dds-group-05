@@ -39,7 +39,7 @@ public class Empresa {
 	
 	public List<Cuenta> cuentasSegunTiempo(int periodoInicio, int periodoFin){
 		List<Cuenta> cuentasEnPeriodo = Cuentas.stream()
-				.filter(cuenta -> cuenta.getAnioCuenta() > periodoInicio && cuenta.getAnioCuenta() < periodoFin).collect(Collectors.toList());
+				.filter(cuenta -> cuenta.getAnioCuenta() >= periodoInicio && cuenta.getAnioCuenta() <= periodoFin).collect(Collectors.toList());
 		return cuentasEnPeriodo;
 	}
 	
@@ -66,6 +66,6 @@ public class Empresa {
 	
 	public int aniosEmpresa(){
 		final Comparator<Cuenta> comp = (p1, p2) -> Integer.compare( p1.getAnioCuenta(), p2.getAnioCuenta());
-		return 2017 - Cuentas.stream().max(comp).get().getAnioCuenta();
+		return 2017 - Cuentas.stream().min(comp).get().getAnioCuenta();//Revisar, se busca hacer Anio actual - Anio cuenta mas vieja
 	}
 }

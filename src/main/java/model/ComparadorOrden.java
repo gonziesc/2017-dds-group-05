@@ -1,47 +1,20 @@
 package model;
 
-import java.util.List;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.MappedSuperclass;
 
-@Entity
+@MappedSuperclass
 public abstract class ComparadorOrden extends Comparador{
 	
-	public abstract Empresa comparar(Empresa unaEmpresa, Empresa otraEmpresa, Indicador unIndicador);
-	
-	protected Empresa procesarRetorno(Empresa unaEmpresa2, Empresa otraEmpresa2, Boolean condicion) {
+	protected Empresa procesarRetorno(Empresa unaEmpresa, Empresa otraEmpresa, Boolean condicion) {
 		if (condicion)
-			return unaEmpresa2;
+			return unaEmpresa;
 		else
-			return otraEmpresa2;
+			return otraEmpresa;
 	}
 	
-	protected Boolean cumpleConSuCuentaPareja(Cuenta cuenta,
-			List<Cuenta> cuentasPeriodoOtraEmpresa, String comparador2, Indicador unIndicador) {
-		return cuentasPeriodoOtraEmpresa.stream().allMatch(
-				c -> cumpleCuentaPareja(cuenta, c, comparador2, unIndicador));
+	@Override
+	public Boolean comparar(Empresa unaEmpresa, Indicador unIndicador, int fechaDesde, int fechaHasta){
+		return null; //Aca tiene que ir un shouldNotImplement o separar la jerarquía -ilopetegui
 	}
-
-	private Boolean cumpleCuentaPareja(Cuenta cuenta, Cuenta otraCuenta,
-			String comparador2, Indicador unIndicador) {
-		if (cuenta.getAnioCuenta() == otraCuenta.getAnioCuenta()) {
-			return Operadores.compararOperacion(
-					cargarIndicador(cuenta, unIndicador).getValor(),
-					cargarIndicador(otraCuenta, unIndicador).getValor(),
-					comparador2);
-		}
-		return true;
-	}
-
-	protected Indicador cargarIndicador(Cuenta c, Indicador indicador) {
-		indicador.setValorCuenta(c);
-		return indicador;
-	}
-	
 	
 }

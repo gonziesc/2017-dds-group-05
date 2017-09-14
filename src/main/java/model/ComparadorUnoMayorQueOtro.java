@@ -11,13 +11,17 @@ import org.uqbar.commons.utils.Observable;
 public class ComparadorUnoMayorQueOtro extends ComparadorOrden{
 	
 	@Override
-	public Empresa comparar(Empresa unaEmpresa, Empresa otraEmpresa, Indicador unIndicador) {
+	public Empresa comparar(Empresa unaEmpresa, Empresa otraEmpresa, Indicador unIndicador, int fechaDesde, int fechaHasta) {
+		int valorUnaEmpresa;
+		int valorOtraEmpresa;
 		otraEmpresa.getCuentas().stream()
 				.forEach(c -> cargarIndicador(c, unIndicador));
+		valorOtraEmpresa = unIndicador.getValor();
 		unaEmpresa.getCuentas().stream()
 				.forEach(c -> cargarIndicador(c, unIndicador));
-		Boolean condicion = Operadores.compararOperacion(unIndicador.getValor(),
-				unIndicador.getValor(), getOperando());
+		valorUnaEmpresa = unIndicador.getValor();
+		Boolean condicion = Operadores.compararOperacion(valorUnaEmpresa,
+				valorOtraEmpresa, getOperando());
 		return this.procesarRetorno(unaEmpresa, otraEmpresa, condicion);
 	}
 	

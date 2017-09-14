@@ -20,6 +20,7 @@ import Mocks.MetodologiaMock;
 import org.junit.Assert;
 import model.Comparador;
 import model.ComparadorAnios;
+import model.ComparadorFiltro;
 import model.ComparadorOrden;
 import model.ComparadorPromedio;
 import model.ComparadorValor;
@@ -104,8 +105,8 @@ public class ormTest {
 	}
 	@Test
 	public void testHerencia() throws Exception{
-		ComparadorOrden comp = new ComparadorPromedio();
-		ComparadorOrden comp2 = new ComparadorValor();
+		ComparadorFiltro comp = new ComparadorPromedio();
+		ComparadorFiltro comp2 = new ComparadorValor();
 		
 		comp.setNombreComparador("Comparador promedio");
 		comp.setOperando("<");

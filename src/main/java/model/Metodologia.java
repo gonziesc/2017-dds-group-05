@@ -101,7 +101,7 @@ public class Metodologia {
 
 	@SuppressWarnings("unchecked")
 	protected List<Empresa> filtrarEmpresasParcial(List<Empresa> listaEmpresas,Comparador comparador) {
-		return (List<Empresa>) listaEmpresas.stream().filter(empresa -> calcularMetodologia(empresa, null, comparador) != null);
+		return (List<Empresa>) listaEmpresas.stream().filter(empresa -> calcularMetodologia(empresa, comparador));
 	}
 
 	/*protected List<Empresa> ordenarEmpresas(List<Empresa> listaEmpresas) {
@@ -129,7 +129,11 @@ public class Metodologia {
 
 	protected Empresa calcularMetodologia(Empresa empresa1, Empresa empresa2,
 			Comparador comparador) {
-		return comparador.comparar(empresa1, empresa2, unIndicador);
+		return comparador.comparar(empresa1, empresa2, unIndicador, periodoInicio, periodoFin);
+	}
+	
+	protected Boolean calcularMetodologia(Empresa empresa1, Comparador comparador) {
+		return comparador.comparar(empresa1, unIndicador, periodoInicio, periodoFin);
 	}
 	public void addComparadorParaFilatrado(Comparador unComparador) {
 		comparadoresFiltrado.add(unComparador);
