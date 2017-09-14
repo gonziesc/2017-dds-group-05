@@ -10,7 +10,6 @@ import model.Metodologia;
 public class BuilderMetodologia {
 	private String nombre;
 	private List<Comparador>  comparadoresFiltrado = new LinkedList<Comparador>();
-	//private List<Comparador>  comparadoresOrdenamiento = new LinkedList<Comparador>();
 	private Comparador comparadorOrden;
 	private String operandoOrdenamiento = ">";
 	private int periodoInicio;
@@ -20,7 +19,6 @@ public class BuilderMetodologia {
 	public Metodologia build(){
 		Metodologia metodologia = new Metodologia();
 		metodologia.setUnIndicador(unIndicador);
-		//metodologia.setComparadoresOrdenamiento(comparadoresOrdenamiento);
 		metodologia.setComparadorOrden(comparadorOrden);
 		metodologia.setComparadoresFiltrado(comparadoresFiltrado);
 		metodologia.setNombre(nombre);

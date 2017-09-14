@@ -34,24 +34,15 @@ import com.google.gson.reflect.TypeToken;
 @Observable
 public class EmpresasService {
 	static String rutaArchivoJson = "./resources/cuentas.json";
-	static SessionFactory sessionFactory = new Configuration().configure()
-			.buildSessionFactory();
-	static Session session = sessionFactory.openSession();
 
 	public static ArrayList<Empresa> obtenerEmpresasDeServicioExterno() throws FileNotFoundException {
 		Gson gson = new GsonBuilder()
 			    .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
 			    .create();
-		
-		
+
 		try {
 			Type collectionType = new TypeToken<Collection<Empresa>>(){}.getType();
 			ArrayList<Empresa> listaEmpresas = gson.fromJson(new FileReader(rutaArchivoJson), collectionType);
-			session.beginTransaction();
-			String hql = "FROM model.Empresa";
-			ArrayList<Empresa> results = (ArrayList<Empresa>) session.createQuery(hql).getResultList();
-			listaEmpresas.addAll(results);
-			session.getTransaction().commit();
 			return listaEmpresas;
 			
 			
@@ -59,14 +50,6 @@ public class EmpresasService {
 			noEncuentraElArchivo();
 		}
 		
-		
-		catch (HibernateException e) {
-			if (session.getTransaction() != null) {
-	            session.getTransaction().rollback();
-	          
-	        }
-			
-		}
 
 		return null;
 	}

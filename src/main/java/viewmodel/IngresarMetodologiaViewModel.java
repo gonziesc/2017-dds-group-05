@@ -54,7 +54,7 @@ public class IngresarMetodologiaViewModel {
 		if(esFiltrable){
 		builderMetodologia.addComparadorParaFiltrado(comparadorFiltroSeleccionado);
 		}
-		if(esOrdenable && builderMetodologia.getComparadorOrden() !=  null){
+		if(esOrdenable){
 		builderMetodologia.setComparadorOrden(comparadorOrdenSeleccionado);
 		}
 	}
