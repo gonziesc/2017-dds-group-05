@@ -59,36 +59,5 @@ public class IndicadorTest {
 		Indicador unIndicador = indicadorMock.getUnIdicadorConTresCuentas();
 		assertTrue(unIndicador.obtenerValor() == 4000);
 	}
-	@Test
-	public void testLeeBienDelServicioExterno() throws IOException {
-		IndicadoresService.set_rutaArchivoJson("./resources/indicadores.JSON");
-		List<Indicador> listIndicadoresTest = IndicadoresService.obtenerInicadoresDeServicioExterno();
-		assertTrue(listIndicadoresTest.size() == 3);
-	}
-	@Test
-	public void elValorDelPrimerElementoGuardadoEn() throws IOException {
-		IndicadoresService.set_rutaArchivoJson("./resources/indicadores.JSON");
-		List<Indicador> listIndicadoresTest = IndicadoresService.obtenerInicadoresDeServicioExterno();
-		Indicador unIndicador = listIndicadoresTest.get(0);
-		assertTrue(unIndicador.obtenerValor() == 4020);
-	}
-	@Test
-	public void testEscribeBienEnServicioExterno() throws IOException {
-        IndicadoresService.set_rutaArchivoJson("./resources/indicadores2.JSON");
-		Indicador unIndicador = indicadorMock.getUnIdicadorConTresCuentas();
-		IndicadoresService.guardarIndicadoresEnServicioExterno(unIndicador);
-		List<Indicador> listIndicadoresTest = IndicadoresService.obtenerInicadoresDeServicioExterno();
-		Indicador otroIndicador = listIndicadoresTest.get(0);
-		assertTrue(otroIndicador.obtenerValor() == 4000);
-	}
-	@Test
-	public void testEscribeBienEnServicioExternoConIndicadorDeIndicadores() throws IOException {
-        IndicadoresService.set_rutaArchivoJson("./resources/indicadores2.JSON");
-		Indicador unIndicador = indicadorMock.getUnIdicadorConDosIndicadoresYUnaConstante();
-		IndicadoresService.guardarIndicadoresEnServicioExterno(unIndicador);
-		List<Indicador> listIndicadoresTest = IndicadoresService.obtenerInicadoresDeServicioExterno();
-		Indicador otroIndicador = listIndicadoresTest.get(0);
-		assertTrue(otroIndicador.obtenerValor() == 4020);
-	}
 	
 }
