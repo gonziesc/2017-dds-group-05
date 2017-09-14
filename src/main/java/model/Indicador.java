@@ -92,7 +92,8 @@ public class Indicador{
 	}
 	
 	public int getValor() {
-		return this.obtenerValor();
+		this.obtenerValor();
+		return valor;
 	}
 	
 	public void setValor() {
