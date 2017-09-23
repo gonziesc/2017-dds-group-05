@@ -36,7 +36,7 @@ public class Metodologia {
 	private String nombre;
 	private int periodoInicio;
 	private int periodoFin;
-	@OneToOne//(cascade = CascadeType.PERSIST)
+	@OneToOne(cascade = CascadeType.PERSIST)
 	private Indicador unIndicador;
 	@OneToMany (cascade = CascadeType.ALL, fetch = FetchType.EAGER) @JoinColumn(name="metodologia_id")
 	private List<ComparadorFiltro> comparadoresFiltrado = new ArrayList<ComparadorFiltro>();
