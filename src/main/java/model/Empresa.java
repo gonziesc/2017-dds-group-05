@@ -24,8 +24,8 @@ public class Empresa {
 	private Long id;
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name="empresa_id")
-	private List<Cuenta> Cuentas;
-	private String nombreEmpresa;
+	public List<Cuenta> Cuentas;
+	public String nombreEmpresa;
 
 	public Empresa(){
 		

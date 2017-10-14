@@ -1,0 +1,22 @@
+{{#partial "contenido"}}
+<h1>Cuentas</h1>
+
+<table class="table table-stripped">
+	<tr>
+		<th>Nombre</th>
+		<th>Anio</th>
+		<th>Valor</th>
+		<th></th>
+	</tr>
+	
+	{{#each cuentas}}
+		<tr>
+			<td>{{nombreCuenta}}</td>
+			<td>{{anioCuenta}}</td>
+			<td>{{valor}}</td>
+		</tr>
+	{{/each}}
+</table>
+{{/partial}}
+
+{{>layout.hbs}}

@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -14,6 +15,7 @@ import javax.persistence.criteria.CriteriaQuery;
 
 import java.lang.reflect.Type;
 
+import model.Cuenta;
 import model.Empresa;
 
 import org.hibernate.HibernateException;
@@ -62,6 +64,16 @@ public class EmpresasService {
 		rutaArchivoJson = ruta;
 	}
 	
+	public static List<Cuenta> obtenerCuentasDeEmpresa(String nombre) throws FileNotFoundException  {
+		ArrayList<Empresa> listaEmpresas = obtenerEmpresasDeServicioExterno();
+		System.out.println(listaEmpresas.get(0).nombreEmpresa);
+		System.out.println(nombre);
+		List<Empresa> listaEMpresasFiltrada = listaEmpresas.stream()
+				.filter(unaEmpresa -> unaEmpresa.nombreEmpresa.equals(nombre)).collect(Collectors.toList());
+		System.out.println(listaEMpresasFiltrada);
+		List<Cuenta> listaCuentas = listaEMpresasFiltrada.get(0).Cuentas;
+		return listaCuentas;
+	}
 
 }
 
