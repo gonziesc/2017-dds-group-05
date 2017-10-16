@@ -20,7 +20,6 @@ public class Router {
 		
 		EmpresasController empresasController = new EmpresasController();
 		IndicadoresController indicadoresController = new IndicadoresController();
-
 		MetodologiasController metodologiasController = new MetodologiasController();
 		
 		Spark.get("/", HomeController::home, engine);
