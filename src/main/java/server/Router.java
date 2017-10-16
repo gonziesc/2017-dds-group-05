@@ -24,6 +24,7 @@ public class Router {
 		MetodologiasController metodologiasController = new MetodologiasController();
 		
 		Spark.get("/", homeController::home, engine);
+		Spark.get("/menu", homeController::menu, engine);
 		Spark.get("/login", homeController::showLogin, engine);
 		Spark.post("/login", homeController::login, engine);
 		Spark.get("/empresas/:empresa/cuentas", empresasController::getById, engine);

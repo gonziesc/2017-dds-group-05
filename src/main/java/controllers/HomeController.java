@@ -15,6 +15,10 @@ public class HomeController {
 		return new ModelAndView(null, "home/home.hbs");
 	}
 	
+	public ModelAndView menu(Request req, Response res)throws FileNotFoundException{
+		return new ModelAndView(null, "login/user.hbs");
+	}
+	
 	
 	public ModelAndView showLogin(Request req, Response res){
 		String usuario = req.queryParams("usuario");
@@ -25,7 +29,9 @@ public class HomeController {
 		}
 		else{
 			if((usuarios.stream().anyMatch(unUsuario -> (usuario.equals(unUsuario.getUsuario()) &&  contrasena.equals(unUsuario.getContrasena()))))){
-				return new ModelAndView(null, "login/user.hbs");
+				
+				res.redirect("/menu");
+				return new ModelAndView(null, "home/home.hbs");
 			}
 			else
 			{
