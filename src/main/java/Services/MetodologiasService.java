@@ -117,4 +117,35 @@ public class MetodologiasService {
 	public static void set_rutaArchivoJson(String ruta){
 		rutaArchivoJson = ruta;
 	}
+	public static Metodologia obtenerMetodologiaDeServicioExterno(String nombre) {
+		SessionFactory sessionFactory = new Configuration().configure()
+				.buildSessionFactory();
+		Session session = sessionFactory.openSession();
+
+
+		try {
+
+			session.beginTransaction();
+			Metodologia result = session.find(Metodologia.class, new Long(1));
+			//ARREGLAR LA QUERY PARA PODER TRAERME LA METODOLOGIA EN BASE AL NAME
+			//Metodologia result = (Metodologia)session.createQuery("SELECT metodologia FROM model.Metodologia metodologia WHERE metodologia.nombre =" + nombre);
+			session.getTransaction().commit();
+			return result;
+
+		}
+
+
+		catch (HibernateException e) {
+			if (session.getTransaction() != null) {
+				session.getTransaction().rollback();
+
+			}
+
+		}
+		finally{
+			session.close();
+		}
+
+		return null;
+	}
 }
