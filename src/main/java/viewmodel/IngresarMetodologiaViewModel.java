@@ -10,6 +10,8 @@ import Services.IndicadoresService;
 import Services.MetodologiasService;
 import builder.BuilderMetodologia;
 import model.Comparador;
+import model.ComparadorFiltro;
+import model.ComparadorOrden;
 import model.Indicador;
 import model.repositories.Repositorios;
 
@@ -17,11 +19,11 @@ import model.repositories.Repositorios;
 public class IngresarMetodologiaViewModel {
 	private List<Indicador> indicadores;
 	private Indicador indicadorSeleccionado;
-	private Comparador comparadorOrdenSeleccionado;
-	private Comparador comparadorFiltroSeleccionado;
+	private ComparadorOrden comparadorOrdenSeleccionado;
+	private ComparadorFiltro comparadorFiltroSeleccionado;
 	private Integer valorComparador;
-	private List<Comparador> comparadoresOrden;
-	private List<Comparador> comparadoresFiltro;
+	private List<ComparadorOrden> comparadoresOrden;
+	private List<ComparadorFiltro> comparadoresFiltro;
 	private String nombreMetodologia;
 	private Boolean esFiltrable = false;
 	private Boolean esOrdenable = false;
@@ -145,33 +147,33 @@ public class IngresarMetodologiaViewModel {
 		ObservableUtils.firePropertyChanged(this, "esFiltrable", this.getEsFiltrable());
 	}
 
-	public List<Comparador> getComparadoresFiltro() {
+	public List<ComparadorFiltro> getComparadoresFiltro() {
 		return comparadoresFiltro;
 	}
 
-	public void setComparadoresFiltro(List<Comparador> comparadoresFiltro) {
+	public void setComparadoresFiltro(List<ComparadorFiltro> comparadoresFiltro) {
 		this.comparadoresFiltro = comparadoresFiltro;
 	}
 
-	public Comparador getComparadorOrdenSeleccionado() {
+	public ComparadorOrden getComparadorOrdenSeleccionado() {
 		return comparadorOrdenSeleccionado;
 	}
 
-	public void setComparadorOrdenSeleccionado(Comparador comparadorOrdenSeleccionado) {
+	public void setComparadorOrdenSeleccionado(ComparadorOrden comparadorOrdenSeleccionado) {
 		this.comparadorOrdenSeleccionado = comparadorOrdenSeleccionado;
 		ObservableUtils.firePropertyChanged(this, "comparadorOrdenSeleccionado", this.getComparadorOrdenSeleccionado());
 	}
 
-	public Comparador getComparadorFiltroSeleccionado() {
+	public ComparadorFiltro getComparadorFiltroSeleccionado() {
 		return comparadorFiltroSeleccionado;
 	}
 
-	public void setComparadorFiltroSeleccionado(Comparador comparadorFiltroSeleccionado) {
+	public void setComparadorFiltroSeleccionado(ComparadorFiltro comparadorFiltroSeleccionado) {
 		this.comparadorFiltroSeleccionado = comparadorFiltroSeleccionado;
 		ObservableUtils.firePropertyChanged(this, "comparadorFiltroSeleccionado", this.getComparadorFiltroSeleccionado());
 	}
 
-	public List<Comparador> getComparadoresOrden() {
+	public List<ComparadorOrden> getComparadoresOrden() {
 		return comparadoresOrden;
 	}
 
