@@ -20,11 +20,12 @@ public class Router {
 		
 		EmpresasController empresasController = new EmpresasController();
 		IndicadoresController indicadoresController = new IndicadoresController();
+		HomeController homeController = new HomeController();
 		MetodologiasController metodologiasController = new MetodologiasController();
 		
-		Spark.get("/", HomeController::home, engine);
-		Spark.get("/login", HomeController::showLogin, engine);
-		Spark.post("/login", HomeController::login, engine);
+		Spark.get("/", homeController::home, engine);
+		Spark.get("/login", homeController::showLogin, engine);
+		Spark.post("/login", homeController::login, engine);
 		Spark.get("/empresas/:empresa/cuentas", empresasController::getById, engine);
 		Spark.get("/indicadores/crear", indicadoresController::showCreateView, engine);
 		Spark.get("/indicadores/:nombre/evaluar", indicadoresController::getEmpresaByName, engine);
