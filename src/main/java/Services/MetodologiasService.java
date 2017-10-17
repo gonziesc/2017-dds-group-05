@@ -126,9 +126,10 @@ public class MetodologiasService {
 		try {
 
 			session.beginTransaction();
-			Metodologia result = session.find(Metodologia.class, new Long(1));
-			//ARREGLAR LA QUERY PARA PODER TRAERME LA METODOLOGIA EN BASE AL NAME
-			//Metodologia result = (Metodologia)session.createQuery("SELECT metodologia FROM model.Metodologia metodologia WHERE metodologia.nombre =" + nombre);
+			Metodologia result = (Metodologia)session
+					.createQuery("select metodologia from model.Metodologia metodologia where metodologia.nombre = :name",Metodologia.class)
+					.setParameter("name", nombre)
+					.getSingleResult();
 			session.getTransaction().commit();
 			return result;
 

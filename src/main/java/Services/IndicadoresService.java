@@ -11,6 +11,7 @@ import java.util.List;
 
 import model.Empresa;
 import model.Indicador;
+import model.Metodologia;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -67,6 +68,37 @@ public class IndicadoresService {
 		}
 		return null;
 	
+	}
+	public static Indicador obtenerIndicadorPorNombre(String nombre){
+		SessionFactory sessionFactory = new Configuration().configure()
+				.buildSessionFactory();
+		Session session = sessionFactory.openSession();
+
+
+		try {
+
+			session.beginTransaction();
+			Indicador result = session.createQuery("select indicador from model.Indicador indicador where indicador.nombre = :name",Indicador.class)
+			.setParameter("name", nombre)
+			.getSingleResult();
+			session.getTransaction().commit();
+			return result;
+
+		}
+
+
+		catch (HibernateException e) {
+			if (session.getTransaction() != null) {
+				session.getTransaction().rollback();
+
+			}
+
+		}
+		finally{
+			session.close();
+		}
+
+		return null;
 	}
 	public static void guardarIndicadoresEnServicioExterno(Indicador unIndicador){
 		/*List<Indicador> listaIndicadores = obtenerInicadoresDeServicioExterno();
