@@ -1,17 +1,64 @@
 package controllers;
 
+import java.io.FileNotFoundException;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import javax.persistence.criteria.CriteriaBuilder.In;
+
+import Services.EmpresasService;
+import Services.IndicadoresService;
+import builder.BuilderIndicador;
+import model.Cuenta;
+import model.Empresa;
+import model.Indicador;
+import model.repositories.CuentasRepository;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
 public class IndicadoresController {
 	public ModelAndView create(Request req, Response res){
+		String nombre = req.queryParams("nombre");
+		String operador= req.queryParams("operador");
+		
+		String tipo= req.queryParams("tipo");
+		String[] valor= req.queryParamsValues("valor");
+		
+		String tipo2= req.queryParams("tipo2");
+		String[] valor2= req.queryParamsValues("valor2");	
+		
+		BuilderIndicador builder = new BuilderIndicador();
+		builder.setNombre(nombre);
+		builder.setOperacion(operador);
+		builder.setParametroAPartirVista(tipo, valor,false);
+		builder.setParametroAPartirVista(tipo2, valor2,true);
+		
+		IndicadoresService.guardarIndicadoresEnServicioExterno(builder.build());
+		
 		return new ModelAndView(null, "home/home.hbs");
 	}
-	public ModelAndView showCreateView(Request req, Response res){
-		return new ModelAndView(null, "home/home.hbs");
+	public ModelAndView showCreateView(Request req, Response res) throws FileNotFoundException{
+		Map<String, List<Cuenta>> modelCuentas = new HashMap<>();
+		Map<String, List<Indicador>> modelIndicadores= new HashMap<>();
+		List<Indicador> indicadores= IndicadoresService.obtenerInicadoresDeServicioExterno();
+		List<Cuenta>cuentas = CuentasRepository.obtenerCuentas();
+		IndicadoresHandle handle = new IndicadoresHandle();
+		
+		modelCuentas.put("cuentas", cuentas);
+		modelIndicadores.put("indicadores", indicadores);
+		handle.setCuentas(modelCuentas);
+		handle.setIndicadores(modelIndicadores);
+						
+		return new ModelAndView(handle, "indicadores/create.hbs");
 	}
 	public ModelAndView getEmpresaByName(Request req, Response res){
 		return new ModelAndView(null, "home/home.hbs");
 	}
+		
 }
+

@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
 import model.Empresa;
 import model.Indicador;
 
@@ -108,5 +110,17 @@ public class IndicadoresService {
 	
 	public static void set_rutaArchivoJson(String ruta){
 		rutaArchivoJson = ruta;
+	}
+	
+	public static Indicador obtenerIndicadorPorId(Long id){
+		SessionFactory sessionFactory = new Configuration().configure()
+				 .buildSessionFactory();
+		Session session = sessionFactory.openSession();
+		
+		Indicador indicador = session.find(Indicador.class, id);
+		
+		session.close();
+		return indicador;
+	
 	}
 }
