@@ -56,6 +56,7 @@ public class IndicadoresController {
 						
 		return new ModelAndView(handle, "indicadores/create.hbs");
 	}
+	
 	public ModelAndView getEmpresaByName(Request req, Response res){
 		return new ModelAndView(null, "home/home.hbs");
 	}

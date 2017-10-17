@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 @DiscriminatorValue(value = "ComparadorAnios")
 public class ComparadorAnios extends ComparadorFiltro{
 	
+	String nombre = "Comparador por anios";
+	
 	@Override
 	public Boolean comparar(Empresa unaEmpresa, Indicador unIndicador, int anioDesde, int anioHasta) {
 		return Operadores.compararOperacion(unaEmpresa.aniosEmpresa(),
@@ -17,5 +19,6 @@ public class ComparadorAnios extends ComparadorFiltro{
 	public String getNombreComparador(){
 		return "Comparador por anios";
 	}
+	
 
 }
