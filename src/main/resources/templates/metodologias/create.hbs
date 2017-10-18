@@ -1,0 +1,50 @@
+{{#partial "contenido"}}
+
+<div class="jumbotron">
+  <h1>Donde invierto?</h1>
+</div>	
+
+<form action="/metodologias/crear" method="post">
+	Nombre indicador: <input type="text" id="nombre" name="nombre"><br>
+			
+	<div>
+		<label>Indicadores:</label>
+		<select name="indicador">
+			{{#indicadores.indicadores}}
+				<option value={{id}}> {{nombre}} </option>
+			{{/indicadores.indicadores}}
+		</select>
+	</div>
+					
+	Comparador de orden<input type="checkbox" name="hayOrdenable">
+	<div>
+		<label>Comparadores de Orden:</label>
+		<select name="orden" >
+			{{#comparadorOrden.orden}}
+				<option value={{nombreComparador}}> {{nombreComparador}} </option>
+			{{/comparadorOrden.orden}}
+		</select>
+	</div>
+	
+	
+	Comparador de filtro<input type="checkbox" name="hayFiltro">
+	<div>
+		<label>Comparadores de Filtro:</label>
+		<select name="filtro" >
+			{{#comparadorFiltro.filtros}}
+				<option value={{nombreComparador}}> {{nombreComparador}} </option>
+			{{/comparadorFiltro.filtros}}
+		</select>
+	</div>
+	
+	Periodo inicio: <input type="number" name="periodoInicio"><br>
+	
+	Periodo fin: <input type="number" name="periodoFin"><br>
+			
+	<input type="submit" value="Submit">	
+	
+</form>
+
+{{/partial}}
+
+{{>layout.hbs}}

@@ -1,0 +1,74 @@
+{{#partial "contenido"}}
+
+<div class="jumbotron">
+  <h1>Donde invierto?</h1>
+</div>	
+
+<form action="/indicadores/crear" method="post">
+	Nombre indicador: <input type="text" id="nombre" name="nombre"><br>
+			
+	<input type="radio" name="tipo" value="0"> Indicador</input><br>
+	<input type="radio" name="tipo" value="1"> Cuenta</input><br>
+	<input type="radio" name="tipo" value="2"> Constante</input><br>
+			
+	<div>
+		<label>Indicadores:</label>
+		<select name="valor" >
+			{{#indicadores.indicadores}}
+				<option value={{id}}> {{nombre}} </option>
+			{{/indicadores.indicadores}}
+		</select>
+	</div>
+							
+	<div>
+		<label>Cuentas:</label>
+		<select name="valor" >
+			{{#cuentas.cuentas}}
+				<option value={{nombreCuenta}}> {{nombreCuenta}} </option>
+			{{/cuentas.cuentas}}
+		</select>
+	</div>
+			
+	<label>Constante: <input type="number" name="valor"></label>
+	
+	<div>
+		<label>Operador:</label>
+		<select name="operador" >
+			<option value="+"> +</option>
+			<option value="-"> -</option>
+			<option value="*"> *</option>
+			<option value="/"> /</option>
+		</select>
+	</div>
+	
+	<input type="radio" name="tipo2" value="0"> </input>Indicador<br>
+	<input type="radio" name="tipo2" value="1"> </input>Cuenta<br>
+	<input type="radio" name="tipo2" value="2"> </input>Constante<br>
+			
+	<div>
+		<label>Indicadores:</label>
+		<select name="valor2">
+			{{#indicadores.indicadores}}
+				<option value={{id}}> {{nombre}} </option>
+			{{/indicadores.indicadores}}
+		</select>
+	</div>
+							
+	<div>
+		<label>Cuentas:</label>
+		<select name="valor2" >
+			{{#cuentas.cuentas}}
+				<option value={{nombreCuenta}}> {{nombreCuenta}} </option>
+			{{/cuentas.cuentas}}
+		</select>
+	</div>
+			
+	<label>Constante: <input type="number" name="valor2"></label>
+	
+	<input type="submit" value="Submit">	
+	
+</form>
+
+{{/partial}}
+
+{{>layout.hbs}}
