@@ -4,6 +4,9 @@ import controllers.EmpresasController;
 import controllers.HomeController;
 import controllers.IndicadoresController;
 import controllers.MetodologiasController;
+import spark.ModelAndView;
+import spark.Request;
+import spark.Session;
 import spark.Spark;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 import spark.utils.HandlebarsTemplateEngineBuilder;
@@ -17,6 +20,7 @@ public class Router {
 				.build();
 
 		Spark.staticFiles.location("/public");	
+		Session session;
 		
 		EmpresasController empresasController = new EmpresasController();
 		IndicadoresController indicadoresController = new IndicadoresController();
@@ -34,7 +38,22 @@ public class Router {
 		Spark.get("/indicadores/:nombre/evaluar", indicadoresController::evaluar, engine);
 		Spark.get("/metodologias/:nombre/evaluar", metodologiasController::evaluarMetodologia, engine);
 		Spark.post("/indicadores", indicadoresController::create, engine);
+		Spark.get("/empresas", empresasController::show, engine);
+		Spark.get("/indicadores", indicadoresController::show, engine);
+		Spark.get("/metodologias", metodologiasController::show, engine);
 		
+	}
+	
+	public static boolean validar(Request req){
+		return req.session().attribute("user")== null;
+	}
+	
+	public static String sesion(Request req){
+		if(validar(req)){
+			return "login";
+		}else{
+			return "logout";
+		}
 	}
 
 }

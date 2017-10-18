@@ -16,6 +16,7 @@ import model.Cuenta;
 import model.Indicador;
 import model.repositories.CuentasRepository;
 import model.repositories.Repositorios;
+import server.Router;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -32,6 +33,10 @@ import Services.MetodologiasService;
 
 public class MetodologiasController {
 	public ModelAndView evaluarMetodologia(Request req, Response res) throws FileNotFoundException{
+		if(Router.validar(req)){
+			return new ModelAndView(null, "login/login.hbs");
+		}
+		
 		String nombre = req.params("nombre");
 		Map<String, List<Empresa>> model = new HashMap<>();
 		
@@ -45,6 +50,10 @@ public class MetodologiasController {
 	}
 	
 	public ModelAndView create(Request req, Response res){
+		if(Router.validar(req)){
+			return new ModelAndView(null, "login/login.hbs");
+		}
+		
 		BuilderMetodologia builder = new BuilderMetodologia();
 		builder.setNombre(req.queryParams("nombre"));
 		builder.setPeriodoInicio(Integer.parseInt(req.queryParams("periodoInicio")));
@@ -68,8 +77,14 @@ public class MetodologiasController {
 		return new ModelAndView(null, "home/home.hbs");
 	}
 	public ModelAndView showCreateView(Request req, Response res) throws FileNotFoundException{
+		if(Router.validar(req)){
+			return new ModelAndView(null, "login/login.hbs");
+		}
+		String accion = Router.sesion(req);
+		
 		Map<String, List<ComparadorOrden>> modelComporden= new HashMap<>();
 		Map<String, List<ComparadorFiltro>> modelCompFiltro= new HashMap<>();
+		Map<String, String> modelTipo= new HashMap<>();
 		Map<String, List<Indicador>> modelIndicadores= new HashMap<>();
 		
 		List<Indicador> indicadores= IndicadoresService.obtenerInicadoresDeServicioExterno();
@@ -78,6 +93,7 @@ public class MetodologiasController {
 		
 		MetodologiasHandle handle = new MetodologiasHandle();
 		
+		modelTipo.put("accion", accion);
 		modelCompFiltro.put("filtros", comparadoresFiltro);
 		modelComporden.put("orden", comparadoresOrden);
 		modelIndicadores.put("indicadores", indicadores);
@@ -85,7 +101,12 @@ public class MetodologiasController {
 		handle.setComparadorFiltro(modelCompFiltro);
 		handle.setComparadorOrden(modelComporden);
 		handle.setIndicadores(modelIndicadores);
+		handle.setAccion(modelTipo);
 						
 		return new ModelAndView(handle, "metodologias/create.hbs");
+	}
+	
+	public ModelAndView show (Request req, Response res){
+		return new ModelAndView(null, "metodologias/metodologias.hbs");
 	}
 }
