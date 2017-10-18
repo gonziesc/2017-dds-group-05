@@ -106,7 +106,10 @@ public class MetodologiasController {
 		return new ModelAndView(handle, "metodologias/create.hbs");
 	}
 	
-	public ModelAndView show (Request req, Response res){
-		return new ModelAndView(null, "metodologias/metodologias.hbs");
+	public ModelAndView show (Request req, Response res) throws FileNotFoundException{
+		Map<String, List<Metodologia>> model= new HashMap<>();
+		List<Metodologia> lista = MetodologiasService.obtenerMetodologiasDeServicioExterno();
+		model.put("metodologias", lista);
+		return new ModelAndView(model, "metodologias/metodologias.hbs");
 	}
 }
