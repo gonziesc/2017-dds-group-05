@@ -9,6 +9,7 @@ import model.Usuario;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
+import spark.Session;
 
 public class HomeController {
 	public ModelAndView home(Request req, Response res)throws FileNotFoundException{
@@ -29,7 +30,7 @@ public class HomeController {
 		}
 		else{
 			if((usuarios.stream().anyMatch(unUsuario -> (usuario.equals(unUsuario.getUsuario()) &&  contrasena.equals(unUsuario.getContrasena()))))){
-				
+				req.session().attribute("user",usuario); 
 				res.redirect("/menu");
 				return new ModelAndView(null, "home/home.hbs");
 			}

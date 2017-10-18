@@ -17,12 +17,17 @@ import model.Cuenta;
 import model.Empresa;
 import model.Indicador;
 import model.repositories.CuentasRepository;
+import server.Router;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
 public class IndicadoresController {
 	public ModelAndView create(Request req, Response res){
+		if(Router.validar(req)){
+			return new ModelAndView(null, "login/login.hbs");
+		}
+		
 		String nombre = req.queryParams("nombre");
 		String operador= req.queryParams("operador");
 		
@@ -42,17 +47,26 @@ public class IndicadoresController {
 		
 		return new ModelAndView(null, "home/home.hbs");
 	}
+	
 	public ModelAndView showCreateView(Request req, Response res) throws FileNotFoundException{
+		if(Router.validar(req)){
+			return new ModelAndView(null, "login/login.hbs");
+		}
+		String accion = Router.sesion(req);
+		
 		Map<String, List<Cuenta>> modelCuentas = new HashMap<>();
+		Map<String, String> modelTipo= new HashMap<>();
 		Map<String, List<Indicador>> modelIndicadores= new HashMap<>();
 		List<Indicador> indicadores= IndicadoresService.obtenerInicadoresDeServicioExterno();
 		List<Cuenta>cuentas = CuentasRepository.obtenerCuentas();
 		IndicadoresHandle handle = new IndicadoresHandle();
 		
+		modelTipo.put("accion", accion);
 		modelCuentas.put("cuentas", cuentas);
 		modelIndicadores.put("indicadores", indicadores);
 		handle.setCuentas(modelCuentas);
 		handle.setIndicadores(modelIndicadores);
+		handle.setAccion(modelTipo);
 						
 		return new ModelAndView(handle, "indicadores/create.hbs");
 	}
@@ -68,6 +82,10 @@ public class IndicadoresController {
 		model.put("empresas", empresas);
 		
 		return new ModelAndView(model, "indicadores/evaluarIndicadores.hbs");
+	}
+	
+	public ModelAndView show (Request req, Response res){
+		return new ModelAndView(null, "indicadores/indicadores.hbs");
 	}
 		
 }
