@@ -9,14 +9,14 @@
 			<th>Valor</th>
 		</tr>
 	
-	{{#each empresas}}
-		<tr>	
+	{{#empresas.empresas}}
+		<tr>
 			<td>{{nombreEmpresa}}</td>
-			{{#each Cuentas}}
-			<td>{{valor}}</td> 
-			{{/each}}
+
+			<td>{{#valor}} {{this}} {{/valor}}</td> 
+
 		</tr>
-	{{/each}}
+	{{/empresas.empresas}}
 </table>
 
 {{/partial}}

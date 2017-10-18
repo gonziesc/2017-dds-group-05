@@ -1,6 +1,7 @@
 package controllers;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -57,17 +58,22 @@ public class IndicadoresController {
 		return new ModelAndView(handle, "indicadores/create.hbs");
 	}
 
-	public ModelAndView getEmpresaByName(Request req, Response res) throws FileNotFoundException{
+	public ModelAndView evaluar(Request req, Response res) throws FileNotFoundException{
 		String nombreIndicador = req.params("nombre");
 		Indicador indicador = IndicadoresService.obtenerIndicadorPorNombre(nombreIndicador);
-		List<Empresa> empresas = EmpresasService.obtenerEmpresasDeServicioExterno();
+		List<Empresa> listaEmpresas = EmpresasService.obtenerEmpresasDeServicioExterno();
+		Map<String, List<Empresa>> empresas = new HashMap<>();
+		List<Integer> valores = new ArrayList<Integer>();
+		EmpresaHandle handler = new EmpresaHandle();
 		
-		//indicador.calcularValorEn(empresas);
 		
-		Map<String, List<Empresa>> model = new HashMap<>();
-		model.put("empresas", empresas);
+		empresas.put("empresas", listaEmpresas);
+		//indicadores.put("indicadores", indicador.calcularValorEn(listaEmpresas));
 		
-		return new ModelAndView(model, "indicadores/evaluarIndicadores.hbs");
+		handler.setValor(indicador.calcularValorEn(listaEmpresas));
+		handler.setEmpresas(empresas);
+		
+		return new ModelAndView(handler, "indicadores/evaluar.hbs");
 	}
 		
 }

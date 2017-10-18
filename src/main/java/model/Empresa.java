@@ -68,4 +68,15 @@ public class Empresa {
 		final Comparator<Cuenta> comp = (p1, p2) -> Integer.compare( p1.getAnioCuenta(), p2.getAnioCuenta());
 		return 2017 - Cuentas.stream().min(comp).get().getAnioCuenta();//Revisar, se busca hacer Anio actual - Anio cuenta mas vieja
 	}
+
+	public void procesarIndicador(Indicador indicador) {
+		Cuentas.stream().forEach(cuenta->cargarIndicador(cuenta,indicador));
+		//return indicador;
+	}
+
+	public void cargarIndicador(Cuenta cuenta, Indicador indicador) {
+		indicador.setValorCuenta(cuenta);
+		//return indicador;
+	}
+
 }

@@ -129,6 +129,7 @@ public class MetodologiasService {
 			Metodologia result = (Metodologia)session
 					.createQuery("select metodologia from model.Metodologia metodologia where metodologia.nombre = :name",Metodologia.class)
 					.setParameter("name", nombre)
+					.setMaxResults(1)
 					.getSingleResult();
 			session.getTransaction().commit();
 			return result;

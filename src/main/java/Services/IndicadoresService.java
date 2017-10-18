@@ -10,6 +10,7 @@ import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 
 import model.Empresa;
 import model.Indicador;
@@ -82,6 +83,7 @@ public class IndicadoresService {
 			session.beginTransaction();
 			Indicador result = session.createQuery("select indicador from model.Indicador indicador where indicador.nombre = :name",Indicador.class)
 			.setParameter("name", nombre)
+			.setMaxResults(1)
 			.getSingleResult();
 			session.getTransaction().commit();
 			return result;
@@ -96,6 +98,7 @@ public class IndicadoresService {
 			}
 
 		}
+		
 		finally{
 			session.close();
 		}
