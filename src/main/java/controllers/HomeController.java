@@ -12,7 +12,7 @@ import spark.Response;
 
 public class HomeController {
 	public ModelAndView home(Request req, Response res)throws FileNotFoundException{
-		return new ModelAndView(null, "home/home.hbs");
+		return new ModelAndView(null, "home/menu.hbs");
 	}
 	
 	public ModelAndView menu(Request req, Response res)throws FileNotFoundException{
