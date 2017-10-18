@@ -25,11 +25,11 @@ public class IndicadoresController {
 		Indicador indicador = IndicadoresService.obtenerIndicadorPorNombre(nombreIndicador);
 		List<Empresa> empresas = EmpresasService.obtenerEmpresasDeServicioExterno();
 		
-		indicador.calcularValorEn(empresas);
+		//indicador.calcularValorEn(empresas);
 		
 		Map<String, List<Empresa>> model = new HashMap<>();
 		model.put("empresas", empresas);
 		
-		return new ModelAndView(empresas, "indicadores/evaluarIndicadores.hbs");
+		return new ModelAndView(model, "indicadores/evaluarIndicadores.hbs");
 	}
 }
