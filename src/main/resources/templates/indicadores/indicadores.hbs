@@ -1,0 +1,20 @@
+{{#partial "contenido"}}
+<h1>Indicadores</h1>
+
+<table class="table table-stripped">
+	<tr>
+		<th>Nombre</th>
+		<th>Link para evaluar</th>
+		<th></th>
+	</tr>
+	
+	{{#each indicadores}}
+		<tr>
+			<td>{{nombre}}</td>
+			<td><a href="/indicadores/{{nombre}}/evaluar"><button>Evaluar</button></a></td>
+		</tr>
+	{{/each}}
+</table>
+{{/partial}}
+
+{{>layout.hbs}}

@@ -91,7 +91,10 @@ public class IndicadoresController {
 	}
 	
 	public ModelAndView show (Request req, Response res){
-		return new ModelAndView(null, "indicadores/indicadores.hbs");
+		Map<String, List<Indicador>> modelIndicadores= new HashMap<>();
+		List<Indicador> indicadores= IndicadoresService.obtenerInicadoresDeServicioExterno();
+		modelIndicadores.put("indicadores", indicadores);
+		return new ModelAndView(modelIndicadores, "indicadores/indicadores.hbs");
 	}
 		
 }
