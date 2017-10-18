@@ -39,8 +39,6 @@ public class HomeController {
 			}
 		}	
 			
-			
-		
 	}
 	
 	public ModelAndView login(Request req, Response res){

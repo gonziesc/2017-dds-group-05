@@ -56,9 +56,18 @@ public class IndicadoresController {
 						
 		return new ModelAndView(handle, "indicadores/create.hbs");
 	}
-	
-	public ModelAndView getEmpresaByName(Request req, Response res){
-		return new ModelAndView(null, "home/home.hbs");
+
+	public ModelAndView getEmpresaByName(Request req, Response res) throws FileNotFoundException{
+		String nombreIndicador = req.params("nombre");
+		Indicador indicador = IndicadoresService.obtenerIndicadorPorNombre(nombreIndicador);
+		List<Empresa> empresas = EmpresasService.obtenerEmpresasDeServicioExterno();
+		
+		//indicador.calcularValorEn(empresas);
+		
+		Map<String, List<Empresa>> model = new HashMap<>();
+		model.put("empresas", empresas);
+		
+		return new ModelAndView(model, "indicadores/evaluarIndicadores.hbs");
 	}
 		
 }

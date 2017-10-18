@@ -11,7 +11,7 @@ public enum BooleanHelper implements Helper<Boolean>{
 		@Override
 		public CharSequence apply(Boolean arg0, Options arg1) throws IOException {
 			if (arg0)
-				return "Sí";
+				return "Si";
 			else
 				return "No";
 		}

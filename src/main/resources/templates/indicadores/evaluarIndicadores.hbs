@@ -1,0 +1,24 @@
+
+{{#partial "contenido"}}
+
+<h1>Evaluar Indicador</h1>
+
+	<table class="table table-stripped">
+		<tr>
+			<th>Nombre</th>
+			<th>Valor</th>
+		</tr>
+	
+	{{#each empresas}}
+		<tr>	
+			<td>{{nombreEmpresa}}</td>
+			{{#each Cuentas}}
+			<td>{{valor}}</td> 
+			{{/each}}
+		</tr>
+	{{/each}}
+</table>
+
+{{/partial}}
+
+{{>layout.hbs}}
