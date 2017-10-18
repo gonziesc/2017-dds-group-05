@@ -6,7 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 import Services.IndicadoresService;
+import Services.MetodologiasService;
 import builder.BuilderIndicador;
+import builder.BuilderMetodologia;
 import model.Comparador;
 import model.ComparadorFiltro;
 import model.ComparadorOrden;
@@ -24,22 +26,25 @@ public class MetodologiasController {
 	}
 	
 	public ModelAndView create(Request req, Response res){
-		String nombre = req.queryParams("nombre");
-		String operador= req.queryParams("operador");
+		BuilderMetodologia builder = new BuilderMetodologia();
+		builder.setNombre(req.queryParams("nombre"));
+		builder.setPeriodoInicio(Integer.parseInt(req.queryParams("periodoInicio")));
+		builder.setPeriodoFin(Integer.parseInt(req.queryParams("periodoFin")));
+		builder.setUnIndicador(IndicadoresService.obtenerIndicadorPorId(Long.getLong(req.queryParams("indicador"))));
 		
-		String tipo= req.queryParams("tipo");
-		String[] valor= req.queryParamsValues("valor");
+		if(req.queryParams("hayOrdenable")== "on"){
+			String nombre= req.queryParams("orden");
+			builder.setComparadorOrden(Repositorios.metodologias.allComparadoresOrden().stream().filter(comp -> comp.getNombreComparador() == nombre).findFirst().get());
+		}
 		
-		String tipo2= req.queryParams("tipo2");
-		String[] valor2= req.queryParamsValues("valor2");	
+		if(req.queryParams("hayFiltro") == "on"){
+			String nombre = req.queryParams("filtro");
+			ComparadorFiltro comparador = Repositorios.metodologias.allComparadoresFiltro().stream().filter(comp -> comp.getNombreComparador() == nombre).findFirst().get();
+			builder.addComparadorParaFiltrado(comparador);
+		}
 		
-		BuilderIndicador builder = new BuilderIndicador();
-		builder.setNombre(nombre);
-		builder.setOperacion(operador);
-		builder.setParametroAPartirVista(tipo, valor,false);
-		builder.setParametroAPartirVista(tipo2, valor2,true);
 		
-		IndicadoresService.guardarIndicadoresEnServicioExterno(builder.build());
+		MetodologiasService.guardarMetodologiaEnServicioExterno(builder.build());
 		
 		return new ModelAndView(null, "home/home.hbs");
 	}
