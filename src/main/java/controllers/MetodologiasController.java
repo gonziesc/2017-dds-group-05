@@ -87,7 +87,7 @@ public class MetodologiasController {
 		Map<String, String> modelTipo= new HashMap<>();
 		Map<String, List<Indicador>> modelIndicadores= new HashMap<>();
 		
-		List<Indicador> indicadores= IndicadoresService.obtenerInicadoresDeServicioExterno();
+		List<Indicador> indicadores= IndicadoresService.obtenerIndicadoresDeServicioExterno(req.session().attribute("user"));
 		List<ComparadorFiltro>comparadoresFiltro = Repositorios.metodologias.allComparadoresFiltro();
 		List<ComparadorOrden>comparadoresOrden = Repositorios.metodologias.allComparadoresOrden();
 		

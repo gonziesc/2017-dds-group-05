@@ -45,7 +45,7 @@ public class Router {
 	}
 	
 	public static boolean validar(Request req){
-		return req.session().attribute("user")== null;
+		return req.session().attribute("usuario") == null;
 	}
 	
 	public static String sesion(Request req){

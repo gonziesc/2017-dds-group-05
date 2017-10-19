@@ -7,6 +7,7 @@ import org.hibernate.cfg.Configuration;
 import model.Cuenta;
 import model.Indicador;
 import model.Parametro;
+import model.Usuario;
 import model.parametroGeneral;
 
 public class Bootstrap {
@@ -17,23 +18,28 @@ public class Bootstrap {
 	public void init(){	
 		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 		Session session = sessionFactory.openSession();
-		Cuenta unaCuenta = getOtraCuenta();
+		//Cuenta unaCuenta = getOtraCuenta();
 		
 		session.beginTransaction();
-		session.persist(unaCuenta);
-		parametroGeneral parametroCuenta = new Parametro();
+		//session.persist(unaCuenta);
+		Usuario user = new Usuario();
+		user.setContrasena("1234");
+		user.setUsuario("unuser");
+		session.persist(user);
+		/*parametroGeneral parametroCuenta = new Parametro();
 		parametroCuenta.setNombre(unaCuenta.getNombreCuenta());
 		parametroCuenta.setValor(unaCuenta.getValor());
 		Indicador unIndicador = new Indicador(parametroCuenta, null, null);
-		unIndicador.setNombre("prueba1");
-		session.persist(unIndicador);
+		unIndicador.setNombre("prueba2");
+		unIndicador.setUser(user);*/
+		//session.persist(unIndicador);
 		session.getTransaction().commit();
 		
 	}
 	public Cuenta getOtraCuenta() {
 		Cuenta otraCuenta = new Cuenta();
-		otraCuenta.setValor(2000);
-		otraCuenta.setNombreCuenta("FCF");
+		otraCuenta.setValor(3000);
+		otraCuenta.setNombreCuenta("EBITDA");
 		return otraCuenta;
 
 	}

@@ -25,13 +25,13 @@ public class HomeController {
 		String usuario = req.queryParams("usuario");
 		String contrasena = req.queryParams("contrasena");
 		List<Usuario> usuarios = UsuariosService.obtenerUsuariosDeServicioExterno();
-		if(usuario == null || contrasena ==null){
+		if(usuario == null || contrasena == null){
 			return new ModelAndView(null, "login/login.hbs");	
 		}
 		else{
-			if((usuarios.stream().anyMatch(unUsuario -> (usuario.equals(unUsuario.getUsuario()) &&  contrasena.equals(unUsuario.getContrasena()))))){
+			if(this.loginOk(usuario,contrasena,usuarios)){
 				req.session().attribute("user",usuario); 
-				res.redirect("/menu");
+				res.redirect("/");
 				return new ModelAndView(null, "home/home.hbs");
 			}
 			else
@@ -41,12 +41,26 @@ public class HomeController {
 		}	
 			
 	}
+	public Boolean loginOk(String usuario, String contrasena, List<Usuario> usuarios){
+		return (usuarios.stream().anyMatch(unUsuario -> (usuario.equals(unUsuario.getUsuario()) &&  contrasena.equals(unUsuario.getContrasena()))));
+	}
 	
 	public ModelAndView login(Request req, Response res){
-		// NO ESTA HACIENDO NADA
 		String usuario = req.queryParams("usuario");
 		String contrasena = req.queryParams("contrasena");
+		Usuario user = manejarUser(usuario, contrasena);
+
+		//req.session().attribute("usr", user);
+		
 		return new ModelAndView(null, "home/home.hbs");
+	}
+	public Usuario manejarUser(String name, String contrasena){
+		Usuario user = new Usuario();
+		user.setContrasena(contrasena);
+		user.setUsuario(name);
+		//UsuariosService.guardarUsuario(user);
+		return user;
+		//return UsuariosService.obtenerUsuarioDeServicioExterno(name, contrasena);
 	}
 	
 	

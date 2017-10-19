@@ -14,7 +14,35 @@ import model.Usuario;
 
 
 public class UsuariosService {
-	
+	public static Usuario obtenerUsuarioDeServicioExterno(String name, String pass) {
+		 SessionFactory sessionFactory = new Configuration().configure()
+				 .buildSessionFactory();
+		 Session session = sessionFactory.openSession();
+		 
+		 try {
+				
+				session.beginTransaction();
+				Usuario results = (Usuario) session.createQuery("from model.usuario where usuario = :name and contrasena = :pass")
+						.setParameter("name", name)
+						.setParameter("pass", pass)
+						.getSingleResult();
+				session.getTransaction().commit();
+				return results;
+				
+			}
+			
+			catch (HibernateException e) {
+				if (session.getTransaction() != null) {
+		            session.getTransaction().rollback();
+		        }
+				
+			}
+			finally{
+				session.close();
+			}
+			return null;
+
+		}
 	public static List<Usuario> obtenerUsuariosDeServicioExterno() {
 	 SessionFactory sessionFactory = new Configuration().configure()
 			 .buildSessionFactory();
@@ -73,4 +101,26 @@ public class UsuariosService {
 
 		}
 		*/
+
+	public static void guardarUsuario(Usuario user) {
+		SessionFactory sessionFactory = new Configuration().configure()
+				 .buildSessionFactory();
+		 Session session = sessionFactory.openSession();
+		
+		try {
+			session.beginTransaction();
+			session.persist(user);	
+			session.getTransaction().commit();
+			
+		}
+		
+		
+		catch (HibernateException e) {
+			if (session.getTransaction() != null) {
+	            session.getTransaction().rollback();
+	        }
+			
+		}
+		
+	}
 }

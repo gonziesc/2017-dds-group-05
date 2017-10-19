@@ -15,6 +15,7 @@ import javax.persistence.NoResultException;
 import model.Empresa;
 import model.Indicador;
 import model.Metodologia;
+import model.Usuario;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -35,7 +36,7 @@ import com.google.gson.reflect.TypeToken;
 public class IndicadoresService {
 	static String rutaArchivoJson = "./resources/indicadores3.json";
 
-	public static List<Indicador> obtenerInicadoresDeServicioExterno() {
+	public static List<Indicador> obtenerIndicadoresDeServicioExterno() {
 		/*Gson gson = new GsonBuilder()
 			    .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
 			    .create();
@@ -55,6 +56,45 @@ public class IndicadoresService {
 			
 			session.beginTransaction();
 			List<Indicador> results = (List<Indicador>) session.createQuery("FROM model.Indicador").getResultList();
+			session.getTransaction().commit();
+			return results;
+			
+		}
+		
+		catch (HibernateException e) {
+			if (session.getTransaction() != null) {
+	            session.getTransaction().rollback();
+	        }
+			
+		}
+		finally{
+			session.close();
+		}
+		return null;
+	
+	}
+	public static List<Indicador> obtenerIndicadoresDeServicioExterno(Usuario user) {
+		/*Gson gson = new GsonBuilder()
+			    .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
+			    .create();
+		try {
+			Type collectionType = new TypeToken<Collection<Indicador>>(){}.getType();
+			List<Indicador> listaIndicadores = gson.fromJson(new FileReader(rutaArchivoJson), collectionType);
+			return listaIndicadores;
+		}catch (UserException  e) {
+			noEncuentraElArchivo();
+		}
+		return null;*/
+		 SessionFactory sessionFactory = new Configuration().configure()
+				 .buildSessionFactory();
+		 Session session = sessionFactory.openSession();
+		
+		try {
+			
+			session.beginTransaction();
+			List<Indicador> results = (List<Indicador>) session.createQuery("from model.Indicador where user_id = :id")
+					.setParameter("id",user.getId())
+					.getResultList();
 			session.getTransaction().commit();
 			return results;
 			

@@ -17,6 +17,7 @@ import builder.BuilderIndicador;
 import model.Cuenta;
 import model.Empresa;
 import model.Indicador;
+import model.Usuario;
 import model.repositories.CuentasRepository;
 import server.Router;
 import spark.ModelAndView;
@@ -43,6 +44,8 @@ public class IndicadoresController {
 		builder.setOperacion(operador);
 		builder.setParametroAPartirVista(tipo, valor,false);
 		builder.setParametroAPartirVista(tipo2, valor2,true);
+		//Usuario user = req.session().attribute("user");
+		//builder.setUser(user);
 		
 		IndicadoresService.guardarIndicadoresEnServicioExterno(builder.build());
 		
@@ -55,10 +58,11 @@ public class IndicadoresController {
 		}
 		String accion = Router.sesion(req);
 		
+	
 		Map<String, List<Cuenta>> modelCuentas = new HashMap<>();
 		Map<String, String> modelTipo= new HashMap<>();
 		Map<String, List<Indicador>> modelIndicadores= new HashMap<>();
-		List<Indicador> indicadores= IndicadoresService.obtenerInicadoresDeServicioExterno();
+		List<Indicador> indicadores= IndicadoresService.obtenerIndicadoresDeServicioExterno();
 		List<Cuenta>cuentas = CuentasRepository.obtenerCuentas();
 		IndicadoresHandle handle = new IndicadoresHandle();
 		
@@ -92,7 +96,7 @@ public class IndicadoresController {
 	
 	public ModelAndView show (Request req, Response res){
 		Map<String, List<Indicador>> modelIndicadores= new HashMap<>();
-		List<Indicador> indicadores= IndicadoresService.obtenerInicadoresDeServicioExterno();
+		List<Indicador> indicadores= IndicadoresService.obtenerIndicadoresDeServicioExterno();
 		modelIndicadores.put("indicadores", indicadores);
 		return new ModelAndView(modelIndicadores, "indicadores/indicadores.hbs");
 	}

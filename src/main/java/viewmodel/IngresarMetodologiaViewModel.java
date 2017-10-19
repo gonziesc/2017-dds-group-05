@@ -62,7 +62,7 @@ public class IngresarMetodologiaViewModel {
 	}
 	
 	public void obtenerIndicadores() {
-		indicadores = IndicadoresService.obtenerInicadoresDeServicioExterno();
+		indicadores = IndicadoresService.obtenerIndicadoresDeServicioExterno();
 	}
 	
 	public List<Indicador> getIndicadores() {

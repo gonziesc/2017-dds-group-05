@@ -42,7 +42,7 @@ public class ParametroViewModel {
 	}
 	
 	public void obtenerIndicadores() {
-			indicadores = IndicadoresService.obtenerInicadoresDeServicioExterno();
+			indicadores = IndicadoresService.obtenerIndicadoresDeServicioExterno();
 	}
 
 	public void ingresarIndicador() {

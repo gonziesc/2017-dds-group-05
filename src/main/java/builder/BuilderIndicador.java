@@ -8,6 +8,7 @@ import Services.IndicadoresService;
 import model.Cuenta;
 import model.Indicador;
 import model.Parametro;
+import model.Usuario;
 import model.parametroGeneral;
 import model.repositories.CuentasRepository;
 
@@ -18,11 +19,13 @@ public class BuilderIndicador {
 	private BuilderParametro builderProximoParametro= new BuilderParametro();
 	private String operacion;
 	private String nombre = null;
+	private Usuario user;
 
 	public Indicador build(){
 		if(parametro == null) throw new UserException("Ingrese al menos un parametro");
 		indicador = new Indicador(parametro,parametroFinal,operacion);
 		indicador.setNombre(nombre);
+		indicador.setUser(user);
 		return indicador;
 	}
 
@@ -32,10 +35,6 @@ public class BuilderIndicador {
 
 	public void setParametroFinal(parametroGeneral parametroFinal) {
 		this.parametroFinal = parametroFinal;
-	}
-
-	public void agregarUltimoBuilderParametro(BuilderParametro builderParam){
-		
 	}
 
 	public void setParametro(parametroGeneral parametro12) {
@@ -94,6 +93,15 @@ public class BuilderIndicador {
 			param.setValor(Integer.parseInt(valores[2]));
 			break;
 		}
+	}
+
+	public Usuario getUser() {
+		return user;
+	}
+
+	public void setUser(Usuario user) {
+		System.out.println(user.getUsuario());
+		this.user = user;
 	}
 
 }

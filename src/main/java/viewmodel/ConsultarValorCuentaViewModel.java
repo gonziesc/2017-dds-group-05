@@ -21,7 +21,7 @@ public class ConsultarValorCuentaViewModel {
 	
 	
 	public void obtenerIndicadores(){
-			indicadores = IndicadoresService.obtenerInicadoresDeServicioExterno();
+			indicadores = IndicadoresService.obtenerIndicadoresDeServicioExterno();
 			// indicadores.stream().forEach(i -> this.procesarIndicador(i));
 
 	}

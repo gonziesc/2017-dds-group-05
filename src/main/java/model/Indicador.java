@@ -1,6 +1,8 @@
 
 package model;
 
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 import org.mockito.cglib.core.ProcessArrayCallback;
 import org.uqbar.commons.utils.Observable;
 
@@ -11,6 +13,7 @@ import java.util.stream.IntStream;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -33,6 +36,9 @@ public class Indicador{
 	private String operacion;
 	private String nombre;
 	private int valor =0;
+	@ManyToOne
+	@NotFound(action = NotFoundAction.IGNORE)
+	private Usuario user;
 
 	public Indicador(){}
 	public Indicador(parametroGeneral unParametro1, parametroGeneral unParametro2, String unaOperacion1){
@@ -118,5 +124,12 @@ public class Indicador{
 	}
 	public void setId(Long id) {
 		this.id = id;
-	}	
+	}
+	public Usuario getUser() {
+		return user;
+	}
+	public void setUser(Usuario user) {
+		this.user = user;
+	}
+
 }
