@@ -59,6 +59,7 @@ public class ormTest {
 		
 		sessionFactory = new Configuration()
 			   .addProperties(prop)
+			   .addAnnotatedClass(Usuario.class)
 			   .addAnnotatedClass(Cuenta.class)
 			   .addAnnotatedClass(Empresa.class)
 			   .addAnnotatedClass(Metodologia.class)

@@ -7,6 +7,7 @@ import java.util.Map;
 
 import Services.IndicadoresService;
 import Services.MetodologiasService;
+import Services.UsuariosService;
 import builder.BuilderIndicador;
 import builder.BuilderMetodologia;
 import model.Comparador;
@@ -28,6 +29,7 @@ import java.util.Map;
 
 import model.Empresa;
 import model.Metodologia;
+import model.Usuario;
 import Services.EmpresasService;
 import Services.MetodologiasService;
 
@@ -82,7 +84,9 @@ public class MetodologiasController {
 		Map<String, List<ComparadorFiltro>> modelCompFiltro= new HashMap<>();
 		Map<String, List<Indicador>> modelIndicadores= new HashMap<>();
 		
-		List<Indicador> indicadores= IndicadoresService.obtenerIndicadoresDeServicioExterno(req.session().attribute("user"));
+		Usuario user = encontrarSesionDe(req);
+		
+		List<Indicador> indicadores= IndicadoresService.obtenerIndicadoresDeServicioExterno(user);
 		List<ComparadorFiltro>comparadoresFiltro = Repositorios.metodologias.allComparadoresFiltro();
 		List<ComparadorOrden>comparadoresOrden = Repositorios.metodologias.allComparadoresOrden();
 		
@@ -107,5 +111,9 @@ public class MetodologiasController {
 		List<Metodologia> lista = MetodologiasService.obtenerMetodologiasDeServicioExterno();
 		model.put("metodologias", lista);
 		return new ModelAndView(model, "metodologias/metodologias.hbs");
+	}
+	private Usuario encontrarSesionDe(Request req) {
+		String user = req.session().attribute("user");
+		return UsuariosService.obtenerUsuarioDeServicioExterno(user);
 	}
 }
