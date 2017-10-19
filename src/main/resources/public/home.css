@@ -91,6 +91,7 @@
 .btn-min-block {
     min-width: 170px;
     line-height: 26px;
+     font-size: 1000%;
 }
 
 .btn-theme {

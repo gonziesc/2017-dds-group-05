@@ -22,6 +22,13 @@ public class ConsultarValorCuenta extends Dialog<ConsultarValorCuentaViewModel> 
 		getModelObject().obtenerEmpresas();
 	}
 
+	public void mostrarCuentas(){
+		if(getModelObject().getEmpresaSeleccionada() == null){
+			throw new UserException("Seleccione una empresa");
+		}
+		getModelObject().obtenerCuentasEmpresa();
+	}
+
 	@Override
 	public void createContents(Panel mainPanel) {
 		this.setTitle("Obtener datos de una empresa");
@@ -56,19 +63,14 @@ public class ConsultarValorCuenta extends Dialog<ConsultarValorCuentaViewModel> 
 				
 	}
 	
-	public void mostrarCuentas(){
-		if(getModelObject().getEmpresaSeleccionada() == null){
-			throw new UserException("Seleccione una empresa");
-		}
-		getModelObject().obtenerCuentasEmpresa();
+	public void createColumnIndicador(String title,Table<Indicador> tablaIndicador, String property){
+		new Column<Indicador>(tablaIndicador).setTitle(title).setFixedSize(150).bindContentsToProperty(property);
 	}
+	
 	public void createColumnCuenta(String title,Table<Cuenta> tablaCuentas, String property){
 		new Column<Cuenta>(tablaCuentas).setTitle(title).setFixedSize(150).bindContentsToProperty(property);
 	}
 	
-	public void createColumnIndicador(String title,Table<Indicador> tablaIndicador, String property){
-		new Column<Indicador>(tablaIndicador).setTitle(title).setFixedSize(150).bindContentsToProperty(property);
-	}
 	public void mostarIndicadores(){
 		if(getModelObject().getEmpresaSeleccionada() == null){
 			throw new UserException("Seleccione una empresa");

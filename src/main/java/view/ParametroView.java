@@ -36,32 +36,6 @@ public class ParametroView extends Dialog<ParametroViewModel>{
 		cargarDatosParaIndicador(mainPanel);
 	}
 	
-	public void cargarDatosParaIndicador(Panel mainPanel){
-		new Label(mainPanel).setText("Ingrese el tipo del parametro");
-		Selector<String> radioTipo2 = new RadioSelector<String>(mainPanel).onSelection(()->this.getModelObject().limpiarSeleccionados());
-		radioTipo2.bindItemsToProperty("tipoParametros");
-		radioTipo2.bindValueToProperty("tipoSeleccionado");
-		
-		new Label(mainPanel).setText("Valor Constante");
-		new NumericField(mainPanel).bindValueToProperty("valorParametroConstante");
-		
-		new Label(mainPanel).setText("Indicadores");
-		
-		Selector<Indicador> selectorIndicadores2 = new Selector<Indicador>(mainPanel).allowNull(true);
-		selectorIndicadores2.bindItemsToProperty("indicadores").adaptWith(Indicador.class, "nombre");
-		selectorIndicadores2.bindValueToProperty("indicadorSeleccionado");
-		
-		new Label(mainPanel).setText("Cuentas");
-		
-		Selector<Cuenta> selectorCuentas2 = new Selector<Cuenta>(mainPanel).allowNull(false);
-		selectorCuentas2.bindItemsToProperty("cuentas").adaptWith(Cuenta.class, "nombreCuenta");
-		selectorCuentas2.bindValueToProperty("cuentaSeleccionada");
-		
-		new Button(mainPanel).setCaption("Ingresar parametro compuesto").onClick(this::ingresar).disableOnError();
-		
-		new Button(mainPanel).setCaption("Ingresar indicador").onClick(this::ingresarIndicador).disableOnError();	
-	}
-	
 	public void ingresarIndicador(){
 		if(this.dosParametrosLlenos()){
 			throw new UserException("Seleccione un solo parametro");
@@ -87,6 +61,32 @@ public class ParametroView extends Dialog<ParametroViewModel>{
 		BuilderIndicador builder = this.getModelObject().getBuilderIndicador();
 		this.close();
 		new ParametroView(this,builder, this.getModelObject().getNombreIndicador()).open();
+	}
+	
+	public void cargarDatosParaIndicador(Panel mainPanel){
+		new Label(mainPanel).setText("Ingrese el tipo del parametro");
+		Selector<String> radioTipo2 = new RadioSelector<String>(mainPanel).onSelection(()->this.getModelObject().limpiarSeleccionados());
+		radioTipo2.bindItemsToProperty("tipoParametros");
+		radioTipo2.bindValueToProperty("tipoSeleccionado");
+		
+		new Label(mainPanel).setText("Valor Constante");
+		new NumericField(mainPanel).bindValueToProperty("valorParametroConstante");
+		
+		new Label(mainPanel).setText("Indicadores");
+		
+		Selector<Indicador> selectorIndicadores2 = new Selector<Indicador>(mainPanel).allowNull(true);
+		selectorIndicadores2.bindItemsToProperty("indicadores").adaptWith(Indicador.class, "nombre");
+		selectorIndicadores2.bindValueToProperty("indicadorSeleccionado");
+		
+		new Label(mainPanel).setText("Cuentas");
+		
+		Selector<Cuenta> selectorCuentas2 = new Selector<Cuenta>(mainPanel).allowNull(false);
+		selectorCuentas2.bindItemsToProperty("cuentas").adaptWith(Cuenta.class, "nombreCuenta");
+		selectorCuentas2.bindValueToProperty("cuentaSeleccionada");
+		
+		new Button(mainPanel).setCaption("Ingresar parametro compuesto").onClick(this::ingresar).disableOnError();
+		
+		new Button(mainPanel).setCaption("Ingresar indicador").onClick(this::ingresarIndicador).disableOnError();	
 	}
 	
 	@Override
