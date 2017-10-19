@@ -12,14 +12,10 @@
 	{{#empresas.empresas}}
 		<tr>
 			<td>{{nombreEmpresa}}</td>
-			
-	{{#valor}}
-			<td> {{valor}} </td> 
-	{{/valor}}
-		
+			<td>{{#valor}} {{this}} {{/valor}}</td> 
 		</tr>
 	{{/empresas.empresas}}
-</table>
+</table>	
 
 {{/partial}}
 

@@ -46,8 +46,8 @@ public class IndicadoresController {
 		builder.setOperacion(operador);
 		builder.setParametroAPartirVista(tipo, valor,false);
 		builder.setParametroAPartirVista(tipo2, valor2,true);
-		String user = req.session().attribute("user");
-		//builder.setUser(user);
+		Usuario user = encontrarSesionDe(req);
+		builder.setUser(user);
 		
 		IndicadoresService.guardarIndicadoresEnServicioExterno(builder.build());
 		
@@ -65,7 +65,8 @@ public class IndicadoresController {
 		Map<String, List<Cuenta>> modelCuentas = new HashMap<>();
 		Map<String, String> modelTipo= new HashMap<>();
 		Map<String, List<Indicador>> modelIndicadores= new HashMap<>();
-		List<Indicador> indicadores= IndicadoresService.obtenerIndicadoresDeServicioExterno();
+		Usuario user = encontrarSesionDe(req);
+		List<Indicador> indicadores= IndicadoresService.obtenerIndicadoresDeServicioExterno(user);
 		List<Cuenta>cuentas = CuentasRepository.obtenerCuentas();
 		IndicadoresHandle handle = new IndicadoresHandle();
 		
@@ -84,13 +85,12 @@ public class IndicadoresController {
 		Indicador indicador = IndicadoresService.obtenerIndicadorPorNombre(nombreIndicador);
 		List<Empresa> listaEmpresas = EmpresasService.obtenerEmpresasDeServicioExterno();
 		Map<String, List<Empresa>> empresas = new HashMap<>();
-		List<Integer> valores = new ArrayList<Integer>();
 		EmpresaHandle handler = new EmpresaHandle();
-		
 		
 		empresas.put("empresas", listaEmpresas);
 		
-		handler.setValor(indicador.calcularValorEn(listaEmpresas));
+		Integer valor = indicador.calcularValorEn(listaEmpresas).stream().mapToInt(Integer::intValue).sum();
+		handler.setValor(valor.toString());
 		handler.setEmpresas(empresas);
 		
 		return new ModelAndView(handler, "indicadores/evaluar.hbs");

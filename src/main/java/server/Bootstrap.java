@@ -24,7 +24,7 @@ public class Bootstrap {
 		
 		session.beginTransaction();
 		user.setContrasena("123");
-		user.setUsuario("user2");
+		user.setUsuario("user3");
 		session.persist(user);
 		session.persist(unaCuenta);
 		parametroGeneral parametroCuenta = new Parametro();
@@ -39,8 +39,8 @@ public class Bootstrap {
 	}
 	public Cuenta getOtraCuenta() {
 		Cuenta otraCuenta = new Cuenta();
-		otraCuenta.setValor(3000);
-		otraCuenta.setNombreCuenta("EBITDA");
+		otraCuenta.setValor(2000);
+		otraCuenta.setNombreCuenta("Free Cash Flow");
 		return otraCuenta;
 
 	}
