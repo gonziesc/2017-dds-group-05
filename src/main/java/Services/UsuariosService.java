@@ -14,7 +14,7 @@ import model.Usuario;
 
 
 public class UsuariosService {
-	public static Usuario obtenerUsuarioDeServicioExterno(String name, String pass) {
+	public static Usuario obtenerUsuarioDeServicioExterno(String name) {
 		 SessionFactory sessionFactory = new Configuration().configure()
 				 .buildSessionFactory();
 		 Session session = sessionFactory.openSession();
@@ -22,9 +22,9 @@ public class UsuariosService {
 		 try {
 				
 				session.beginTransaction();
-				Usuario results = (Usuario) session.createQuery("from model.usuario where usuario = :name and contrasena = :pass")
+				Usuario results = (Usuario) session.createQuery("from model.Usuario where usuario = :name")
 						.setParameter("name", name)
-						.setParameter("pass", pass)
+						.setMaxResults(1)
 						.getSingleResult();
 				session.getTransaction().commit();
 				return results;

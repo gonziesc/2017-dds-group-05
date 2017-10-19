@@ -74,17 +74,6 @@ public class IndicadoresService {
 	
 	}
 	public static List<Indicador> obtenerIndicadoresDeServicioExterno(Usuario user) {
-		/*Gson gson = new GsonBuilder()
-			    .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
-			    .create();
-		try {
-			Type collectionType = new TypeToken<Collection<Indicador>>(){}.getType();
-			List<Indicador> listaIndicadores = gson.fromJson(new FileReader(rutaArchivoJson), collectionType);
-			return listaIndicadores;
-		}catch (UserException  e) {
-			noEncuentraElArchivo();
-		}
-		return null;*/
 		 SessionFactory sessionFactory = new Configuration().configure()
 				 .buildSessionFactory();
 		 Session session = sessionFactory.openSession();

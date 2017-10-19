@@ -23,15 +23,15 @@ public class Bootstrap {
 		Usuario user = new Usuario();
 		
 		session.beginTransaction();
-		user.setContrasena("12340");
-		user.setUsuario("user1");
+		user.setContrasena("123");
+		user.setUsuario("user2");
 		session.persist(user);
 		session.persist(unaCuenta);
 		parametroGeneral parametroCuenta = new Parametro();
 		parametroCuenta.setNombre(unaCuenta.getNombreCuenta());
 		parametroCuenta.setValor(unaCuenta.getValor());
 		Indicador unIndicador = new Indicador(parametroCuenta, null, null);
-		unIndicador.setNombre("pruebaa");
+		unIndicador.setNombre("prueba1");
 		unIndicador.setUser(user);
 		session.persist(unIndicador);
 		session.getTransaction().commit();
