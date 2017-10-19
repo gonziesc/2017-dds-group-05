@@ -36,8 +36,7 @@ public class Indicador{
 	private String operacion;
 	private String nombre;
 	private int valor =0;
-	@ManyToOne
-	@NotFound(action = NotFoundAction.IGNORE)
+	@ManyToOne(targetEntity=Usuario.class,cascade=CascadeType.ALL)
 	private Usuario user;
 
 	public Indicador(){}
@@ -54,8 +53,8 @@ public class Indicador{
 		return Operadores.resolverOperacion(parametro1.getValor(), parametro2.getValor(), operacion);
 	}
 
-	public List<Integer> calcularValorEn(List<Empresa> empresas){
-		return empresas.stream().map(e -> this.calcularIndicadorEn(e)).collect(Collectors.toList());		
+	public int calcularValorEn(List<Empresa> empresas){
+		return empresas.stream().mapToInt(e -> this.calcularIndicadorEn(e)).sum();		
 	}
 	public int calcularIndicadorEn(Empresa empresa){
 		empresa.procesarIndicador(this);

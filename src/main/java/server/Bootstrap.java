@@ -4,6 +4,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import Services.UsuariosService;
 import model.Cuenta;
 import model.Indicador;
 import model.Parametro;
@@ -18,21 +19,21 @@ public class Bootstrap {
 	public void init(){	
 		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 		Session session = sessionFactory.openSession();
-		//Cuenta unaCuenta = getOtraCuenta();
+		Cuenta unaCuenta = getOtraCuenta();
+		Usuario user = new Usuario();
 		
 		session.beginTransaction();
-		//session.persist(unaCuenta);
-		Usuario user = new Usuario();
-		user.setContrasena("1234");
-		user.setUsuario("unuser");
+		user.setContrasena("123");
+		user.setUsuario("user2");
 		session.persist(user);
-		/*parametroGeneral parametroCuenta = new Parametro();
+		session.persist(unaCuenta);
+		parametroGeneral parametroCuenta = new Parametro();
 		parametroCuenta.setNombre(unaCuenta.getNombreCuenta());
 		parametroCuenta.setValor(unaCuenta.getValor());
 		Indicador unIndicador = new Indicador(parametroCuenta, null, null);
-		unIndicador.setNombre("prueba2");
-		unIndicador.setUser(user);*/
-		//session.persist(unIndicador);
+		unIndicador.setNombre("prueba1");
+		unIndicador.setUser(user);
+		session.persist(unIndicador);
 		session.getTransaction().commit();
 		
 	}

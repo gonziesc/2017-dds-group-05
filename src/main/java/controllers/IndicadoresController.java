@@ -13,6 +13,7 @@ import javax.persistence.criteria.CriteriaBuilder.In;
 
 import Services.EmpresasService;
 import Services.IndicadoresService;
+import Services.UsuariosService;
 import builder.BuilderIndicador;
 import model.Cuenta;
 import model.Empresa;
@@ -45,7 +46,7 @@ public class IndicadoresController {
 		builder.setOperacion(operador);
 		builder.setParametroAPartirVista(tipo, valor,false);
 		builder.setParametroAPartirVista(tipo2, valor2,true);
-		//Usuario user = req.session().attribute("user");
+		String user = req.session().attribute("user");
 		//builder.setUser(user);
 		
 		IndicadoresService.guardarIndicadoresEnServicioExterno(builder.build());
@@ -88,7 +89,6 @@ public class IndicadoresController {
 		
 		
 		empresas.put("empresas", listaEmpresas);
-		//indicadores.put("indicadores", indicador.calcularValorEn(listaEmpresas));
 		
 		handler.setValor(indicador.calcularValorEn(listaEmpresas));
 		handler.setEmpresas(empresas);
@@ -98,9 +98,16 @@ public class IndicadoresController {
 	
 	public ModelAndView show (Request req, Response res){
 		Map<String, List<Indicador>> modelIndicadores= new HashMap<>();
-		List<Indicador> indicadores= IndicadoresService.obtenerIndicadoresDeServicioExterno();
+		Usuario user = encontrarSesionDe(req);
+		
+		List<Indicador> indicadores= IndicadoresService.obtenerIndicadoresDeServicioExterno(user);
 		modelIndicadores.put("indicadores", indicadores);
 		return new ModelAndView(modelIndicadores, "indicadores/indicadores.hbs");
+	}
+
+	private Usuario encontrarSesionDe(Request req) {
+		String user = req.session().attribute("user");
+		return UsuariosService.obtenerUsuarioDeServicioExterno(user);
 	}
 		
 }
