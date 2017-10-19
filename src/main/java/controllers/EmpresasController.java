@@ -15,8 +15,9 @@ import spark.Response;
 
 public class EmpresasController {
 	public ModelAndView getById(Request req, Response res) throws FileNotFoundException{
-		
-		
+		if(Router.validar(req)&&!Router.esRutaPublica(req.url())){
+			res.redirect("login/login.hbs",301);
+		}
 		String empresa = req.params("empresa");
 		Map<String, List<Cuenta>> model = new HashMap<>();
 		List<Cuenta> cuentas = EmpresasService.obtenerCuentasDeEmpresa(empresa);
@@ -26,6 +27,9 @@ public class EmpresasController {
 	}
 	
 	public ModelAndView show (Request req, Response res) throws FileNotFoundException{
+		if(Router.validar(req)&&!Router.esRutaPublica(req.url())){
+			res.redirect("login/login.hbs",301);
+		}
 		List<Empresa> lista = EmpresasService.obtenerEmpresasDeServicioExterno();
 		Map<String, List<Empresa>> model = new HashMap<>();
 		model.put("empresas", lista);

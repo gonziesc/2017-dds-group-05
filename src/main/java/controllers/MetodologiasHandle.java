@@ -9,7 +9,7 @@ import model.ComparadorFiltro;
 import model.ComparadorOrden;
 import model.Indicador;
 
-public class MetodologiasHandle extends Handler {
+public class MetodologiasHandle{
 	Map<String, List<ComparadorOrden>> comparadorOrden= new HashMap<>();
 	Map<String, List<ComparadorFiltro>> comparadorFiltro= new HashMap<>();
 	Map<String, List<Indicador>> indicadores = new HashMap<>();

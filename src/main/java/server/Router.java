@@ -1,5 +1,7 @@
 package server;
 
+import org.junit.Before;
+
 import controllers.EmpresasController;
 import controllers.HomeController;
 import controllers.IndicadoresController;
@@ -20,20 +22,21 @@ public class Router {
 				.build();
 
 		Spark.staticFiles.location("/public");	
-		Session session;
-		
+				
 		EmpresasController empresasController = new EmpresasController();
 		IndicadoresController indicadoresController = new IndicadoresController();
 		HomeController homeController = new HomeController();
 		MetodologiasController metodologiasController = new MetodologiasController();
 				
+		//Spark.before(homeController::validar);
+				
 		Spark.get("/", homeController::home, engine);
 		Spark.get("/register", homeController::showRegister, engine);
 		Spark.post("/register", homeController::register, engine);
 		Spark.get("/login", homeController::showLogin, engine);
+		Spark.post("/login", homeController::login, engine);
 		Spark.get("/logout", homeController::showLogOut, engine);
 		Spark.post("/logout", homeController::logOut, engine);
-		Spark.post("/login", homeController::login, engine);
 		Spark.get("/empresas/:empresa/cuentas", empresasController::getById, engine);
 		Spark.get("/indicadores/crear", indicadoresController::showCreateView, engine);
 		Spark.post("/indicadores/crear", indicadoresController::create, engine);
@@ -52,12 +55,8 @@ public class Router {
 		return req.session().attribute("user") == null;
 	}
 	
-	public static String sesion(Request req){
-		if(validar(req)){
-			return "login";
-		}else{
-			return "logout";
-		}
+	public static boolean esRutaPublica(String url) {
+		return url == "/login" || url == "/register";
 	}
 
 }

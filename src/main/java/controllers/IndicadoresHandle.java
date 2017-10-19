@@ -8,7 +8,7 @@ import model.Cuenta;
 import model.Empresa;
 import model.Indicador;
 
-public class IndicadoresHandle extends Handler {
+public class IndicadoresHandle {
 	Map<String, List<Cuenta>> cuentas= new HashMap<>();
 	Map<String, List<Indicador>> indicadores = new HashMap<>();
 

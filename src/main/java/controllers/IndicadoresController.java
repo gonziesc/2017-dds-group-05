@@ -27,11 +27,9 @@ import spark.Response;
 
 public class IndicadoresController {
 	public ModelAndView create(Request req, Response res){
-		if(Router.validar(req)){
-			res.redirect("/");
-			return new ModelAndView(null, "login/login.hbs");
+		if(Router.validar(req)&&!Router.esRutaPublica(req.url())){
+			res.redirect("login/login.hbs",301);
 		}
-		
 		String nombre = req.queryParams("nombre");
 		String operador= req.queryParams("operador");
 		
@@ -55,31 +53,26 @@ public class IndicadoresController {
 	}
 	
 	public ModelAndView showCreateView(Request req, Response res) throws FileNotFoundException{
-		if(Router.validar(req)){
-			res.redirect("/",301);
-			return new ModelAndView(null, "login/login.hbs");
+		if(Router.validar(req)&&!Router.esRutaPublica(req.url())){
+			res.redirect("login/login.hbs",301);
 		}
-		String accion = Router.sesion(req);
-		
-	
 		Map<String, List<Cuenta>> modelCuentas = new HashMap<>();
-		Map<String, String> modelTipo= new HashMap<>();
 		Map<String, List<Indicador>> modelIndicadores= new HashMap<>();
 		List<Indicador> indicadores= IndicadoresService.obtenerIndicadoresDeServicioExterno();
 		List<Cuenta>cuentas = CuentasRepository.obtenerCuentas();
 		IndicadoresHandle handle = new IndicadoresHandle();
 		
-		modelTipo.put("accion", accion);
 		modelCuentas.put("cuentas", cuentas);
 		modelIndicadores.put("indicadores", indicadores);
 		handle.setCuentas(modelCuentas);
 		handle.setIndicadores(modelIndicadores);
-		handle.setAccion(modelTipo);
-						
 		return new ModelAndView(handle, "indicadores/create.hbs");
 	}
 
 	public ModelAndView evaluar(Request req, Response res) throws FileNotFoundException{
+		if(Router.validar(req)&&!Router.esRutaPublica(req.url())){
+			res.redirect("login/login.hbs",301);
+		}
 		String nombreIndicador = req.params("nombre");
 		Indicador indicador = IndicadoresService.obtenerIndicadorPorNombre(nombreIndicador);
 		List<Empresa> listaEmpresas = EmpresasService.obtenerEmpresasDeServicioExterno();
@@ -97,6 +90,9 @@ public class IndicadoresController {
 	}
 	
 	public ModelAndView show (Request req, Response res){
+		if(Router.validar(req)&&!Router.esRutaPublica(req.url())){
+			res.redirect("login/login.hbs",301);
+		}
 		Map<String, List<Indicador>> modelIndicadores= new HashMap<>();
 		Usuario user = encontrarSesionDe(req);
 		

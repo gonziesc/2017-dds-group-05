@@ -33,11 +33,9 @@ import Services.MetodologiasService;
 
 public class MetodologiasController {
 	public ModelAndView evaluarMetodologia(Request req, Response res) throws FileNotFoundException{
-		if(Router.validar(req)){
-			res.redirect("/");
-			return new ModelAndView(null, "login/login.hbs");
+		if(Router.validar(req)&&!Router.esRutaPublica(req.url())){
+			res.redirect("login/login.hbs",301);
 		}
-		
 		String nombre = req.params("nombre");
 		Map<String, List<Empresa>> model = new HashMap<>();
 		
@@ -51,11 +49,9 @@ public class MetodologiasController {
 	}
 	
 	public ModelAndView create(Request req, Response res){
-		if(Router.validar(req)){
-			res.redirect("/");
-			return new ModelAndView(null, "login/login.hbs");
+		if(Router.validar(req)&&!Router.esRutaPublica(req.url())){
+			res.redirect("login/login.hbs",301);
 		}
-		
 		BuilderMetodologia builder = new BuilderMetodologia();
 		builder.setNombre(req.queryParams("nombre"));
 		builder.setPeriodoInicio(Integer.parseInt(req.queryParams("periodoInicio")));
@@ -79,15 +75,11 @@ public class MetodologiasController {
 		return new ModelAndView(null, "home/home.hbs");
 	}
 	public ModelAndView showCreateView(Request req, Response res) throws FileNotFoundException{
-		if(Router.validar(req)){
-			res.redirect("/");
-			return new ModelAndView(null, "login/login.hbs");
+		if(Router.validar(req)&&!Router.esRutaPublica(req.url())){
+			res.redirect("login/login.hbs",301);
 		}
-		String accion = Router.sesion(req);
-		
 		Map<String, List<ComparadorOrden>> modelComporden= new HashMap<>();
 		Map<String, List<ComparadorFiltro>> modelCompFiltro= new HashMap<>();
-		Map<String, String> modelTipo= new HashMap<>();
 		Map<String, List<Indicador>> modelIndicadores= new HashMap<>();
 		
 		List<Indicador> indicadores= IndicadoresService.obtenerIndicadoresDeServicioExterno(req.session().attribute("user"));
@@ -96,7 +88,6 @@ public class MetodologiasController {
 		
 		MetodologiasHandle handle = new MetodologiasHandle();
 		
-		modelTipo.put("accion", accion);
 		modelCompFiltro.put("filtros", comparadoresFiltro);
 		modelComporden.put("orden", comparadoresOrden);
 		modelIndicadores.put("indicadores", indicadores);
@@ -104,12 +95,14 @@ public class MetodologiasController {
 		handle.setComparadorFiltro(modelCompFiltro);
 		handle.setComparadorOrden(modelComporden);
 		handle.setIndicadores(modelIndicadores);
-		handle.setAccion(modelTipo);
-						
+								
 		return new ModelAndView(handle, "metodologias/create.hbs");
 	}
 	
 	public ModelAndView show (Request req, Response res) throws FileNotFoundException{
+		if(Router.validar(req)&&!Router.esRutaPublica(req.url())){
+			res.redirect("login/login.hbs",301);
+		}
 		Map<String, List<Metodologia>> model= new HashMap<>();
 		List<Metodologia> lista = MetodologiasService.obtenerMetodologiasDeServicioExterno();
 		model.put("metodologias", lista);

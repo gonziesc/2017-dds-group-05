@@ -28,7 +28,8 @@ public class HomeController {
 	}
 	
 	public ModelAndView logOut(Request req, Response res)throws FileNotFoundException{
-		req.session().attribute("user",null); 
+		req.session().attribute("user",null);
+		req.session().attribute("loggedIn", false);
 		res.redirect("/",301);
 		return new ModelAndView(null, "home/menu.hbs");
 	}
@@ -44,6 +45,7 @@ public class HomeController {
 		else{
 			if(this.loginOk(usuario,contrasena,usuarios)){
 				req.session().attribute("user",usuario); 
+				req.session().attribute("loggedIn", true);
 				res.redirect("/",301);
 				return new ModelAndView(null, "home/home.hbs");
 			}
@@ -63,8 +65,6 @@ public class HomeController {
 		String contrasena = req.queryParams("contrasena");
 		Usuario user = manejarUser(usuario, contrasena);
 
-		//req.session().attribute("usr", user);
-		
 		return new ModelAndView(null, "home/home.hbs");
 	}
 	public Usuario manejarUser(String name, String contrasena){
@@ -95,10 +95,15 @@ public class HomeController {
 		session.getTransaction().commit();
 		
 		req.session().attribute("user",usuario); 
+		req.session().attribute("loggedIn", true);
 		
 		return new ModelAndView(null, "home/index.hbs");
 	}
 	
-	
+	public void validar(Request req, Response res){
+		if(Router.validar(req)&&!Router.esRutaPublica(req.url())){
+			res.redirect("login/login.hbs",301);
+		}
+	}
 	
 }
