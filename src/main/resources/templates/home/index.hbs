@@ -1,0 +1,32 @@
+{{#partial "contenido"}}
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3" id="myScrollspy">
+            <ul class="nav nav-tabs nav-stacked" data-offset-top="120" data-spy="affix">
+                <li class="active"><a href="#section1">Section One</a></li>
+                <li><a href="#section2">Section Two</a></li>
+                <li><a href="#section3">Section Three</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-9">
+            <div id="section1">
+                <h2>Section One</h2>
+                <p>This is section one content…</p>
+            </div>
+            <hr>
+            <div id="section2">
+                <h2>Section Two</h2>
+                <p>This is section two content…</p>
+            </div>
+            <hr>
+            <div id="section3">
+                <h2>Section Three</h2>
+                <p>This is section three content…</p>
+            </div>
+        </div>
+    </div>
+</div>
+{{/partial}}
+
+{{>layout.hbs}}
