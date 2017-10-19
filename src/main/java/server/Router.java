@@ -28,6 +28,8 @@ public class Router {
 		MetodologiasController metodologiasController = new MetodologiasController();
 				
 		Spark.get("/", homeController::home, engine);
+		Spark.get("/register", homeController::showRegister, engine);
+		Spark.post("/register", homeController::register, engine);
 		Spark.get("/login", homeController::showLogin, engine);
 		Spark.get("/logout", homeController::showLogOut, engine);
 		Spark.post("/logout", homeController::logOut, engine);

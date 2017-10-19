@@ -55,7 +55,7 @@ public class IndicadoresController {
 	
 	public ModelAndView showCreateView(Request req, Response res) throws FileNotFoundException{
 		if(Router.validar(req)){
-			res.redirect("/");
+			res.redirect("/",301);
 			return new ModelAndView(null, "login/login.hbs");
 		}
 		String accion = Router.sesion(req);
