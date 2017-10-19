@@ -29,6 +29,8 @@ public class Router {
 				
 		Spark.get("/", homeController::home, engine);
 		Spark.get("/login", homeController::showLogin, engine);
+		Spark.get("/logout", homeController::showLogOut, engine);
+		Spark.post("/logout", homeController::logOut, engine);
 		Spark.post("/login", homeController::login, engine);
 		Spark.get("/empresas/:empresa/cuentas", empresasController::getById, engine);
 		Spark.get("/indicadores/crear", indicadoresController::showCreateView, engine);
@@ -45,7 +47,7 @@ public class Router {
 	}
 	
 	public static boolean validar(Request req){
-		return req.session().attribute("usuario") == null;
+		return req.session().attribute("user") == null;
 	}
 	
 	public static String sesion(Request req){

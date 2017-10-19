@@ -6,6 +6,7 @@ import java.util.List;
 import Services.EmpresasService;
 import Services.UsuariosService;
 import model.Usuario;
+import server.Router;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -13,11 +14,20 @@ import spark.Session;
 
 public class HomeController {
 	public ModelAndView home(Request req, Response res)throws FileNotFoundException{
-		return new ModelAndView(null, "home/menu.hbs");
+		if(Router.validar(req)){
+		 	return new ModelAndView(null, "home/menu.hbs");
+		}
+		return new ModelAndView(null, "home/index.hbs");
 	}
 	
-	public ModelAndView menu(Request req, Response res)throws FileNotFoundException{
-		return new ModelAndView(null, "login/user.hbs");
+	public ModelAndView showLogOut(Request req, Response res)throws FileNotFoundException{
+		return new ModelAndView(null, "home/logout.hbs");
+	}
+	
+	public ModelAndView logOut(Request req, Response res)throws FileNotFoundException{
+		req.session().attribute("user",null); 
+		res.redirect("/");
+		return new ModelAndView(null, "home/menu.hbs");
 	}
 	
 	

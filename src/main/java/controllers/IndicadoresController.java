@@ -27,6 +27,7 @@ import spark.Response;
 public class IndicadoresController {
 	public ModelAndView create(Request req, Response res){
 		if(Router.validar(req)){
+			res.redirect("/");
 			return new ModelAndView(null, "login/login.hbs");
 		}
 		
@@ -54,6 +55,7 @@ public class IndicadoresController {
 	
 	public ModelAndView showCreateView(Request req, Response res) throws FileNotFoundException{
 		if(Router.validar(req)){
+			res.redirect("/");
 			return new ModelAndView(null, "login/login.hbs");
 		}
 		String accion = Router.sesion(req);
