@@ -12,9 +12,11 @@
 	{{#empresas.empresas}}
 		<tr>
 			<td>{{nombreEmpresa}}</td>
-
-			<td>{{#valor}} {{this.valor}} {{/valor}}</td> 
-
+			
+	{{#valor}}
+			<td> {{valor}} </td> 
+	{{/valor}}
+		
 		</tr>
 	{{/empresas.empresas}}
 </table>

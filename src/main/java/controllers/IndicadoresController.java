@@ -86,7 +86,6 @@ public class IndicadoresController {
 		
 		
 		empresas.put("empresas", listaEmpresas);
-		//indicadores.put("indicadores", indicador.calcularValorEn(listaEmpresas));
 		
 		handler.setValor(indicador.calcularValorEn(listaEmpresas));
 		handler.setEmpresas(empresas);

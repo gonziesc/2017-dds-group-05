@@ -100,7 +100,6 @@ public class BuilderIndicador {
 	}
 
 	public void setUser(Usuario user) {
-		System.out.println(user.getUsuario());
 		this.user = user;
 	}
 

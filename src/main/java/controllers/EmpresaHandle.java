@@ -10,12 +10,12 @@ import model.Indicador;
 
 public class EmpresaHandle {
 	Map<String, List<Empresa>> empresas = new HashMap<>();
-	List<Integer> valor;
+	Integer valor;
 
-	public List<Integer> getValor() {
+	public Integer getValor() {
 		return valor;
 	}
-	public void setValor(List<Integer> valor) {
+	public void setValor(Integer valor) {
 		this.valor = valor;
 	}
 	public Map<String, List<Empresa>> getEmpresas() {
