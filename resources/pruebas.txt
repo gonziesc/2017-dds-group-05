@@ -1,1 +1,0 @@
-{"nombre_cuenta":"asd","numero_cuenta":0,"anio_cuenta":0,"ganancia":0.0,"gananciaNeta":0.0,"intereses":0.0,"impuestos":0.0,"depreciacion":0.0,"amortizacion":0.0,"perdida":0.0}
