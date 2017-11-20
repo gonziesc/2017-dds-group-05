@@ -53,11 +53,7 @@ public class ParametroViewModel {
 	}
 	
 	public void obtenerEmpresas() {
-		try {
-			empresas = EmpresasService.obtenerEmpresasDeServicioExterno();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+		empresas = EmpresasService.obtenerEmpresasDeServicioExterno();
 	}
 
 	public void obtenerCuentas() {

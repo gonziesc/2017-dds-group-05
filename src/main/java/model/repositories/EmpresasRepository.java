@@ -16,14 +16,6 @@ public class EmpresasRepository {
 
 	@SuppressWarnings("unchecked")
 	public List<Empresa> all() {
-		try {
-			return EmpresasService.obtenerEmpresasDeServicioExterno();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		return empresas;
-		/*SessionFactory sessionFactory = new Configuration().configure()
-				.buildSessionFactory();
-		Session session = sessionFactory.openSession();*/
+		return EmpresasService.obtenerEmpresasDeServicioExterno();
 	}
 }

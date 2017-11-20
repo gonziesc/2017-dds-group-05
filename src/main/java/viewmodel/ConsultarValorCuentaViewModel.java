@@ -44,11 +44,7 @@ public class ConsultarValorCuentaViewModel {
 		return indicador;
 	}
 	public void obtenerEmpresas() {
-		try {
-			empresas = EmpresasService.obtenerEmpresasDeServicioExterno();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+		empresas = EmpresasService.obtenerEmpresasDeServicioExterno();
 	}
 
 	public void obtenerCuentasEmpresa(){

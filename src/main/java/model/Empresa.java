@@ -21,7 +21,17 @@ import org.uqbar.commons.utils.Observable;
 @Observable
 public class Empresa {
 	@Id @GeneratedValue
-	private Long id;
+	public Long id;
+	
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name="empresa_id")
 	public List<Cuenta> Cuentas;

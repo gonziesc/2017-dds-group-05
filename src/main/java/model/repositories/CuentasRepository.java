@@ -12,11 +12,7 @@ import model.Empresa;
 public class CuentasRepository {
 	public static List<Empresa> obtenerEmpresas() {
 		List<Empresa> empresas = new LinkedList<>();
-		try {
-			empresas = EmpresasService.obtenerEmpresasDeServicioExterno();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+		empresas = EmpresasService.obtenerEmpresasDeServicioExterno();
 		return empresas;
 	}
 
