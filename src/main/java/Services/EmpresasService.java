@@ -116,8 +116,6 @@ public class EmpresasService {
 
 	public static List<Cuenta> obtenerCuentasDeEmpresa(String nombre) throws FileNotFoundException {
 		ArrayList<Empresa> listaEmpresas = obtenerEmpresasDeServicioJSON();
-		System.out.println(listaEmpresas.get(0).nombreEmpresa);
-		System.out.println(nombre);
 		List<Empresa> listaEMpresasFiltrada = listaEmpresas.stream()
 				.filter(unaEmpresa -> unaEmpresa.nombreEmpresa.equals(nombre)).collect(Collectors.toList());
 		System.out.println(listaEMpresasFiltrada);

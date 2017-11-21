@@ -32,7 +32,7 @@ public class Empresa {
 		this.id = id;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name="empresa_id")
 	public List<Cuenta> Cuentas;
 	public String nombreEmpresa;
