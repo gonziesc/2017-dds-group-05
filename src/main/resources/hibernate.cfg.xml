@@ -41,6 +41,7 @@
         <mapping class="model.ComparadorValorTiempo"/>
         <mapping class="model.ComparadorOrden"/>
         <mapping class="model.ComparadorAnios"/>
+        <mapping class="model.IndicadorEmpresa"/>
         
 
 

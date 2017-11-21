@@ -28,7 +28,7 @@ import javax.persistence.Table;
 @Observable
 public class Indicador{
 	@Id	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	public Long id;
 	@OneToOne(cascade = CascadeType.ALL)
 	private parametroGeneral parametro1;
 	@OneToOne(cascade = CascadeType.ALL)
@@ -36,7 +36,7 @@ public class Indicador{
 	private String operacion;
 	private String nombre;
 	private int valor =0;
-	@ManyToOne(targetEntity=Usuario.class,cascade=CascadeType.ALL)
+	@ManyToOne(targetEntity=Usuario.class,cascade=CascadeType.MERGE)
 	private Usuario user;
 
 	public Indicador(){}

@@ -49,7 +49,8 @@ public class IndicadoresController {
 		
 		IndicadoresService.guardarIndicadoresEnServicioExterno(builder.build());
 		
-		return new ModelAndView(null, "home/home.hbs");
+		
+		return new ModelAndView(null, "home/index.hbs");
 	}
 	
 	public ModelAndView showCreateView(Request req, Response res) throws FileNotFoundException{
