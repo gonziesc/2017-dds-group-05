@@ -17,8 +17,6 @@ import org.junit.Test;
 public class MetodologiaTest {
 	MetodologiaMock mock = new MetodologiaMock();
 	
-	
-	
 //	@Test
 //	public void testCalculaBienUnaMetodologiaValor() {
 //		Metodologia unaMetodologia = mock.unaMetodologiaMayorValor();

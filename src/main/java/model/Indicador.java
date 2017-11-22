@@ -1,11 +1,19 @@
 
 package model;
 
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+import org.mockito.cglib.core.ProcessArrayCallback;
 import org.uqbar.commons.utils.Observable;
+
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,7 +28,7 @@ import javax.persistence.Table;
 @Observable
 public class Indicador{
 	@Id	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	public Long id;
 	@OneToOne(cascade = CascadeType.ALL)
 	private parametroGeneral parametro1;
 	@OneToOne(cascade = CascadeType.ALL)
@@ -28,6 +36,8 @@ public class Indicador{
 	private String operacion;
 	private String nombre;
 	private int valor =0;
+	@ManyToOne(targetEntity=Usuario.class,cascade=CascadeType.MERGE)
+	private Usuario user;
 
 	public Indicador(){}
 	public Indicador(parametroGeneral unParametro1, parametroGeneral unParametro2, String unaOperacion1){
@@ -42,7 +52,15 @@ public class Indicador{
 			return parametro1.getValor();
 		return Operadores.resolverOperacion(parametro1.getValor(), parametro2.getValor(), operacion);
 	}
-	
+
+	public List<Integer> calcularValorEn(List<Empresa> empresas){
+		return empresas.stream().map(e -> this.calcularIndicadorEn(e)).collect(Collectors.toList());		
+	}
+	public int calcularIndicadorEn(Empresa empresa){
+		empresa.procesarIndicador(this);
+		//this.setValorIndicador(this);
+		return this.obtenerValor();
+	}
 	public parametroGeneral getParametro1() {
 		return parametro1;
 	}
@@ -64,7 +82,7 @@ public class Indicador{
 	}
 	
 	public void setOperacion(String operacion1) {
-		this.operacion = operacion;
+		this.operacion = operacion1;
 	}
 	
 	public String getNombre() {
@@ -99,10 +117,18 @@ public class Indicador{
 	public void setValor() {
 		this.valor = this.obtenerValor();
 	}
+
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
-	}	
+	}
+	public Usuario getUser() {
+		return user;
+	}
+	public void setUser(Usuario user) {
+		this.user = user;
+	}
+
 }

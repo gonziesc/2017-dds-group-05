@@ -29,14 +29,14 @@ public class EmpresaServiceTest {
 	@Test
 	public void testLeeBienDelArchivoJSON() throws IOException {
 		EmpresasService.set_rutaArchivoJson("./resources/EJEMPLOS.JSON");
-		List<Empresa> listaEmpresasTest = EmpresasService.obtenerEmpresasDeServicioExterno();
+		List<Empresa> listaEmpresasTest = EmpresasService.obtenerEmpresasDeServicioJSON();
 		assertFalse(listaEmpresasTest.isEmpty());
 	}
 	
 	@Test(expected = FileNotFoundException.class)
 	public void testTiraExcepcionSiNoPuedeLeerElArchivo() throws IOException {
 		EmpresasService.set_rutaArchivoJson("./ruta_invalida.json");
-		List<Empresa> listaEmpresasTest = EmpresasService.obtenerEmpresasDeServicioExterno();
+		List<Empresa> listaEmpresasTest = EmpresasService.obtenerEmpresasDeServicioJSON();
 	}
 	
 }

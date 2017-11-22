@@ -42,7 +42,7 @@ public class ParametroViewModel {
 	}
 	
 	public void obtenerIndicadores() {
-			indicadores = IndicadoresService.obtenerInicadoresDeServicioExterno();
+			indicadores = IndicadoresService.obtenerIndicadoresDeServicioExterno();
 	}
 
 	public void ingresarIndicador() {
@@ -53,11 +53,7 @@ public class ParametroViewModel {
 	}
 	
 	public void obtenerEmpresas() {
-		try {
-			empresas = EmpresasService.obtenerEmpresasDeServicioExterno();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+		empresas = EmpresasService.obtenerEmpresasDeServicioExterno();
 	}
 
 	public void obtenerCuentas() {

@@ -17,10 +17,10 @@ import com.fasterxml.jackson.databind.jsontype.SubtypeResolver;
 @Observable
 public class Cuenta{
 	@Id @GeneratedValue
-	private Long id;
-	private String nombreCuenta;
-	private int anioCuenta;
-	private int valor;
+	public Long id;
+	public String nombreCuenta;
+	public int anioCuenta;
+	public int valor;
 
 	public Cuenta(){
 		

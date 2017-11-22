@@ -23,6 +23,14 @@ public class EjecutarMetodologiaView extends Dialog<EjecutarMetodologiaViewModel
 		getModelObject().obtenerEmpresas();
 	}
 
+	public void ejecutarMetodologia(){
+		this.getModelObject().ejecutarMetodologia();
+	}
+	
+	public void createColumnEmpresa(String title,Table<Empresa> tablaEmpresa, String property){
+		new Column<Empresa>(tablaEmpresa).setTitle(title).setFixedSize(100).bindContentsToProperty(property);
+	}
+	
 	@Override
 	protected void createFormPanel(Panel mainPanel) {
 		this.setTitle("Pantalla para probar una metodologia contra una determinada cantidad de empresas");
@@ -39,12 +47,4 @@ public class EjecutarMetodologiaView extends Dialog<EjecutarMetodologiaViewModel
 		createColumnEmpresa("Empresa",tablaEmpresas, "nombreEmpresa");
 	}
 
-
-	public void createColumnEmpresa(String title,Table<Empresa> tablaEmpresa, String property){
-		new Column<Empresa>(tablaEmpresa).setTitle(title).setFixedSize(100).bindContentsToProperty(property);
-	}
-	
-	public void ejecutarMetodologia(){
-		this.getModelObject().ejecutarMetodologia();
-	}
 }
