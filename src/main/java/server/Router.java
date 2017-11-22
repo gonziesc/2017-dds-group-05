@@ -1,6 +1,5 @@
 package server;
 
-import org.junit.Before;
 
 import controllers.EmpresasController;
 import controllers.HomeController;

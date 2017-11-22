@@ -23,7 +23,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
-import org.junit.experimental.theories.Theories;
 import org.uqbar.commons.model.UserException;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
