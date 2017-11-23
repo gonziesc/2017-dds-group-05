@@ -21,11 +21,11 @@ public class EmpresasController {
 		String empresa = req.params("empresa");
 		Map<String, List<Cuenta>> model = new HashMap<>();
 		List<Cuenta> cuentas = EmpresasService.obtenerCuentasDeEmpresa(empresa);
-		
+
 		model.put("cuentas", cuentas);
 		return new ModelAndView(model, "empresas/index.hbs");
 	}
-	
+
 	public ModelAndView show (Request req, Response res) throws FileNotFoundException{
 		if(Router.validar(req)&&!Router.esRutaPublica(req.url())){
 			res.redirect("login/login.hbs",301);
