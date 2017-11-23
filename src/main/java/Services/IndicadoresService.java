@@ -183,19 +183,39 @@ public class IndicadoresService {
 		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 		Session session = sessionFactory.openSession();
 
-		try {
-			session.beginTransaction();
-			session.persist(indicadorEmpresa);
-			session.getTransaction().commit();
+		IndicadorEmpresa ieEnDb = obtenerValorPrecalculado(indicador, empresa);
+		if (ieEnDb == null) {
+			try {
+				session.beginTransaction();
+				session.persist(indicadorEmpresa);
+				session.getTransaction().commit();
 
-		}
-
-		catch (HibernateException e) {
-			if (session.getTransaction() != null) {
-				session.getTransaction().rollback();
 			}
 
+			catch (HibernateException e) {
+				if (session.getTransaction() != null) {
+					session.getTransaction().rollback();
+				}
+
+			}
+		} else {
+
+			try {
+				session.beginTransaction();
+				ieEnDb.setValor(valor);
+				session.saveOrUpdate(ieEnDb);
+				session.getTransaction().commit();
+
+			}
+
+			catch (HibernateException e) {
+				if (session.getTransaction() != null) {
+					session.getTransaction().rollback();
+				}
+
+			}
 		}
+
 	}
 
 	public static IndicadorEmpresa obtenerValorPrecalculado(Indicador indicador, Empresa empresa) {
@@ -205,15 +225,14 @@ public class IndicadoresService {
 		try {
 
 			session.beginTransaction();
-			IndicadorEmpresa result = session
-					.createQuery("select indicador from "
-							+ "model.IndicadorEmpresa where empresa_id = :idEmpresa and indicado_id = :idIndicador",
+			List<IndicadorEmpresa> result = session
+					.createQuery("from "
+							+ "model.IndicadorEmpresa where empresa_id = :idEmpresa and indicador_id = :idIndicador",
 							IndicadorEmpresa.class)
-					.setParameter("idEmpresa", empresa.getId())
-					.setParameter("idIndicador", indicador.getId())
-					.setMaxResults(1).getSingleResult();
-			session.getTransaction().commit();
-			return result;
+					.setParameter("idEmpresa", empresa.getId()).setParameter("idIndicador", indicador.getId())
+					.setMaxResults(1).getResultList();
+			if (result.isEmpty()) return null;
+			return result.get(0);
 
 		}
 

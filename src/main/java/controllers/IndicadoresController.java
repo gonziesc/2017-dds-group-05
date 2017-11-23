@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import javax.persistence.Convert;
 import javax.persistence.criteria.CriteriaBuilder.In;
 
 import Services.EmpresasService;
@@ -18,7 +19,9 @@ import builder.BuilderIndicador;
 import model.Cuenta;
 import model.Empresa;
 import model.Indicador;
+import model.Parametro;
 import model.Usuario;
+import model.parametroGeneral;
 import model.repositories.CuentasRepository;
 import server.Router;
 import spark.ModelAndView;
@@ -27,9 +30,9 @@ import spark.Response;
 
 public class IndicadoresController {
 	public ModelAndView create(Request req, Response res){
-		if(Router.validar(req)&&!Router.esRutaPublica(req.url())){
-			res.redirect("login/login.hbs",301);
-		}
+		//if(Router.validar(req)&&!Router.esRutaPublica(req.url())){
+		//	res.redirect("login/login.hbs",301);
+		//}
 		String nombre = req.queryParams("nombre");
 		String operador= req.queryParams("operador");
 		
@@ -42,8 +45,12 @@ public class IndicadoresController {
 		BuilderIndicador builder = new BuilderIndicador();
 		builder.setNombre(nombre);
 		builder.setOperacion(operador);
-		builder.setParametroAPartirVista(tipo, valor,false);
-		builder.setParametroAPartirVista(tipo2, valor2,true);
+		Parametro parametro1 = new Parametro();
+		parametro1.setValor(3);
+		Parametro parametro2 = new Parametro();
+		parametro2.setValor(4);
+		builder.setParametro(parametro1);
+		builder.setParametroFinal(parametro2);
 		Usuario user = encontrarSesionDe(req);
 		builder.setUser(user);
 		
@@ -83,7 +90,7 @@ public class IndicadoresController {
 		
 		empresas.put("empresas", listaEmpresas);
 		
-		Integer valor = indicador.calcularValorEn(listaEmpresas).stream().mapToInt(Integer::intValue).sum();
+		Integer valor = IndicadoresService.obtenerValorPrecalculado(indicador, listaEmpresas.get(0)).valor;
 		handler.setValor(valor.toString());
 		handler.setEmpresas(empresas);
 		

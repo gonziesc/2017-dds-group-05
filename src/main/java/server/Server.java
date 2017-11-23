@@ -9,12 +9,12 @@ import spark.debug.DebugScreen;
 public class Server {
 	public static void main(String[] args) {
 		Timer timer = new Timer();
-		// actualizarEmpresas jobEmpresas = new actualizarEmpresas();
+		actualizarEmpresas jobEmpresas = new actualizarEmpresas();
 
-		// timer.scheduleAtFixedRate(jobEmpresas, 0, 60000);
-		//precalcularIndicadores jobIndicadores = new precalcularIndicadores();
+		timer.scheduleAtFixedRate(jobEmpresas, 0, 60000);
+		precalcularIndicadores jobIndicadores = new precalcularIndicadores();
 
-		//timer.scheduleAtFixedRate(jobIndicadores, 0, 60000);
+		timer.scheduleAtFixedRate(jobIndicadores, 0, 60000);
 		if(System.getenv("PORT")!=null)
 		{
 		Spark.port(Integer.parseInt(System.getenv("PORT")));
