@@ -10,14 +10,11 @@
 		<property name="hibernate.connection.url">jdbc:postgresql://localhost/dds</property>
 		<property name="hibernate.connection.username">postgres</property>
 		<property name="hibernate.connection.password">1234</property>
-		<property name="hibernate.connection.driver_class" value="org.postgresql.Driver" />
-		<!-->property name="hibernate.connection.url"> jdbc:postgresql://ec2-54-221-204-213.compute-1.amazonaws.com:5432/d5oqbunr7jdobk</property> 
-		<property name="hibernate.connection.username">etehdyrrawmgmr</property> 
-		<property name="hibernate.connection.password">9fcf8ca1961e59c64822882783190af9b4ba642f5010cf5094a912e0e37ef72d</property> 
+		<property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+		
 		
 		<!-- SQL dialect -->
 		<property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
-		<property name="hibernate.connection.requireSSL">true</property>
 
 
 		<!-- Print executed SQL to stdout -->
