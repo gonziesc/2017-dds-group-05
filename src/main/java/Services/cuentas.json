@@ -1,0 +1,46 @@
+[{
+        nombre_empresa: "Arcor",
+        cuentas:[{
+            nombre_cuenta: "EBITDA",
+            valor: "800",
+			anio_cuenta: "2015"
+		},
+		{
+            nombre_cuenta: "FDS",
+            valor: "1800",
+			anio_cuenta: "2014"
+		},
+		{
+            nombre_cuenta: "FDS",
+            valor: "1500",
+			anio_cuenta: "2013"
+		},
+		{
+            nombre_cuenta: "Free Cash Flow",
+            valor: "1520",
+			anio_cuenta: "2012"
+		}]
+    },
+	{
+        nombre_empresa: "Facebook",
+        cuentas:[{
+            nombre_cuenta: "EBITDA",
+            valor: "2800",
+			anio_cuenta: "2005"
+		},
+		{
+            nombre_cuenta: "EBITDA",
+            valor: "1800",
+			anio_cuenta: "2014"
+		},
+		{
+            nombre_cuenta: "FDS",
+            valor: "1500",
+			anio_cuenta: "2013"
+		},
+		{
+            nombre_cuenta: "Free Cash Flow",
+            valor: "100",
+			anio_cuenta: "2012"
+		}]
+ }]

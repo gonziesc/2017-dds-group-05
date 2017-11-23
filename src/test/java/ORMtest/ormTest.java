@@ -1,5 +1,5 @@
 package ORMtest;
- 
+/*
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -165,4 +165,4 @@ public class ormTest {
 		Assert.assertEquals("FCF",cuentap.getNombreCuenta());
 	}
 
-}
+} */

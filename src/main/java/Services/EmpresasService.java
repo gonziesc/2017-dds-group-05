@@ -35,7 +35,7 @@ import com.google.gson.reflect.TypeToken;
 
 @Observable
 public class EmpresasService {
-	static String rutaArchivoJson = "./resources/cuentas.json";
+	static String rutaArchivoJson = "./cuentas.json";
 
 	public static ArrayList<Empresa> obtenerEmpresasDeServicioJSON() throws FileNotFoundException {
 		Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create();
