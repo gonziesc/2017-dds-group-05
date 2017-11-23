@@ -31,7 +31,7 @@ import model.Metodologia;
 
 public class MetodologiasService {
 	static String rutaArchivoJson = "./resources/metodologias2.JSON";
-	public static ArrayList<Metodologia> obtenerMetodologiasDeServicioExterno() throws FileNotFoundException {
+	public static ArrayList<Metodologia> obtenerMetodologiasDeServicioExterno(){
 		/*Gson gson = new GsonBuilder()
 			    .create();
 		try {
@@ -50,7 +50,7 @@ public class MetodologiasService {
 		try {
 			
 			session.beginTransaction();
-			ArrayList<Metodologia> results = (ArrayList<Metodologia>) session.createQuery("FROM model.Metodologia").getResultList();
+			ArrayList<Metodologia> results = (ArrayList<Metodologia>) session.createQuery("from model.Metodologia").list();
 			session.getTransaction().commit();
 			return results;
 			

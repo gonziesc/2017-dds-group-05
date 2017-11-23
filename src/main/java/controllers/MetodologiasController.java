@@ -8,46 +8,25 @@ import java.util.Map;
 import Services.IndicadoresService;
 import Services.MetodologiasService;
 import Services.UsuariosService;
-import builder.BuilderIndicador;
 import builder.BuilderMetodologia;
-import model.Comparador;
 import model.ComparadorFiltro;
 import model.ComparadorOrden;
-import model.Cuenta;
 import model.Indicador;
-import model.repositories.CuentasRepository;
 import model.repositories.Repositorios;
 import server.Router;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
-import java.io.FileNotFoundException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import model.Empresa;
 import model.Metodologia;
 import model.Usuario;
 import Services.EmpresasService;
-import Services.MetodologiasService;
 
 public class MetodologiasController {
-	public ModelAndView evaluarMetodologia(Request req, Response res) throws FileNotFoundException{
-		if(Router.validar(req)&&!Router.esRutaPublica(req.url())){
-			res.redirect("login/login.hbs",301);
-		}
-		String nombre = req.params("nombre");
-		Map<String, List<Empresa>> model = new HashMap<>();
-		
-		List<Empresa> empresas = EmpresasService.obtenerEmpresasDeServicioExterno();
-		Metodologia metodologia = MetodologiasService.obtenerMetodologiaDeServicioExterno(nombre);
-		metodologia.calcularMetodologia(empresas);
-	
-		model.put("empresas", empresas);
-		
-		return new ModelAndView(model, "metodologias/evaluar.hbs");
+	private Usuario encontrarSesionDe(Request req) {
+		String user = req.session().attribute("user");
+		return UsuariosService.obtenerUsuarioDeServicioExterno(user);
 	}
 	
 	public ModelAndView create(Request req, Response res){
@@ -55,10 +34,11 @@ public class MetodologiasController {
 			res.redirect("login/login.hbs",301);
 		}
 		BuilderMetodologia builder = new BuilderMetodologia();
-		builder.setNombre(req.queryParams("nombre"));
-		builder.setPeriodoInicio(Integer.parseInt(req.queryParams("periodoInicio")));
 		builder.setPeriodoFin(Integer.parseInt(req.queryParams("periodoFin")));
 		builder.setUnIndicador(IndicadoresService.obtenerIndicadorPorId(Long.getLong(req.queryParams("indicador"))));
+		builder.setNombre(req.queryParams("nombre"));
+		builder.setPeriodoInicio(Integer.parseInt(req.queryParams("periodoInicio")));
+		
 		
 		if(req.queryParams("hayOrdenable")== "on"){
 			String nombre= req.queryParams("orden");
@@ -80,29 +60,29 @@ public class MetodologiasController {
 		if(Router.validar(req)&&!Router.esRutaPublica(req.url())){
 			res.redirect("login/login.hbs",301);
 		}
-		Map<String, List<ComparadorOrden>> modelComporden= new HashMap<>();
-		Map<String, List<ComparadorFiltro>> modelCompFiltro= new HashMap<>();
-		Map<String, List<Indicador>> modelIndicadores= new HashMap<>();
 		
 		Usuario user = encontrarSesionDe(req);
-		
 		List<Indicador> indicadores= IndicadoresService.obtenerIndicadoresDeServicioExterno(user);
 		List<ComparadorFiltro>comparadoresFiltro = Repositorios.metodologias.allComparadoresFiltro();
 		List<ComparadorOrden>comparadoresOrden = Repositorios.metodologias.allComparadoresOrden();
 		
+		Map<String, List<Indicador>> modelIndicadores= new HashMap<>();
+		Map<String, List<ComparadorOrden>> modelComporden= new HashMap<>();
+		Map<String, List<ComparadorFiltro>> modelCompFiltro= new HashMap<>();
+				
 		MetodologiasHandle handle = new MetodologiasHandle();
-		
+
 		modelCompFiltro.put("filtros", comparadoresFiltro);
 		modelComporden.put("orden", comparadoresOrden);
 		modelIndicadores.put("indicadores", indicadores);
-		
+
 		handle.setComparadorFiltro(modelCompFiltro);
 		handle.setComparadorOrden(modelComporden);
 		handle.setIndicadores(modelIndicadores);
-								
+
 		return new ModelAndView(handle, "metodologias/create.hbs");
 	}
-	
+
 	public ModelAndView show (Request req, Response res) throws FileNotFoundException{
 		if(Router.validar(req)&&!Router.esRutaPublica(req.url())){
 			res.redirect("login/login.hbs",301);
@@ -112,8 +92,19 @@ public class MetodologiasController {
 		model.put("metodologias", lista);
 		return new ModelAndView(model, "metodologias/metodologias.hbs");
 	}
-	private Usuario encontrarSesionDe(Request req) {
-		String user = req.session().attribute("user");
-		return UsuariosService.obtenerUsuarioDeServicioExterno(user);
+	public ModelAndView evaluarMetodologia(Request req, Response res) throws FileNotFoundException{
+		if(Router.validar(req)&&!Router.esRutaPublica(req.url())){
+			res.redirect("login/login.hbs",301);
+		}
+		String nombre = req.params("nombre");
+		Map<String, List<Empresa>> model = new HashMap<>();
+
+		List<Empresa> empresas = EmpresasService.obtenerEmpresasDeServicioExterno();
+		Metodologia metodologia = MetodologiasService.obtenerMetodologiaDeServicioExterno(nombre);
+		metodologia.calcularMetodologia(empresas);
+
+		model.put("empresas", empresas);
+
+		return new ModelAndView(model, "metodologias/evaluar.hbs");
 	}
 }

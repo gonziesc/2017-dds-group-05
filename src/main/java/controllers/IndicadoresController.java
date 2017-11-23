@@ -1,9 +1,7 @@
 package controllers;
 
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -30,9 +28,9 @@ import spark.Response;
 
 public class IndicadoresController {
 	public ModelAndView create(Request req, Response res){
-		//if(Router.validar(req)&&!Router.esRutaPublica(req.url())){
-		//	res.redirect("login/login.hbs",301);
-		//}
+		if(Router.validar(req)&&!Router.esRutaPublica(req.url())){
+			res.redirect("login/login.hbs",301);
+		}
 		String nombre = req.queryParams("nombre");
 		String operador= req.queryParams("operador");
 		
@@ -53,24 +51,26 @@ public class IndicadoresController {
 		builder.setParametroFinal(parametro2);
 		Usuario user = encontrarSesionDe(req);
 		builder.setUser(user);
+		builder.setNombre(nombre);
+		builder.setOperacion(operador);
 		
 		IndicadoresService.guardarIndicadoresEnServicioExterno(builder.build());
-		
-		
+
 		return new ModelAndView(null, "home/index.hbs");
 	}
-	
-	public ModelAndView showCreateView(Request req, Response res) throws FileNotFoundException{
-		if(Router.validar(req)&&!Router.esRutaPublica(req.url())){
-			res.redirect("login/login.hbs",301);
+
+	public ModelAndView showCreateView(Request req, Response res) throws FileNotFoundException {
+		if (Router.validar(req) && !Router.esRutaPublica(req.url())) {
+			res.redirect("login/login.hbs", 301);
 		}
-		Map<String, List<Cuenta>> modelCuentas = new HashMap<>();
 		Map<String, List<Indicador>> modelIndicadores= new HashMap<>();
-		Usuario user = encontrarSesionDe(req);
-		List<Indicador> indicadores= IndicadoresService.obtenerIndicadoresDeServicioExterno(user);
-		List<Cuenta>cuentas = CuentasRepository.obtenerCuentas();
-		IndicadoresHandle handle = new IndicadoresHandle();
+		Map<String, List<Cuenta>> modelCuentas = new HashMap<>();
 		
+		Usuario user = encontrarSesionDe(req);
+		List<Indicador> indicadores = IndicadoresService.obtenerIndicadoresDeServicioExterno(user);
+		List<Cuenta> cuentas = CuentasRepository.obtenerCuentas();
+		IndicadoresHandle handle = new IndicadoresHandle();
+
 		modelCuentas.put("cuentas", cuentas);
 		modelIndicadores.put("indicadores", indicadores);
 		handle.setCuentas(modelCuentas);
@@ -78,25 +78,7 @@ public class IndicadoresController {
 		return new ModelAndView(handle, "indicadores/create.hbs");
 	}
 
-	public ModelAndView evaluar(Request req, Response res) throws FileNotFoundException{
-		if(Router.validar(req)&&!Router.esRutaPublica(req.url())){
-			res.redirect("login/login.hbs",301);
-		}
-		String nombreIndicador = req.params("nombre");
-		Indicador indicador = IndicadoresService.obtenerIndicadorPorNombre(nombreIndicador);
-		List<Empresa> listaEmpresas = EmpresasService.obtenerEmpresasDeServicioExterno();
-		Map<String, List<Empresa>> empresas = new HashMap<>();
-		EmpresaHandle handler = new EmpresaHandle();
-		
-		empresas.put("empresas", listaEmpresas);
-		
-		Integer valor = IndicadoresService.obtenerValorPrecalculado(indicador, listaEmpresas.get(0)).valor;
-		handler.setValor(valor.toString());
-		handler.setEmpresas(empresas);
-		
-		return new ModelAndView(handler, "indicadores/evaluar.hbs");
-	}
-	
+
 	public ModelAndView show (Request req, Response res){
 		if(Router.validar(req)&&!Router.esRutaPublica(req.url())){
 			res.redirect("login/login.hbs",301);
@@ -108,11 +90,30 @@ public class IndicadoresController {
 		modelIndicadores.put("indicadores", indicadores);
 		return new ModelAndView(modelIndicadores, "indicadores/indicadores.hbs");
 	}
+	
+	public ModelAndView evaluar(Request req, Response res) throws FileNotFoundException{
+		if(Router.validar(req)&&!Router.esRutaPublica(req.url())){
+			res.redirect("login/login.hbs",301);
+		}
+		
+		String nombreIndicador = req.params("nombre");
+		Indicador indicador = IndicadoresService.obtenerIndicadorPorNombre(nombreIndicador);
+		List<Empresa> listaEmpresas = EmpresasService.obtenerEmpresasDeServicioExterno();
+		Map<String, List<Empresa>> empresas = new HashMap<>();
+		EmpresaHandle handler = new EmpresaHandle();
+
+		empresas.put("empresas", listaEmpresas);
+		
+		Integer valor = IndicadoresService.obtenerValorPrecalculado(indicador, listaEmpresas.get(0)).valor;
+		handler.setValor(valor.toString());
+		handler.setEmpresas(empresas);
+
+		return new ModelAndView(handler, "indicadores/evaluar.hbs");
+	}
 
 	private Usuario encontrarSesionDe(Request req) {
 		String user = req.session().attribute("user");
 		return UsuariosService.obtenerUsuarioDeServicioExterno(user);
 	}
-		
-}
 
+}

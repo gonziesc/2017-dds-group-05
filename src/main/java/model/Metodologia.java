@@ -43,6 +43,7 @@ public class Metodologia {
 	@OneToOne (cascade = CascadeType.ALL)
 	private ComparadorOrden comparadorOrden;
 
+
 	public Metodologia(){}
 	
 	//de prueba

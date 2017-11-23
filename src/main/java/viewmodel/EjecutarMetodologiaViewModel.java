@@ -37,11 +37,7 @@ public class EjecutarMetodologiaViewModel {
 	}
 
 	public void obtenerMetodologias() {
-		try {
 			metodologias = MetodologiasService.obtenerMetodologiasDeServicioExterno();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
 	}
 	
 	public void obtenerEmpresas(){

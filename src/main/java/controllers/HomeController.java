@@ -6,7 +6,6 @@ import java.util.List;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-import Services.EmpresasService;
 import Services.UsuariosService;
 import model.Usuario;
 import server.Router;

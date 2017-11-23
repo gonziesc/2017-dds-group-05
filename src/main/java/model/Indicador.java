@@ -1,14 +1,10 @@
 
 package model;
 
-import org.hibernate.annotations.NotFound;
-import org.hibernate.annotations.NotFoundAction;
-import org.mockito.cglib.core.ProcessArrayCallback;
 import org.uqbar.commons.utils.Observable;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;

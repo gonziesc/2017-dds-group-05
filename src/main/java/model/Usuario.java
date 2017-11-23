@@ -37,10 +37,4 @@ public class Usuario {
 		this.id = id;
 	}
 	
-	
-	
-	
-	
-	
-	
 }
