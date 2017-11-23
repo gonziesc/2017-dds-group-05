@@ -4,24 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.query.Query;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-import com.fasterxml.classmate.AnnotationConfiguration;
 
 import Mocks.CuentaMock;
 import Mocks.IndicadorMock;
 import Mocks.MetodologiaMock;
-import org.junit.Assert;
-import model.Comparador;
 import model.ComparadorAnios;
 import model.ComparadorFiltro;
 import model.ComparadorOrden;
@@ -34,7 +27,6 @@ import model.Cuenta;
 import model.Empresa;
 import model.Indicador;
 import model.Metodologia;
-import model.Parametro;
 import model.Usuario;
 import model.parametroGeneral;
  
