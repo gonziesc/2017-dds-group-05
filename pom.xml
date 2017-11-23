@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 
-	<groupId>TPANUAL</groupId>
+	<groupId>dds</groupId>
 
 	<artifactId>DondeInvierto</artifactId>
 
@@ -25,8 +25,8 @@
 
 
 	<dependencies>
-	
-	
+
+
 
 		<dependency>
 			<groupId>org.uqbar-project</groupId>
@@ -39,13 +39,13 @@
 			<artifactId>guava</artifactId>
 			<version>22.0</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>5.2.10.Final</version>
 		</dependency>
- 
+
 		<!-- The tutorials use the PostgreSQL 9.3.5 database -->
 		<dependency>
 			<groupId>org.postgresql</groupId>
@@ -93,7 +93,7 @@
 			<artifactId>mockito-all</artifactId>
 			<version>1.9.5</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.sparkjava</groupId>
 			<artifactId>spark-core</artifactId>
@@ -129,15 +129,15 @@
 			<artifactId>handlebars-humanize</artifactId>
 			<version>4.0.6</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.webjars</groupId>
-    		<artifactId>bootstrap</artifactId>
-    		<version>3.0.0</version>
+			<artifactId>bootstrap</artifactId>
+			<version>3.0.0</version>
 		</dependency>
-		
-		
-		
+
+
+
 	</dependencies>
 
 
@@ -147,7 +147,39 @@
 		<pluginManagement>
 
 			<plugins>
-
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-dependency-plugin</artifactId>
+					<version>2.4</version>
+					<executions>
+						<execution>
+							<id>copy-dependencies</id>
+							<phase>package</phase>
+							<goals>
+								<goal>copy-dependencies</goal>
+							</goals>
+							<configuration>
+								<outputDirectory>${project.build.directory}/lib</outputDirectory>
+								<overWriteReleases>false</overWriteReleases>
+								<overWriteSnapshots>false</overWriteSnapshots>
+								<overWriteIfNewer>true</overWriteIfNewer>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<artifactId>maven-assembly-plugin</artifactId>
+					<configuration>
+						<archive>
+							<manifest>
+								<mainClass>server.Server</mainClass>
+							</manifest>
+						</archive>
+						<descriptorRefs>
+							<descriptorRef>jar-with-dependencies</descriptorRef>
+						</descriptorRefs>
+					</configuration>
+				</plugin>
 				<plugin>
 
 					<groupId>org.apache.maven.plugins</groupId>
@@ -162,6 +194,66 @@
 
 					</configuration>
 
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.6.0</version>
+					<configuration>
+						<source>1.8</source>
+						<target>1.8</target>
+					</configuration>
+				</plugin>
+				<!-- Maven Shade Plugin -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-shade-plugin</artifactId>
+					<version>2.4.3</version>
+					<configuration>
+						<filters>
+							<filter>
+								<artifact>*:*</artifact>
+								<excludes>
+									<exclude>META-INF/*.SF</exclude>
+									<exclude>META-INF/*.DSA</exclude>
+									<exclude>META-INF/*.RSA</exclude>
+								</excludes>
+							</filter>
+						</filters>
+						<!-- Additional configuration. -->
+					</configuration>
+					<executions>
+						<!-- Run shade goal on package phase -->
+						<execution>
+							<phase>package</phase>
+							<goals>
+								<goal>shade</goal>
+							</goals>
+							<configuration>
+								<transformers>
+									<!-- add Main-Class to manifest file -->
+									<transformer
+										implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+										<mainClass>HelloWorld</mainClass>
+									</transformer>
+								</transformers>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<configuration>
+						<archive>
+							<manifest>
+								<addClasspath>true</addClasspath>
+								<classpathPrefix>lib/</classpathPrefix>
+								<mainClass>server.Server</mainClass>
+							</manifest>
+						</archive>
+					</configuration>
 				</plugin>
 
 			</plugins>

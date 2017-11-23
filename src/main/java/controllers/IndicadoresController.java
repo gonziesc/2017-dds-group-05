@@ -33,14 +33,14 @@ public class IndicadoresController {
 		String tipo2 = req.queryParams("tipo2");
 		String[] valor2 = req.queryParamsValues("valor2");
 
-		BuilderIndicador builder = new BuilderIndicador();
-		builder.setNombre(nombre);
-		builder.setOperacion(operador);
-		builder.setParametroAPartirVista(tipo, valor, false);
-		builder.setParametroAPartirVista(tipo2, valor2, true);
+		BuilderIndicador builder = new BuilderIndicador();		
+		builder.setParametroAPartirVista(tipo, valor,false);
+		builder.setParametroAPartirVista(tipo2, valor2,true);
 		Usuario user = encontrarSesionDe(req);
 		builder.setUser(user);
-
+		builder.setNombre(nombre);
+		builder.setOperacion(operador);
+		
 		IndicadoresService.guardarIndicadoresEnServicioExterno(builder.build());
 
 		return new ModelAndView(null, "home/index.hbs");
@@ -50,8 +50,9 @@ public class IndicadoresController {
 		if (Router.validar(req) && !Router.esRutaPublica(req.url())) {
 			res.redirect("login/login.hbs", 301);
 		}
+		Map<String, List<Indicador>> modelIndicadores= new HashMap<>();
 		Map<String, List<Cuenta>> modelCuentas = new HashMap<>();
-		Map<String, List<Indicador>> modelIndicadores = new HashMap<>();
+		
 		Usuario user = encontrarSesionDe(req);
 		List<Indicador> indicadores = IndicadoresService.obtenerIndicadoresDeServicioExterno(user);
 		List<Cuenta> cuentas = CuentasRepository.obtenerCuentas();
@@ -64,9 +65,22 @@ public class IndicadoresController {
 		return new ModelAndView(handle, "indicadores/create.hbs");
 	}
 
-	public ModelAndView evaluar(Request req, Response res) throws FileNotFoundException {
-		if (Router.validar(req) && !Router.esRutaPublica(req.url())) {
-			res.redirect("login/login.hbs", 301);
+
+	public ModelAndView show (Request req, Response res){
+		if(Router.validar(req)&&!Router.esRutaPublica(req.url())){
+			res.redirect("login/login.hbs",301);
+		}
+		Map<String, List<Indicador>> modelIndicadores= new HashMap<>();
+		Usuario user = encontrarSesionDe(req);
+		
+		List<Indicador> indicadores= IndicadoresService.obtenerIndicadoresDeServicioExterno(user);
+		modelIndicadores.put("indicadores", indicadores);
+		return new ModelAndView(modelIndicadores, "indicadores/indicadores.hbs");
+	}
+	
+	public ModelAndView evaluar(Request req, Response res) throws FileNotFoundException{
+		if(Router.validar(req)&&!Router.esRutaPublica(req.url())){
+			res.redirect("login/login.hbs",301);
 		}
 		
 		String nombreIndicador = req.params("nombre");
@@ -82,18 +96,6 @@ public class IndicadoresController {
 		handler.setEmpresas(empresas);
 
 		return new ModelAndView(handler, "indicadores/evaluar.hbs");
-	}
-
-	public ModelAndView show(Request req, Response res) {
-		if (Router.validar(req) && !Router.esRutaPublica(req.url())) {
-			res.redirect("login/login.hbs", 301);
-		}
-		Map<String, List<Indicador>> modelIndicadores = new HashMap<>();
-		Usuario user = encontrarSesionDe(req);
-
-		List<Indicador> indicadores = IndicadoresService.obtenerIndicadoresDeServicioExterno(user);
-		modelIndicadores.put("indicadores", indicadores);
-		return new ModelAndView(modelIndicadores, "indicadores/indicadores.hbs");
 	}
 
 	private Usuario encontrarSesionDe(Request req) {

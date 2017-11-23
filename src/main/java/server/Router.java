@@ -29,6 +29,14 @@ public class Router {
 				
 		//Spark.before(homeController::validar);
 				
+		Spark.get("/metodologias/crear", metodologiasController::showCreateView, engine);
+		Spark.post("/metodologias/crear", metodologiasController::create, engine);
+		Spark.get("/indicadores/:nombre/evaluar", indicadoresController::evaluar, engine);
+		Spark.get("/metodologias/:nombre/evaluar", metodologiasController::evaluarMetodologia, engine);
+		Spark.post("/indicadores", indicadoresController::create, engine);
+		Spark.get("/empresas", empresasController::show, engine);
+		Spark.get("/indicadores", indicadoresController::show, engine);
+		Spark.get("/metodologias", metodologiasController::show, engine);
 		Spark.get("/", homeController::home, engine);
 		Spark.get("/register", homeController::showRegister, engine);
 		Spark.post("/register", homeController::register, engine);
@@ -39,14 +47,7 @@ public class Router {
 		Spark.get("/empresas/:empresa/cuentas", empresasController::getById, engine);
 		Spark.get("/indicadores/crear", indicadoresController::showCreateView, engine);
 		Spark.post("/indicadores/crear", indicadoresController::create, engine);
-		Spark.get("/metodologias/crear", metodologiasController::showCreateView, engine);
-		Spark.post("/metodologias/crear", metodologiasController::create, engine);
-		Spark.get("/indicadores/:nombre/evaluar", indicadoresController::evaluar, engine);
-		Spark.get("/metodologias/:nombre/evaluar", metodologiasController::evaluarMetodologia, engine);
-		Spark.post("/indicadores", indicadoresController::create, engine);
-		Spark.get("/empresas", empresasController::show, engine);
-		Spark.get("/indicadores", indicadoresController::show, engine);
-		Spark.get("/metodologias", metodologiasController::show, engine);
+		
 		
 	}
 	

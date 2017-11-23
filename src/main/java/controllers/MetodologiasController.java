@@ -34,10 +34,11 @@ public class MetodologiasController {
 			res.redirect("login/login.hbs",301);
 		}
 		BuilderMetodologia builder = new BuilderMetodologia();
-		builder.setNombre(req.queryParams("nombre"));
-		builder.setPeriodoInicio(Integer.parseInt(req.queryParams("periodoInicio")));
 		builder.setPeriodoFin(Integer.parseInt(req.queryParams("periodoFin")));
 		builder.setUnIndicador(IndicadoresService.obtenerIndicadorPorId(Long.getLong(req.queryParams("indicador"))));
+		builder.setNombre(req.queryParams("nombre"));
+		builder.setPeriodoInicio(Integer.parseInt(req.queryParams("periodoInicio")));
+		
 		
 		if(req.queryParams("hayOrdenable")== "on"){
 			String nombre= req.queryParams("orden");
@@ -59,16 +60,16 @@ public class MetodologiasController {
 		if(Router.validar(req)&&!Router.esRutaPublica(req.url())){
 			res.redirect("login/login.hbs",301);
 		}
-		Map<String, List<ComparadorOrden>> modelComporden= new HashMap<>();
-		Map<String, List<ComparadorFiltro>> modelCompFiltro= new HashMap<>();
-		Map<String, List<Indicador>> modelIndicadores= new HashMap<>();
 		
 		Usuario user = encontrarSesionDe(req);
-		
 		List<Indicador> indicadores= IndicadoresService.obtenerIndicadoresDeServicioExterno(user);
 		List<ComparadorFiltro>comparadoresFiltro = Repositorios.metodologias.allComparadoresFiltro();
 		List<ComparadorOrden>comparadoresOrden = Repositorios.metodologias.allComparadoresOrden();
 		
+		Map<String, List<Indicador>> modelIndicadores= new HashMap<>();
+		Map<String, List<ComparadorOrden>> modelComporden= new HashMap<>();
+		Map<String, List<ComparadorFiltro>> modelCompFiltro= new HashMap<>();
+				
 		MetodologiasHandle handle = new MetodologiasHandle();
 
 		modelCompFiltro.put("filtros", comparadoresFiltro);
