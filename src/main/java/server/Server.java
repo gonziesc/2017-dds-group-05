@@ -15,8 +15,13 @@ public class Server {
 		//precalcularIndicadores jobIndicadores = new precalcularIndicadores();
 
 		//timer.scheduleAtFixedRate(jobIndicadores, 0, 60000);
-		Spark.port(9000);
-		DebugScreen.enableDebugScreen();
+		if(System.getenv("PORT")!=null)
+		{
+		Spark.port(Integer.parseInt(System.getenv("PORT")));
+		} else {
+			Spark.port(9000);
+		}
+		// DebugScreen.enableDebugScreen();
 		Router.configure();
 	}
 }
