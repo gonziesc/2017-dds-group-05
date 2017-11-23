@@ -7,8 +7,8 @@
 <hibernate-configuration>
 	<session-factory>
 		<!-- Connection settings -->
-		<property name="hibernate.connection.url">jdbc:postgresql://localhost/dds</property>
-		<property name="hibernate.connection.username">postgres</property>
+		<property name="hibernate.connection.url">jdbc:postgresql://ec2-54-221-204-213.compute-1.amazonaws.com:5432/d5oqbunr7jdobk?useSSL=true</property>
+		<property name="hibernate.connection.username">etehdyrrawmgmr</property>
 		<property name="hibernate.connection.password">1234</property>
 		<property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
 		
@@ -16,13 +16,15 @@
 		<!-- SQL dialect -->
 		<property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
 
-
+		<!-- SQL dialect -->
+		<property name="hibernate.connection.requireSSL">true</property>
 		<!-- Print executed SQL to stdout -->
 		<property name="show_sql">true</property>
 
+
 		<!-- Drop and re-create all database on startup -->
 
-		<property name="hibernate.hbm2ddl.auto">update</property>
+		<property name="hibernate.hbm2ddl.auto">create-drop</property>
 
 		<!-- Annotated entity classes -->
 
